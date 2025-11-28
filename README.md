@@ -20,3 +20,49 @@ npm run install
 - npm run prepare
 - npm run lint-staged
 ```
+
+## 📚 Структура проекта
+
+```
+src/
+├── api/                 # Методы для работы с данными
+│   ├── skillsApi/       # Функции для получание навыков с сервера ( getSkills(), getSkillById(id) )
+│   ├── usersApi/        # Функции для получание пользователей с сервера ( getUser(id) )
+│   ├── auth/            # Функции для авторизации пользователя
+│   ├── likes/           # Лайки пользователя
+│   └── requests/        # Заявки на обмен
+├── app/                 # Конфигурация приложения
+│   ├── layout/          # Компоненты компоновки страниц
+│   ├── providers/       # Провайдеры для React Context, Redux и темы ( AppProvider.tsx )
+│   ├── router/          # Конфигурация маршрутов ( AppRouter.tsx, ProtectedRoute.tsx, routes.ts )
+│   ├── store/           # Redux Toolkit store и slices ( authSlice.ts, skillsSlice.ts, requestsSlice.ts )
+│   └── styles/          # Глобальные стили, переменные
+├── assets/              # статические ресурсы ( изображения, шрифты, икноки и svg )
+│   ├── images/          # иллюстрации, фотографии навыков
+│   ├── icons/           # иконки кнопок, SVG
+│   └── fonts/           # шрифты
+├── entities/            # модели домена, сущности приложения (типы, модели)
+│   ├── Skill.ts         # интерфейс
+│   ├── User.ts/         # интерфейс
+│   └── Request.ts/      # интерфейс
+├── features/            # бизнес логика приложения
+│   ├── auth/            # login, register, хранение токена, редиректы
+│   ├── skills/          # фильтры, поиск, карточки навыков
+│   ├── likes/       # идобавление/удаление навыков из избранного
+│   └── requests/        # управление заявками
+├── mocks/               # мок сервисы
+├── pages/               # Лениво загружаемые страницы приложения
+├── shared/              # Переиспользуемые модули, библиотеки и ui
+│   ├── ui/              # атомы/молекулы (Button, Input, Card, Loader)
+│   ├── hooks/           # кастомные хуки
+│   └── lib/             # вспомогательные функции
+├── widgets/             # Композитные блоки, готовые UI-компоненты
+│   ├── header/          #
+│   ├── footer/          #
+│   ├── skillCard/       # карточка навыка с кнопками
+│   └── Sceletons/       # скелетоны загрузки
+└── main.tsx/            # точка входа
+public/
+├── db/                  # мок-данные
+└── mockServiceWorker.js # MSW worker
+```
