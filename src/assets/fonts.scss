@@ -1,0 +1,35 @@
+@font-face {
+  font-weight: 400;
+  font-family: Jost-Medium;
+  font-display: swap;
+  src:
+    url('./fonts/Jost/Jost-Medium.woff') format('woff'),
+    url('./fonts/Jost/Jost-Medium.woff2') format('woff2'),
+}
+
+@font-face {
+  font-weight: 400;
+  font-family: Roboto-Medium;
+  font-display: swap;
+  src:
+    url('./fonts/Roboto/Roboto-Medium.woff') format('woff'),
+    url('./fonts/Roboto/Roboto-Medium.woff2') format('woff2'),
+}
+
+@font-face {
+  font-weight: 400 800;
+  font-family: Roboto-Regular;
+  font-display: swap;
+  src:
+    url('./fonts/Roboto/Roboto-Regular.woff') format('woff'),
+    url('./fonts/Roboto/Roboto-Regular.woff2') format('woff2'),
+}
+
+@font-face {
+  font-weight: 400 800;
+  font-family: OpenSans-SemiBold;
+  font-display: swap;
+  src:
+    url('./fonts/OpenSans/OpenSans-SemiBold.woff') format('woff'),
+    url('./fonts/OpenSans/OpenSans-SemiBold.woff2') format('woff2'),
+}
