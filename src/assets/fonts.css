@@ -4,7 +4,7 @@
   font-display: swap;
   src:
     url('./fonts/Jost/Jost-Medium.woff') format('woff'),
-    url('./fonts/Jost/Jost-Medium.woff2') format('woff2'),
+    url('./fonts/Jost/Jost-Medium.woff2') format('woff2');
 }
 
 @font-face {
@@ -13,7 +13,7 @@
   font-display: swap;
   src:
     url('./fonts/Roboto/Roboto-Medium.woff') format('woff'),
-    url('./fonts/Roboto/Roboto-Medium.woff2') format('woff2'),
+    url('./fonts/Roboto/Roboto-Medium.woff2') format('woff2');
 }
 
 @font-face {
@@ -22,7 +22,7 @@
   font-display: swap;
   src:
     url('./fonts/Roboto/Roboto-Regular.woff') format('woff'),
-    url('./fonts/Roboto/Roboto-Regular.woff2') format('woff2'),
+    url('./fonts/Roboto/Roboto-Regular.woff2') format('woff2');
 }
 
 @font-face {
@@ -31,5 +31,5 @@
   font-display: swap;
   src:
     url('./fonts/OpenSans/OpenSans-SemiBold.woff') format('woff'),
-    url('./fonts/OpenSans/OpenSans-SemiBold.woff2') format('woff2'),
+    url('./fonts/OpenSans/OpenSans-SemiBold.woff2') format('woff2');
 }
