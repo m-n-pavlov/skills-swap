@@ -8,7 +8,6 @@
   text-decoration: none;
   color: var(--text);
   transition: color 0.2s ease;
-  margin-right: 32px;
 }
 
 .menu-link:hover {
