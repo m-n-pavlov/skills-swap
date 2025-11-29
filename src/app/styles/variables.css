@@ -32,3 +32,8 @@
   --caption-font-family: var(--font-family-roboto-regular);
   --caption-font-weight: var(--font-weight-regular);
 }
+
+body {
+  font-family: var(--font-family-roboto);
+  font-weight: var(--font-weight-regular);
+}
