@@ -1,4 +1,7 @@
-module.exports = {
+// eslint.config.js или eslint.config.mjs
+import storybook from "eslint-plugin-storybook";
+
+export default {
   root: true,
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -12,6 +15,7 @@ module.exports = {
     'react-hooks',
     'import',
     'jsx-a11y',
+    'storybook'
   ],
   extends: [
     'airbnb',
