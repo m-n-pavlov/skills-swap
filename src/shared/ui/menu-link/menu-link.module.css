@@ -1,0 +1,17 @@
+.link {
+  text-decoration: none;
+  color: var(--text);
+  transition: color 0.2s ease;
+}
+
+.link:hover {
+  cursor: pointer;
+  color: var(--button-hover);
+}
+
+.link_active {
+  color: var(--accent);
+}
+.link:visited {
+  color: var(--text);
+}
