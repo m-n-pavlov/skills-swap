@@ -1,8 +1,7 @@
 export type TCategory = {
   id: string;
   name: string;
-  image: string;
-  subCategory: TSubCategory[];
+  subCategories: TSubCategory[];
 };
 
 export type TSubCategory = {

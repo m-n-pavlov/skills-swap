@@ -4,8 +4,7 @@
     {
       "id": "business",
       "name": "Бизнес и карьера",
-      "image": "business_img",
-      "subCategory": [
+      "subCategories": [
         {
           "id": "team_management",
           "name": "Управление командой"
@@ -43,7 +42,6 @@
     {
       "id": "language",
       "name": "Иностранные языки",
-      "image": "language_img",
       "subCategory": [
         {
           "id": "english",
@@ -78,7 +76,6 @@
     {
       "id": "house",
       "name": "Дом и уют",
-      "image": "house_img",
       "subCategory": [
         {
           "id": "cleaning",
@@ -109,7 +106,6 @@
     {
       "id": "creation",
       "name": "Творчество и искусство",
-      "image": "creation_img",
       "subCategory": [
         {
           "id": "drawing",
@@ -148,7 +144,6 @@
     {
       "id": "education",
       "name": "Образование и развитие",
-      "image": "education_img",
       "subCategory": [
         {
           "id": "",
@@ -179,7 +174,6 @@
     {
       "id": "health",
       "name": "Здоровье и лайфстайл",
-      "image": "health_img",
       "subCategory": [
         {
           "id": "yoga",
