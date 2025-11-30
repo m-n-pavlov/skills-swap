@@ -21,6 +21,9 @@ npm i && npm run dev
 - npm run commit Прогон check + commit через commitizen
 - npm run prepare
 - npm run lint-staged
+- npm run storybook
+- npm run build-storybook
+- npm run cypress:open
 ```
 
 ## 📚 Структура проекта
@@ -65,6 +68,6 @@ src/
 │   └── Sceletons/       # скелетоны загрузки
 └── main.tsx/            # точка входа
 public/
-├── db/                  # мок-данные
+├── db/                  # json данные
 └── mockServiceWorker.js # MSW worker
 ```
