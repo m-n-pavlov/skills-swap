@@ -1,6 +1,8 @@
 import { createRoot } from 'react-dom/client';
 import './app/styles/normalize.css';
 import './app/styles/global.css';
+import './assets/fonts.css';
+import './app/styles/variables.css';
 import App from './app/App.tsx';
 import { AppProvider } from './app/providers/appProvider.tsx';
 
