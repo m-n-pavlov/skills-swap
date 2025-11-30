@@ -2,8 +2,6 @@
   position: fixed;
   top: 50%;
   left: 50%;
-  max-width: 1024px;
-  max-height: 532px;
   width: 90%;
   background: rgb(255, 255, 255);
   display: flex;
@@ -15,49 +13,19 @@
   gap: 12px;
 }
 
-.success-modal,
-.await-modal {
-  padding: 62px 60px;
+.small-modal {
   max-width: 556px;
   max-height: 420px;
 }
 
-.login-modal {
-  padding: 80px 60px;
-  max-width: 556px;
-  max-height: 480px;
-}
-
-.change-modal {
-  padding: 44px 60px 72px;
+.medium-modal {
   max-width: 1024px;
   max-height: 532px;
 }
 
-.title {
-  font-family: var(--font-family-jost-medium);
-  font-weight: var(--font-weight-medium);
-  font-size: var(--h2-font-size);
-  line-height: var(--h2-line-height);
-  text-align: center;
-  color: var(--text);
-}
-
-.subtitle {
-  font-family: var(--body-font-family);
-  font-weight: var(--body-font-weight);
-  font-size: var(--body-font-size);
-  line-height: var(--body-line-height);
-  text-align: center;
-  color: var(--text);
-}
-
-.icon {
-  max-width: 100px;
-  max-height: 100px;
-  object-fit: contain;
-  border-radius: 50%;
-  padding-bottom: 40px;
+.large-modal {
+  max-width: 1136px;
+  max-height: 1040px;
 }
 
 .overlay {
@@ -71,52 +39,4 @@
   align-items: center;
   justify-content: center;
   z-index: 4;
-}
-
-.content {
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 24px;
-  flex-grow: 1;
-}
-
-.modal-buttons {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.btn-primary,
-.btn-secondary {
-  border-radius: 12px;
-  font-family: var(--body-font-family);
-  font-weight: var(--body-font-weight);
-  font-size: var(--body-font-size);
-  line-height: var(--body-line-height);
-  cursor: pointer;
-}
-
-.btn-primary {
-  background: #abd27a;
-  color: #253017;
-  border: none;
-}
-
-.btn-primary:hover {
-  background: #deebc5;
-}
-
-.btn-secondary {
-  background: #fff;
-  color: #253017;
-  border: 1px solid #abd27a;
-}
-
-.btn-secondary:hover {
-  background: #f1f8e9;
-  color: #69735d;
-  border: 1px solid #deebc5;
 }

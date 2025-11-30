@@ -1,48 +1,22 @@
 import { useEffect, useRef } from 'react';
-import styles from './modal.module.scss';
+import styles from './modal.module.css';
 import React from 'react';
 
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
-  title: string;
-  subtitle: string;
-  icon?: React.ReactNode;
-  children?: React.ReactNode;
-  primaryButton: {
-    text: string;
-    onClick: () => void;
-  };
-  secondaryButton?: {
-    text: string;
-    onClick: () => void;
-  };
-  variant?: ModalVariant;
+  children: React.ReactNode;
+  size?: 'small' | 'medium' | 'large';
 }
 
-type ModalVariant = 'success' | 'login' | 'change' | 'await' | '';
-//sucsess - модалка "Ваше предложение создано"
-//login - модалка "Аутентификация"
-//change - модалка "Ваше предложение"
-//await - модалка "Вы предложили обмен"
-
 const Modal = React.memo(
-  ({
-    isOpen,
-    onClose,
-    title,
-    subtitle,
-    icon,
-    children,
-    primaryButton,
-    secondaryButton,
-    variant = ''
-  }: ModalProps) => {
+  ({ isOpen, onClose, children, size = 'medium' }: ModalProps) => {
     if (!isOpen) return null;
+
     const modalRef = useRef<HTMLDivElement>(null);
 
     const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
-      // закрытие по оверлей
+      // закрытие модалки по клику на оверлей
       if (e.target === e.currentTarget) {
         onClose();
       }
@@ -50,50 +24,44 @@ const Modal = React.memo(
 
     useEffect(() => {
       const handleKeyDown = (e: KeyboardEvent) => {
-        // закрытие по Esc
+        // закрытие модалки по ESC
         if (e.key === 'Escape') {
           onClose();
         }
       };
 
-      document.addEventListener('keydown', handleKeyDown); // удаление слушателей
+      document.addEventListener('keydown', handleKeyDown);
       return () => {
         document.removeEventListener('keydown', handleKeyDown);
       };
     }, [onClose]);
 
     useEffect(() => {
+      // установка фокуса на модалку
       const modal = modalRef.current;
       if (modal) {
         modal.focus();
       }
     }, []);
 
-    const modalVariant = `${variant}-modal`; // класс для установки названия модалки
+    useEffect(() => {
+      // Блокировка скролла при открытой модалке
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = '';
+      };
+    }, []);
+
+    const modalSize = styles[`${size}-modal`]; // установка размера модалки
 
     return (
       <div className={styles.overlay} onClick={handleOverlayClick}>
-        <div className={`${styles.modal} ${modalVariant}`} ref={modalRef}>
-          {icon && <div className={styles.icon}>{icon}</div>}
-          <h2 className={styles.title}>{title}</h2>
-          {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
-          {children && <div className={styles.content}>{children}</div>}
-          <div className={styles.buttons}>
-            {secondaryButton && (
-              <button
-                className={styles.secondaryButton}
-                onClick={secondaryButton.onClick}
-              >
-                {secondaryButton.text}
-              </button>
-            )}
-            <button
-              className={styles.primaryButton}
-              onClick={primaryButton.onClick}
-            >
-              {primaryButton.text}
-            </button>
-          </div>
+        <div
+          className={`${styles.modal} ${modalSize}`}
+          ref={modalRef}
+          tabIndex={-1} // фокус по умолчанию
+        >
+          {children}
         </div>
       </div>
     );
