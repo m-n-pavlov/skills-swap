@@ -4,7 +4,7 @@
     {
       "id": "business",
       "name": "Бизнес и карьера",
-      "subCategories": [
+      "subcategories": [
         {
           "id": "team_management",
           "name": "Управление командой"
@@ -42,7 +42,7 @@
     {
       "id": "language",
       "name": "Иностранные языки",
-      "subCategory": [
+      "subcategories": [
         {
           "id": "english",
           "name": "Английский"
@@ -76,7 +76,7 @@
     {
       "id": "house",
       "name": "Дом и уют",
-      "subCategory": [
+      "subcategories": [
         {
           "id": "cleaning",
           "name": "Уборка и организация"
@@ -106,7 +106,7 @@
     {
       "id": "creation",
       "name": "Творчество и искусство",
-      "subCategory": [
+      "subcategories": [
         {
           "id": "drawing",
           "name": "Рисование и иллюстрация"
@@ -144,7 +144,7 @@
     {
       "id": "education",
       "name": "Образование и развитие",
-      "subCategory": [
+      "subcategories": [
         {
           "id": "",
           "name": "Личностное развитие"
@@ -174,7 +174,7 @@
     {
       "id": "health",
       "name": "Здоровье и лайфстайл",
-      "subCategory": [
+      "subcategories": [
         {
           "id": "yoga",
           "name": "Йога и медитация"

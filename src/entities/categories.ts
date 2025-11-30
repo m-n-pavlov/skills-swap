@@ -1,10 +1,10 @@
 export type TCategory = {
   id: string;
   name: string;
-  subCategories: TSubCategory[];
+  subCategories: TSubCategories[];
 };
 
-export type TSubCategory = {
+export type TSubCategories = {
   id: string;
   name: string;
 };
