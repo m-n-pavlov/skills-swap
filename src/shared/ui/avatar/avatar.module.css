@@ -1,0 +1,34 @@
+.avatar {
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.small {
+  width: 48px;
+  height: 48px;
+}
+
+.medium {
+  width: 100px;
+  height: 100px;
+}
+
+.large {
+  width: 244px;
+  height: 244px;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.icon {
+  width: 60%;
+  height: 60%;
+  color: currentColor;
+}
