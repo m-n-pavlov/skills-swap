@@ -1,0 +1,53 @@
+.search-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-radius: 12px;
+  max-height: 48px;
+  padding: 12px;
+  width: 100%;
+  background-color: var(--input);
+  gap: 8px;
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  height: 100%;
+  width: 100%;
+  font-size: var(--body-font-size);
+  font-family: var(--body-font-family);
+  line-height: var(--body-line-height);
+  color: var(--caption);
+}
+
+/* Иконки */
+.icon.left {
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: contain;
+  min-height: 24px;
+  min-width: 24px;
+}
+
+.icon.right {
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: contain;
+  min-height: 24px;
+  min-width: 24px;
+}
+
+.clear-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+input[type='search']::-webkit-search-cancel-button {
+  /* Скрываем встроенный "X" */
+  appearance: none;
+  display: none;
+}
