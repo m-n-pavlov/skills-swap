@@ -1,2 +1,0 @@
-export { RadioButton } from './RadioButton';
-export { RadioButtonItem, RadioButtonProps } from './type';
