@@ -1,0 +1,12 @@
+.theme {
+  color: inherit;
+  transition: all 0.2s;
+}
+
+.theme:hover {
+  color: var(--button-hover);
+}
+
+.theme:active {
+  color: var(--accent);
+}
