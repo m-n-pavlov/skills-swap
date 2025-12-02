@@ -19,4 +19,4 @@ const LinkButton: React.FC<LinkButtonProps> = ({
   </NavLink>
 );
 
-export default LinkButton;
+export { LinkButton };
