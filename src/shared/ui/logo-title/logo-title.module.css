@@ -1,0 +1,7 @@
+.logo-title__text {
+  font-family: var(--h1-font-family);
+  font-size: var(--h2-font-size);
+  line-height: var(--h2-line-height);
+  font-weight: var(--font-weight-semibold);
+  user-select: none;
+}
