@@ -1,4 +1,4 @@
-import type { ButtonHTMLAttributes } from 'react';
+import type { NavLinkProps } from 'react-router-dom';
 import type { IconName } from '../icon/icons';
 
 export type FavoriteLinkUIProps = {
@@ -6,4 +6,4 @@ export type FavoriteLinkUIProps = {
   iconName: IconName;
   iconAlt?: string;
   className?: string;
-} & ButtonHTMLAttributes<HTMLButtonElement>;
+} & Omit<NavLinkProps, 'to' | 'className'>;
