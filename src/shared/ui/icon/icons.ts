@@ -27,6 +27,7 @@ import Home from '../../../assets/icons/home.svg?react';
 import Idea from '../../../assets/icons/idea.svg?react';
 import Lifestyle from '../../../assets/icons/lifestyle.svg?react';
 import Like from '../../../assets/icons/like.svg?react';
+import Logo from '../../../assets/icons/logo.svg?react';
 import Logout from '../../../assets/icons/logout.svg?react';
 import MessageText from '../../../assets/icons/message-text.svg?react';
 import Moon from '../../../assets/icons/moon.svg?react';
@@ -75,6 +76,7 @@ export const icons = {
   idea: Idea,
   lifestyle: Lifestyle,
   like: Like,
+  logo: Logo,
   logout: Logout,
   messageText: MessageText,
   moon: Moon,
