@@ -1,4 +1,4 @@
-.search-input-wrapper {
+.search_input_wrapper {
   position: relative;
   display: flex;
   align-items: center;
@@ -10,7 +10,7 @@
   gap: 8px;
 }
 
-.search-input {
+.search_input {
   flex: 1;
   border: none;
   outline: none;
@@ -23,24 +23,16 @@
   color: var(--caption);
 }
 
-/* Иконки */
-.icon.left {
-  background-position: left;
+/* Иконка */
+.icon {
+  background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
   min-height: 24px;
   min-width: 24px;
 }
 
-.icon.right {
-  background-position: right;
-  background-repeat: no-repeat;
-  background-size: contain;
-  min-height: 24px;
-  min-width: 24px;
-}
-
-.clear-button {
+.clear_button {
   background: none;
   border: none;
   cursor: pointer;

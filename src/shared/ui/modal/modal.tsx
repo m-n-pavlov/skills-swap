@@ -1,15 +1,9 @@
 import { useEffect, useRef } from 'react';
 import styles from './modal.module.css';
 import React from 'react';
+import type { ModalProps } from './type';
 
-interface ModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  children: React.ReactNode;
-  size?: 'small' | 'medium' | 'large';
-}
-
-const Modal = React.memo(
+export const Modal = React.memo(
   ({ isOpen, onClose, children, size = 'medium' }: ModalProps) => {
     if (!isOpen) return null;
 
