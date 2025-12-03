@@ -1,10 +1,10 @@
 import type { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Icon } from '../icon/Icon';
-import styles from './favorite-link.module.css';
-import type { FavoriteLinkUIProps } from './type';
+import styles from './faivarits-link.module.css';
+import type { FaivaritsLinkUIProps } from './type';
 
-export const FavoriteLinkUI: FC<FavoriteLinkUIProps> = ({
+export const FaivaritsLinkUI: FC<FaivaritsLinkUIProps> = ({
   href,
   className,
   iconName,
@@ -13,9 +13,8 @@ export const FavoriteLinkUI: FC<FavoriteLinkUIProps> = ({
   <NavLink
     to={href || '#'}
     className={({ isActive }) =>
-      `${styles.favorite} ${isActive ? styles.favorite_active : ''} ${className ?? ''}`
+      `${styles.faivarits} ${isActive ? styles.faivarits_active : ''} ${className ?? ''}`
     }
-    end
   >
     <Icon
       name={iconName}
