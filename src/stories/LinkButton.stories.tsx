@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { MemoryRouter } from 'react-router-dom';
-import LinkButton from './LinkButton';
-import './linkButton.module.css';
+import { LinkButton } from '../shared/ui/LinkButton';
 
 const meta = {
   title: 'Components/LinkButton',
