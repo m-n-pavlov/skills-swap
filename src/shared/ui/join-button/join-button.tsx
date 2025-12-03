@@ -1,16 +1,11 @@
-import { Button } from '../Button/Button';
+import { LinkButton } from '../LinkButton';
 
 export const LoginButton = () => {
   return (
     <form>
-      <Button
-        onClick={() => console.log('Вход')}
-        type='submit'
-        style='primary'
-        className='login-button'
-      >
+      <LinkButton size='xs' to='' style='primary' className='login-button'>
         Войти
-      </Button>
+      </LinkButton>
     </form>
   );
 };
