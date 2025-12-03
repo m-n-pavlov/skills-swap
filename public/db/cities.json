@@ -1,0 +1,205 @@
+{
+  "success": true,
+  "cities": [
+    {
+      "id": "moscow",
+      "location": "Москва"
+    },
+    {
+      "id": "saint_petersburg",
+      "location": "Санкт-Петербург"
+    },
+    {
+      "id": "novosibirsk",
+      "location": "Новосибирск"
+    },
+    {
+      "id": "yekaterinburg",
+      "location": "Екатеринбург"
+    },
+    {
+      "id": "kazan",
+      "location": "Казань"
+    },
+    {
+      "id": "nizhny_novgorod",
+      "location": "Нижний Новгород"
+    },
+    {
+      "id": "chelyabinsk",
+      "location": "Челябинск"
+    },
+    {
+      "id": "samara",
+      "location": "Самара"
+    },
+    {
+      "id": "omsk",
+      "location": "Омск"
+    },
+    {
+      "id": "rostov_on_don",
+      "location": "Ростов-на-Дону"
+    },
+    {
+      "id": "ufa",
+      "location": "Уфа"
+    },
+    {
+      "id": "krasnoyarsk",
+      "location": "Красноярск"
+    },
+    {
+      "id": "voronezh",
+      "location": "Воронеж"
+    },
+    {
+      "id": "perm",
+      "location": "Пермь"
+    },
+    {
+      "id": "volgograd",
+      "location": "Волгоград"
+    },
+    {
+      "id": "krasnodar",
+      "location": "Краснодар"
+    },
+    {
+      "id": "saratov",
+      "location": "Саратов"
+    },
+    {
+      "id": "tyumen",
+      "location": "Тюмень"
+    },
+    {
+      "id": "tolyatti",
+      "location": "Тольятти"
+    },
+    {
+      "id": "izhevsk",
+      "location": "Ижевск"
+    },
+    {
+      "id": "barnaul",
+      "location": "Барнаул"
+    },
+    {
+      "id": "ulyanovsk",
+      "location": "Ульяновск"
+    },
+    {
+      "id": "irkutsk",
+      "location": "Иркутск"
+    },
+    {
+      "id": "khabarovsk",
+      "location": "Хабаровск"
+    },
+    {
+      "id": "yaroslavl",
+      "location": "Ярославль"
+    },
+    {
+      "id": "vladivostok",
+      "location": "Владивосток"
+    },
+    {
+      "id": "makhachkala",
+      "location": "Махачкала"
+    },
+    {
+      "id": "tomsk",
+      "location": "Томск"
+    },
+    {
+      "id": "orenburg",
+      "location": "Оренбург"
+    },
+    {
+      "id": "kemerovo",
+      "location": "Кемерово"
+    },
+    {
+      "id": "novokuznetsk",
+      "location": "Новокузнецк"
+    },
+    {
+      "id": "ryazan",
+      "location": "Рязань"
+    },
+    {
+      "id": "astrakhan",
+      "location": "Астрахань"
+    },
+    {
+      "id": "naberezhnye_chelny",
+      "location": "Набережные Челны"
+    },
+    {
+      "id": "penza",
+      "location": "Пенза"
+    },
+    {
+      "id": "kirov",
+      "location": "Киров"
+    },
+    {
+      "id": "lipetsk",
+      "location": "Липецк"
+    },
+    {
+      "id": "balashikha",
+      "location": "Балашиха"
+    },
+    {
+      "id": "cheboksary",
+      "location": "Чебоксары"
+    },
+    {
+      "id": "kaliningrad",
+      "location": "Калининград"
+    },
+    {
+      "id": "tula",
+      "location": "Тула"
+    },
+    {
+      "id": "kursk",
+      "location": "Курск"
+    },
+    {
+      "id": "stavropol",
+      "location": "Ставрополь"
+    },
+    {
+      "id": "sochi",
+      "location": "Сочи"
+    },
+    {
+      "id": "ufa",
+      "location": "Уфа"
+    },
+    {
+      "id": "tver",
+      "location": "Тверь"
+    },
+    {
+      "id": "magnitogorsk",
+      "location": "Магнитогорск"
+    },
+    {
+      "id": "ivanovo",
+      "location": "Иваново"
+    },
+    {
+      "id": "bryansk",
+      "location": "Брянск"
+    },
+    {
+      "id": "belgorod",
+      "location": "Белгород"
+    }
+  ]
+}

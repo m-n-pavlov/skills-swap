@@ -1,0 +1,32 @@
+.menu_button {
+  all: unset;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  color: var(--text);
+}
+
+.menu_button-label {
+  font-family: var(--font-family-roboto-regular);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0.02em;
+}
+
+.menu_button:hover {
+  color: var(--button-hover);
+}
+
+.menu_button-active {
+  color: var(--accent);
+}
+
+.menu_button-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
