@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import styles from './Input.module.css';
 import type { InputProps } from './types';
-import EyeOpenIcon from '../../../../assets/icons/eye.svg';
-import EyeClosedIcon from '../../../../assets/icons/eye.svg';
+import { Icon } from '../icon';
 
 const Input: React.FC<InputProps> = ({
   value,
@@ -85,7 +84,11 @@ const Input: React.FC<InputProps> = ({
             className={styles.passwordToggle}
             onClick={togglePasswordVisibility}
           >
-            {showPassword ? <EyeClosedIcon /> : <EyeOpenIcon />}
+            {showPassword ? (
+              <Icon name='eyeSlash' alt='иконка зачеркнутого глаза' />
+            ) : (
+              <Icon name='eye' alt='иконка глаза' />
+            )}
           </button>
         )}
       </div>

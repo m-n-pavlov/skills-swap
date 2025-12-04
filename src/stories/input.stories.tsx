@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Input from '../shared/ui/menu-link/input/input';
+import Input from '../shared/ui/input/input';
 import { useState } from 'react';
 const ExampleIcon = () => (
   <span style={{ fontSize: '18px', color: '#666' }}>📧</span>
