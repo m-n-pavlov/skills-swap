@@ -1,7 +1,7 @@
 name: Run Tests
 on:
   push:
-    branches: [ develop, chore/ci-test-github, feature/slice-categories-cities' ]
+    branches: [ develop, chore/ci-test-github, feature/slice-categories-cities ]
   pull_request:
       branches: [ develop ]
 
