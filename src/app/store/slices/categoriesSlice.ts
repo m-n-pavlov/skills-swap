@@ -1,6 +1,6 @@
 import type { TCategory } from '../../../entities/categories.ts';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getCategoriesApi } from '../../../api/categoriesApi.ts';
+import { getCategoriesApi } from '../../../api';
 
 type CategoriesSlice = {
   categories: TCategory[];

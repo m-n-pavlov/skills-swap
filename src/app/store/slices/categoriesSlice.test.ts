@@ -1,8 +1,12 @@
-import { vi, describe, it, expect } from 'vitest';
 import type { TCategory } from '../../../entities/categories.ts';
-import * as api from '../../../api';
 import { configureStore } from '@reduxjs/toolkit';
 import categoriesReducer, { fetchGetCategories } from './categoriesSlice';
+
+jest.mock('../../../api', () => ({
+  getCategoriesApi: jest.fn()
+}));
+
+import * as api from '../../../api';
 
 describe('Проверяют редьюсер слайса для категорий', () => {
   const mockCategories: TCategory[] = [
@@ -22,8 +26,12 @@ describe('Проверяют редьюсер слайса для категор
     }
   ];
 
-  it('Тест загрузки ингредиентов. Состояние fulfilled', async () => {
-    vi.spyOn(api, 'getCategoriesApi').mockResolvedValue([...mockCategories]);
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  test('Тест загрузки ингредиентов. Состояние fulfilled', async () => {
+    (api.getCategoriesApi as jest.Mock).mockResolvedValue(mockCategories);
     const store = configureStore({
       reducer: { categories: categoriesReducer }
     });
