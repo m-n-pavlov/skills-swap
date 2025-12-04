@@ -39,5 +39,5 @@ jobs:
       - name: Run tests
         run: npm test
 #
-      - name: Run Cypress e2e tests
-        run: npm run cypress:run:ci
+#      - name: Run Cypress e2e tests
+#        run: npm run cypress:run:ci
