@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Icon } from '../icon/Icon';
+import { Icon } from '../Icon';
 import styles from './faivarits-link.module.css';
 import type { FaivaritsLinkUIProps } from './type';
 

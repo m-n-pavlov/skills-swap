@@ -1,1 +1,1 @@
-export { LinkButton } from './LinkButton.tsx';
+export { LinkButton } from './LinkButton';

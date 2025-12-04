@@ -1,13 +1,13 @@
-export interface RadioButtonItem {
+export type RadioButtonItem = {
   label: string;
   value: string;
   checked?: boolean;
   disabled?: boolean;
-}
+};
 
-export interface RadioButtonProps {
+export type RadioButtonProps = {
   legend?: string;
   name: string;
   items: RadioButtonItem[];
   onChange?: (value: string) => void;
-}
+};

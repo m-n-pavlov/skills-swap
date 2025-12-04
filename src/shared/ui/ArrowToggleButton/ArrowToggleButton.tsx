@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import styles from './ArrowToggleButton.module.css';
-import type { ArrowToggleButtonProps } from './types';
-import { Icon } from '../icon';
+import type { ArrowToggleButtonProps } from './type.ts';
+import { Icon } from '../Icon';
 
 export const ArrowToggleButton = ({
   label,

@@ -1,8 +1,8 @@
-import type { TButtonProps } from './TButtonProps.ts';
+import type { ButtonProps } from './type.ts';
 import { clsx } from 'clsx';
-import styles from './button.module.css';
+import styles from './Button.module.css';
 
-export const Button: React.FC<TButtonProps> = ({
+export const Button: React.FC<ButtonProps> = ({
   children,
   onClick,
   type,

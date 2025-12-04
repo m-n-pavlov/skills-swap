@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { ButtonToggleTheme } from '../shared/ui/button-toggle-theme';
-import '../shared/ui/button-toggle-theme/button-toggle-theme.module.css';
+import { ButtonToggleTheme } from '../shared/ui';
+import '../shared/ui/ButtonToggleTheme/ButtonToggleTheme.module.css';
 
 const meta: Meta<typeof ButtonToggleTheme> = {
   title: 'Components/ToggleTheme',
