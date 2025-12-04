@@ -32,6 +32,7 @@ describe('Проверяют редьюсер слайса для категор
 
   test('Тест загрузки ингредиентов. Состояние fulfilled', async () => {
     (api.getCategoriesApi as jest.Mock).mockResolvedValue(mockCategories);
+
     const store = configureStore({
       reducer: { categories: categoriesReducer }
     });
