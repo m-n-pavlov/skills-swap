@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { MemoryRouter } from 'react-router-dom';
-import { UserLinkUI } from '../shared/ui/user-link';
+import { UserLinkUI } from '../shared/ui/UserLink';
 
 const meta: Meta<typeof UserLinkUI> = {
   title: 'Shared/UserLinkUI',
