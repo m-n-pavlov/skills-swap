@@ -74,7 +74,7 @@
       ]
     },
     {
-      "id": "house",
+      "id": "home",
       "name": "Дом и уют",
       "subcategories": [
         {
@@ -104,7 +104,7 @@
       ]
     },
     {
-      "id": "creation",
+      "id": "art",
       "name": "Творчество и искусство",
       "subcategories": [
         {
