@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Avatar } from '../avatar';
+import { Avatar } from '../Avatar';
 import styles from './user-link.module.css';
 import type { UserLinkUIProps } from './type';
 
