@@ -3,7 +3,7 @@ import { Icon } from '../Icon';
 import styles from './LogoIcon.module.css';
 
 export const LogoIcon: FC = () => (
-  <div className={styles['Logo-icon__container']}>
-    <Icon name='logo' alt='Logo' className={styles['Logo-icon__img']} />
+  <div className={styles.logoIconContainer}>
+    <Icon name='logo' alt='Logo' className={styles.logoIconImg} />
   </div>
 );

@@ -1,4 +1,4 @@
-.logo-icon__container {
+.logoIconContainer {
   height: 40px;
   width: 40px;
   display: flex;
@@ -8,7 +8,7 @@
   border-radius: 50%;
 }
 
-.logo-icon__img {
+.logoIconImg {
   width: 20px;
   height: 20px;
   fill: var(--background);
