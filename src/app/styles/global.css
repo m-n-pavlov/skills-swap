@@ -10,12 +10,13 @@
   --button-hover: #deebc5;
 
   --tag-business: #eee7f7;
-  --tag-art: #f7e7f2;
-  --tag-lagueges: #ebe5c5;
-  --tag-education: #e7f2f6;
+  --tag-language: #ebe5c5;
   --tag-home: #f7ebe5;
+  --tag-art: #f7e7f2;
+  --tag-education: #e7f2f6;
   --tag-health: #e9f7e7;
-  --tag-plus: #e8ecf7;
+  --tag-default: #e8ecf7;
+
   --background: #f9faf7;
   --card: #fff;
   --input: #fff;
