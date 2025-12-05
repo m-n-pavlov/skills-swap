@@ -1,9 +1,22 @@
 .button {
-  display: inline-flex;
+  width: 24px;
+  height: 24px;
+  display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2px;
   background: transparent;
   border: none;
   cursor: pointer;
+}
+
+.active {
+  color: var(--accent);
+}
+
+.button:hover {
+  color: var(--button-hover);
+}
+
+.icon {
+  flex-shrink: 0;
 }

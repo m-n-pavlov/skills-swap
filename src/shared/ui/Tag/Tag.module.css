@@ -1,0 +1,37 @@
+.tag {
+  display: inline-block;
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.02em;
+  user-select: none;
+}
+
+.default {
+  background: var(--tag-default);
+}
+
+.business {
+  background: var(--tag-business);
+}
+
+.language {
+  background: var(--tag-language);
+}
+
+.home {
+  background: var(--tag-home);
+}
+
+.art {
+  background: var(--tag-art);
+}
+
+.education {
+  background: var(--tag-education);
+}
+
+.health {
+  background: var(--tag-health);
+}
