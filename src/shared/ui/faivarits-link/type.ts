@@ -1,5 +1,5 @@
 import type { NavLinkProps } from 'react-router-dom';
-import type { IconName } from '../icon/icons';
+import type { IconName } from '../Icon/icons';
 
 export type FaivaritsLinkUIProps = {
   href: string;

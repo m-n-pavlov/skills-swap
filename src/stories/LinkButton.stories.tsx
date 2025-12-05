@@ -142,7 +142,7 @@ export const WithIcon: Story = {
         <span>→</span> Navigate
       </>
     ),
-    to: '/with-icon',
+    to: '/with-Icon',
     style: 'primary',
     size: 'md'
   }

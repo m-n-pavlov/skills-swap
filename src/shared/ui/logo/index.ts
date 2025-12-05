@@ -1,1 +1,0 @@
-export { LogoUI } from './logo';

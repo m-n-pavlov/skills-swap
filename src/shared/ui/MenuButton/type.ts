@@ -1,8 +1,8 @@
 import type { ButtonHTMLAttributes } from 'react';
 import type { IconName } from '../Icon/icons';
 
-export type ButtonIconProps = {
-  name: string;
+export type MenuButtonProps = {
+  label: string;
   iconName: IconName;
   iconAlt?: string;
   isActive?: boolean;

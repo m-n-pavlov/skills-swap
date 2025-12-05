@@ -1,10 +1,10 @@
 import { NavLink } from 'react-router-dom';
-import type { LinkButtonProps } from './LinkButtonProps.ts';
+import type { LinkButtonProps } from './type';
 import React from 'react';
 import { clsx } from 'clsx';
-import styles from './linkButton.module.css';
+import styles from './LinkButton.module.css';
 
-const LinkButton: React.FC<LinkButtonProps> = ({
+export const LinkButton: React.FC<LinkButtonProps> = ({
   children,
   to,
   style,
@@ -18,5 +18,3 @@ const LinkButton: React.FC<LinkButtonProps> = ({
     {children}
   </NavLink>
 );
-
-export { LinkButton };
