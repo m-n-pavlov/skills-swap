@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Avatar } from '../Avatar';
-import styles from './user-link.module.css';
+import styles from './UserLink.module.css';
 import type { UserLinkUIProps } from './type';
 
 export const UserLinkUI: FC<UserLinkUIProps> = ({
