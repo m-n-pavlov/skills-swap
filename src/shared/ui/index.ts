@@ -14,3 +14,4 @@ export * from './Modal';
 export * from './RadioButton';
 export * from './RegistrationButton';
 export * from './SearchInput';
+export * from './InputFile';
