@@ -2,17 +2,27 @@ import { memo } from 'react';
 import clsx from 'clsx';
 import type { ButtonIconProps } from './type';
 import styles from './ButtonIcon.module.css';
+import { Icon } from '../Icon';
 
 export const ButtonIcon = memo(
-  ({ onClick, children, name, className }: ButtonIconProps) => {
+  ({
+    name,
+    iconName,
+    iconAlt,
+    isActive = false,
+    className,
+    ...buttonProps
+  }: ButtonIconProps) => {
     return (
       <button
         type='button'
         aria-label={name}
-        onClick={onClick}
-        className={clsx(styles.button, className)}
+        className={clsx(styles.button, className, {
+          [styles.active]: isActive
+        })}
+        {...buttonProps}
       >
-        {children}
+        <Icon name={iconName} alt={iconAlt ?? name} className={styles.icon} />
       </button>
     );
   }

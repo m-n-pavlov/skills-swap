@@ -15,18 +15,6 @@ const meta: Meta<typeof RegistrationButton> = {
   parameters: {
     layout: 'centered',
     actions: { argTypesRegex: '^on.*' }
-  },
-  argTypes: {
-    to: {
-      control: 'text',
-      description: 'URL для навигации',
-      defaultValue: '#'
-    },
-    children: {
-      control: 'text',
-      description: 'Текст кнопки',
-      defaultValue: 'Зарегистрироваться'
-    }
   }
 };
 
@@ -34,16 +22,4 @@ export default meta;
 
 type Story = StoryObj<typeof RegistrationButton>;
 
-export const Default: Story = {
-  args: {
-    children: 'Зарегистрироваться',
-    to: '#'
-  }
-};
-
-export const WithCustomRoute: Story = {
-  args: {
-    children: 'Зарегистрироваться',
-    to: '/register' // в будущем заменить заглушку на рабочий путь для теста (!)
-  }
-};
+export const Default: Story = {};
