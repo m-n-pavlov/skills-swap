@@ -16,7 +16,7 @@ export const RegistrationButton: React.FC<RegistrationButtonProps> = ({
       className={className}
       {...rest}
     >
-      {children}
+      Зарегистрироваться
     </LinkButton>
   );
 };

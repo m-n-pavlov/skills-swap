@@ -1,8 +1,10 @@
-import type { ReactNode } from 'react';
+import type { ButtonHTMLAttributes } from 'react';
+import type { IconName } from '../Icon/icons';
 
 export type ButtonIconProps = {
-  onClick: () => void;
-  children: ReactNode;
   name: string;
+  iconName: IconName;
+  iconAlt?: string;
+  isActive?: boolean;
   className?: string;
-};
+} & ButtonHTMLAttributes<HTMLButtonElement>;

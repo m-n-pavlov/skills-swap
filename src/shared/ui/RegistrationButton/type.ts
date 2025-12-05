@@ -2,7 +2,8 @@ import type { LinkButtonProps } from '../LinkButton/type';
 
 export interface RegistrationButtonProps extends Omit<
   LinkButtonProps,
-  'style' | 'size'
+  'style' | 'size' | 'to'
 > {
-  to: string;
+  to?: string;
+  className?: string;
 }
