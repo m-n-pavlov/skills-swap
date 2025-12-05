@@ -1,4 +1,4 @@
-export interface CheckboxProps {
+export type CheckboxProps = {
   skills: string[]; // плоский список
   selectedSkills: string[]; // какие отмечены
   expandedSkills?: string[]; // какие раскрыты (опционально)
@@ -7,4 +7,4 @@ export interface CheckboxProps {
   onChange: (skill: string) => void;
   onToggleExpand?: (skill: string) => void; // опционально
   legend?: string;
-}
+};
