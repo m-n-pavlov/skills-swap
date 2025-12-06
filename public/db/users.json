@@ -8,8 +8,8 @@
       "cityId": "saint_petersburg",
       "gender": "male",
       "birthday": "1996-12-01",
-      "skillsTeach": ["curriculum_development"],
-      "skillsLearn": ["engaging_audience", "memory_techniques"],
+      "skillsTeach": ["1"],
+      "skillsLearn": ["2", "3"],
       "likes": 0,
       "createdAt": "2025-12-07"
     },
@@ -20,8 +20,8 @@
       "cityId": "kemerovo",
       "gender": "female",
       "birthday": "1994-08-14",
-      "skillsTeach": ["business_model_canvas", "financial_forecasting"],
-      "skillsLearn": ["strategic_networking"],
+      "skillsTeach": ["2", "6"],
+      "skillsLearn": ["3"],
       "likes": 0,
       "createdAt": "2025-05-22"
     },
@@ -32,8 +32,8 @@
       "cityId": "sochi",
       "gender": "female",
       "birthday": "1994-03-30",
-      "skillsTeach": ["content_planning", "targeted_ads", "portion_control"],
-      "skillsLearn": ["balanced_diet"],
+      "skillsTeach": ["11", "4", "1"],
+      "skillsLearn": ["5"],
       "likes": 0,
       "createdAt": "2025-07-11"
     },
@@ -44,8 +44,8 @@
       "cityId": "krasnoyarsk",
       "gender": "female",
       "birthday": "1997-11-05",
-      "skillsTeach": ["character_development"],
-      "skillsLearn": ["mind_mapping"],
+      "skillsTeach": ["8"],
+      "skillsLearn": ["15"],
       "likes": 0,
       "createdAt": "2025-09-18"
     },
@@ -56,8 +56,8 @@
       "cityId": "irkutsk",
       "gender": "male",
       "birthday": "1989-06-25",
-      "skillsTeach": ["agile_methodologies", "gantt_chart"],
-      "skillsLearn": ["business_english"],
+      "skillsTeach": ["1", "5"],
+      "skillsLearn": ["3"],
       "likes": 0,
       "createdAt": "2025-02-14"
     },
@@ -68,12 +68,8 @@
       "cityId": "lipetsk",
       "gender": "female",
       "birthday": "2001-04-12",
-      "skillsTeach": ["proper_breathing"],
-      "skillsLearn": [
-        "space_organization",
-        "basic_asanas",
-        "cleaning_schedule"
-      ],
+      "skillsTeach": ["4"],
+      "skillsLearn": ["12", "14", "16"],
       "likes": 0,
       "createdAt": "2025-10-30"
     },
@@ -85,7 +81,7 @@
       "gender": "female",
       "birthday": "1992-09-08",
       "skillsTeach": [],
-      "skillsLearn": ["emotional_expression"],
+      "skillsLearn": ["2"],
       "likes": 0,
       "createdAt": "2025-04-03"
     },
@@ -96,8 +92,8 @@
       "cityId": "yaroslavl",
       "gender": "female",
       "birthday": "1999-02-19",
-      "skillsTeach": ["color_theory", "perspective_drawing"],
-      "skillsLearn": ["family_budget", "expense_tracking"],
+      "skillsTeach": ["11", "16"],
+      "skillsLearn": ["1", "4"],
       "likes": 0,
       "createdAt": "2025-11-25"
     },
@@ -108,8 +104,8 @@
       "cityId": "kaliningrad",
       "gender": "female",
       "birthday": "2003-07-07",
-      "skillsTeach": ["basic_communication", "grammar_foundation"],
-      "skillsLearn": ["result_oriented_resume", "star_method"],
+      "skillsTeach": ["1", "2"],
+      "skillsLearn": ["6", "15"],
       "likes": 0,
       "createdAt": "2025-08-09"
     }
