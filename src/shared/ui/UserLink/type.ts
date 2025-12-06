@@ -2,7 +2,7 @@ import type { NavLinkProps } from 'react-router-dom';
 import type { AvatarSize } from '../Avatar/type';
 
 export type UserLinkUIProps = {
-  href?: string;
+  href: string;
   name?: string;
   size: AvatarSize;
   avatarUrl?: string;
