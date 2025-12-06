@@ -1,0 +1,117 @@
+{
+  "success": true,
+  "users": [
+    {
+      "id": "1",
+      "name": "Иван",
+      "avatarUrl": "/image/ivan.png",
+      "cityId": "saint_petersburg",
+      "gender": "male",
+      "birthday": "1996-12-01",
+      "skillsTeach": ["curriculum_development"],
+      "skillsLearn": ["engaging_audience", "memory_techniques"],
+      "likes": 0,
+      "createdAt": "2025-12-07"
+    },
+    {
+      "id": "2",
+      "name": "Виктория",
+      "avatarUrl": "/image/viktoria_1.png",
+      "cityId": "kemerovo",
+      "gender": "female",
+      "birthday": "1994-08-14",
+      "skillsTeach": ["business_model_canvas", "financial_forecasting"],
+      "skillsLearn": ["strategic_networking"],
+      "likes": 0,
+      "createdAt": "2025-05-22"
+    },
+    {
+      "id": "3",
+      "name": "Виктория",
+      "avatarUrl": "/image/viktoria_2.png",
+      "cityId": "sochi",
+      "gender": "female",
+      "birthday": "1994-03-30",
+      "skillsTeach": ["content_planning", "targeted_ads", "portion_control"],
+      "skillsLearn": ["balanced_diet"],
+      "likes": 0,
+      "createdAt": "2025-07-11"
+    },
+    {
+      "id": "4",
+      "name": "Елена",
+      "avatarUrl": "/image/elena.png",
+      "cityId": "krasnoyarsk",
+      "gender": "female",
+      "birthday": "1997-11-05",
+      "skillsTeach": ["character_development"],
+      "skillsLearn": ["mind_mapping"],
+      "likes": 0,
+      "createdAt": "2025-09-18"
+    },
+    {
+      "id": "5",
+      "name": "Константин",
+      "avatarUrl": "/image/konstantin.png",
+      "cityId": "irkutsk",
+      "gender": "male",
+      "birthday": "1989-06-25",
+      "skillsTeach": ["agile_methodologies", "gantt_chart"],
+      "skillsLearn": ["business_english"],
+      "likes": 0,
+      "createdAt": "2025-02-14"
+    },
+    {
+      "id": "6",
+      "name": "София",
+      "avatarUrl": "/image/sofia.png",
+      "cityId": "lipetsk",
+      "gender": "female",
+      "birthday": "2001-04-12",
+      "skillsTeach": ["proper_breathing"],
+      "skillsLearn": [
+        "space_organization",
+        "basic_asanas",
+        "cleaning_schedule"
+      ],
+      "likes": 0,
+      "createdAt": "2025-10-30"
+    },
+    {
+      "id": "7",
+      "name": "Екатерина",
+      "avatarUrl": "/image/ekaterina.png",
+      "cityId": "perm",
+      "gender": "female",
+      "birthday": "1992-09-08",
+      "skillsTeach": [],
+      "skillsLearn": ["emotional_expression"],
+      "likes": 0,
+      "createdAt": "2025-04-03"
+    },
+    {
+      "id": "8",
+      "name": "Дарья",
+      "avatarUrl": "/image/darya.png",
+      "cityId": "yaroslavl",
+      "gender": "female",
+      "birthday": "1999-02-19",
+      "skillsTeach": ["color_theory", "perspective_drawing"],
+      "skillsLearn": ["family_budget", "expense_tracking"],
+      "likes": 0,
+      "createdAt": "2025-11-25"
+    },
+    {
+      "id": "9",
+      "name": "Алла",
+      "avatarUrl": "/image/alla.png",
+      "cityId": "kaliningrad",
+      "gender": "female",
+      "birthday": "2003-07-07",
+      "skillsTeach": ["basic_communication", "grammar_foundation"],
+      "skillsLearn": ["result_oriented_resume", "star_method"],
+      "likes": 0,
+      "createdAt": "2025-08-09"
+    }
+  ]
+}
