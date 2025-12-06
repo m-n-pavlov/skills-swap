@@ -1,23 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Input from '../shared/ui/input/input';
-import { useState } from 'react';
-const ExampleIcon = () => (
-  <span style={{ fontSize: '18px', color: '#666' }}>📧</span>
-);
-export const InteractiveExample = () => {
-  const [value, setValue] = useState('');
-  return (
-    <Input
-      value={value}
-      type='text'
-      onChange={setValue}
-      name='interactive'
-      placeholder='Введите текст здесь'
-      infoText='Попробуйте ввести текст'
-      icon={<ExampleIcon />}
-    />
-  );
-};
+import { Input } from '../shared/ui/input/input';
 
 const meta: Meta<typeof Input> = {
   title: 'UI/Input',

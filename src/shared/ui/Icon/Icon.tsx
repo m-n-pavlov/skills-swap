@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { icons } from './icons';
+import { icons } from '../../ui/Icon/icons';
 import type { IconProps } from './type';
 
 const IconComponent = ({ name, alt, className, style, onClick }: IconProps) => {
