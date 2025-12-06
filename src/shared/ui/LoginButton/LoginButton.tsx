@@ -10,17 +10,15 @@ export const LoginButton = memo(
     ...rest
   }: LoginButtonProps) => {
     return (
-      <form>
-        <LinkButton
-          size='xs'
-          to={to}
-          style='primary'
-          className='login-button'
-          {...rest}
-        >
-          Войти
-        </LinkButton>
-      </form>
+      <LinkButton
+        size='xs'
+        to={to}
+        style='primary'
+        className='login-button'
+        {...rest}
+      >
+        Войти
+      </LinkButton>
     );
   }
 );
