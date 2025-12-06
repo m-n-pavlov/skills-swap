@@ -1,4 +1,4 @@
-import { Icon } from '../icon';
+import { Icon } from '../Icon';
 import styles from './RadioButton.module.css';
 import type { RadioButtonProps } from './type';
 
