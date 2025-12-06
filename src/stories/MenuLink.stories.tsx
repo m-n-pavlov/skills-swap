@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { MemoryRouter } from 'react-router-dom';
-import { MenuLink } from '../shared/ui/MenuLink';
+import { MenuLink } from '../shared/ui';
 
 const meta: Meta<typeof MenuLink> = {
   title: 'Shared/MenuLink',

@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import styles from './Footer.module.css';
 import { Logo } from '../../shared/ui';
-import { MenuLink } from '../../stories/Menu-link';
+import { MenuLink } from '../../shared/ui';
 import clsx from 'clsx';
 
 export const Footer: FC = () => (

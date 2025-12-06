@@ -1,5 +1,4 @@
 import { ButtonIcon } from '../ButtonIcon';
-import { Icon } from '../Icon';
 import { type FC, useEffect, useState } from 'react';
 import styles from './ButtonToggleTheme.module.css';
 import type { ButtonToggleThemeProps } from './type.ts';
@@ -23,13 +22,8 @@ export const ButtonToggleTheme: FC<ButtonToggleThemeProps> = ({
     <ButtonIcon
       onClick={changeTheme}
       name={'ButtonToggleTheme'}
+      iconName={isDarkMode ? 'moon' : 'sun'}
       className={clsx(styles.theme, className)}
-    >
-      {isDarkMode ? (
-        <Icon name={'moon'} alt='moon' />
-      ) : (
-        <Icon name={'sun'} alt='sun' />
-      )}
-    </ButtonIcon>
+    ></ButtonIcon>
   );
 };

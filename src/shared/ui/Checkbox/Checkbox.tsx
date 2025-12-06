@@ -1,5 +1,5 @@
 import { memo, useCallback } from 'react';
-import { Icon } from '../icon';
+import { Icon } from '../Icon';
 import styles from './Checkbox.module.css';
 import type { CheckboxProps } from './types';
 import clsx from 'clsx';
