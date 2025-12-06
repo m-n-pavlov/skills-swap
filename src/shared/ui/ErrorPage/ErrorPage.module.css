@@ -79,32 +79,11 @@
   transform: translateY(1px);
 }
 
-.error_button_primary {
-  width: 218px;
+.error_actions .error_button_primary {
+  width: 218px !important;
   height: 48px;
-  padding: 12px 24px;
-
-  border: none;
-  border-radius: 12px;
-
   background: var(--accent);
   color: var(--text);
-
-  font-size: var(--body-font-size);
-  font-family: var(--body-font-family);
-  font-weight: var(--body-font-weight);
-
-  cursor: pointer;
-  transition:
-    background 0.2s ease,
-    transform 0.1s ease;
-}
-
-.error_button_primary:hover {
-  background: var(--button-hover);
-}
-
-.error_button_primary:active {
-  background: var(--button-pressed);
-  transform: translateY(1px);
+  border-radius: 12px;
+  border: none;
 }

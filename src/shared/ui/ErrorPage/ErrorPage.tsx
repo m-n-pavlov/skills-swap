@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import styles from './ErrorPage.module.css';
 import type { ErrorPageProps } from './type';
 import { ERROR_CONFIG } from './config';
+import { LinkButton } from '../LinkButton/LinkButton';
 
 import Error404Image from '../../../assets/images/error 404.png';
 import Error500Image from '../../../assets/images/error 500.png';
@@ -35,13 +36,14 @@ export const ErrorPage = ({ code, className }: ErrorPageProps) => {
             Сообщить об ошибке
           </button>
 
-          <button
-            type='button'
+          <LinkButton
+            to='/'
+            style='primary'
+            size='lg'
             className={styles.error_button_primary}
-            onClick={() => {}}
           >
             На главную
-          </button>
+          </LinkButton>
         </div>
       </section>
     </main>
