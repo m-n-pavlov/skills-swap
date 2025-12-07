@@ -1,0 +1,649 @@
+{
+  "success": true,
+  "skills": [
+    {
+      "id": "1",
+      "name": "Построение системы KPI",
+      "shortDescription": "Методы разработки ключевых показателей эффективности для команды",
+      "description": "Подробное руководство по созданию и внедрению системы KPI, которая помогает отслеживать производительность команды, ставить измеримые цели и мотивировать сотрудников на достижение результатов.",
+      "categoryId": "business",
+      "subcategoryId": "team_management",
+      "images": [
+        "images/skills/1.jpg",
+        "images/skills/no_images_4.jpg",
+        "images/skills/no_images_1.jpg",
+        "images/skills/no_images_3.jpg",
+        "images/skills/no_images_4.jpg"
+      ]
+    },
+    {
+      "id": "2",
+      "name": "SMM-стратегия для B2B",
+      "shortDescription": "Разработка стратегии продвижения в социальных сетях для бизнеса",
+      "description": "Полное руководство по созданию эффективной SMM-стратегии для B2B-компаний: от анализа аудитории и выбора платформ до контент-плана и измерения результатов.",
+      "categoryId": "business",
+      "subcategoryId": "marketing",
+      "images": [
+        "images/skills/2.jpg",
+        "images/skills/no_images_1.jpg",
+        "images/skills/no_images_3.jpg",
+        "images/skills/no_images_2.jpg",
+        "images/skills/no_images_4.jpg"
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Метод SPIN в продажах",
+      "shortDescription": "Техника ведения сложных переговоров и закрытия сделок",
+      "description": "Освоение методики SPIN (Ситуация, Проблема, Извлечение, Нужда) для эффективного выявления потребностей клиентов и увеличения конверсии в продажах.",
+      "categoryId": "business",
+      "subcategoryId": "sales_and_negotiations",
+      "images": [
+        "images/skills/3.jpg",
+        "images/skills/no_images_1.jpg",
+        "images/skills/no_images_2.jpg",
+        "images/skills/no_images_3.jpg",
+        "images/skills/no_images_4.jpg"
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Создание экспертного контента",
+      "shortDescription": "Позиционирование себя как эксперта через контент",
+      "description": "Пошаговая инструкция по созданию контента, который укрепляет личный бренд, демонстрирует экспертизу и привлекает целевую аудиторию.",
+      "categoryId": "business",
+      "subcategoryId": "personal_brand",
+      "images": [
+        "images/skills/4.jpg",
+        "images/skills/no_images_1.jpg",
+        "images/skills/no_images_4.jpg",
+        "images/skills/no_images_3.jpg",
+        "images/skills/no_images_4.jpg"
+      ]
+    },
+    {
+      "id": "5",
+      "name": "STAR-метод для собеседований",
+      "shortDescription": "Техника составления убедительных ответов на собеседовании",
+      "description": "Освоение методики STAR (Ситуация, Задача, Действие, Результат) для структурирования ответов на поведенческие вопросы и создания сильного впечатления на работодателя.",
+      "categoryId": "business",
+      "subcategoryId": "resume",
+      "images": [
+        "images/skills/5.jpg",
+        "images/skills/no_images_1.jpg",
+        "images/skills/no_images_2.jpg",
+        "images/skills/no_images_1.jpg",
+        "images/skills/no_images_4.jpg"
+      ]
+    },
+    {
+      "id": "6",
+      "name": "Матрица Эйзенхауэра",
+      "shortDescription": "Система приоритизации задач по срочности и важности",
+      "description": "Практическое применение матрицы Эйзенхауэра для эффективного распределения времени, фокусировки на важных задачах и избегания прокрастинации.",
+      "categoryId": "business",
+      "subcategoryId": "time_management",
+      "images": [
+        "images/skills/6.jpg",
+        "images/skills/no_images_1.jpg",
+        "images/skills/no_images_2.jpg",
+        "images/skills/no_images_3.jpg",
+        "images/skills/no_images_4.jpg"
+      ]
+    },
+    {
+      "id": "7",
+      "name": "Гибкая методология Scrum",
+      "shortDescription": "Основы agile-подхода в управлении проектами",
+      "description": "Изучение принципов и практик Scrum: спринты, роли, артефакты и мероприятия. Практическое применение гибкой методологии для повышения эффективности команд.",
+      "categoryId": "business",
+      "subcategoryId": "project_management",
+      "images": [
+        "images/skills/7.jpg",
+        "images/skills/no_images_2.jpg",
+        "images/skills/no_images_2.jpg",
+        "images/skills/no_images_3.jpg",
+        "images/skills/no_images_4.jpg"
+      ]
+    },
+    {
+      "id": "8",
+      "name": "Поиск ниши для стартапа",
+      "shortDescription": "Методика определения перспективных рыночных ниш",
+      "description": "Системный подход к анализу рынка, выявлению незанятых ниш и проверке бизнес-идей на жизнеспособность перед запуском стартапа.",
+      "categoryId": "business",
+      "subcategoryId": "entrepreneurship",
+      "images": [
+        "images/skills/8.jpg",
+        "images/skills/no_images_1.jpg",
+        "images/skills/no_images_2.jpg",
+        "images/skills/no_images_3.jpg",
+        "images/skills/no_images_4.jpg"
+      ]
+    },
+    {
+      "id": "9",
+      "name": "Деловой английский для переговоров",
+      "shortDescription": "Освоение ключевых фраз и лексики для бизнес-встреч",
+      "description": "Комплексное изучение специализированной лексики, грамматических конструкций и коммуникативных стратегий для эффективного ведения деловых переговоров, презентаций и переписки на английском языке.",
+      "categoryId": "language",
+      "subcategoryId": "english",
+      "images": [
+        "images/skills/9.jpg",
+        "images/skills/no_images_1.jpg",
+        "images/skills/no_images_2.jpg",
+        "images/skills/no_images_3.jpg",
+        "images/skills/no_images_4.jpg"
+      ]
+    },
+    {
+      "id": "10",
+      "name": "Французский для путешествий",
+      "shortDescription": "Базовый разговорный французский для туристов",
+      "description": "Практический курс, направленный на освоение повседневных фраз, вопросов и понимание ответов для комфортного общения в кафе, гостиницах, транспорте и при осмотре достопримечательностей Франции и других франкоязычных стран.",
+      "categoryId": "language",
+      "subcategoryId": "french",
+      "images": [
+        "images/skills/10.jpg",
+        "images/skills/no_images_4.jpg",
+        "images/skills/no_images_1.jpg",
+        "images/skills/no_images_2.jpg",
+        "images/skills/no_images_3.jpg"
+      ]
+    },
+    {
+      "id": "11",
+      "name": "Испанский с нуля: произношение и основы",
+      "shortDescription": "Постановка правильного произношения и изучение азов грамматики",
+      "description": "Начальный курс, фокусирующийся на особенностях испанской фонетики (произношение звуков, ударение, интонация) и фундаментальных грамматических структурах для построения простых предложений.",
+      "categoryId": "language",
+      "subcategoryId": "spanish",
+      "images": [
+        "images/skills/11.jpg",
+        "images/skills/no_images_2.jpg",
+        "images/skills/no_images_3.jpg",
+        "images/skills/no_images_4.jpg",
+        "images/skills/no_images_1.jpg"
+      ]
+    },
+    {
+      "id": "12",
+      "name": "Немецкая грамматика: артикли и падежи",
+      "shortDescription": "Системное изучение одной из самых сложных тем немецкого языка",
+      "description": "Подробный разбор системы артиклей (определенных, неопределенных, нулевых) и четырех падежей (Nominativ, Akkusativ, Dativ, Genitiv) с правилами склонения существительных, прилагательных и местоимений.",
+      "categoryId": "language",
+      "subcategoryId": "german",
+      "images": [
+        "images/skills/12.jpg",
+        "images/skills/no_images_3.jpg",
+        "images/skills/no_images_4.jpg",
+        "images/skills/no_images_1.jpg",
+        "images/skills/no_images_2.jpg"
+      ]
+    },
+    {
+      "id": "13",
+      "name": "Китайские тоны и иероглифика: базовый уровень",
+      "shortDescription": "Освоение системы тонов и написание ключевых иероглифов",
+      "description": "Фундаментальный курс по преодолению основных трудностей китайского языка: отработка четырех тонов для правильного произношения слогов и изучение принципов написания и запоминания наиболее частотных иероглифов.",
+      "categoryId": "language",
+      "subcategoryId": "chinese",
+      "images": [
+        "images/skills/13.jpg",
+        "images/skills/no_images_1.jpg",
+        "images/skills/no_images_3.jpg",
+        "images/skills/no_images_2.jpg",
+        "images/skills/no_images_4.jpg"
+      ]
+    },
+    {
+      "id": "14",
+      "name": "Японские азбуки: Хирагана и Катакана",
+      "shortDescription": "Быстрое и эффективное запоминание двух японских слоговых азбук",
+      "description": "Интенсивный курс по изучению и отработке написания и чтения 46 знаков Хираганы (для слов японского происхождения) и 46 знаков Катаканы (для заимствованных слов) с использованием мнемонических техник и практических упражнений.",
+      "categoryId": "language",
+      "subcategoryId": "japanese",
+      "images": [
+        "images/skills/14.jpg",
+        "images/skills/no_images_4.jpg",
+        "images/skills/no_images_2.jpg",
+        "images/skills/no_images_1.jpg",
+        "images/skills/no_images_3.jpg"
+      ]
+    },
+    {
+      "id": "15",
+      "name": "Стратегия сдачи IELTS Academic",
+      "shortDescription": "Тактики и приемы для успешного прохождения каждого модуля экзамена",
+      "description": "Детальный разбор формата экзамена IELTS Academic (Listening, Reading, Writing, Speaking). Изучение эффективных стратегий тайм-менеджмента, выполнения заданий и типичных ошибок, а также практика на примерах реальных тестов.",
+      "categoryId": "language",
+      "subcategoryId": "preparing_for_exams",
+      "images": [
+        "images/skills/15.jpg",
+        "images/skills/no_images_2.jpg",
+        "images/skills/no_images_1.jpg",
+        "images/skills/no_images_4.jpg",
+        "images/skills/no_images_3.jpg"
+      ]
+    },
+    {
+      "id": "16",
+      "name": "Генеральная уборка за 3 часа",
+      "shortDescription": "Эффективная система полной уборки дома",
+      "description": "Пошаговая методика проведения генеральной уборки всего дома всего за 3 часа. Включает планирование, зонирование, чек-листы и профессиональные техники уборки.",
+      "categoryId": "home",
+      "subcategoryId": "cleaning",
+      "images": [
+        "images/skills/16.jpg",
+        "images/skills/no_images_2.jpg",
+        "images/skills/no_images_1.jpg",
+        "images/skills/no_images_4.jpg",
+        "images/skills/no_images_3.jpg",
+        "images/skills/"
+      ]
+    },
+    {
+      "id": "17",
+      "name": "Семейный бюджет на месяц",
+      "shortDescription": "Составление и ведение домашнего бюджета",
+      "description": "Практическое руководство по созданию и поддержанию семейного бюджета. Включает категории расходов, отслеживание, экономию и финансовое планирование.",
+      "categoryId": "home",
+      "subcategoryId": "home_finances",
+      "images": [
+        "images/skills/17.jpg",
+        "images/skills/no_images_3.jpg",
+        "images/skills/no_images_2.jpg",
+        "images/skills/no_images_1.jpg",
+        "images/skills/",
+        "images/skills/no_images_4.jpg"
+      ]
+    },
+    {
+      "id": "18",
+      "name": "Быстрые ужины на неделю",
+      "shortDescription": "Меню и приготовление ужинов на всю неделю",
+      "description": "Система планирования и приготовления вкусных ужинов на всю рабочую неделю. Закупка продуктов, подготовка и хранение для экономии времени.",
+      "categoryId": "home",
+      "subcategoryId": "cooking",
+      "images": [
+        "images/skills/18.jpg",
+        "images/skills/no_images_4.jpg",
+        "images/skills/no_images_3.jpg",
+        "images/skills/",
+        "images/skills/no_images_2.jpg",
+        "images/skills/no_images_1.jpg"
+      ]
+    },
+    {
+      "id": "19",
+      "name": "Уход за комнатными растениями",
+      "shortDescription": "Основы содержания домашних растений",
+      "description": "Полное руководство по уходу за комнатными растениями: полив, освещение, пересадка, борьба с вредителями и создание оптимальных условий.",
+      "categoryId": "home",
+      "subcategoryId": "house_plants",
+      "images": [
+        "images/skills/19.jpg",
+        "images/skills/no_images_1.jpg",
+        "images/skills/",
+        "images/skills/no_images_4.jpg",
+        "images/skills/no_images_3.jpg",
+        "images/skills/no_images_2.jpg"
+      ]
+    },
+    {
+      "id": "20",
+      "name": "Мелкий бытовой ремонт",
+      "shortDescription": "Самостоятельный ремонт в доме",
+      "description": "Навыки проведения мелкого бытового ремонта: замена розеток, поклейка обоев, устранение протечек, работа с инструментами и материалами.",
+      "categoryId": "home",
+      "subcategoryId": "repair",
+      "images": [
+        "images/skills/20.jpg",
+        "images/skills/",
+        "images/skills/no_images_2.jpg",
+        "images/skills/no_images_1.jpg",
+        "images/skills/no_images_3.jpg",
+        "images/skills/no_images_4.jpg"
+      ]
+    },
+    {
+      "id": "21",
+      "name": "Система хранения сезонных вещей",
+      "shortDescription": "Организация хранения одежды и предметов",
+      "description": "Эффективные системы хранения сезонной одежды, спортивного инвентаря, праздничных украшений и других вещей с использованием доступных решений.",
+      "categoryId": "home",
+      "subcategoryId": "storing_things",
+      "images": [
+        "images/skills/21.jpg",
+        "images/skills/no_images_3.jpg",
+        "images/skills/no_images_4.jpg",
+        "images/skills/no_images_2.jpg",
+        "images/skills/no_images_1.jpg",
+        "images/skills/"
+      ]
+    },
+    {
+      "id": "22",
+      "name": "Основы акварельной живописи",
+      "shortDescription": "Начальные техники рисования акварелью",
+      "description": "Основные приемы работы с акварельными красками: отмывка, лессировка, работа с влажной и сухой бумагой, смешивание цветов и создание композиций.",
+      "categoryId": "art",
+      "subcategoryId": "drawing",
+      "images": [
+        "images/skills/22.jpg",
+        "images/skills/no_images_2.jpg",
+        "images/skills/no_images_1.jpg",
+        "images/skills/",
+        "images/skills/no_images_4.jpg",
+        "images/skills/no_images_3.jpg"
+      ]
+    },
+    {
+      "id": "23",
+      "name": "Портретная фотография на смартфон",
+      "shortDescription": "Создание качественных портретов на телефон",
+      "description": "Техники съемки профессиональных портретов с помощью смартфона: работа со светом, композиция, позирование и обработка в мобильных приложениях.",
+      "categoryId": "art",
+      "subcategoryId": "photo",
+      "images": [
+        "images/skills/23.jpg",
+        "images/skills/no_images_4.jpg",
+        "images/skills/no_images_3.jpg",
+        "images/skills/no_images_2.jpg",
+        "images/skills/",
+        "images/skills/no_images_1.jpg"
+      ]
+    },
+    {
+      "id": "24",
+      "name": "Монтаж видео для соцсетей",
+      "shortDescription": "Создание роликов для Instagram и TikTok",
+      "description": "Пошаговое руководство по монтажу коротких видео для социальных сетей: таймлайн, переходы, цветокоррекция, звук и добавление текста.",
+      "categoryId": "art",
+      "subcategoryId": "video_editing",
+      "images": [
+        "images/skills/24.jpg",
+        "images/skills/no_images_1.jpg",
+        "images/skills/",
+        "images/skills/no_images_3.jpg",
+        "images/skills/no_images_2.jpg",
+        "images/skills/no_images_4.jpg"
+      ]
+    },
+    {
+      "id": "25",
+      "name": "Основы игры на укулеле",
+      "shortDescription": "Быстрый старт в игре на укулеле",
+      "description": "Базовые аккорды, ритмические паттерны и простые мелодии для начинающих. Изучение популярных песен и развитие музыкального слуха.",
+      "categoryId": "art",
+      "subcategoryId": "music",
+      "images": [
+        "images/skills/25.jpg",
+        "images/skills/",
+        "images/skills/no_images_1.jpg",
+        "images/skills/no_images_4.jpg",
+        "images/skills/no_images_2.jpg",
+        "images/skills/no_images_3.jpg"
+      ]
+    },
+    {
+      "id": "26",
+      "name": "Основы сценической речи",
+      "shortDescription": "Развитие голоса и дикции для актеров",
+      "description": "Упражнения для постановки голоса, развития дикции, дыхания и эмоциональной выразительности речи. Подготовка к публичным выступлениям.",
+      "categoryId": "art",
+      "subcategoryId": "acting",
+      "images": [
+        "images/skills/26.jpg",
+        "images/skills/no_images_3.jpg",
+        "images/skills/no_images_2.jpg",
+        "images/skills/no_images_1.jpg",
+        "images/skills/no_images_4.jpg",
+        "images/skills/"
+      ]
+    },
+    {
+      "id": "27",
+      "name": "Написание коротких рассказов",
+      "shortDescription": "Создание художественных миниатюр",
+      "description": "Техники создания коротких литературных произведений: разработка сюжета, создание персонажей, диалоги и работа с литературными приемами.",
+      "categoryId": "art",
+      "subcategoryId": "creative_writing",
+      "images": [
+        "images/skills/27.jpg",
+        "images/skills/no_images_2.jpg",
+        "images/skills/no_images_4.jpg",
+        "images/skills/",
+        "images/skills/no_images_1.jpg",
+        "images/skills/no_images_3.jpg"
+      ]
+    },
+    {
+      "id": "28",
+      "name": "Мандалы для релаксации",
+      "shortDescription": "Рисование мандал как медитативная практика",
+      "description": "Создание симметричных мандал для снятия стресса и развития концентрации. Цветотерапия, паттерны и техники медитативного рисования.",
+      "categoryId": "art",
+      "subcategoryId": "art_therapy",
+      "images": [
+        "images/skills/28.jpg",
+        "images/skills/no_images_4.jpg",
+        "images/skills/",
+        "images/skills/no_images_3.jpg",
+        "images/skills/no_images_1.jpg",
+        "images/skills/no_images_2.jpg"
+      ]
+    },
+    {
+      "id": "29",
+      "name": "Декор бутылок в морском стиле",
+      "shortDescription": "Создание морского декора из бутылок",
+      "description": "Техника декорирования стеклянных бутылок в морском стиле с использованием канатов, ракушек, песка и других природных материалов.",
+      "categoryId": "art",
+      "subcategoryId": "diy",
+      "images": [
+        "images/skills/29.jpg",
+        "images/skills/no_images_1.jpg",
+        "images/skills/no_images_3.jpg",
+        "images/skills/no_images_2.jpg",
+        "images/skills/",
+        "images/skills/no_images_4.jpg"
+      ]
+    },
+    {
+      "id": "30",
+      "name": "Эмоциональный интеллект",
+      "shortDescription": "Развитие способности понимать и управлять своими эмоциями",
+      "description": "Эмоциональный интеллект — это способность распознавать, понимать и управлять своими эмоциями, а также эмоциями других людей. Этот навык помогает улучшить коммуникацию, разрешать конфликты и строить более качественные отношения как в личной, так и в профессиональной жизни.",
+      "categoryId": "education",
+      "subcategoryId": "personal_development",
+      "images": [
+        "images/skills/30.jpg",
+        "images/skills/no_images_2.jpg",
+        "images/skills/no_images_1.jpg",
+        "images/skills/no_images_4.jpg",
+        "images/skills/no_images_3.jpg"
+      ]
+    },
+    {
+      "id": "31",
+      "name": "Конспектирование по Корнеллу",
+      "shortDescription": "Эффективный метод структурирования конспектов",
+      "description": "Метод Корнелла — это система конспектирования, которая разделяет страницу на три секции: основные заметки, ключевые слова и резюме. Этот подход помогает лучше организовывать информацию, облегчает запоминание и подготовку к экзаменам.",
+      "categoryId": "education",
+      "subcategoryId": "skills",
+      "images": [
+        "images/skills/31.jpg",
+        "images/skills/no_images_3.jpg",
+        "images/skills/no_images_2.jpg",
+        "images/skills/no_images_1.jpg",
+        "images/skills/no_images_4.jpg"
+      ]
+    },
+    {
+      "id": "32",
+      "name": "Метод Фейнмана",
+      "shortDescription": "Техника обучения через простое объяснение сложных концепций",
+      "description": "Техника Фейнмана — это метод изучения сложных тем путем их объяснения простыми словами, как если бы вы учили ребенка. Этот процесс помогает выявить пробелы в понимании и глубже усвоить материал.",
+      "categoryId": "education",
+      "subcategoryId": "cognitive_techniques",
+      "images": [
+        "images/skills/32.jpg",
+        "images/skills/no_images_4.jpg",
+        "images/skills/no_images_3.jpg",
+        "images/skills/no_images_2.jpg",
+        "images/skills/no_images_1.jpg"
+      ]
+    },
+    {
+      "id": "33",
+      "name": "Расширение периферического зрения",
+      "shortDescription": "Техника для увеличения скорости чтения за счет охвата большего текста",
+      "description": "Этот метод скорочтения направлен на тренировку периферического зрения, что позволяет охватывать больше слов за одну фиксацию глаз. Регулярные упражнения помогают значительно увеличить скорость чтения без потери понимания.",
+      "categoryId": "education",
+      "subcategoryId": "speed_reading",
+      "images": [
+        "images/skills/33.jpg",
+        "images/skills/no_images_1.jpg",
+        "images/skills/no_images_4.jpg",
+        "images/skills/no_images_3.jpg",
+        "images/skills/no_images_2.jpg"
+      ]
+    },
+    {
+      "id": "34",
+      "name": "Создание интерактивных презентаций",
+      "shortDescription": "Навык разработки вовлекающих учебных материалов",
+      "description": "Искусство создания презентаций, которые активно вовлекают аудиторию через вопросы, дискуссии, практические задания и интерактивные элементы. Этот навык особенно важен для современных педагогов.",
+      "categoryId": "education",
+      "subcategoryId": "teaching",
+      "images": [
+        "images/skills/34.jpg",
+        "images/skills/no_images_2.jpg",
+        "images/skills/no_images_1.jpg",
+        "images/skills/no_images_3.jpg",
+        "images/skills/no_images_4.jpg"
+      ]
+    },
+    {
+      "id": "35",
+      "name": "Мощные вопросы",
+      "shortDescription": "Искусство задавания вопросов, стимулирующих мышление",
+      "description": "Навык формулирования открытых, направляющих вопросов, которые помогают клиенту самостоятельно находить решения, осознавать свои цели и раскрывать потенциал. Основа эффективного коучинга.",
+      "categoryId": "education",
+      "subcategoryId": "coaching",
+      "images": [
+        "images/skills/35.jpg",
+        "images/skills/no_images_3.jpg",
+        "images/skills/no_images_4.jpg",
+        "images/skills/no_images_1.jpg",
+        "images/skills/no_images_2.jpg"
+      ]
+    },
+    {
+      "id": "36",
+      "name": "Асана воина II",
+      "shortDescription": "Базовая поза йоги для укрепления ног и улучшения баланса",
+      "description": "Вирабхадрасана II — фундаментальная асана в хатха йоге, которая укрепляет мышцы ног, развивает чувство баланса, улучшает концентрацию и раскрывает грудную клетку. Идеальна для начинающих практиков.",
+      "categoryId": "health",
+      "subcategoryId": "yoga",
+      "images": [
+        "images/skills/36.jpg",
+        "images/skills/no_images_4.jpg",
+        "images/skills/no_images_2.jpg",
+        "images/skills/no_images_1.jpg",
+        "images/skills/no_images_3.jpg"
+      ]
+    },
+    {
+      "id": "37",
+      "name": "Интуитивное питание",
+      "shortDescription": "Подход к питанию, основанный на сигналах тела",
+      "description": "Метод питания, который учит распознавать естественные сигналы голода и насыщения, выбирать продукты, которые действительно хочет организм, и формировать здоровые отношения с едой без диет и ограничений.",
+      "categoryId": "health",
+      "subcategoryId": "nutrition",
+      "images": [
+        "images/skills/37.jpg",
+        "images/skills/no_images_1.jpg",
+        "images/skills/no_images_3.jpg",
+        "images/skills/no_images_4.jpg",
+        "images/skills/no_images_2.jpg"
+      ]
+    },
+    {
+      "id": "38",
+      "name": "Когнитивно-поведенческие техники",
+      "shortDescription": "Практики для управления мыслями и эмоциями",
+      "description": "Набор методик, основанных на когнитивно-поведенческой терапии, которые помогают идентифицировать иррациональные мысли, изменять негативные паттерны мышления и развивать более адаптивные поведенческие реакции.",
+      "categoryId": "health",
+      "subcategoryId": "mental_health",
+      "images": [
+        "images/skills/38.jpg",
+        "images/skills/no_images_2.jpg",
+        "images/skills/no_images_4.jpg",
+        "images/skills/no_images_3.jpg",
+        "images/skills/no_images_1.jpg"
+      ]
+    },
+    {
+      "id": "39",
+      "name": "Осознанное дыхание",
+      "shortDescription": "Базовая техника mindfulness через фокус на дыхании",
+      "description": "Простая, но мощная практика осознанности, которая заключается в фокусировке внимания на естественном процессе дыхания. Помогает успокоить ум, снизить стресс и вернуться в настоящий момент.",
+      "categoryId": "health",
+      "subcategoryId": "mindfulness",
+      "images": [
+        "images/skills/39.jpg",
+        "images/skills/no_images_3.jpg",
+        "images/skills/no_images_1.jpg",
+        "images/skills/no_images_2.jpg",
+        "images/skills/no_images_4.jpg"
+      ]
+    },
+    {
+      "id": "40",
+      "name": "HIIT-тренировка для начинающих",
+      "shortDescription": "Высокоинтенсивные интервальные тренировки базового уровня",
+      "description": "Комплекс коротких, но интенсивных упражнений, чередующихся с периодами отдыха. Эффективно развивает выносливость, ускоряет метаболизм и сжигает калории за минимальное время.",
+      "categoryId": "health",
+      "subcategoryId": "workout",
+      "images": [
+        "images/skills/40.jpg",
+        "images/skills/no_images_4.jpg",
+        "images/skills/no_images_2.jpg",
+        "images/skills/no_images_3.jpg",
+        "images/skills/no_images_1.jpg"
+      ]
+    },
+    {
+      "id": "41",
+      "name": "Ритуалы перед сном",
+      "shortDescription": "Практики для улучшения качества сна",
+      "description": "Набор вечерних привычек и процедур, которые помогают расслабиться, подготовить тело и ум ко сну, улучшить его качество и обеспечить полноценное восстановление организма.",
+      "categoryId": "health",
+      "subcategoryId": "dream",
+      "images": [
+        "images/skills/41.jpg",
+        "images/skills/no_images_1.jpg",
+        "images/skills/no_images_3.jpg",
+        "images/skills/no_images_4.jpg",
+        "images/skills/no_images_2.jpg"
+      ]
+    },
+    {
+      "id": "42",
+      "name": "Техника Pomodoro для баланса",
+      "shortDescription": "Метод тайм-менеджмента для разделения работы и отдыха",
+      "description": "Применение техники Pomodoro не только для продуктивности, но и для создания здорового баланса между работой и личной жизнью. Система 25 минут работы / 5 минут отдыха помогает избежать выгорания.",
+      "categoryId": "health",
+      "subcategoryId": "balance",
+      "images": [
+        "images/skills/42.jpg",
+        "images/skills/no_images_2.jpg",
+        "images/skills/no_images_1.jpg",
+        "images/skills/no_images_3.jpg",
+        "images/skills/no_images_4.jpg"
+      ]
+    }
+  ]
+}
