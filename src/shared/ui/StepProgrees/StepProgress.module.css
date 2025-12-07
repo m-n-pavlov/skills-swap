@@ -1,0 +1,32 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.title {
+  font-family: var(--h2-font-family);
+  font-weight: var(--h2-font-weight);
+  font-size: var(--h2-font-size);
+  line-height: var(--h2-line-height);
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: var(--text);
+}
+
+.lines {
+  display: flex;
+  gap: 16px;
+}
+
+.line {
+  border-radius: 8px;
+  width: 60px;
+  height: 4px;
+  background: var(--disabled);
+}
+
+.line_active {
+  background: var(--accent);
+}
