@@ -28,7 +28,6 @@ export const getSubcategoriesFindByCategoryIdApi = (
   fetch(`/api/categories/${categoryId}`)
     .then((res) => checkResponse<TSubCategoriesResponse>(res))
     .then((data) => {
-      console.log(data);
       if (data?.success) return data.subCategories;
       return Promise.reject(data);
     });
