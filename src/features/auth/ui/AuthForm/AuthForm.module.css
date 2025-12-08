@@ -1,0 +1,128 @@
+.form_content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border-radius: 12px;
+  max-width: 556px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 112px 60px;
+  background: var(--card);
+}
+
+.socialButton span {
+  white-space: nowrap;
+}
+
+.socialButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  width: 100% !important;
+  max-width: 436px;
+  height: 48px;
+  margin: 0 auto;
+
+  padding: 12px 20px;
+  border: 1px solid var(--caption, #e4e9dd) !important;
+  border-radius: 12px;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 436px;
+  margin: 8px auto;
+}
+
+.dividerLine {
+  flex: 1;
+  height: 1px;
+  background: var(--disabled);
+}
+
+.dividerText {
+  color: var(--text);
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size);
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  max-width: 436px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  max-width: 436px;
+  width: 100%;
+}
+
+.text,
+.input_text {
+  font-family: var(--body-font-family);
+  font-weight: var(--body-font-weight);
+  font-size: var(--body-font-size);
+  line-height: var(--body-line-height);
+  letter-spacing: 0.02em;
+  color: var(--text);
+}
+
+.label {
+  font-family: var(--body-font-family);
+  font-weight: var(--body-font-weight);
+  font-size: var(--body-font-size);
+  line-height: var(--body-line-height);
+  letter-spacing: 0.02em;
+  color: var(--text);
+}
+
+.button {
+  border-radius: 12px;
+  padding: 12px 24px;
+  max-width: 436px;
+  width: 100% !important;
+  height: 48px;
+}
+
+.registerLink {
+  font-family: var(--body-font-family);
+  font-weight: var(--body-font-weight);
+  font-size: var(--body-font-size);
+  line-height: var(--body-line-height);
+  letter-spacing: 0.02em;
+  color: var(--text-link, var(--button-pressed));
+  text-align: center;
+  display: block;
+  margin-top: 8px;
+}
+
+.linkReset {
+  text-decoration: none;
+  font: inherit;
+  cursor: pointer;
+}
+
+.linkReset:visited {
+  color: inherit;
+}
+
+.linkReset:hover {
+  color: var(--button-hover);
+  text-decoration: none;
+}
+
+.linkReset:focus {
+  outline: none;
+}
