@@ -2,11 +2,7 @@ import type {
   TCategory,
   TSubCategories
 } from '../../../../entities/categories.ts';
-import {
-  createAsyncThunk,
-  createSlice,
-  type PayloadAction
-} from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getCategoriesApi } from '../../../../api';
 
 export type CategoriesSlice = {
@@ -39,30 +35,7 @@ export const fetchGetCategories = createAsyncThunk(
 const categoriesSlice = createSlice({
   name: 'categories',
   initialState,
-  reducers: {
-    getCurrentCategoryById: (state, action: PayloadAction<string>) => {
-      const category = state.categories.find(
-        (cat) => cat.id === action.payload
-      );
-      state.currentCategory = category || null;
-      state.currentSubCategories = null;
-    },
-    getCurrentSubCategoryById: (state, action: PayloadAction<string>) => {
-      let foundSubCategory: TSubCategories | null = null;
-      for (const category of state.categories) {
-        const subCategory = category.subCategories.find(
-          (sub) => sub.id === action.payload
-        );
-        if (subCategory) {
-          foundSubCategory = subCategory;
-          state.currentCategory = category;
-          break;
-        }
-      }
-
-      state.currentSubCategories = foundSubCategory;
-    }
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchGetCategories.pending, (state) => {
@@ -80,6 +53,4 @@ const categoriesSlice = createSlice({
   }
 });
 
-export const { getCurrentCategoryById, getCurrentSubCategoryById } =
-  categoriesSlice.actions;
 export default categoriesSlice.reducer;

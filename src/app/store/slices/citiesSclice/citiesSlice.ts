@@ -1,9 +1,5 @@
 import type { TCity } from '../../../../entities/cities.ts';
-import {
-  createAsyncThunk,
-  createSlice,
-  type PayloadAction
-} from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getCitiesApi } from '../../../../api';
 
 export type CitiesSlice = {
@@ -34,12 +30,7 @@ export const fetchGetCities = createAsyncThunk(
 const citiesSlice = createSlice({
   name: 'categories',
   initialState,
-  reducers: {
-    getCurrentCityById: (state, action: PayloadAction<string>) => {
-      const city = state.cities.find((s) => s.id === action.payload);
-      state.currentCity = city || null;
-    }
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchGetCities.pending, (state) => {
@@ -63,5 +54,4 @@ const citiesSlice = createSlice({
   }
 });
 
-export const { getCurrentCityById } = citiesSlice.actions;
 export default citiesSlice.reducer;

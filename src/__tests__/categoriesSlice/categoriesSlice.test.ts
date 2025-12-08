@@ -1,10 +1,7 @@
 import type { TCategory } from '../../entities/categories.ts';
 import { configureStore } from '@reduxjs/toolkit';
 import categoriesReducer, {
-  type CategoriesSlice,
-  fetchGetCategories,
-  getCurrentCategoryById,
-  getCurrentSubCategoryById
+  fetchGetCategories
 } from '../../app/store/slices/categoriesSlice/categoriesSlice.ts';
 
 jest.mock('../../api', () => ({
@@ -12,6 +9,12 @@ jest.mock('../../api', () => ({
 }));
 
 import * as api from '../../api';
+import {
+  selectAllCategories,
+  selectCategoryById,
+  selectSubCategoryById
+} from '../../app/store/slices/categoriesSlice/categoriesSelector.ts';
+import type { RootState } from '../../app/store';
 
 describe('Проверяют редьюсер слайса для категорий', () => {
   const mockCategories: TCategory[] = [
@@ -30,14 +33,6 @@ describe('Проверяют редьюсер слайса для категор
       ]
     }
   ];
-
-  const initialState: CategoriesSlice = {
-    categories: mockCategories,
-    currentCategory: mockCategories[0],
-    currentSubCategories: mockCategories[0].subCategories[0],
-    isLoading: false,
-    error: null
-  };
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -92,37 +87,33 @@ describe('Проверяют редьюсер слайса для категор
     expect(state.isLoading).toEqual(false);
     expect(state.error).toEqual(err);
   });
-  //
-  test('Тест поиска категории по ID', () => {
-    const store = configureStore({
-      reducer: { categories: categoriesReducer },
-      preloadedState: {
-        categories: { ...initialState, categories: mockCategories }
-      }
-    });
-    store.dispatch(getCurrentCategoryById('business'));
-    const state = store.getState().categories;
-    expect(state.currentCategory).toEqual(mockCategories[0]);
-    expect(state.currentSubCategories).toEqual(null);
-    expect(state.isLoading).toEqual(false);
-    expect(state.error).toEqual(null);
+
+  const mockState = {
+    categories: {
+      categories: mockCategories,
+      currentCategory: null,
+      currentSubCategories: null,
+      isLoading: false,
+      error: null
+    }
+  } as RootState;
+
+  test('Тест селектора получения списка категорий', () => {
+    expect(selectAllCategories(mockState)).toEqual(mockCategories);
   });
 
-  //
-  test('Тест поиска подкатегории по ID', () => {
-    const store = configureStore({
-      reducer: { categories: categoriesReducer },
-      preloadedState: {
-        categories: { ...initialState, categories: mockCategories }
-      }
-    });
-    store.dispatch(getCurrentSubCategoryById('marketing'));
-    const state = store.getState().categories;
-    expect(state.currentSubCategories).toEqual(
+  test('Тест селектора получения категории по ID', () => {
+    expect(selectCategoryById(mockState, mockCategories[0].id)).toEqual(
+      mockCategories[0]
+    );
+    expect(selectCategoryById(mockState, 'unknown')).toBeNull();
+  });
+
+  test('Тест селектора получения подкатегории по ID', () => {
+    const selectSub = selectSubCategoryById();
+    expect(selectSub(mockState, mockCategories[0].subCategories[1].id)).toEqual(
       mockCategories[0].subCategories[1]
     );
-    expect(state.currentCategory).toEqual(mockCategories[0]);
-    expect(state.isLoading).toEqual(false);
-    expect(state.error).toEqual(null);
+    expect(selectSub(mockState, 'unknown')).toBeNull();
   });
 });
