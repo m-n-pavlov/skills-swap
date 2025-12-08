@@ -21,7 +21,6 @@
 .primary {
   background-color: var(--accent);
   width: 284px;
-  border: solid 1px #000;
 }
 
 .primary:hover {

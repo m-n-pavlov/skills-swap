@@ -6,4 +6,5 @@ export type LinkButtonProps = {
   style: 'primary' | 'secondary' | 'tertiary';
   to: string;
   className?: string;
+  onClick?: () => void; // обработчик клика по кнопке "Подробнее"
 };
