@@ -2,9 +2,9 @@ import type { TCategory } from '../../entities/categories.ts';
 import { configureStore } from '@reduxjs/toolkit';
 import categoriesReducer, {
   type CategoriesSlice,
-  fetchCategoryById,
   fetchGetCategories,
-  fetchSubCategoryById
+  getCurrentCategoryById,
+  getCurrentSubCategoryById
 } from '../../app/store/slices/categoriesSlice/categoriesSlice.ts';
 
 jest.mock('../../api', () => ({
@@ -12,18 +12,6 @@ jest.mock('../../api', () => ({
 }));
 
 import * as api from '../../api';
-
-function expectPendingState(
-  state: CategoriesSlice,
-  isLoading: boolean,
-  err: string | null
-) {
-  expect(state.categories).toEqual([]);
-  expect(state.currentCategory).toEqual(null);
-  expect(state.currentSubCategories).toEqual(null);
-  expect(state.isLoading).toEqual(isLoading);
-  expect(state.error).toEqual(err);
-}
 
 describe('Проверяют редьюсер слайса для категорий', () => {
   const mockCategories: TCategory[] = [
@@ -43,6 +31,14 @@ describe('Проверяют редьюсер слайса для категор
     }
   ];
 
+  const initialState: CategoriesSlice = {
+    categories: mockCategories,
+    currentCategory: mockCategories[0],
+    currentSubCategories: mockCategories[0].subCategories[0],
+    isLoading: false,
+    error: null
+  };
+
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -53,7 +49,12 @@ describe('Проверяют редьюсер слайса для категор
       reducer: { categories: categoriesReducer }
     });
     store.dispatch({ type: fetchGetCategories.pending.type });
-    expectPendingState(store.getState().categories, true, null);
+    const state = store.getState().categories;
+    expect(state.categories).toEqual([]);
+    expect(state.currentCategory).toEqual(null);
+    expect(state.currentSubCategories).toEqual(null);
+    expect(state.isLoading).toEqual(true);
+    expect(state.error).toEqual(null);
   });
 
   test('Тест загрузки категорий. Состояние fulfilled', async () => {
@@ -84,74 +85,44 @@ describe('Проверяют редьюсер слайса для категор
       reducer: { categories: categoriesReducer }
     });
     await store.dispatch(fetchGetCategories());
-    expectPendingState(store.getState().categories, false, err);
+    const state = store.getState().categories;
+    expect(state.categories).toEqual([]);
+    expect(state.currentCategory).toEqual(null);
+    expect(state.currentSubCategories).toEqual(null);
+    expect(state.isLoading).toEqual(false);
+    expect(state.error).toEqual(err);
+  });
+  //
+  test('Тест поиска категории по ID', () => {
+    const store = configureStore({
+      reducer: { categories: categoriesReducer },
+      preloadedState: {
+        categories: { ...initialState, categories: mockCategories }
+      }
+    });
+    store.dispatch(getCurrentCategoryById('business'));
+    const state = store.getState().categories;
+    expect(state.currentCategory).toEqual(mockCategories[0]);
+    expect(state.currentSubCategories).toEqual(null);
+    expect(state.isLoading).toEqual(false);
+    expect(state.error).toEqual(null);
   });
 
-  test('Тест поиска категории по ID. Состояние pending', async () => {
-    (api.getCategoriesApi as jest.Mock).mockResolvedValue(mockCategories);
+  //
+  test('Тест поиска подкатегории по ID', () => {
     const store = configureStore({
-      reducer: { categories: categoriesReducer }
+      reducer: { categories: categoriesReducer },
+      preloadedState: {
+        categories: { ...initialState, categories: mockCategories }
+      }
     });
-    store.dispatch({ type: fetchCategoryById.pending.type });
-    expectPendingState(store.getState().categories, true, null);
-  });
-
-  test('Тест поиска категории по ID. Состояние fulfilled', async () => {
-    (api.getCategoriesApi as jest.Mock).mockResolvedValue(mockCategories);
-    const store = configureStore({
-      reducer: { categories: categoriesReducer }
-    });
-    await store.dispatch(fetchCategoryById('business'));
-    const { currentCategory, isLoading, error } = store.getState().categories;
-    expect(currentCategory).toEqual(
-      mockCategories.find((cat) => cat.id === 'business')
+    store.dispatch(getCurrentSubCategoryById('marketing'));
+    const state = store.getState().categories;
+    expect(state.currentSubCategories).toEqual(
+      mockCategories[0].subCategories[1]
     );
-    expect(isLoading).toBe(false);
-    expect(error).toBeNull();
-  });
-
-  test('Тест поиска категории по ID. Состояние rejected', async () => {
-    const err = 'Ошибка получения категории по ID';
-    jest.spyOn(api, 'getCategoriesApi').mockRejectedValue(new Error(err));
-    const store = configureStore({
-      reducer: { categories: categoriesReducer }
-    });
-    await store.dispatch(fetchCategoryById('business'));
-    expectPendingState(store.getState().categories, false, err);
-  });
-
-  test('Тест поиска подкатегории по ID. Состояние pending', async () => {
-    (api.getCategoriesApi as jest.Mock).mockResolvedValue(mockCategories);
-    const store = configureStore({
-      reducer: { categories: categoriesReducer }
-    });
-    store.dispatch({ type: fetchSubCategoryById.pending.type });
-    expectPendingState(store.getState().categories, true, null);
-  });
-
-  test('Тест поиска подкатегории по ID. Состояние fulfilled', async () => {
-    (api.getCategoriesApi as jest.Mock).mockResolvedValue(mockCategories);
-    const store = configureStore({
-      reducer: { categories: categoriesReducer }
-    });
-    await store.dispatch(fetchSubCategoryById('marketing'));
-    const { currentSubCategories, isLoading, error } =
-      store.getState().categories;
-    const expectedSubCategory = mockCategories
-      .find((cat) => cat.id === 'business') // родительская категория
-      ?.subCategories.find((sub) => sub.id === 'marketing');
-    expect(currentSubCategories).toEqual(expectedSubCategory);
-    expect(isLoading).toBe(false);
-    expect(error).toBeNull();
-  });
-
-  test('Тест поиска подкатегории по ID. Состояние rejected', async () => {
-    const err = 'Ошибка получения подкатегории по ID';
-    jest.spyOn(api, 'getCategoriesApi').mockRejectedValue(new Error(err));
-    const store = configureStore({
-      reducer: { categories: categoriesReducer }
-    });
-    await store.dispatch(fetchSubCategoryById('marketing'));
-    expectPendingState(store.getState().categories, false, err);
+    expect(state.currentCategory).toEqual(mockCategories[0]);
+    expect(state.isLoading).toEqual(false);
+    expect(state.error).toEqual(null);
   });
 });

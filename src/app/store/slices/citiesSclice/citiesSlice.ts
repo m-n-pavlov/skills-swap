@@ -1,8 +1,12 @@
 import type { TCity } from '../../../../entities/cities.ts';
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import {
+  createAsyncThunk,
+  createSlice,
+  type PayloadAction
+} from '@reduxjs/toolkit';
 import { getCitiesApi } from '../../../../api';
 
-type CitiesSlice = {
+export type CitiesSlice = {
   cities: TCity[];
   currentCity: TCity | null;
   isLoading: boolean;
@@ -27,23 +31,15 @@ export const fetchGetCities = createAsyncThunk(
   }
 );
 
-export const fetchCityById = createAsyncThunk<
-  TCity | null,
-  string,
-  { rejectValue: string }
->('categories/fetchCategoryById', async (id, { rejectWithValue }) => {
-  try {
-    const categories = await getCitiesApi();
-    return categories.find((cat) => cat.id === id) || null;
-  } catch {
-    return rejectWithValue('Ошибка получения города по ID');
-  }
-});
-
 const citiesSlice = createSlice({
   name: 'categories',
   initialState,
-  reducers: {},
+  reducers: {
+    getCurrentCityById: (state, action: PayloadAction<string>) => {
+      const city = state.cities.find((s) => s.id === action.payload);
+      state.currentCity = city || null;
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchGetCities.pending, (state) => {
@@ -64,27 +60,8 @@ const citiesSlice = createSlice({
         state.currentCity = null;
         state.cities = [];
       });
-
-    builder
-      .addCase(fetchCityById.pending, (state) => {
-        state.isLoading = true;
-        state.error = null;
-        state.currentCity = null;
-        state.cities = [];
-      })
-      .addCase(fetchCityById.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.error = null;
-        state.currentCity = action.payload;
-        state.cities = [];
-      })
-      .addCase(fetchCityById.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload as string;
-        state.currentCity = null;
-        state.cities = [];
-      });
   }
 });
 
+export const { getCurrentCityById } = citiesSlice.actions;
 export default citiesSlice.reducer;

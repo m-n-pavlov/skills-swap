@@ -1,16 +1,15 @@
 import type { TCity } from '../../entities/cities.ts';
 import { configureStore } from '@reduxjs/toolkit';
 import citiesReducer, {
-  fetchCityById,
-  fetchGetCities
+  type CitiesSlice,
+  fetchGetCities,
+  getCurrentCityById
 } from '../../app/store/slices/citiesSclice/citiesSlice.ts';
 
 jest.mock('../../api', () => ({
   getCitiesApi: jest.fn()
 }));
-
 import * as api from '../../api';
-
 describe('Проверяют редьюсер слайса для городов', () => {
   const mockCities: TCity[] = [
     {
@@ -34,6 +33,13 @@ describe('Проверяют редьюсер слайса для городов
       location: 'Казань'
     }
   ];
+
+  const initialState: CitiesSlice = {
+    cities: mockCities,
+    currentCity: mockCities[1],
+    isLoading: false,
+    error: null
+  };
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -79,45 +85,17 @@ describe('Проверяют редьюсер слайса для городов
     expect(error).toEqual(err);
   });
 
-  test('Тест поиска города по ID. Состояние pending', async () => {
-    (api.getCitiesApi as jest.Mock).mockResolvedValue(mockCities);
-    const store = configureStore({
-      reducer: { cities: citiesReducer }
-    });
-    store.dispatch({ type: fetchCityById.pending.type });
-    const { cities, currentCity, isLoading, error } = store.getState().cities;
-    expect(cities).toEqual([]);
-    expect(currentCity).toEqual(null);
-    expect(isLoading).toEqual(true);
-    expect(error).toEqual(null);
-  });
-
   test('Тест поиска города по ID. Состояние fulfilled', async () => {
-    (api.getCitiesApi as jest.Mock).mockResolvedValue(mockCities);
     const store = configureStore({
-      reducer: { cities: citiesReducer }
+      reducer: { cities: citiesReducer },
+      preloadedState: {
+        cities: { ...initialState, cities: mockCities }
+      }
     });
-    await store.dispatch(fetchCityById('moscow'));
-    const { cities, currentCity, isLoading, error } = store.getState().cities;
-    expect(currentCity).toEqual(
-      mockCities.find((city) => city.id === 'moscow')
-    );
-    expect(cities).toEqual([]);
-    expect(isLoading).toBe(false);
-    expect(error).toBeNull();
-  });
-
-  test('Тест поиска города по ID. Состояние rejected', async () => {
-    const err = 'Ошибка получения города по ID';
-    jest.spyOn(api, 'getCitiesApi').mockRejectedValue(new Error(err));
-    const store = configureStore({
-      reducer: { cities: citiesReducer }
-    });
-    await store.dispatch(fetchCityById('moscow'));
-    const { cities, currentCity, isLoading, error } = store.getState().cities;
-    expect(cities).toEqual([]);
-    expect(currentCity).toEqual(null);
+    store.dispatch(getCurrentCityById(mockCities[1].id));
+    const { currentCity, isLoading, error } = store.getState().cities;
+    expect(currentCity).toEqual(mockCities[1]);
     expect(isLoading).toEqual(false);
-    expect(error).toEqual(err);
+    expect(error).toEqual(null);
   });
 });
