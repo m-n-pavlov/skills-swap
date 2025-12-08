@@ -1,15 +1,22 @@
-import type { FC } from 'react';
+import clsx from 'clsx';
 import { NavLink } from 'react-router-dom';
+
 import styles from './MenuLink.module.css';
 import type { MenuLinkProps } from './type';
 
-export const MenuLink: FC<MenuLinkProps> = ({ href, label, className }) => (
+export const MenuLink = ({
+  href,
+  label,
+  className,
+  ...rest
+}: MenuLinkProps) => (
   <NavLink
-    to={href || '#'}
+    to={href}
     className={({ isActive }) =>
-      `${styles.link} ${isActive ? styles.link_active : ''} ${className ?? ''}`
+      clsx(styles.link, isActive && styles.link_active, className)
     }
     end
+    {...rest}
   >
     {label}
   </NavLink>

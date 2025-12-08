@@ -3,7 +3,7 @@ import type { IconName } from '../Icon/icons';
 
 export type ButtonProps = {
   children: ReactNode;
-  onClick: () => void;
+  onClick?: () => void;
   style: 'primary' | 'secondary' | 'tertiary' | 'text' | 'icon';
   type: 'submit' | 'button';
   className?: string;
