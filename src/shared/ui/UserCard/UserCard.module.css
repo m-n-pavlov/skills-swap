@@ -1,0 +1,77 @@
+/* главный контейнер карточки */
+.userCard {
+  width: 100%;
+  height: 100%;
+  max-width: 324px;
+  border-radius: 12px;
+  padding: 20px;
+  background-color: var(--card);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* блок с аватаркой, именем, городом, возрастом пользователя и кнопкой лайка */
+.userInfo {
+  display: flex;
+  gap: 12px;
+}
+
+/* блок с именем, городом, возрастом пользователя и кнопкой лайка */
+.userInfoDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 172px;
+}
+
+.userInfoDetails_center {
+  justify-content: center;
+}
+
+/* контейнер для имени, города и возраста пользователя */
+.userDataWrapper {
+  width: 100%;
+}
+
+.userName {
+  margin: 0 0 4px;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.userData {
+  margin: 0;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.02em;
+  color: var(--text);
+}
+
+.userCardBio {
+  font-size: var(--body-font-size);
+  line-height: var(--body-line-height);
+  font-family: var(--body-font-family);
+  font-weight: var(--body-font-weight);
+}
+
+.userSkillsWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.userSkillsHeader {
+  font-size: var(--h4-font-size);
+  line-height: var(--h4-line-height);
+  font-family: var(--h4-font-family);
+  font-weight: var(--h4-font-weight);
+  letter-spacing: 0.02em;
+}
+
+.userSkills {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 4px;
+}
