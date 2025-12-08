@@ -45,9 +45,12 @@ import Sort from '../../../assets/icons/sort.svg?react';
 import Sun from '../../../assets/icons/sun.svg?react';
 import UserCircle from '../../../assets/icons/user-circle.svg?react';
 import User from '../../../assets/icons/user.svg?react';
+import Google from '../../../assets/icons/google.svg?react';
+import Apple from '../../../assets/icons/apple.svg?react';
 
 export const icons = {
   add: Add,
+  apple: Apple,
   arrowLeft: ArrowLeft,
   arrowSquareLeft: ArrowSquareLeft,
   arrowSquareRight: ArrowSquareRight,
@@ -71,6 +74,7 @@ export const icons = {
   galleryAdd: GalleryAdd,
   galleryEdit: GalleryEdit,
   global: Global,
+  google: Google,
   home: Home,
   idea: Idea,
   lifestyle: Lifestyle,
