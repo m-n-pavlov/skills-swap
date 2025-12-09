@@ -2,7 +2,7 @@ import type { TCity } from '../../entities/cities.ts';
 import { configureStore } from '@reduxjs/toolkit';
 import citiesReducer, {
   fetchGetCities
-} from '../../app/store/slices/citiesSclice/citiesSlice.ts';
+} from '../../app/store/slices/citiesSlice/citiesSlice.ts';
 
 jest.mock('../../api', () => ({
   getCitiesApi: jest.fn()
@@ -13,7 +13,7 @@ import type { RootState } from '../../app/store';
 import {
   selectAllCities,
   selectCityById
-} from '../../app/store/slices/citiesSclice/citiesSelector.ts';
+} from '../../app/store/slices/citiesSlice/citiesSelector.ts';
 describe('Проверяют редьюсер слайса для городов', () => {
   const mockCities: TCity[] = [
     {
