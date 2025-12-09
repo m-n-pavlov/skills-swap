@@ -6,7 +6,7 @@ import skills from '../../public/db/skills.json';
 const testImages = skills.skills[3].images;
 
 const meta: Meta<typeof PhotoGallery> = {
-  title: 'Gallery/PhotoGallery',
+  title: 'UI/PhotoGallery',
   component: PhotoGallery,
   argTypes: {
     images: {
