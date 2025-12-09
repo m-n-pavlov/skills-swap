@@ -1,0 +1,8 @@
+.userCardList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px; /* расстояние между карточками */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}

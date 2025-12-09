@@ -1,4 +1,5 @@
 import type { AvatarProps } from '../Avatar/type';
+import type { TUser } from '../../../entities/users.ts';
 
 export type UserCardProps = {
   user: TUser;
@@ -7,17 +8,4 @@ export type UserCardProps = {
   showLinkButton?: boolean; // (true - показываем кнопку "Подробнее", false или не передан - скрываем)
   onLike?: (userId: string) => void; // обработчик клика на иконку лайка
   onMore?: (userId: string) => void; // обработчик клика на кнопку "Подробнее"
-};
-
-export type TUser = {
-  id: string;
-  name: string;
-  avatarUrl: string;
-  cityId: string;
-  gender: 'male' | 'female';
-  birthday: string;
-  skillsTeach: string[];
-  skillsLearn: string[];
-  likes: number;
-  createdAt: string;
 };

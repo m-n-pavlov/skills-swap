@@ -9,10 +9,12 @@ export const LinkButton: React.FC<LinkButtonProps> = ({
   to,
   style,
   className,
-  size
+  size,
+  onClick
 }) => (
   <NavLink
     to={to}
+    onClick={onClick}
     className={clsx(styles.button, styles[size], styles[style], className)}
   >
     {children}
