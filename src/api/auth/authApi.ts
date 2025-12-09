@@ -26,22 +26,55 @@ export const loginApi = (data: TLoginData) =>
       'Content-Type': 'application/json;charset=utf-8'
     },
     body: JSON.stringify(data)
-  }).then((res) => checkResponse<TAuthResponse>(res));
+  })
+    .then((res) => checkResponse<TAuthResponse>(res))
+    .then((data) => {
+      if (data?.success) {
+        if (data.user) localStorage.setItem('user', JSON.stringify(data.user));
+        return data;
+      }
+      return Promise.reject(data);
+    });
 
-export const logoutApi = (userId?: string) =>
+export const logoutApi = () =>
   fetch('/api/auth/logout', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json;charset=utf-8'
     },
     body: JSON.stringify({
-      userId
+      userId: JSON.parse(localStorage.getItem('user') || '{}')?.id
     })
-  }).then((res) => checkResponse<TServerResponse<{}>>(res));
+  })
+    .then((res) => checkResponse<TServerResponse<{}>>(res))
+    .then((data) => {
+      if (data?.success) {
+        localStorage.removeItem('user');
+      }
+      return data;
+    });
 
-export const registerApi = (data: TRegisterData) =>
-  fetch('/api/auth/register', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json;charset=utf-8' },
-    body: JSON.stringify(data)
-  }).then((res) => checkResponse<TAuthResponse>(res));
+export const updateApi = (data: Partial<TRegisterData>) => {
+  const user = JSON.parse(localStorage.getItem('user') || '{}');
+  return fetch('/api/auth/change-email', {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+      'X-User-Id': user.id
+    },
+    body: JSON.stringify({
+      userId: user.id,
+      ...data
+    })
+  })
+    .then((res) => checkResponse<TChangeEmailResponse>(res))
+    .then((data) => {
+      if (data?.success) {
+        if (data.user) {
+          localStorage.setItem('user', JSON.stringify(data.user));
+        }
+        return data;
+      }
+      return Promise.reject(data);
+    });
+};
