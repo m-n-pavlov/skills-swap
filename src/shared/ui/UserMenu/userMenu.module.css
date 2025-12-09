@@ -1,9 +1,21 @@
-.userMenu {
+.menuContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 100%;
+  min-width: 280px;
+  max-width: 324px;
   height: 100%;
+  min-height: 400px;
   background: #ffffff;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+.userMenu {
+  max-width: 244px;
+  height: 100%;
   overflow: hidden;
 }
 
@@ -35,6 +47,7 @@
 
 .linkActive {
   background-color: var(--button-hover);
+  color: var(--text);
   font-weight: 500;
 }
 

@@ -1,74 +1,56 @@
 import { NavLink } from 'react-router-dom';
-import { Icon } from '../icon';
 import styles from './userMenu.module.css';
-import type { MenuItem } from './type';
 import { memo } from 'react';
+import { MenuItems } from '../Widgets/ProfileWidgets';
+import { useState, useMemo } from 'react';
 
 export const UserMenu = memo(() => {
-  const menuItems: MenuItem[] = [
-    {
-      id: 'applications',
-      label: 'Заявки',
-      icon: <Icon name='notification' alt='иконка уведомления' />,
-      path: '/applications',
-      disabled: true
-    },
-    {
-      id: 'exchanges',
-      label: 'Мои обмены',
-      icon: <Icon name='messageText' alt='иконка сообщения' />,
-      path: '/exchanges',
-      disabled: true
-    },
-    {
-      id: 'favorites',
-      label: 'Избранное',
-      icon: <Icon name='like' alt='иконка сердца' />,
-      path: '/favorites',
-      disabled: true
-    },
-    {
-      id: 'skills',
-      label: 'Мои навыки',
-      icon: <Icon name='idea' alt='иконка лампочки' />,
-      path: '/skills',
-      disabled: true
-    },
-    {
-      id: 'personal',
-      label: 'Личные данные',
-      icon: <Icon name='user' alt='иконка фигуры пользователя' />,
-      path: '/personal',
-      disabled: false
+  const initialActiveId = useMemo(() => {
+    return (
+      MenuItems.find((item) => item.isActive === true)?.id ||
+      MenuItems[0]?.id ||
+      ''
+    );
+  }, []);
+  const [activeItemId, setActiveItemId] = useState<string>(initialActiveId);
+  const handleItemClick = (
+    id: string,
+    disabled: boolean,
+    e: React.MouseEvent
+  ) => {
+    e.preventDefault();
+    if (!disabled) {
+      setActiveItemId(id);
     }
-  ];
+  };
 
   return (
-    <nav className={styles.userMenu}>
-      <ul className={styles.list}>
-        {menuItems.map((item) => (
-          <li key={item.id} className={styles.item}>
-            <NavLink
-              to={item.path}
-              className={({ isActive }) =>
-                `${styles.link} ${item.disabled ? styles.linkDisabled : ''} ${isActive ? styles.linkActive : ''}`
-              }
-              onClick={(e) => {
-                if (item.disabled) {
-                  e.preventDefault();
-                }
-              }}
-              aria-disabled={item.disabled}
-            >
-              <span className={styles.icon}>{item.icon}</span>
-              <span className={styles.label}>{item.label}</span>
-              {item.count !== undefined && (
-                <span className={styles.label}>{item.count}</span>
-              )}
-            </NavLink>
-          </li>
-        ))}
-      </ul>
-    </nav>
+    <div className={styles.menuContainer}>
+      <nav className={styles.userMenu}>
+        <ul className={styles.list}>
+          {MenuItems.map((item) => {
+            const isActive = activeItemId === item.id;
+            return (
+              <li key={item.id} className={styles.item}>
+                <NavLink
+                  to='#'
+                  className={`${styles.link} ${isActive ? styles.linkActive : ''} ${item.disabled ? styles.linkDisabled : ''}`}
+                  onClick={(e) =>
+                    handleItemClick(item.id, item.disabled || false, e)
+                  }
+                  style={{ textDecoration: 'none' }}
+                >
+                  <span className={styles.icon}>{item.icon}</span>
+                  <span className={styles.label}>{item.label}</span>
+                  {item.count !== undefined && (
+                    <span className={styles.badge}>{item.count}</span>
+                  )}
+                </NavLink>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+    </div>
   );
 });

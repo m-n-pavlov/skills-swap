@@ -28,7 +28,7 @@ export const WithActiveSkills: Story = {
   args: {},
   parameters: {
     reactRouter: {
-      routePath: '/skills'
+      routePath: '#'
     }
   }
 };
@@ -37,7 +37,7 @@ export const WithActivePersonal: Story = {
   args: {},
   parameters: {
     reactRouter: {
-      routePath: '/personal'
+      routePath: '#'
     }
   }
 };

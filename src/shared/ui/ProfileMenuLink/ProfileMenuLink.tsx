@@ -1,3 +1,5 @@
+import React from 'react';
+
 export interface MenuItem {
   id: string;
   label: string;
@@ -5,4 +7,5 @@ export interface MenuItem {
   path: string;
   disabled: boolean;
   count?: number;
+  isActive?: boolean;
 }
