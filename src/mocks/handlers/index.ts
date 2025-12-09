@@ -6,6 +6,6 @@ import { usersHandlers } from './users.ts';
 export const handlers = [
   ...citiesHandlers,
   ...categoriesHandlers,
-  ...skillsHandlers
+  ...skillsHandlers,
   ...usersHandlers
 ];
