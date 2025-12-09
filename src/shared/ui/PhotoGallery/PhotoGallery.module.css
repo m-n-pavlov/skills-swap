@@ -1,0 +1,116 @@
+.gallery {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 24px;
+  height: 324px;
+  max-width: 440px;
+}
+
+.wrap {
+  width: 324px;
+  height: 324px;
+  min-width: 324px;
+  position: relative;
+}
+
+.main {
+  width: 100%;
+  height: 100%;
+  background: var(--card);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.main :global(.swiper-wrapper) {
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: row !important;
+}
+
+.main :global(.swiper-slide) {
+  flex: 0 0 100% !important;
+  max-width: 100%;
+}
+
+.slide {
+  height: 100% !important;
+  width: 100%;
+}
+
+.img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mini {
+  max-width: 92px;
+  height: 324px;
+  overflow: hidden;
+}
+
+.mini :global(.swiper-wrapper) {
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 24px;
+}
+
+.miniSlide {
+  position: relative;
+  border-radius: 10px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.miniSlideActive {
+  box-shadow: 0 0 0 2px var(--primary);
+}
+
+.miniSlideActive .img {
+  border: 3px solid var(--accent);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 30%);
+}
+/*
+.chevron button{
+    background-color: var(--disabled);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    position: absolute;
+    top: 50%;
+}
+
+.chevron svg{
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    color: var(--caption);
+}
+
+.chevron svg:hover{
+    cursor: pointer;
+}
+
+.chevronRight {
+    transform: translateY(-50%);
+    right: 16px;
+}
+
+.chevronLeft{
+    transform: translateY(-50%) rotateY(180deg);
+    left: 16px;
+}
+*/
+.more {
+  position: absolute;
+  font-size: 16px;
+  background: rgb(255 255 255 / 50%);
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
