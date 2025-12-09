@@ -1,10 +1,14 @@
-import type { TCategory } from '../../../entities/categories.ts';
+import type {
+  TCategory,
+  TSubCategories
+} from '../../../../entities/categories.ts';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getCategoriesApi } from '../../../api';
+import { getCategoriesApi } from '../../../../api';
 
-type CategoriesSlice = {
+export type CategoriesSlice = {
   categories: TCategory[];
   currentCategory: TCategory | null;
+  currentSubCategories: TSubCategories | null;
   isLoading: boolean;
   error: string | null;
 };
@@ -12,6 +16,7 @@ type CategoriesSlice = {
 const initialState: CategoriesSlice = {
   categories: [],
   currentCategory: null,
+  currentSubCategories: null,
   isLoading: false,
   error: null
 };
@@ -22,7 +27,7 @@ export const fetchGetCategories = createAsyncThunk(
     try {
       return await getCategoriesApi();
     } catch {
-      return rejectWithValue('Ошибка получения ингредиентов');
+      return rejectWithValue('Ошибка получения категорий');
     }
   }
 );
@@ -39,7 +44,6 @@ const categoriesSlice = createSlice({
       })
       .addCase(fetchGetCategories.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.error = null;
         state.categories = action.payload;
       })
       .addCase(fetchGetCategories.rejected, (state, action) => {

@@ -1,6 +1,8 @@
 import { combineReducers } from '@reduxjs/toolkit';
-import categoriesReducer from './slices/categoriesSlice';
+import categoriesReducer from './slices/categoriesSlice/categoriesSlice.ts';
+import citiesReducer from './slices/citiesSclice/citiesSlice.ts';
 
 export const rootReducer = combineReducers({
-  categories: categoriesReducer
+  categories: categoriesReducer,
+  cities: citiesReducer
 });
