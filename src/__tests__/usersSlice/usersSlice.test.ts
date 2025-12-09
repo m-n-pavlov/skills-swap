@@ -111,7 +111,7 @@ describe('Проверяют редьюсер слайса для пользов
     expect(selectAllUsers(mockState)).toEqual(mockUsers);
   });
 
-  test('Тест селектора получения городов по ID', () => {
+  test('Тест селектора получения пользователей по ID', () => {
     expect(selectUserById(mockUsers[2].id)(mockState)).toEqual(mockUsers[2]);
     expect(selectUserById('unknown')(mockState)).toBeNull();
   });
