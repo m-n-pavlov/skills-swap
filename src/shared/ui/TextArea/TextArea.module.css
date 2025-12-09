@@ -1,0 +1,49 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 436px;
+  height: 124px;
+}
+
+.label {
+  font-size: var(--body-font-size);
+  font-weight: var(--body-font-weight);
+  font-family: var(--body-font-family);
+  line-height: var(--body-line-height);
+  color: var(--text);
+}
+
+.textarea {
+  width: 100%;
+  height: 96px;
+  padding: 12px 20px;
+  border: 1px solid var(--caption);
+  border-radius: 12px;
+  font: inherit;
+  color: var(--text);
+  resize: none;
+  outline: none;
+  transition: border-color 0.1s ease;
+  background-color: var(--input);
+  box-sizing: border-box;
+}
+
+.textarea:focus {
+  border-color: var(--caption);
+}
+
+.textarea.error {
+  border-color: var(--error);
+}
+
+.message {
+  font-size: var(--caption-font-size);
+  line-height: var(--caption-line-height);
+  font-family: var(--caption-font-family);
+  font-weight: var(--caption-font-weight);
+}
+
+.errorText {
+  color: var(--error);
+}
