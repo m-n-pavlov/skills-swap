@@ -1,9 +1,7 @@
 import type { HeaderProps } from './type';
 import styles from './header.module.css';
 import {
-  ButtonIcon,
   ButtonToggleTheme,
-  LinkButton,
   Logo,
   MenuButton,
   MenuLink,
