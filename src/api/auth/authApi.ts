@@ -53,28 +53,3 @@ export const logoutApi = () =>
       }
       return data;
     });
-
-export const updateApi = (data: Partial<TRegisterData>) => {
-  const user = JSON.parse(localStorage.getItem('user') || '{}');
-  return fetch('/api/auth/change-email', {
-    method: 'PATCH',
-    headers: {
-      'Content-Type': 'application/json;charset=utf-8',
-      'X-User-Id': user.id
-    },
-    body: JSON.stringify({
-      userId: user.id,
-      ...data
-    })
-  })
-    .then((res) => checkResponse<TChangeEmailResponse>(res))
-    .then((data) => {
-      if (data?.success) {
-        if (data.user) {
-          localStorage.setItem('user', JSON.stringify(data.user));
-        }
-        return data;
-      }
-      return Promise.reject(data);
-    });
-};
