@@ -2,6 +2,18 @@ import { useState, type FormEvent } from 'react';
 import styles from './AuthPage.module.css';
 import { AuthForm } from '../../features/auth/ui/AuthForm/AuthForm';
 import { StepIllustration } from '../../shared/ui/StepIllustration';
+import { useDispatch, useSelector } from 'react-redux';
+import type { AppDispatch } from '../../app/store';
+import {
+  selectAuthError,
+  selectAuthLoading,
+  selectAuthUser,
+  selectIsAuth
+} from '../../app/store/slices/authSlice/authSelector.ts';
+import {
+  fetchLogin,
+  fetchLogout
+} from '../../app/store/slices/authSlice/authSlice.ts';
 
 export const AuthPage = () => {
   const [values, setValues] = useState({ email: '', password: '' });

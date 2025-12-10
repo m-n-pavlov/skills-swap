@@ -1,21 +1,7 @@
 import { http, HttpResponse } from 'msw';
+import data from '../../../public/db/auth.json';
 
-const mockUsers = [
-  {
-    id: '1',
-    name: 'Иван',
-    avatarUrl: '/image/ivan.png',
-    cityId: 'saint_petersburg',
-    gender: 'male',
-    birthday: '1996-12-01',
-    skillsTeach: ['1'],
-    skillsLearn: ['2', '3'],
-    likes: 0,
-    createdAt: '2025-12-07',
-    email: 'admin@admin.com',
-    password: '123456'
-  }
-];
+export const mockUsers = data.users;
 
 export const authHandlers = [
   http.post('/api/auth/login', async ({ request }) => {
@@ -62,7 +48,7 @@ export const authHandlers = [
   }),
 
   // Смена пароля
-  http.patch('/api/auth/user', async ({ request }) => {
+  http.patch('/api/auth/change-email', async ({ request }) => {
     const data = (await request.json()) as any;
     const { userId, ...updateData } = data;
 
