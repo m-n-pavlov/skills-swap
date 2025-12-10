@@ -1,0 +1,30 @@
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background-color: var(--card);
+  border-radius: 12px;
+  margin: 0;
+}
+
+.text {
+  font-size: var(--body-font-size);
+  line-height: var(--body-line-height);
+  font-family: var(--body-font-family);
+  font-weight: var(--body-font-weight);
+}
+
+.close {
+  display: inline-flex;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  transition: opacity 0.2s ease;
+}
+
+.close:hover {
+  color: var(--button-hover);
+}
