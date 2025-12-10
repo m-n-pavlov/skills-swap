@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { MemoryRouter } from 'react-router-dom';
-import { UserMenu } from '../shared/ui/UserMenu/UserMenu';
+import { UserMenu } from '../widgets/UserMenu/UserMenu';
 
 const meta: Meta<typeof UserMenu> = {
   title: 'Components/UserMenu',
