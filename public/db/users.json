@@ -10,7 +10,7 @@
       "birthday": "1996-12-01",
       "skillsTeach": ["1"],
       "skillsLearn": ["2", "3"],
-      "likes": 0,
+      "likes": 12,
       "createdAt": "2025-12-07"
     },
     {
@@ -20,9 +20,9 @@
       "cityId": "kemerovo",
       "gender": "female",
       "birthday": "1994-08-14",
-      "skillsTeach": ["2", "6"],
+      "skillsTeach": ["2"],
       "skillsLearn": ["3"],
-      "likes": 0,
+      "likes": 7,
       "createdAt": "2025-05-22"
     },
     {
@@ -32,9 +32,9 @@
       "cityId": "sochi",
       "gender": "female",
       "birthday": "1994-03-30",
-      "skillsTeach": ["11", "4", "1"],
+      "skillsTeach": ["11"],
       "skillsLearn": ["5"],
-      "likes": 0,
+      "likes": 25,
       "createdAt": "2025-07-11"
     },
     {
@@ -56,9 +56,9 @@
       "cityId": "irkutsk",
       "gender": "male",
       "birthday": "1989-06-25",
-      "skillsTeach": ["1", "5"],
+      "skillsTeach": ["1"],
       "skillsLearn": ["3"],
-      "likes": 0,
+      "likes": 33,
       "createdAt": "2025-02-14"
     },
     {
@@ -70,7 +70,7 @@
       "birthday": "2001-04-12",
       "skillsTeach": ["4"],
       "skillsLearn": ["12", "14", "16"],
-      "likes": 0,
+      "likes": 18,
       "createdAt": "2025-10-30"
     },
     {
@@ -80,9 +80,9 @@
       "cityId": "perm",
       "gender": "female",
       "birthday": "1992-09-08",
-      "skillsTeach": [],
+      "skillsTeach": ["30"],
       "skillsLearn": ["2"],
-      "likes": 0,
+      "likes": 3,
       "createdAt": "2025-04-03"
     },
     {
@@ -92,9 +92,9 @@
       "cityId": "yaroslavl",
       "gender": "female",
       "birthday": "1999-02-19",
-      "skillsTeach": ["11", "16"],
+      "skillsTeach": ["11"],
       "skillsLearn": ["1", "4"],
-      "likes": 0,
+      "likes": 10,
       "createdAt": "2025-11-25"
     },
     {
@@ -104,9 +104,9 @@
       "cityId": "kaliningrad",
       "gender": "female",
       "birthday": "2003-07-07",
-      "skillsTeach": ["1", "2"],
+      "skillsTeach": ["1"],
       "skillsLearn": ["6", "15"],
-      "likes": 0,
+      "likes": 5,
       "createdAt": "2025-08-09"
     },
     {
@@ -116,7 +116,7 @@
       "cityId": "moscow",
       "gender": "male",
       "birthday": "1990-11-22",
-      "skillsTeach": ["7", "12"],
+      "skillsTeach": ["7"],
       "skillsLearn": ["9", "21"],
       "likes": 0,
       "createdAt": "2024-03-15"
@@ -128,9 +128,9 @@
       "cityId": "novosibirsk",
       "gender": "female",
       "birthday": "1998-05-17",
-      "skillsTeach": ["3", "18", "25"],
+      "skillsTeach": ["3"],
       "skillsLearn": ["8", "10"],
-      "likes": 0,
+      "likes": 14,
       "createdAt": "2025-06-10"
     },
     {
@@ -142,7 +142,7 @@
       "birthday": "1987-02-28",
       "skillsTeach": ["9"],
       "skillsLearn": ["15", "22", "33"],
-      "likes": 0,
+      "likes": 39,
       "createdAt": "2024-11-30"
     },
     {
@@ -152,7 +152,7 @@
       "cityId": "volgograd",
       "gender": "female",
       "birthday": "2000-09-03",
-      "skillsTeach": ["5", "14"],
+      "skillsTeach": ["5"],
       "skillsLearn": ["7"],
       "likes": 0,
       "createdAt": "2025-01-22"
@@ -164,9 +164,9 @@
       "cityId": "chelyabinsk",
       "gender": "male",
       "birthday": "1993-12-11",
-      "skillsTeach": ["22", "31"],
+      "skillsTeach": ["22"],
       "skillsLearn": ["4", "18", "29"],
-      "likes": 0,
+      "likes": 22,
       "createdAt": "2024-08-07"
     },
     {
@@ -176,9 +176,9 @@
       "cityId": "samara",
       "gender": "female",
       "birthday": "1986-07-25",
-      "skillsTeach": ["10", "19", "28"],
+      "skillsTeach": ["10"],
       "skillsLearn": ["12"],
-      "likes": 0,
+      "likes": 8,
       "createdAt": "2025-03-18"
     },
     {
@@ -200,9 +200,9 @@
       "cityId": "kemerovo",
       "gender": "female",
       "birthday": "1991-04-09",
-      "skillsTeach": ["13", "24"],
+      "skillsTeach": ["13"],
       "skillsLearn": ["9", "17", "26"],
-      "likes": 0,
+      "likes": 17,
       "createdAt": "2025-10-05"
     },
     {
@@ -212,9 +212,9 @@
       "cityId": "omsk",
       "gender": "male",
       "birthday": "1999-10-18",
-      "skillsTeach": ["17", "26", "35"],
+      "skillsTeach": ["17"],
       "skillsLearn": ["14", "23"],
-      "likes": 0,
+      "likes": 31,
       "createdAt": "2024-12-25"
     },
     {
@@ -224,7 +224,7 @@
       "cityId": "voronezh",
       "gender": "female",
       "birthday": "1988-03-14",
-      "skillsTeach": ["20", "29"],
+      "skillsTeach": ["20"],
       "skillsLearn": ["16"],
       "likes": 0,
       "createdAt": "2025-07-03"
@@ -236,9 +236,9 @@
       "cityId": "krasnodar",
       "gender": "male",
       "birthday": "1994-06-22",
-      "skillsTeach": ["15", "23"],
+      "skillsTeach": ["15"],
       "skillsLearn": ["19", "30", "38"],
-      "likes": 0,
+      "likes": 7,
       "createdAt": "2024-09-11"
     },
     {
@@ -248,7 +248,7 @@
       "cityId": "saratov",
       "gender": "female",
       "birthday": "2002-08-07",
-      "skillsTeach": ["21", "30"],
+      "skillsTeach": ["21"],
       "skillsLearn": ["13", "24"],
       "likes": 0,
       "createdAt": "2025-04-28"
@@ -260,9 +260,9 @@
       "cityId": "tolyatti",
       "gender": "male",
       "birthday": "1985-11-16",
-      "skillsTeach": ["27", "36"],
+      "skillsTeach": ["27"],
       "skillsLearn": ["25"],
-      "likes": 0,
+      "likes": 22,
       "createdAt": "2024-07-02"
     },
     {
@@ -272,9 +272,9 @@
       "cityId": "barnaul",
       "gender": "female",
       "birthday": "1996-02-25",
-      "skillsTeach": ["14", "32", "40"],
+      "skillsTeach": ["14"],
       "skillsLearn": ["27", "34"],
-      "likes": 0,
+      "likes": 13,
       "createdAt": "2025-11-14"
     },
     {
@@ -284,7 +284,7 @@
       "cityId": "vladivostok",
       "gender": "male",
       "birthday": "1992-07-09",
-      "skillsTeach": ["8", "19"],
+      "skillsTeach": ["8"],
       "skillsLearn": ["31", "42"],
       "likes": 0,
       "createdAt": "2024-10-20"
@@ -296,9 +296,9 @@
       "cityId": "izhevsk",
       "gender": "female",
       "birthday": "1999-12-04",
-      "skillsTeach": ["33", "41"],
+      "skillsTeach": ["33"],
       "skillsLearn": ["28", "37"],
-      "likes": 0,
+      "likes": 26,
       "createdAt": "2025-08-22"
     },
     {
@@ -308,9 +308,9 @@
       "cityId": "khabarovsk",
       "gender": "male",
       "birthday": "1984-05-19",
-      "skillsTeach": ["2", "11"],
+      "skillsTeach": ["2"],
       "skillsLearn": ["20", "39"],
-      "likes": 0,
+      "likes": 30,
       "createdAt": "2024-04-09"
     },
     {
@@ -320,9 +320,9 @@
       "cityId": "yaroslavl",
       "gender": "female",
       "birthday": "2000-01-27",
-      "skillsTeach": ["5", "16", "25"],
+      "skillsTeach": ["5"],
       "skillsLearn": ["10"],
-      "likes": 0,
+      "likes": 9,
       "createdAt": "2025-02-01"
     },
     {
@@ -332,7 +332,7 @@
       "cityId": "moscow",
       "gender": "male",
       "birthday": "1991-09-13",
-      "skillsTeach": ["18", "27"],
+      "skillsTeach": ["18"],
       "skillsLearn": ["6", "15"],
       "likes": 0,
       "createdAt": "2024-06-17"
@@ -344,9 +344,9 @@
       "cityId": "saint_petersburg",
       "gender": "female",
       "birthday": "1995-04-02",
-      "skillsTeach": ["7", "24"],
+      "skillsTeach": ["7"],
       "skillsLearn": ["3", "12", "21"],
-      "likes": 0,
+      "likes": 35,
       "createdAt": "2025-09-05"
     },
     {
@@ -356,7 +356,7 @@
       "cityId": "novosibirsk",
       "gender": "male",
       "birthday": "1989-10-31",
-      "skillsTeach": ["13", "22"],
+      "skillsTeach": ["13"],
       "skillsLearn": ["8", "17"],
       "likes": 0,
       "createdAt": "2024-11-11"
@@ -368,9 +368,9 @@
       "cityId": "kazan",
       "gender": "female",
       "birthday": "1997-06-08",
-      "skillsTeach": ["9", "30", "39"],
+      "skillsTeach": ["9"],
       "skillsLearn": ["14"],
-      "likes": 0,
+      "likes": 20,
       "createdAt": "2025-05-30"
     },
     {
@@ -380,9 +380,9 @@
       "cityId": "chelyabinsk",
       "gender": "male",
       "birthday": "1993-03-21",
-      "skillsTeach": ["26", "35"],
+      "skillsTeach": ["26"],
       "skillsLearn": ["11", "29"],
-      "likes": 0,
+      "likes": 16,
       "createdAt": "2024-08-25"
     },
     {
@@ -392,7 +392,7 @@
       "cityId": "samara",
       "gender": "female",
       "birthday": "1990-11-05",
-      "skillsTeach": ["4", "17"],
+      "skillsTeach": ["4"],
       "skillsLearn": ["22", "40"],
       "likes": 0,
       "createdAt": "2025-12-12"
@@ -404,9 +404,9 @@
       "cityId": "ufa",
       "gender": "male",
       "birthday": "1986-02-14",
-      "skillsTeach": ["10", "28", "37"],
+      "skillsTeach": ["10"],
       "skillsLearn": ["5"],
-      "likes": 0,
+      "likes": 28,
       "createdAt": "2024-03-03"
     },
     {
@@ -416,7 +416,7 @@
       "cityId": "rostov_on_don",
       "gender": "female",
       "birthday": "1998-07-29",
-      "skillsTeach": ["3", "21"],
+      "skillsTeach": ["3"],
       "skillsLearn": ["9", "18", "27"],
       "likes": 0,
       "createdAt": "2025-10-19"
@@ -428,9 +428,9 @@
       "cityId": "omsk",
       "gender": "male",
       "birthday": "1994-12-10",
-      "skillsTeach": ["16", "34"],
+      "skillsTeach": ["16"],
       "skillsLearn": ["7", "13"],
-      "likes": 0,
+      "likes": 21,
       "createdAt": "2024-05-06"
     },
     {
@@ -440,9 +440,9 @@
       "cityId": "voronezh",
       "gender": "female",
       "birthday": "2001-05-24",
-      "skillsTeach": ["12", "23", "42"],
+      "skillsTeach": ["12"],
       "skillsLearn": ["19"],
-      "likes": 0,
+      "likes": 12,
       "createdAt": "2025-06-27"
     },
     {
@@ -452,7 +452,7 @@
       "cityId": "krasnodar",
       "gender": "male",
       "birthday": "1987-08-15",
-      "skillsTeach": ["20", "38"],
+      "skillsTeach": ["20"],
       "skillsLearn": ["25", "33"],
       "likes": 0,
       "createdAt": "2024-09-29"
@@ -464,9 +464,9 @@
       "cityId": "saratov",
       "gender": "female",
       "birthday": "1992-01-08",
-      "skillsTeach": ["6", "15"],
+      "skillsTeach": ["6"],
       "skillsLearn": ["30", "41"],
-      "likes": 0,
+      "likes": 15,
       "createdAt": "2025-03-07"
     },
     {
@@ -488,9 +488,9 @@
       "cityId": "barnaul",
       "gender": "female",
       "birthday": "1985-09-17",
-      "skillsTeach": ["14", "32"],
+      "skillsTeach": ["14"],
       "skillsLearn": ["11", "26"],
-      "likes": 0,
+      "likes": 24,
       "createdAt": "2025-07-24"
     },
     {
@@ -500,7 +500,7 @@
       "cityId": "vladivostok",
       "gender": "male",
       "birthday": "1996-06-05",
-      "skillsTeach": ["19", "27", "36"],
+      "skillsTeach": ["19"],
       "skillsLearn": ["4"],
       "likes": 0,
       "createdAt": "2024-10-03"
@@ -512,9 +512,9 @@
       "cityId": "izhevsk",
       "gender": "female",
       "birthday": "1993-10-12",
-      "skillsTeach": ["5", "18"],
+      "skillsTeach": ["18"],
       "skillsLearn": ["21", "35"],
-      "likes": 0,
+      "likes": 11,
       "createdAt": "2025-11-30"
     },
     {
@@ -526,7 +526,7 @@
       "birthday": "1990-04-28",
       "skillsTeach": ["2"],
       "skillsLearn": ["9", "28", "37"],
-      "likes": 0,
+      "likes": 32,
       "createdAt": "2024-07-19"
     },
     {
@@ -536,7 +536,7 @@
       "cityId": "yaroslavl",
       "gender": "female",
       "birthday": "1997-12-21",
-      "skillsTeach": ["13", "25", "34"],
+      "skillsTeach": ["34"],
       "skillsLearn": ["6"],
       "likes": 0,
       "createdAt": "2025-01-14"
@@ -548,9 +548,9 @@
       "cityId": "moscow",
       "gender": "male",
       "birthday": "1988-02-03",
-      "skillsTeach": ["7", "29"],
+      "skillsTeach": ["7"],
       "skillsLearn": ["15", "23"],
-      "likes": 0,
+      "likes": 17,
       "createdAt": "2024-04-22"
     },
     {
@@ -560,9 +560,9 @@
       "cityId": "saint_petersburg",
       "gender": "female",
       "birthday": "2002-07-18",
-      "skillsTeach": ["10", "40"],
+      "skillsTeach": ["10"],
       "skillsLearn": ["17", "26"],
-      "likes": 0,
+      "likes": 9,
       "createdAt": "2025-08-15"
     },
     {
@@ -572,7 +572,7 @@
       "cityId": "novosibirsk",
       "gender": "male",
       "birthday": "1995-11-09",
-      "skillsTeach": ["22", "33"],
+      "skillsTeach": ["22"],
       "skillsLearn": ["12", "20", "31"],
       "likes": 0,
       "createdAt": "2024-11-05"
@@ -584,9 +584,9 @@
       "cityId": "kazan",
       "gender": "female",
       "birthday": "1989-05-03",
-      "skillsTeach": ["8", "39"],
+      "skillsTeach": ["8"],
       "skillsLearn": ["14", "32"],
-      "likes": 0,
+      "likes": 29,
       "createdAt": "2025-04-12"
     }
   ]
