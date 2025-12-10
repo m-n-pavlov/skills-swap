@@ -1,1 +1,1 @@
-export { ProfileMenuLink, type MenuItem } from './ProfileMenuLink';
+export { ProfileMenuLink } from './ProfileMenuLink';

@@ -1,25 +1,8 @@
-import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './ProfileMenuLink.module.css';
 import { Icon } from '../Icon';
 import { memo } from 'react';
-import type { IconName } from '../Icon/icons';
-
-export interface MenuItem {
-  id: string;
-  label: string;
-  iconName: IconName;
-  path: string;
-  disabled?: boolean;
-  count?: number;
-  isActive?: boolean;
-}
-
-interface ProfileMenuLinkProps {
-  item: MenuItem;
-  isActive: boolean;
-  onClick: (id: string, disabled: boolean, e: React.MouseEvent) => void;
-}
+import type { ProfileMenuLinkProps } from './type';
 
 export const ProfileMenuLink = memo(
   ({ item, isActive, onClick }: ProfileMenuLinkProps) => {

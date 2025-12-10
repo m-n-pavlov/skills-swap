@@ -1,4 +1,4 @@
-import type { MenuItem } from '../../shared/ui/ProfileMenuLink';
+import type { MenuItem } from '../../shared/ui/ProfileMenuLink/type';
 
 export const menuItems: MenuItem[] = [
   {
