@@ -1,0 +1,89 @@
+.error_page {
+  display: flex;
+  justify-content: center;
+  padding: 0 16px;
+}
+
+.error_content {
+  max-width: 460px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 100px;
+  padding-bottom: 84px;
+}
+
+.error_illustration {
+  max-width: 337px;
+  width: 100%;
+  height: auto;
+  margin: 0 auto 40px;
+  display: block;
+}
+
+.error_title {
+  font-family: var(--h2-font-family);
+  font-weight: var(--h2-font-weight);
+  font-size: var(--h2-font-size);
+  line-height: var(--h2-line-height);
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.error_description {
+  font-family: var(--body-font-family);
+  font-weight: var(--body-font-weight);
+  font-size: var(--body-font-size);
+  line-height: var(--body-line-height);
+  letter-spacing: 0.02em;
+  text-align: center;
+  color: var(--text);
+  margin-bottom: 32px;
+}
+
+.error_actions {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}
+
+.error_button_secondary {
+  width: 218px;
+  height: 48px;
+  padding: 12px 24px;
+
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+
+  background: var(--card);
+  color: var(--text);
+
+  font-size: var(--body-font-size);
+  font-family: var(--body-font-family);
+  font-weight: var(--body-font-weight);
+
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.1s ease;
+}
+
+.error_button_secondary:hover {
+  background: var(--button-hover);
+}
+
+.error_button_secondary:active {
+  background: var(--button-pressed);
+  transform: translateY(1px);
+}
+
+.error_actions .error_button_primary {
+  width: 218px !important;
+  height: 48px;
+  background: var(--accent);
+  color: var(--text);
+  border-radius: 12px;
+  border: none;
+}

@@ -7,4 +7,5 @@ export type ButtonIconProps = {
   iconAlt?: string;
   isActive?: boolean;
   className?: string;
-} & ButtonHTMLAttributes<HTMLButtonElement>;
+  isLiked?: boolean;
+} & ButtonHTMLAttributes<HTMLButtonElement>; // сюда уже входит onClick

@@ -36,6 +36,8 @@
   background: none;
   border: none;
   cursor: pointer;
+  width: 24px;
+  height: 24px;
 }
 
 input[type='search']::-webkit-search-cancel-button {

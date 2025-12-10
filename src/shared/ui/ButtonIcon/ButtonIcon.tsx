@@ -10,6 +10,7 @@ export const ButtonIcon = memo(
     iconName,
     iconAlt,
     isActive = false,
+    isLiked,
     className,
     ...buttonProps
   }: ButtonIconProps) => {
@@ -18,7 +19,8 @@ export const ButtonIcon = memo(
         type='button'
         aria-label={name}
         className={clsx(styles.button, className, {
-          [styles.active]: isActive
+          [styles.active]: isActive,
+          [styles.liked]: isLiked
         })}
         {...buttonProps}
       >

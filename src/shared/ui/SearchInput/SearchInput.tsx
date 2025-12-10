@@ -44,7 +44,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
         value && ( //кнопка очистки
           <button
             type='button'
-            className='clear_button'
+            className={styles.clear_button}
             onClick={handleClear}
             aria-label='Очистить поле'
           >

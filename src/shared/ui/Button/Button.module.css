@@ -21,7 +21,27 @@
 .primary {
   background-color: var(--accent);
   width: 284px;
-  border: solid 1px #000;
+}
+
+.text {
+  color: var(--button-pressed);
+}
+
+.text:hover {
+  color: var(--button-hover);
+}
+
+.text:active {
+  color: var(--button-pressed);
+}
+
+.text:disabled {
+  color: var(--disabled);
+}
+
+.icon {
+  gap: 7px;
+  background-color: #fff;
 }
 
 .primary:hover {

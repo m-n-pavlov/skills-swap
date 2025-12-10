@@ -1,0 +1,31 @@
+.cities {
+  height: 170px;
+  overflow: hidden;
+}
+.allCites {
+  overflow-y: scroll;
+  height: 270px;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background-color: transparent;
+  color: var(--text-link);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0.02em;
+}
+
+.title {
+  font-family: var(--font-family-jost-medium), serif;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 120%;
+  letter-spacing: -0.01em;
+  padding-block-end: 20px;
+}
