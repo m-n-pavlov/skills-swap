@@ -6,11 +6,11 @@
   display: block;
   margin-bottom: 0.5rem;
   font-weight: 500;
-  color: #333;
+  color: var(--text);
 }
 
 .infoText {
-  color: #333;
+  color: var(--text);
 }
 
 .inputWrapper {
@@ -26,7 +26,7 @@
   border-radius: 12px;
   font-size: 1rem;
   transition: all 0.3s ease;
-  background: white;
+  background: var(--input);
 }
 
 .input:focus {
@@ -35,7 +35,7 @@
 }
 
 .input.error {
-  border-color: #bf3920;
+  border-color: var(--error);
 }
 
 .passwordToggle {
@@ -63,6 +63,6 @@
 }
 
 .errorText {
-  color: #bf3920;
+  color: var(--error);
   font-size: 0.875rem;
 }
