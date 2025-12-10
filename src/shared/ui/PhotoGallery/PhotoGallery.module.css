@@ -73,38 +73,7 @@
   border-radius: 10px;
   box-shadow: 0 4px 12px rgb(0 0 0 / 30%);
 }
-/*
-.chevron button{
-    background-color: var(--disabled);
-    border-radius: 50%;
-    width: 32px;
-    height: 32px;
-    padding: 0;
-    position: absolute;
-    top: 50%;
-}
 
-.chevron svg{
-    width: 16px;
-    height: 16px;
-    padding: 0;
-    color: var(--caption);
-}
-
-.chevron svg:hover{
-    cursor: pointer;
-}
-
-.chevronRight {
-    transform: translateY(-50%);
-    right: 16px;
-}
-
-.chevronLeft{
-    transform: translateY(-50%) rotateY(180deg);
-    left: 16px;
-}
-*/
 .more {
   position: absolute;
   font-size: 16px;
