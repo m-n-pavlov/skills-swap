@@ -6,12 +6,28 @@ import { StepIllustration } from '../../shared/ui/StepIllustration';
 export const AuthPage = () => {
   const [values, setValues] = useState({ email: '', password: '' });
 
+  // локальная ошибка логина (одна на всю форму)
+  const [globalError, setGlobalError] = useState<string | undefined>();
+
   const handleChange = (field: 'email' | 'password', value: string) => {
     setValues((prev) => ({ ...prev, [field]: value }));
+    // При вводе — очищаем глобальную ошибку
+    setGlobalError(undefined);
   };
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    // здесь потом будет реальный запрос
+    const success = false;
+
+    if (!success) {
+      setGlobalError(
+        'Email или пароль введён неверно. Пожалуйста, проверьте правильность введённых данных'
+      );
+      return;
+    }
+
     console.log('submit', values);
   };
 
@@ -20,17 +36,21 @@ export const AuthPage = () => {
       <h1 className={styles.title}>Вход</h1>
 
       <div className={styles.content}>
-        {/* Левая колонка — форма */}
         <div className={styles.formSection}>
           <AuthForm
             values={values}
             onChange={handleChange}
             onSubmit={handleSubmit}
             isLoading={false}
+            submitText='Войти'
+            showRegisterLink={true}
+            passwordPlaceholder='Введите ваш пароль'
+            // 👉 сюда передаём текст "Пароль должен содержать не менее 8 знаков"
+            passwordHint='Пароль должен содержать не менее 8 знаков'
+            globalErrorText={globalError}
           />
         </div>
 
-        {/* Правая колонка — иллюстрация */}
         <div className={styles.illustrationSection}>
           <StepIllustration code={1} />
         </div>

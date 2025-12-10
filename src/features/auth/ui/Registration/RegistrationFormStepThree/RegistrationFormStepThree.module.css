@@ -1,0 +1,65 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  max-width: 556px;
+  width: 100%;
+  margin: 0 auto;
+
+  padding: 72px 60px 40px;
+  border-radius: 12px;
+  background: var(--card);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  max-width: 436px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.label {
+  font-family: var(--body-font-family);
+  font-weight: var(--body-font-weight);
+  font-size: var(--body-font-size);
+  line-height: var(--body-line-height);
+  letter-spacing: 0.02em;
+  color: var(--text);
+}
+
+.input {
+  max-width: 436px;
+  width: 100%;
+}
+
+.errorText {
+  margin-top: 4px;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--error, #e34242);
+}
+
+.buttons {
+  max-width: 436px;
+  width: 100%;
+  margin: 16px auto 0;
+
+  display: flex;
+  gap: 16px;
+}
+
+.buttonBack,
+.buttonNext {
+  flex: 1;
+  height: 48px;
+  border-radius: 12px;
+}
+
+.buttonBack :global(button),
+.buttonNext :global(button) {
+  width: 100%;
+}

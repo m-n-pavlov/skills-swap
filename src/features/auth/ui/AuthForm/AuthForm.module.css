@@ -30,6 +30,13 @@
   border-radius: 12px;
 }
 
+.socialIcon {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+  display: inline-block;
+}
+
 .divider {
   display: flex;
   align-items: center;
@@ -62,6 +69,17 @@
 .field {
   display: flex;
   flex-direction: column;
+  /* gap: 4px; */
+}
+
+[class*='infoText'] {
+  margin-top: 0;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 133%;
+  letter-spacing: 0.02em;
+  color: var(--text);
 }
 
 .input {
@@ -94,6 +112,7 @@
   max-width: 436px;
   width: 100% !important;
   height: 48px;
+  margin-top: 16px;
 }
 
 .registerLink {

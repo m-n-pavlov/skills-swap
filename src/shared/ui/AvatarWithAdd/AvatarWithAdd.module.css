@@ -1,0 +1,45 @@
+.wrapper {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 50%;
+  border: 2px solid var(--text);
+  padding: 4px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.input {
+  display: none;
+}
+
+/* зелёный кружок с плюсиком */
+.badge {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: white;
+}
+
+.plusIcon {
+  width: 20px;
+  height: 20px;
+  display: block;
+}

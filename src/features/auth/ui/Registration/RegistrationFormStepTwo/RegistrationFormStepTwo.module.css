@@ -1,0 +1,76 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+
+  max-width: 556px;
+  width: 100%;
+  margin: 0 auto;
+
+  /* такие же внутренние отступы, как у шага 1 и иллюстрации */
+  padding: 48px 60px 40px;
+
+  background: var(--card);
+  border-radius: 12px;
+}
+
+/* аватар сверху по центру */
+.avatarWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+/* общая обёртка для полей, которые ты передаёшь через className */
+.field {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+/* ряд "Дата рождения — Пол" */
+.row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+/* оба элемента в строке растягиваем равномерно */
+.row > * {
+  flex: 1 1 0;
+}
+
+/* кнопки внизу */
+.buttons {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+}
+
+.buttonBack,
+.buttonNext {
+  width: 100%;
+  height: 48px;
+  border-radius: 12px;
+}
+
+/* на планшетах и телефонах — в колонку */
+@media (max-width: 768px) {
+  .form {
+    padding: 32px 24px 24px;
+  }
+
+  .row {
+    flex-direction: column;
+  }
+
+  .buttons {
+    flex-direction: column-reverse;
+  }
+
+  .buttonBack,
+  .buttonNext {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+}
