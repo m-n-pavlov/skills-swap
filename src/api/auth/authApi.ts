@@ -38,3 +38,10 @@ export const logoutApi = (userId?: string) =>
       userId
     })
   }).then((res) => checkResponse<TServerResponse<{}>>(res));
+
+export const registerApi = (data: TRegisterData) =>
+  fetch('/api/auth/register', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json;charset=utf-8' },
+    body: JSON.stringify(data)
+  }).then((res) => checkResponse<TAuthResponse>(res));
