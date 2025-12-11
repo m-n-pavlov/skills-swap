@@ -47,6 +47,7 @@ import UserCircle from '../../../assets/icons/user-circle.svg?react';
 import User from '../../../assets/icons/user.svg?react';
 import Google from '../../../assets/icons/google.svg?react';
 import Apple from '../../../assets/icons/apple.svg?react';
+import LikeOutline from '../../../assets/icons/likeOutline.svg?react';
 
 export const icons = {
   add: Add,
@@ -79,6 +80,7 @@ export const icons = {
   idea: Idea,
   lifestyle: Lifestyle,
   like: Like,
+  likeOutline: LikeOutline,
   logo: Logo,
   logout: Logout,
   messageText: MessageText,

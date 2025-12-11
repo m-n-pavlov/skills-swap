@@ -1,0 +1,23 @@
+.wrapper {
+  border: 2px solid var(--card, var(--input));
+  border-radius: 12px;
+  padding: 32px 52px 40px;
+  width: 1020px;
+  height: 444px;
+  box-sizing: border-box;
+  background: var(--card, var(--input));
+  position: relative;
+}
+
+.button {
+  width: 100%;
+  max-width: 399px;
+}
+
+.iconsRow {
+  display: flex;
+  align-items: end;
+  justify-content: end;
+  gap: 12px;
+  margin-bottom: 16px;
+}
