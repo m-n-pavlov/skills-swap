@@ -38,7 +38,14 @@ export const authHandlers = [
 
   // Регистрация
   http.post('/api/auth/register', async ({ request }) => {
-    const newUser = (await request.json()) as any;
+    const formData = await request.formData();
+
+    // Преобразуем в обычный объект
+    const newUser: any = {};
+    formData.forEach((value, key) => {
+      newUser[key] = value;
+    });
+
     const existingUser = mockUsers.find((u) => u.email === newUser.email);
     if (existingUser) {
       return HttpResponse.json(
@@ -49,10 +56,12 @@ export const authHandlers = [
         { status: 400 }
       );
     }
+
     const nextId = (mockUsers.length + 1).toString();
     const userToStore = { ...newUser, id: nextId };
     mockUsers.push(userToStore);
     const { password, ...userWithoutPassword } = userToStore;
+
     return HttpResponse.json({
       success: true,
       user: userWithoutPassword,

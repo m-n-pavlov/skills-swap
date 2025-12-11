@@ -6,18 +6,9 @@ export type TLoginData = {
   password: string;
 };
 
-export type TRegisterData = TUser & {
-  email: string;
-  password: string;
-};
-
 export type TAuthResponse = TServerResponse<{
   user: TUser;
 }>;
-
-export type TChangeEmailResponse = TAuthResponse & {
-  email: string;
-};
 
 export const loginApi = (data: TLoginData) =>
   fetch('/api/auth/login', {
@@ -39,9 +30,8 @@ export const logoutApi = (userId?: string) =>
     })
   }).then((res) => checkResponse<TServerResponse<{}>>(res));
 
-export const registerApi = (data: TRegisterData) =>
+export const registerApi = (data: FormData) =>
   fetch('/api/auth/register', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json;charset=utf-8' },
-    body: JSON.stringify(data)
+    body: data
   }).then((res) => checkResponse<TAuthResponse>(res));

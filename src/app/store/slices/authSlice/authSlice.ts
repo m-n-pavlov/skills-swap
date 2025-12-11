@@ -10,6 +10,27 @@ export type AuthSliceState = {
   error: string | null;
 };
 
+export type TRegisterData = {
+  email: string;
+  password: string;
+
+  name: string;
+  avatar: File | null;
+  birthday: string;
+  gender: 'male' | 'female' | 'other';
+  cityId: string;
+
+  learningCategoryId: string;
+  learningSubcategoryId: string;
+
+  skillName: string;
+  skillCategoryId: string;
+  skillSubcategoryId: string;
+  description: string;
+
+  images: File[];
+};
+
 const initialState: AuthSliceState = {
   user: JSON.parse(localStorage.getItem('user') || 'null'),
   isAuth: !!localStorage.getItem('user'),
