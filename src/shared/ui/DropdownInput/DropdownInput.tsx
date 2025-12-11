@@ -49,7 +49,9 @@ export const DropdownInput: FC<DropdownInputProps> = ({
     return '';
   })();
 
-  const hasValue = Boolean(displayValue);
+  const hasValue = isCheckbox
+    ? Array.isArray(value) && value.length > 0
+    : typeof value === 'string' && value !== '';
 
   // --- клик по "инпуту" ---
   const handleInputClick = () => {

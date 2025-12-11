@@ -1,0 +1,56 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 0;
+  width: 100%;
+  background: var(--background, #f9faf5);
+}
+
+.progress {
+  margin-bottom: 32px;
+}
+
+.content {
+  display: flex;
+  gap: 24px;
+
+  width: 1136px;
+  max-width: 100%;
+}
+
+.column {
+  flex: 1;
+  display: flex;
+}
+
+.card {
+  flex: 1;
+  box-sizing: border-box;
+
+  background: var(--card);
+  border-radius: 12px;
+  /* padding: 48px 48px 40px; */
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* адаптив */
+@media (max-width: 900px) {
+  .content {
+    flex-direction: column;
+    padding: 0 24px 24px;
+  }
+
+  .column {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .column:last-child {
+    display: none;
+  }
+}

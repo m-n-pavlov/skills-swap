@@ -15,7 +15,7 @@ export interface DropdownInputProps {
   size?: DropdownSize;
   value: string | string[];
   onChange: (value: string | string[]) => void;
-  onClick: () => void;
+  onClick?: () => void;
   disabled?: boolean;
   errorText?: string;
   className?: string;

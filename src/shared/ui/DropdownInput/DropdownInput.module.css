@@ -36,13 +36,17 @@
 }
 
 .inputWrapper {
+  position: relative;
   display: flex;
   align-items: center;
   border-radius: 12px;
   border: 1px solid var(--caption);
   background: #fff;
-  padding: 12px 16px;
-  gap: 8px;
+
+  min-height: 56px;
+  padding: 12px 48px 12px 16px;
+  box-sizing: border-box;
+
   cursor: pointer;
 }
 
@@ -50,6 +54,7 @@
   border-color: var(--button-pressed);
 }
 
+/* инпут просто заполняет всё пространство, не знает про иконки */
 .input {
   flex: 1;
   border: none;
@@ -65,6 +70,9 @@
 
 .clearButton,
 .arrowButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   border: none;
   background: transparent;
   cursor: pointer;
@@ -72,10 +80,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  width: 24px;
+  height: 24px;
 }
 
 .clearButton {
-  margin-right: 4px;
+  right: 40px;
+}
+
+.arrowButton {
+  right: 12px;
 }
 
 /* дропдаун */
