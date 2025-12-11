@@ -4,7 +4,6 @@ import type { RegistrationButtonProps } from './type';
 
 export const RegistrationButton: React.FC<RegistrationButtonProps> = ({
   to = '#', // заглушка
-  children = 'Зарегистрироваться',
   className,
   ...rest
 }) => {

@@ -12,7 +12,7 @@ export const OfferPreviewForSkillPage: FC<OfferPreviewForSkillPageProps> = ({
     <section className={styles.wrapper}>
       {/* ряд иконок сверху справа */}
       <div className={styles.iconsRow}>
-        <ButtonIcon name='Добавить в избранное' iconName='likeOutline' />
+        <ButtonIcon name='Добавить в избранное' iconName='likeEmpty' />
         <ButtonIcon name='Поделиться' iconName='share' />
         <ButtonIcon name='Дополнительные действия' iconName='moreSquare' />
       </div>

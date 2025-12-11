@@ -14,6 +14,7 @@ export const FaivaritsLinkUI = ({
   return (
     <NavLink
       to={href || '#'}
+      end
       aria-label={iconAlt}
       className={({ isActive }) =>
         clsx(styles.faivarits, isActive && styles.faivarits_active, className)

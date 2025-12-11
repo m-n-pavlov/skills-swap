@@ -1,0 +1,36 @@
+.header {
+  display: flex;
+  align-items: center;
+  padding-inline: 36px;
+  padding-top: 14px;
+  gap: 32px;
+  height: min-content;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.about,
+.all span {
+  white-space: nowrap;
+}
+
+.authButtons {
+  display: flex;
+  gap: 8px;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}

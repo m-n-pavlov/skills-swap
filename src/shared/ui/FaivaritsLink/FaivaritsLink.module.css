@@ -21,9 +21,3 @@
   height: 24px;
   flex-shrink: 0;
 }
-
-.faivarits svg path {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.5;
-}

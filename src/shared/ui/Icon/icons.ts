@@ -26,6 +26,7 @@ import Home from '../../../assets/icons/home.svg?react';
 import Idea from '../../../assets/icons/idea.svg?react';
 import Lifestyle from '../../../assets/icons/lifestyle.svg?react';
 import Like from '../../../assets/icons/like.svg?react';
+import LikeEmpty from '../../../assets/icons/like-empty.svg?react';
 import Logo from '../../../assets/icons/logo.svg?react';
 import Logout from '../../../assets/icons/logout.svg?react';
 import MessageText from '../../../assets/icons/message-text.svg?react';
@@ -47,7 +48,6 @@ import UserCircle from '../../../assets/icons/user-circle.svg?react';
 import User from '../../../assets/icons/user.svg?react';
 import Google from '../../../assets/icons/google.svg?react';
 import Apple from '../../../assets/icons/apple.svg?react';
-import LikeOutline from '../../../assets/icons/likeOutline.svg?react';
 
 export const icons = {
   add: Add,
@@ -80,7 +80,7 @@ export const icons = {
   idea: Idea,
   lifestyle: Lifestyle,
   like: Like,
-  likeOutline: LikeOutline,
+  likeEmpty: LikeEmpty,
   logo: Logo,
   logout: Logout,
   messageText: MessageText,
