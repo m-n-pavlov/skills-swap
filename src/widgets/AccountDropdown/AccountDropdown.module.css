@@ -1,0 +1,66 @@
+.dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: var(--card);
+  border: 1px solid var(--toggle);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* небольшая тень для выделения на общем фоне */
+  width: 260px;
+  height: 152px;
+  z-index: 5;
+  animation: fadeIn 0.2s ease-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px 0;
+  box-sizing: border-box;
+}
+
+.dropdown > *:first-child {
+  margin-top: 0;
+}
+.dropdown > *:last-child {
+  margin-bottom: 0;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  padding: 0 40px;
+  font-size: var(--h4-font-size);
+  line-height: var(--h4-line-height);
+  font-family: var(--h4-font-family);
+  font-weight: var(--h4-font-weight);
+  color: var(--text);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  border: none;
+  background: transparent;
+  width: 100%;
+  text-align: left;
+  gap: 8px;
+  min-height: 48px;
+  box-sizing: border-box;
+}
+
+.item:hover {
+  background: var(--disabled);
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
