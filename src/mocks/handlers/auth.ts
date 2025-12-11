@@ -4,6 +4,7 @@ import data from '../../../public/db/auth.json';
 export const mockUsers = data.users;
 
 export const authHandlers = [
+  // Авторизация
   http.post('/api/auth/login', async ({ request }) => {
     const { email, password } = (await request.json()) as any;
     const user = mockUsers.find(
