@@ -7,16 +7,11 @@ export const authHandlers = [
   // Авторизация
   http.post('/api/auth/login', async ({ request }) => {
     const { email, password } = (await request.json()) as any;
-    console.log('Login attempt:', email, password);
-
     const user = mockUsers.find(
       (u) => u.email === email && u.password === password
     );
-
     if (user) {
-      // Убираем пароль из ответа
       const { password, ...userWithoutPassword } = user;
-
       return HttpResponse.json({
         success: true,
         user: userWithoutPassword,
@@ -34,87 +29,43 @@ export const authHandlers = [
   }),
 
   // Логаут
-  http.post('/api/auth/logout', async ({ request }) => {
-    const data = (await request.json()) as any;
-
-    console.log('Logout for user:', data.userId);
-
-    // В реальном приложении здесь можно инвалидировать токен
-    // Но так как мы используем localStorage - просто подтверждаем успех
-
+  http.post('/api/auth/logout', async ({}) => {
     return HttpResponse.json({
       success: true,
       message: 'Выход выполнен успешно'
     });
   }),
 
-  // Смена пароля
-  http.patch('/api/auth/change-email', async ({ request }) => {
-    const data = (await request.json()) as any;
-    const { userId, ...updateData } = data;
+  // Регистрация
+  http.post('/api/auth/register', async ({ request }) => {
+    const formData = await request.formData();
 
-    console.log('Update user:', userId, updateData);
+    // Преобразуем в обычный объект
+    const newUser: any = {};
+    formData.forEach((value, key) => {
+      newUser[key] = value;
+    });
 
-    const userIndex = mockUsers.findIndex((u) => u.id === userId);
-
-    if (userIndex === -1) {
+    const existingUser = mockUsers.find((u) => u.email === newUser.email);
+    if (existingUser) {
       return HttpResponse.json(
         {
           success: false,
-          message: 'Пользователь не найден'
+          message: 'Пользователь с таким email уже существует'
         },
-        { status: 404 }
+        { status: 400 }
       );
     }
 
-    // Обновляем данные пользователя
-    const updatedUser = {
-      ...mockUsers[userIndex],
-      ...updateData
-    };
-
-    mockUsers[userIndex] = updatedUser;
-
-    // Убираем пароль из ответа
-    const { password, ...userWithoutPassword } = updatedUser;
+    const nextId = (mockUsers.length + 1).toString();
+    const userToStore = { ...newUser, id: nextId };
+    mockUsers.push(userToStore);
+    const { password, ...userWithoutPassword } = userToStore;
 
     return HttpResponse.json({
       success: true,
       user: userWithoutPassword,
-      message: 'Данные пользователя обновлены'
-    });
-  }),
-
-  http.get('/api/auth/user', async ({ request }) => {
-    const userId = request.headers.get('X-User-Id');
-
-    if (!userId) {
-      return HttpResponse.json(
-        {
-          success: false,
-          message: 'Не авторизован'
-        },
-        { status: 401 }
-      );
-    }
-
-    const user = mockUsers.find((u) => u.id === userId);
-
-    if (!user) {
-      return HttpResponse.json(
-        {
-          success: false,
-          message: 'Пользователь не найден'
-        },
-        { status: 404 }
-      );
-    }
-
-    const { password, ...userWithoutPassword } = user;
-
-    return HttpResponse.json({
-      success: true,
-      user: userWithoutPassword
+      message: 'Пользователь успешно зарегистрирован'
     });
   })
 ];
