@@ -1,0 +1,59 @@
+.item {
+  margin: 0;
+  margin-bottom: 8px;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  text-decoration: none !important;
+  color: var(--text);
+  transition: all 0.2s ease;
+  position: relative;
+  border-radius: 8px;
+}
+
+.link:hover:not(.linkDisabled) {
+  background-color: var(--disabled);
+}
+
+.linkActive {
+  background-color: var(--button-hover);
+  color: var(--text);
+  font-weight: 500;
+}
+
+.linkDisabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  color: var(--disabled-text);
+  background-color: var(--disabled);
+}
+
+.linkDisabled:hover {
+  background-color: var(--disabled);
+}
+
+.icon {
+  margin-right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+}
+
+.label {
+  flex-grow: 1;
+  font-size: 14px;
+}
+
+.badge {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 2px 6px;
+  border-radius: 10px;
+  min-width: 20px;
+  text-align: center;
+}
