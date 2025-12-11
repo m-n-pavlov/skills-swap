@@ -1,0 +1,40 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  border-radius: 12px;
+  padding: 44px 60px 72px;
+}
+
+.header {
+  text-align: center;
+}
+
+.title {
+  font-family: var(--second-family);
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 125%;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 133%;
+  letter-spacing: 0.02em;
+  color: var(--caption);
+}
+
+.button {
+  width: 100%;
+}
+
+.buttonWithIcon {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}

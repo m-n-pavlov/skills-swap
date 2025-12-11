@@ -40,3 +40,7 @@
   justify-content: center;
   z-index: 4;
 }
+
+.modal:focus {
+  outline: none;
+}
