@@ -1,6 +1,7 @@
 import type { TUser } from '../../../../entities/users.ts';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { loginApi, logoutApi } from '../../../../api/auth/authApi.ts';
+import type { RootState } from '../../index.ts';
 
 export type AuthSliceState = {
   user: TUser | null;
@@ -30,9 +31,11 @@ export const fetchLogin = createAsyncThunk(
 
 export const fetchLogout = createAsyncThunk(
   'auth/logout',
-  async (_, { rejectWithValue }) => {
+  async (_, { rejectWithValue, getState }) => {
     try {
-      await logoutApi();
+      const state = getState() as RootState;
+      if (!state.auth.user) return true;
+      await logoutApi(state.auth.user.id);
       return true;
     } catch {
       return rejectWithValue('Ошибка выхода');
@@ -45,7 +48,6 @@ const authSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    // LOGIN
     builder
       .addCase(fetchLogin.pending, (state) => {
         state.isLoading = true;
@@ -55,6 +57,7 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.user = action.payload;
         state.isAuth = true;
+        localStorage.setItem('user', JSON.stringify(action.payload));
       })
       .addCase(fetchLogin.rejected, (state, action) => {
         state.isLoading = false;
@@ -63,7 +66,6 @@ const authSlice = createSlice({
         state.user = null;
       });
 
-    // LOGOUT
     builder
       .addCase(fetchLogout.pending, (state) => {
         state.isLoading = true;
@@ -72,6 +74,7 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.isAuth = false;
         state.user = null;
+        localStorage.removeItem('user');
       })
       .addCase(fetchLogout.rejected, (state, action) => {
         state.isLoading = false;
