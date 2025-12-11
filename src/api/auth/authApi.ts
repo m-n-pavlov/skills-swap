@@ -26,30 +26,15 @@ export const loginApi = (data: TLoginData) =>
       'Content-Type': 'application/json;charset=utf-8'
     },
     body: JSON.stringify(data)
-  })
-    .then((res) => checkResponse<TAuthResponse>(res))
-    .then((data) => {
-      if (data?.success) {
-        if (data.user) localStorage.setItem('user', JSON.stringify(data.user));
-        return data;
-      }
-      return Promise.reject(data);
-    });
+  }).then((res) => checkResponse<TAuthResponse>(res));
 
-export const logoutApi = () =>
+export const logoutApi = (userId?: string) =>
   fetch('/api/auth/logout', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json;charset=utf-8'
     },
     body: JSON.stringify({
-      userId: JSON.parse(localStorage.getItem('user') || '{}')?.id
+      userId
     })
-  })
-    .then((res) => checkResponse<TServerResponse<{}>>(res))
-    .then((data) => {
-      if (data?.success) {
-        localStorage.removeItem('user');
-      }
-      return data;
-    });
+  }).then((res) => checkResponse<TServerResponse<{}>>(res));
