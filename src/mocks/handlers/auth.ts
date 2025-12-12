@@ -34,14 +34,6 @@ export const authHandlers = [
       success: true,
       message: 'Выход выполнен успешно'
     });
-  }),
-
-  // Логаут
-  http.post('/api/auth/logout', async ({}) => {
-    return HttpResponse.json({
-      success: true,
-      message: 'Выход выполнен успешно'
-    });
   })
 
   // // Смена эл.почты пользователя
