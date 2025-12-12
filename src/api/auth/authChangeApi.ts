@@ -3,7 +3,12 @@ import type { TAuthUser } from '../../entities/authUser.ts';
 
 export type TUpdatePayload = {
   user: TAuthUser;
-  newEmail: string;
+  updates: Partial<
+    Pick<
+      TAuthUser,
+      'email' | 'name' | 'birthday' | 'gender' | 'cityId' | 'description'
+    >
+  >;
 };
 
 export type TLikePayload = {
@@ -19,14 +24,14 @@ export type TOffersPayload = {
 export const updateEmailApi = async (
   data: TUpdatePayload
 ): Promise<TAuthUser> => {
-  const res = await fetch('/api/auth/update-email', {
+  const res = await fetch('/api/auth/update-profile', {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json;charset=utf-8'
     },
     body: JSON.stringify({
       userId: data.user.id,
-      email: data.newEmail
+      updates: data.updates
     })
   });
   const json = await checkResponse<TServerResponse<{ user: TAuthUser }>>(res);

@@ -1,31 +1,28 @@
 import data from '../../../public/db/auth.json';
 import { http, HttpResponse } from 'msw';
 import type { TAuthUser } from '../../entities/authUser.ts';
+import { findUser } from '../utils/findUser.ts';
+import { findUserByEmail } from '../utils/findUserByEmail.ts';
 
 export const mockAuthUsers = data.users as TAuthUser[];
 
-http.patch('/api/auth/update-email', async ({ request }) => {
-  const { userId, email } = (await request.json()) as {
+http.patch('/api/auth/update-profile', async ({ request }) => {
+  const { userId, updates } = (await request.json()) as {
     userId: string;
-    email: string;
+    updates: Partial<TAuthUser>;
   };
   const { user, response } = findUser(userId);
   if (response) return response;
-  const emailBusy = mockAuthUsers.some(
-    (u) => u.email === email && u.id !== userId
-  );
-  if (emailBusy) {
-    return HttpResponse.json(
-      { success: false, message: 'Email уже занят' },
-      { status: 400 }
-    );
+  if (updates.email) {
+    const check = findUserByEmail(mockAuthUsers, updates.email, userId);
+    if (check.busy) return check.response;
   }
-  user.email = email;
+  Object.assign(user, updates);
   const { password, ...userWithoutPassword } = user;
   return HttpResponse.json({
     success: true,
     user: userWithoutPassword,
-    message: 'Email успешно обновлён'
+    message: 'Профиль пользователя успешно обновлён'
   });
 });
 
@@ -46,7 +43,7 @@ http.post('/api/auth/likes/toggle', async ({ request }) => {
   return HttpResponse.json({
     success: true,
     user: userWithoutPassword,
-    message: 'Лайк обновлён'
+    message: 'Лайк успешно обновлён'
   });
 });
 
@@ -67,22 +64,6 @@ http.post('/api/auth/offers/toggle', async ({ request }) => {
   return HttpResponse.json({
     success: true,
     user: userWithoutPassword,
-    message: 'Предложение обновлено'
+    message: 'Предложение успешно обновлено'
   });
 });
-
-export const findUser = (
-  userId: string
-): { user: TAuthUser; response?: HttpResponse<any> } => {
-  const user = mockAuthUsers.find((u) => u.id === userId);
-  if (!user) {
-    return {
-      user: null as any, // TS нужно "обмануть", но мы сразу проверяем
-      response: HttpResponse.json(
-        { success: false, message: 'Пользователь не найден' },
-        { status: 404 }
-      )
-    };
-  }
-  return { user };
-};
