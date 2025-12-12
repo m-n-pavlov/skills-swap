@@ -1,8 +1,9 @@
 import type { AvatarProps } from '../Avatar/type';
-import type { TUser } from '../../../entities/users.ts';
+//import type { TUser } from '../../../entities/users.ts';
+import type { TUserWithDetails } from '../../../features/users/type.ts';
 
 export type UserCardProps = {
-  user: TUser;
+  user: TUserWithDetails;
   avatar: Omit<AvatarProps, 'avatarUrl'>; // можно сделать опциональным для рендера всех карточек
   className?: string;
   showLinkButton?: boolean; // (true - показываем кнопку "Подробнее", false или не передан - скрываем)

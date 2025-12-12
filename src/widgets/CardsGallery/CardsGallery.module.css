@@ -1,0 +1,40 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  position: relative;
+}
+
+.title {
+  font-family: var(--font-family-jost-medium);
+  font-size: var(--h2-font-size);
+  line-height: var(--h2-line-height);
+}
+
+.wrap {
+  overflow: hidden;
+}
+
+.slider {
+  height: 400px;
+}
+
+.slider :global(.swiper-wrapper) {
+  display: flex;
+  flex-direction: row;
+}
+
+.slider :global(.swiper-slide) {
+  height: auto;
+  width: 100% !important;
+}
+
+.chevronLeft button {
+  left: -16px;
+  z-index: 2;
+}
+
+.chevronRight button {
+  right: -16px;
+  z-index: 2;
+}
