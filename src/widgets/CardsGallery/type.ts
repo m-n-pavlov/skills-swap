@@ -1,5 +1,5 @@
-import type { TUser } from '../../entities/users';
+import type { TUserWithDetails } from '../../features/users/type';
 
 export type CardsGalleryProps = {
-  users: TUser[];
+  users: TUserWithDetails[];
 };
