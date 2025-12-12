@@ -1,5 +1,5 @@
 import { checkResponse, type TServerResponse } from '../utils/api.ts';
-import type { TUser } from '../../entities/users.ts';
+import type { TAuthUser } from '../../entities/authUser.ts';
 
 export type TLoginData = {
   login: string;
@@ -7,10 +7,10 @@ export type TLoginData = {
 };
 
 export type TAuthResponse = TServerResponse<{
-  user: TUser;
+  user: TAuthUser;
 }>;
 
-export const loginApi = async (data: TLoginData): Promise<TUser> => {
+export const loginApi = async (data: TLoginData): Promise<TAuthUser> => {
   const res = await fetch('/api/auth/login', {
     method: 'POST',
     headers: {
@@ -35,6 +35,11 @@ export const logoutApi = async (userId?: string): Promise<void> => {
   });
   await checkResponse<TServerResponse<{}>>(res);
 };
+
+if (import.meta.env.DEV) {
+  (window as any).loginApi = loginApi;
+  (window as any).logoutApi = logoutApi;
+}
 
 // export const registerApi = (data: FormData) =>
 //   fetch('/api/auth/register', {
