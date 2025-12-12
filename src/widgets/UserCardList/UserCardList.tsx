@@ -1,7 +1,7 @@
 import { memo } from 'react';
-import { UserCard } from '../../shared/ui/UserCard';
-import styles from './UserCardList.module.css';
 import type { UserCardListProps } from './type.ts';
+import styles from './UserCardList.module.css';
+import { UserCard } from '../../shared/ui/UserCard';
 
 export const UserCardList = memo(function UserCardList({
   users,
@@ -14,10 +14,7 @@ export const UserCardList = memo(function UserCardList({
         <UserCard
           key={user.id}
           user={user}
-          avatar={{
-            size: 'medium',
-            alt: user.name
-          }}
+          avatar={{ size: 'medium' }} // теперь только размер, URL берется из user.avatarUrl
           showLinkButton={true}
           className={styles.userCardItem}
           onLike={onLike}
