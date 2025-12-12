@@ -13,7 +13,7 @@ export type RegistrationStep2 = {
   city: string;
   categories: string;
   subCategories: string;
-  avatarUrl: string | null;
+  avatar: File | null;
 } | null;
 
 // шаг 3 – навык
@@ -43,7 +43,7 @@ export type RegistrationSummary = {
   city: string | null;
   categories: string | null;
   subCategories: string | null;
-  avatarUrl: string | null;
+  avatar: File | null;
   skillName: string | null;
   skillCategory: string | null;
   skillSubCategory: string | null;

@@ -30,7 +30,7 @@ export const selectRegistrationSummary = (
     city: step2?.city ?? null,
     categories: step2?.categories ?? null,
     subCategories: step2?.subCategories ?? null,
-    avatarUrl: step2?.avatarUrl ?? null,
+    avatar: step2?.avatar ?? null,
     skillName: step3?.skillName ?? null,
     skillCategory: step3?.skillCategory ?? null,
     skillSubCategory: step3?.skillSubCategory ?? null,
