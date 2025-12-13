@@ -1,6 +1,14 @@
 import type { TAuthUser } from '../../../../entities/authUser.ts';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { loginApi, logoutApi } from '../../../../api';
+import {
+  type TLikePayload,
+  type TOffersPayload,
+  toggleLikeApi,
+  toggleOffersApi,
+  type TUpdatePayload,
+  updateProfileApi
+} from '../../../../api/auth/authChangeApi.ts';
 
 export type AuthState = {
   currentUser: TAuthUser | null;
@@ -9,7 +17,7 @@ export type AuthState = {
 };
 
 const initialState: AuthState = {
-  currentUser: null,
+  currentUser: JSON.parse(localStorage.getItem('current_user') ?? 'null'),
   isLoading: false,
   error: null
 };
@@ -38,13 +46,48 @@ export const logout = createAsyncThunk<
   }
 });
 
+export const updateProfile = createAsyncThunk<
+  TAuthUser,
+  TUpdatePayload,
+  { rejectValue: string }
+>('auth/updateProfile', async (data, { rejectWithValue }) => {
+  try {
+    return await updateProfileApi(data);
+  } catch {
+    return rejectWithValue('Ошибка обновления профиля пользователя');
+  }
+});
+
+export const toggleLike = createAsyncThunk<
+  TAuthUser,
+  TLikePayload,
+  { rejectValue: string }
+>('auth/toggleLike', async (data, { rejectWithValue }) => {
+  try {
+    return await toggleLikeApi(data);
+  } catch {
+    return rejectWithValue('Ошибка обновления лайка карточки');
+  }
+});
+
+export const toggleOffer = createAsyncThunk<
+  TAuthUser,
+  TOffersPayload,
+  { rejectValue: string }
+>('auth/toggleOffer', async (data, { rejectWithValue }) => {
+  try {
+    return await toggleOffersApi(data);
+  } catch {
+    return rejectWithValue('Ошибка обновления предложения');
+  }
+});
+
 const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      // --- LOGIN ---
       .addCase(login.pending, (state) => {
         state.isLoading = true;
         state.error = null;
@@ -62,7 +105,6 @@ const authSlice = createSlice({
         state.currentUser = null;
       })
 
-      // --- LOGOUT ---
       .addCase(logout.pending, (state) => {
         state.isLoading = true;
         state.error = null;
@@ -75,6 +117,54 @@ const authSlice = createSlice({
       .addCase(logout.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload ?? 'Ошибка разлогинивания пользователя';
+      })
+
+      .addCase(updateProfile.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+
+      .addCase(updateProfile.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.currentUser = action.payload;
+        localStorage.setItem('current_user', JSON.stringify(action.payload));
+      })
+
+      .addCase(updateProfile.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload as string;
+      })
+
+      .addCase(toggleLike.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+
+      .addCase(toggleLike.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.currentUser = action.payload;
+        localStorage.setItem('current_user', JSON.stringify(action.payload));
+      })
+
+      .addCase(toggleLike.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload as string;
+      })
+
+      .addCase(toggleOffer.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+
+      .addCase(toggleOffer.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.currentUser = action.payload;
+        localStorage.setItem('current_user', JSON.stringify(action.payload));
+      })
+
+      .addCase(toggleOffer.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload as string;
       });
   }
 });

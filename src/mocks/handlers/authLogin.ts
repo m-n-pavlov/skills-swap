@@ -3,7 +3,7 @@ import data from '../../../public/db/auth.json';
 
 export const mockAuthUsers = data.users;
 
-export const authHandlers = [
+export const authLoginHandlers = [
   http.post('/api/auth/login', async ({ request }) => {
     const { email, password } = (await request.json()) as any;
     const user = mockAuthUsers.find(

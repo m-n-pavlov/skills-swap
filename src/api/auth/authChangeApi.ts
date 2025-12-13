@@ -21,7 +21,7 @@ export type TOffersPayload = {
   skillId: string;
 };
 
-export const updateEmailApi = async (
+export const updateProfileApi = async (
   data: TUpdatePayload
 ): Promise<TAuthUser> => {
   const res = await fetch('/api/auth/update-profile', {
@@ -67,9 +67,3 @@ export const toggleOffersApi = async (
   const json = await checkResponse<TServerResponse<{ user: TAuthUser }>>(res);
   return json.user;
 };
-
-if (import.meta.env.DEV) {
-  (window as any).updateEmailApi = updateEmailApi;
-  (window as any).toggleLikeApi = toggleLikeApi;
-  (window as any).toggleOffersApi = toggleOffersApi;
-}
