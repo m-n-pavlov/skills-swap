@@ -9,15 +9,24 @@ import {
   type TUpdatePayload,
   updateProfileApi
 } from '../../../../api/auth/authChangeApi.ts';
+import {
+  checkEmailApi,
+  registerApi,
+  type TRegisterPayload
+} from '../../../../api/auth/authRegistration.ts';
 
 export type AuthState = {
+  user: TAuthUser;
   currentUser: TAuthUser | null;
+  exitsEmail: boolean;
   isLoading: boolean;
   error: string | null;
 };
 
 const initialState: AuthState = {
+  user: JSON.parse(localStorage.getItem('user') ?? 'null'),
   currentUser: JSON.parse(localStorage.getItem('current_user') ?? 'null'),
+  exitsEmail: false,
   isLoading: false,
   error: null
 };
@@ -79,6 +88,30 @@ export const toggleOffer = createAsyncThunk<
     return await toggleOffersApi(data);
   } catch {
     return rejectWithValue('Ошибка обновления предложения');
+  }
+});
+
+export const register = createAsyncThunk<
+  TAuthUser,
+  TRegisterPayload,
+  { rejectValue: string }
+>('auth/register', async (data, { rejectWithValue }) => {
+  try {
+    return await registerApi(data);
+  } catch (ex: any) {
+    return rejectWithValue(ex?.message || 'Ошибка регистрации пользователя');
+  }
+});
+
+export const checkEmail = createAsyncThunk<
+  boolean,
+  string,
+  { rejectValue: string }
+>('auth/checkEmail', async (email, { rejectWithValue }) => {
+  try {
+    return await checkEmailApi(email);
+  } catch {
+    return rejectWithValue('Ошибка проверки email');
   }
 });
 
@@ -165,6 +198,39 @@ const authSlice = createSlice({
       .addCase(toggleOffer.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload as string;
+      })
+
+      .addCase(register.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+
+      .addCase(register.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.currentUser = action.payload;
+        localStorage.setItem('user', JSON.stringify(action.payload));
+      })
+
+      .addCase(register.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload ?? 'Ошибка регистрации пользователя';
+      })
+
+      .addCase(checkEmail.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+
+      .addCase(checkEmail.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.exitsEmail = action.payload;
+      })
+
+      .addCase(checkEmail.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload ?? 'Ошибка запроса проверки эл.почты';
       });
   }
 });

@@ -29,3 +29,15 @@ export const registerApi = async (data: TRegisterPayload) => {
     (r) => r.user
   );
 };
+
+export const checkEmailApi = async (email: string): Promise<boolean> => {
+  const res = await fetch('/api/auth/check-email', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8'
+    },
+    body: JSON.stringify({ email })
+  });
+  const json = await checkResponse<TServerResponse<{ exists: boolean }>>(res);
+  return json.exists;
+};

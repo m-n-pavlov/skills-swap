@@ -1,13 +1,12 @@
 import type { TSkill } from '../../entities/skills.ts';
-import { http } from 'msw';
+import { http, HttpResponse } from 'msw';
 import type { TAuthUser } from '../../entities/authUser.ts';
 import data from '../../../public/db/auth.json';
 
 export const mockAuthUsers = data.users as TAuthUser[];
 
-export const authRegisterHandler = http.post(
-  '/api/auth/register',
-  async ({ request }) => {
+export const authRegisterHandler = [
+  http.post('/api/auth/register', async ({ request }) => {
     const formData = await request.formData();
 
     const {
@@ -92,8 +91,17 @@ export const authRegisterHandler = http.post(
       }),
       { status: 200 }
     );
-  }
-);
+  }),
+
+  http.post('/api/auth/check-email', async ({ request }) => {
+    const { email } = (await request.json()) as { email: string };
+    const exists = mockAuthUsers.some((u) => u.email === email);
+    return HttpResponse.json({
+      success: true,
+      exists
+    });
+  })
+];
 
 const generateFakeFileUrl = (prefix: string, ext = 'png') => {
   return `/uploads/${prefix}-${Date.now()}-${Math.random().toString(16).slice(2)}.${ext}`;

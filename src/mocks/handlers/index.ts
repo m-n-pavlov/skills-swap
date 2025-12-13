@@ -4,6 +4,7 @@ import { skillsHandlers } from './skills.ts';
 import { usersHandlers } from './users.ts';
 import { authLoginHandlers } from './authLogin.ts';
 import { authUpdateHandlers } from './authCahnge.ts';
+import { authRegisterHandler } from './authRegistration.ts';
 
 export const handlers = [
   ...citiesHandlers,
@@ -11,5 +12,6 @@ export const handlers = [
   ...skillsHandlers,
   ...usersHandlers,
   ...authLoginHandlers,
-  ...authUpdateHandlers
+  ...authUpdateHandlers,
+  ...authRegisterHandler
 ];
