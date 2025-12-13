@@ -3,7 +3,26 @@ import { http, HttpResponse } from 'msw';
 import type { TAuthUser } from '../../entities/authUser.ts';
 import data from '../../../public/db/auth.json';
 
-export const mockAuthUsers = data.users as TAuthUser[];
+// const getUserFromLocalStorage = (): TAuthUser[] => {
+//   try {
+//     const raw = localStorage.getItem('user');
+//     if (!raw) return [];
+//     const parsed = JSON.parse(raw);
+//     if (!parsed) return [];
+//     return Array.isArray(parsed) ? parsed : [parsed];
+//   } catch {
+//     return [];
+//   }
+// };
+
+const usersFromJson = data.users as TAuthUser[];
+// const usersFromLS = getUserFromLocalStorage();
+export const mockAuthUsers: TAuthUser[] = [
+  ...usersFromJson
+  // ...usersFromLS.filter(
+  //     (lsUser) => !usersFromJson.some((u) => u.email === lsUser.email)
+  // )
+];
 
 export const authRegisterHandler = [
   http.post('/api/auth/register', async ({ request }) => {
@@ -80,6 +99,7 @@ export const authRegisterHandler = [
     };
 
     mockAuthUsers.push(newUser);
+    // localStorage.setItem('user', JSON.stringify(newUser));
 
     const { password: _, ...userWithoutPassword } = newUser;
 
