@@ -5,6 +5,7 @@ import { fetchGetCategories } from './store/slices/categoriesSlice/categoriesSli
 import { fetchGetCities } from './store/slices/citiesSlice/citiesSlice.ts';
 import { fetchGetSkills } from './store/slices/skillsSlice/skillsSlice.ts';
 import { fetchGetUsers } from './store/slices/usersSlice/userSlice.ts';
+import AuthPage from '../pages/AuthPage/AuthPage.tsx';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -17,6 +18,7 @@ function App() {
 
   return (
     <>
+      <AuthPage />
       <div className={styles.app}></div>
     </>
   );

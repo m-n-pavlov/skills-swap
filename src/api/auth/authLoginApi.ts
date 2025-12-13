@@ -35,14 +35,3 @@ export const logoutApi = async (userId?: string): Promise<void> => {
   });
   await checkResponse<TServerResponse<{}>>(res);
 };
-
-if (import.meta.env.DEV) {
-  (window as any).loginApi = loginApi;
-  (window as any).logoutApi = logoutApi;
-}
-
-// export const registerApi = (data: FormData) =>
-//   fetch('/api/auth/register', {
-//     method: 'POST',
-//     body: data
-//   }).then((res) => checkResponse<TAuthResponse>(res));
