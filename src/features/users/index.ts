@@ -1,4 +1,4 @@
 export * from './useUsersWithDetails';
-export * from './usePopularUsers';
-export * from './useNewestUsers';
+export * from './lib/sortPopularUsers.ts';
+export * from './lib/sortNewestUsers.ts';
 export * from './type';
