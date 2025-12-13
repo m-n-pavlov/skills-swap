@@ -10,11 +10,9 @@ import { useInfiniteScroll } from '../../shared/hooks/useInfiniteScroll';
 
 import { selectAllCategories } from '../../app/store/slices/categoriesSlice/categoriesSelector.ts';
 import { selectAllCities } from '../../app/store/slices/citiesSlice/citiesSelector.ts';
-import {
-  usePopularUsers,
-  useUsersWithDetails,
-  useNewestUsers
-} from '../../features/users';
+import { useUsersWithDetails } from '../../features/users';
+import { useMemo } from 'react';
+import { sortNewestUsers, sortPopularUsers } from '../../features/users';
 
 export const HomePage = () => {
   const categories = useSelector(selectAllCategories); // передать в компонент Filters
@@ -44,8 +42,15 @@ export const HomePage = () => {
     enabled: hasMore
   });
 
-  const popularUsers = usePopularUsers(usersWithDetails);
-  const newestUsers = useNewestUsers(usersWithDetails);
+  const popularUsers = useMemo(
+    () => sortPopularUsers(usersWithDetails),
+    [usersWithDetails]
+  );
+
+  const newestUsers = useMemo(
+    () => sortNewestUsers(usersWithDetails),
+    [usersWithDetails]
+  );
 
   return (
     /* --- Контейнер главной страницы, за исключением Header и Footer --- */
