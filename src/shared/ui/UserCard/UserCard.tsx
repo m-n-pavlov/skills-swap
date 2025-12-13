@@ -1,39 +1,11 @@
 import type { UserCardProps } from './type.ts';
 import { memo } from 'react';
-import styles from './UserCard.module.css';
 import clsx from 'clsx';
-import { Avatar, Tag, ButtonIcon, LinkButton } from '../index.ts'; // импорт нужных атомарных компонентов
+import styles from './UserCard.module.css';
+import { Avatar, Tag, ButtonIcon, LinkButton } from '../index.ts';
+import { getAgeEndingWord } from '../../lib/getAgeEndingWord.ts';
 import type { TagCategory } from '../Tag/type.ts';
-import { calculateAge } from '../../lib/calculateAge.ts'; // функция для вычисления возраста по дате рождения
-import { getAgeEndingWord } from '../../lib/getAgeEndingWord.ts'; // функция для правильного окончания слова "год/года/лет"
 
-// 🟡 Моки пользователя
-const usersMock = [
-  {
-    id: '1',
-    name: 'Мария',
-    avatarUrl: 'https://i.pravatar.cc/100?img=5',
-    cityId: 'saint_petersburg',
-    gender: 'female',
-    birthday: '1996-12-01',
-    skillsTeach: ['1'],
-    skillsLearn: ['2', '3'],
-    likes: 0,
-    createdAt: '2025-12-07'
-  }
-];
-
-// 🟡 Моки городов
-const citiesMock = [{ id: 'saint_petersburg', location: 'Санкт-Петербург' }];
-
-// 🟡 Моки навыков
-const skillsMock = [
-  { id: '1', name: 'Уборка и организация', categoryId: 'home' },
-  { id: '2', name: 'Английский', categoryId: 'language' },
-  { id: '3', name: 'Метод SPIN в продажах', categoryId: 'business' }
-];
-
-// 🟢 Компонент
 export const UserCard = memo(function UserCard({
   user,
   avatar,
@@ -42,118 +14,101 @@ export const UserCard = memo(function UserCard({
   onLike,
   onMore
 }: UserCardProps) {
-  // Используем пропсы, если они есть, иначе заглушки
-  const currentUser = user ?? usersMock[0];
-  const currentAvatar = avatar ?? {
-    size: 'medium',
-    avatarUrl: currentUser.avatarUrl,
-    alt: currentUser.name
-  };
-
-  const age = calculateAge(currentUser.birthday); // вычисляем возраст
-  const cityName =
-    citiesMock.find((city) => city.id === currentUser.cityId)?.location ||
-    'Город не найден'; // получаем город пользователя
-
-  // Получаев два вида навыков
-  const teachSkills: NonNullable<(typeof skillsMock)[number]>[] =
-    currentUser.skillsTeach
-      .map((skillId) => skillsMock.find((skill) => skill.id === skillId))
-      .filter((skill): skill is NonNullable<typeof skill> => Boolean(skill));
-
-  const learnSkills: NonNullable<(typeof skillsMock)[number]>[] =
-    currentUser.skillsLearn
-      .map((skillId) => skillsMock.find((skill) => skill.id === skillId))
-      .filter((skill): skill is NonNullable<typeof skill> => Boolean(skill));
+  // Проверяем значение avatarUrl
+  console.log('user.avatarUrl:', user.avatarUrl);
 
   return (
     <li className={clsx(styles.userCard, className)}>
-      {' '}
-      {/* главный контейнер карточки */}
+      {/* Блок с аватаркой, именем, городом и возрастом */}
       <div className={styles.userInfo}>
-        {' '}
-        {/* блок с аватаркой, именем, городом, возрастом пользователя и кнопкой лайка */}
-        <Avatar {...currentAvatar} />{' '}
-        {/* компонент аватарки пользователя, to be: <Avatar {...avatar} avatarUrl={user.avatarUrl} /> */}
-        {/* блок с именем, городом, возрастом пользователя и кнопкой лайка */}
+        <Avatar
+          size={avatar?.size ?? 'medium'}
+          className={avatar?.className}
+          avatarUrl={user.avatarUrl}
+          alt={user.name}
+        />
         <div
           className={clsx(
             styles.userInfoDetails,
             !showLinkButton && styles.userInfoDetails_center
           )}
         >
-          {/* условный компонент кнопки лайка */}
           {showLinkButton && (
             <ButtonIcon
-              name='like'
-              iconName='like'
-              onClick={() => onLike?.(currentUser.id)}
+              name='likeEmpty'
+              iconName='likeEmpty'
+              onClick={() => onLike?.(user.id)}
             />
           )}
           <div className={styles.userDataWrapper}>
-            {' '}
-            {/* контейнер для имени, города и возраста пользователя */}
-            <p className={styles.userName}>{currentUser.name}</p>{' '}
-            {/* to be: {user.name} */}
+            <p className={styles.userName}>{user.name}</p>
             <p className={styles.userData}>
-              {cityName}, {age} {getAgeEndingWord(age)}
+              {user.city?.location ?? 'Город не найден'}, {user.age}{' '}
+              {getAgeEndingWord(user.age)}
             </p>
           </div>
         </div>
       </div>
-      {/* условный блок с коротким БИО пользователя */}
+
+      {/* Короткое БИО */}
       {!showLinkButton && (
         <div className={styles.userCardBio}>
-          <p>
-            Привет! Люблю ритм, кофе по утрам и людей, которые не боятся
-            пробовать новое
-          </p>
+          <p>{user.skillsTeach[0]?.shortDescription}</p>
         </div>
       )}
-      <div className={styles.userSkillsWrapper}>
-        {' '}
-        {/* обёртка для блока "Может научить" */}
-        <p className={styles.userSkillsHeader}>Может научить:</p>{' '}
-        {/* заголовок "Может научить" */}
-        <div className={styles.userSkills}>
-          {' '}
-          {/* контейнер для тегов с навыками */}
-          {/* компонент Tag */}
-          {teachSkills.map((skill) => (
-            <Tag key={skill.id} category={skill.categoryId as TagCategory}>
-              {skill.name}
-            </Tag>
-          ))}
-        </div>
-      </div>
-      <div className={styles.userSkillsWrapper}>
-        {' '}
-        {/* обёртка для блока "Хочет научиться" */}
-        <p className={styles.userSkillsHeader}>Хочет научиться:</p>{' '}
-        {/* заголовок "Хочет научиться" */}
-        <div className={styles.userSkills}>
-          {' '}
-          {/* контейнер для тегов с навыками */}
-          {/* компонент Tag */}
+
+      {/* Навыки: может научить */}
+      {user.skillsTeach.length > 0 && (
+        <div className={styles.userSkillsWrapper}>
+          <p className={styles.userSkillsHeader}>Может научить:</p>
           <div className={styles.userSkills}>
-            {learnSkills.slice(0, 2).map((skill) => (
+            {user.skillsTeach.map((skill) => (
               <Tag key={skill.id} category={skill.categoryId as TagCategory}>
                 {skill.name}
               </Tag>
             ))}
-            {learnSkills.length > 2 && (
-              <Tag category='default'>{`+${learnSkills.length - 2}`}</Tag>
-            )}
           </div>
         </div>
-      </div>
-      {/* условный компонент кнопки LinkButton - пока с заглушкой */}
+      )}
+
+      {user.skillsLearn.length > 0 &&
+        (() => {
+          const maxVisible = 2;
+          const visibleSkills = user.skillsLearn.slice(0, maxVisible);
+          const hiddenCount = user.skillsLearn.length - visibleSkills.length;
+
+          return (
+            <div className={styles.userSkillsWrapper}>
+              <p className={styles.userSkillsHeader}>Хочет научиться:</p>
+
+              <div className={styles.userSkills}>
+                {visibleSkills.map((skill) => (
+                  <Tag
+                    key={skill.id}
+                    category={skill.categoryId as TagCategory}
+                    className={styles.tag}
+                  >
+                    {skill.name}
+                  </Tag>
+                ))}
+
+                {hiddenCount > 0 && (
+                  <Tag category='default' className={styles.tagOverflow}>
+                    {`+${hiddenCount}`}
+                  </Tag>
+                )}
+              </div>
+            </div>
+          );
+        })()}
+
+      {/* Кнопка "Подробнее" */}
       {showLinkButton && (
         <LinkButton
           size='xl'
           style='primary'
           to='#'
-          onClick={() => onMore?.(currentUser.id)}
+          onClick={() => onMore?.(user.id)}
         >
           Подробнее
         </LinkButton>

@@ -7,7 +7,7 @@ export type TUserWithDetails = Omit<
   TUser,
   'cityId' | 'skillsTeach' | 'skillsLearn'
 > & {
-  city: TCity | null;
+  city: TCity;
   age: number;
   skillsTeach: (TSkill & { categoryName: string; subcategoryName: string })[];
   skillsLearn: (TSkill & { categoryName: string; subcategoryName: string })[];

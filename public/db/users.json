@@ -4,7 +4,7 @@
     {
       "id": "1",
       "name": "Иван",
-      "avatarUrl": "/image/ivan.png",
+      "avatarUrl": "/images/users/ivan.png",
       "cityId": "saint_petersburg",
       "gender": "male",
       "birthday": "1996-12-01",
@@ -16,7 +16,7 @@
     {
       "id": "2",
       "name": "Виктория",
-      "avatarUrl": "/image/viktoria_1.png",
+      "avatarUrl": "/images/users/viktoria_1.png",
       "cityId": "kemerovo",
       "gender": "female",
       "birthday": "1994-08-14",
@@ -28,7 +28,7 @@
     {
       "id": "3",
       "name": "Виктория",
-      "avatarUrl": "/image/viktoria_2.png",
+      "avatarUrl": "/images/users/viktoria_2.png",
       "cityId": "sochi",
       "gender": "female",
       "birthday": "1994-03-30",
@@ -40,7 +40,7 @@
     {
       "id": "4",
       "name": "Елена",
-      "avatarUrl": "/image/elena.png",
+      "avatarUrl": "/images/users/elena.png",
       "cityId": "krasnoyarsk",
       "gender": "female",
       "birthday": "1997-11-05",
@@ -52,7 +52,7 @@
     {
       "id": "5",
       "name": "Константин",
-      "avatarUrl": "/image/konstantin.png",
+      "avatarUrl": "/images/users/konstantin.png",
       "cityId": "irkutsk",
       "gender": "male",
       "birthday": "1989-06-25",
@@ -64,7 +64,7 @@
     {
       "id": "6",
       "name": "София",
-      "avatarUrl": "/image/sofia.png",
+      "avatarUrl": "/images/users/sofia.png",
       "cityId": "lipetsk",
       "gender": "female",
       "birthday": "2001-04-12",
@@ -76,7 +76,7 @@
     {
       "id": "7",
       "name": "Екатерина",
-      "avatarUrl": "/image/ekaterina.png",
+      "avatarUrl": "/images/users/ekaterina.png",
       "cityId": "perm",
       "gender": "female",
       "birthday": "1992-09-08",
@@ -88,7 +88,7 @@
     {
       "id": "8",
       "name": "Дарья",
-      "avatarUrl": "/image/darya.png",
+      "avatarUrl": "/images/users/darya.png",
       "cityId": "yaroslavl",
       "gender": "female",
       "birthday": "1999-02-19",
@@ -100,7 +100,7 @@
     {
       "id": "9",
       "name": "Алла",
-      "avatarUrl": "/image/alla.png",
+      "avatarUrl": "/images/users/alla.png",
       "cityId": "kaliningrad",
       "gender": "female",
       "birthday": "2003-07-07",
@@ -112,7 +112,7 @@
     {
       "id": "10",
       "name": "Алексей",
-      "avatarUrl": "/image/ivan.png",
+      "avatarUrl": "/images/users/ivan.png",
       "cityId": "moscow",
       "gender": "male",
       "birthday": "1990-11-22",
@@ -124,7 +124,7 @@
     {
       "id": "11",
       "name": "Мария",
-      "avatarUrl": "/image/viktoria_1.png",
+      "avatarUrl": "/images/users/viktoria_1.png",
       "cityId": "novosibirsk",
       "gender": "female",
       "birthday": "1998-05-17",
@@ -136,19 +136,19 @@
     {
       "id": "12",
       "name": "Дмитрий",
-      "avatarUrl": "/image/konstantin.png",
+      "avatarUrl": "/images/users/konstantin.png",
       "cityId": "kazan",
       "gender": "male",
       "birthday": "1987-02-28",
       "skillsTeach": ["9"],
-      "skillsLearn": ["15", "22", "33"],
+      "skillsLearn": ["15", "22", "33", "7"],
       "likes": 39,
       "createdAt": "2024-11-30"
     },
     {
       "id": "13",
       "name": "Анна",
-      "avatarUrl": "/image/elena.png",
+      "avatarUrl": "/images/users/elena.png",
       "cityId": "volgograd",
       "gender": "female",
       "birthday": "2000-09-03",
@@ -160,7 +160,7 @@
     {
       "id": "14",
       "name": "Павел",
-      "avatarUrl": "/image/ivan.png",
+      "avatarUrl": "/images/users/ivan.png",
       "cityId": "chelyabinsk",
       "gender": "male",
       "birthday": "1993-12-11",
@@ -172,7 +172,7 @@
     {
       "id": "15",
       "name": "Ольга",
-      "avatarUrl": "/image/sofia.png",
+      "avatarUrl": "/images/users/sofia.png",
       "cityId": "samara",
       "gender": "female",
       "birthday": "1986-07-25",
@@ -184,7 +184,7 @@
     {
       "id": "16",
       "name": "Сергей",
-      "avatarUrl": "/image/konstantin.png",
+      "avatarUrl": "/images/users/konstantin.png",
       "cityId": "ufa",
       "gender": "male",
       "birthday": "1995-01-30",
@@ -196,7 +196,7 @@
     {
       "id": "17",
       "name": "Наталья",
-      "avatarUrl": "/image/darya.png",
+      "avatarUrl": "/images/users/darya.png",
       "cityId": "kemerovo",
       "gender": "female",
       "birthday": "1991-04-09",
@@ -208,7 +208,7 @@
     {
       "id": "18",
       "name": "Артем",
-      "avatarUrl": "/image/ivan.png",
+      "avatarUrl": "/images/users/ivan.png",
       "cityId": "omsk",
       "gender": "male",
       "birthday": "1999-10-18",
@@ -220,7 +220,7 @@
     {
       "id": "19",
       "name": "Татьяна",
-      "avatarUrl": "/image/viktoria_2.png",
+      "avatarUrl": "/images/users/viktoria_2.png",
       "cityId": "voronezh",
       "gender": "female",
       "birthday": "1988-03-14",
@@ -232,7 +232,7 @@
     {
       "id": "20",
       "name": "Михаил",
-      "avatarUrl": "/image/konstantin.png",
+      "avatarUrl": "/images/users/konstantin.png",
       "cityId": "krasnodar",
       "gender": "male",
       "birthday": "1994-06-22",
@@ -244,7 +244,7 @@
     {
       "id": "21",
       "name": "Евгения",
-      "avatarUrl": "/image/alla.png",
+      "avatarUrl": "/images/users/alla.png",
       "cityId": "saratov",
       "gender": "female",
       "birthday": "2002-08-07",
@@ -256,7 +256,7 @@
     {
       "id": "22",
       "name": "Андрей",
-      "avatarUrl": "/image/ivan.png",
+      "avatarUrl": "/images/users/ivan.png",
       "cityId": "tolyatti",
       "gender": "male",
       "birthday": "1985-11-16",
@@ -268,7 +268,7 @@
     {
       "id": "23",
       "name": "Юлия",
-      "avatarUrl": "/image/elena.png",
+      "avatarUrl": "/images/users/elena.png",
       "cityId": "barnaul",
       "gender": "female",
       "birthday": "1996-02-25",
@@ -280,7 +280,7 @@
     {
       "id": "24",
       "name": "Игорь",
-      "avatarUrl": "/image/konstantin.png",
+      "avatarUrl": "/images/users/konstantin.png",
       "cityId": "vladivostok",
       "gender": "male",
       "birthday": "1992-07-09",
@@ -292,7 +292,7 @@
     {
       "id": "25",
       "name": "Ксения",
-      "avatarUrl": "/image/ekaterina.png",
+      "avatarUrl": "/images/users/ekaterina.png",
       "cityId": "izhevsk",
       "gender": "female",
       "birthday": "1999-12-04",
@@ -304,7 +304,7 @@
     {
       "id": "26",
       "name": "Владимир",
-      "avatarUrl": "/image/ivan.png",
+      "avatarUrl": "/images/users/ivan.png",
       "cityId": "khabarovsk",
       "gender": "male",
       "birthday": "1984-05-19",
@@ -316,7 +316,7 @@
     {
       "id": "27",
       "name": "Алиса",
-      "avatarUrl": "/image/sofia.png",
+      "avatarUrl": "/images/users/sofia.png",
       "cityId": "yaroslavl",
       "gender": "female",
       "birthday": "2000-01-27",
@@ -328,7 +328,7 @@
     {
       "id": "28",
       "name": "Станислав",
-      "avatarUrl": "/image/konstantin.png",
+      "avatarUrl": "/images/users/konstantin.png",
       "cityId": "moscow",
       "gender": "male",
       "birthday": "1991-09-13",
@@ -340,7 +340,7 @@
     {
       "id": "29",
       "name": "Валерия",
-      "avatarUrl": "/image/viktoria_1.png",
+      "avatarUrl": "/images/users/viktoria_1.png",
       "cityId": "saint_petersburg",
       "gender": "female",
       "birthday": "1995-04-02",
@@ -352,7 +352,7 @@
     {
       "id": "30",
       "name": "Роман",
-      "avatarUrl": "/image/ivan.png",
+      "avatarUrl": "/images/users/ivan.png",
       "cityId": "novosibirsk",
       "gender": "male",
       "birthday": "1989-10-31",
@@ -364,7 +364,7 @@
     {
       "id": "31",
       "name": "Полина",
-      "avatarUrl": "/image/darya.png",
+      "avatarUrl": "/images/users/darya.png",
       "cityId": "kazan",
       "gender": "female",
       "birthday": "1997-06-08",
@@ -376,7 +376,7 @@
     {
       "id": "32",
       "name": "Никита",
-      "avatarUrl": "/image/konstantin.png",
+      "avatarUrl": "/images/users/konstantin.png",
       "cityId": "chelyabinsk",
       "gender": "male",
       "birthday": "1993-03-21",
@@ -388,7 +388,7 @@
     {
       "id": "33",
       "name": "Анастасия",
-      "avatarUrl": "/image/elena.png",
+      "avatarUrl": "/images/users/elena.png",
       "cityId": "samara",
       "gender": "female",
       "birthday": "1990-11-05",
@@ -400,7 +400,7 @@
     {
       "id": "34",
       "name": "Георгий",
-      "avatarUrl": "/image/ivan.png",
+      "avatarUrl": "/images/users/ivan.png",
       "cityId": "ufa",
       "gender": "male",
       "birthday": "1986-02-14",
@@ -412,7 +412,7 @@
     {
       "id": "35",
       "name": "Светлана",
-      "avatarUrl": "/image/viktoria_2.png",
+      "avatarUrl": "/images/users/viktoria_2.png",
       "cityId": "rostov_on_don",
       "gender": "female",
       "birthday": "1998-07-29",
@@ -424,7 +424,7 @@
     {
       "id": "36",
       "name": "Александр",
-      "avatarUrl": "/image/konstantin.png",
+      "avatarUrl": "/images/users/konstantin.png",
       "cityId": "omsk",
       "gender": "male",
       "birthday": "1994-12-10",
@@ -436,7 +436,7 @@
     {
       "id": "37",
       "name": "Елизавета",
-      "avatarUrl": "/image/alla.png",
+      "avatarUrl": "/images/users/alla.png",
       "cityId": "voronezh",
       "gender": "female",
       "birthday": "2001-05-24",
@@ -448,7 +448,7 @@
     {
       "id": "38",
       "name": "Максим",
-      "avatarUrl": "/image/ivan.png",
+      "avatarUrl": "/images/users/ivan.png",
       "cityId": "krasnodar",
       "gender": "male",
       "birthday": "1987-08-15",
@@ -460,7 +460,7 @@
     {
       "id": "39",
       "name": "Оксана",
-      "avatarUrl": "/image/sofia.png",
+      "avatarUrl": "/images/users/sofia.png",
       "cityId": "saratov",
       "gender": "female",
       "birthday": "1992-01-08",
@@ -472,7 +472,7 @@
     {
       "id": "40",
       "name": "Вадим",
-      "avatarUrl": "/image/konstantin.png",
+      "avatarUrl": "/images/users/konstantin.png",
       "cityId": "tolyatti",
       "gender": "male",
       "birthday": "1999-03-26",
@@ -484,7 +484,7 @@
     {
       "id": "41",
       "name": "Людмила",
-      "avatarUrl": "/image/elena.png",
+      "avatarUrl": "/images/users/elena.png",
       "cityId": "barnaul",
       "gender": "female",
       "birthday": "1985-09-17",
@@ -496,7 +496,7 @@
     {
       "id": "42",
       "name": "Григорий",
-      "avatarUrl": "/image/ivan.png",
+      "avatarUrl": "/images/users/ivan.png",
       "cityId": "vladivostok",
       "gender": "male",
       "birthday": "1996-06-05",
@@ -508,7 +508,7 @@
     {
       "id": "43",
       "name": "Инна",
-      "avatarUrl": "/image/ekaterina.png",
+      "avatarUrl": "/images/users/ekaterina.png",
       "cityId": "izhevsk",
       "gender": "female",
       "birthday": "1993-10-12",
@@ -520,7 +520,7 @@
     {
       "id": "44",
       "name": "Тимур",
-      "avatarUrl": "/image/konstantin.png",
+      "avatarUrl": "/images/users/konstantin.png",
       "cityId": "khabarovsk",
       "gender": "male",
       "birthday": "1990-04-28",
@@ -532,7 +532,7 @@
     {
       "id": "45",
       "name": "Вероника",
-      "avatarUrl": "/image/darya.png",
+      "avatarUrl": "/images/users/darya.png",
       "cityId": "yaroslavl",
       "gender": "female",
       "birthday": "1997-12-21",
@@ -544,7 +544,7 @@
     {
       "id": "46",
       "name": "Федор",
-      "avatarUrl": "/image/ivan.png",
+      "avatarUrl": "/images/users/ivan.png",
       "cityId": "moscow",
       "gender": "male",
       "birthday": "1988-02-03",
@@ -556,7 +556,7 @@
     {
       "id": "47",
       "name": "Кира",
-      "avatarUrl": "/image/viktoria_1.png",
+      "avatarUrl": "/images/users/viktoria_1.png",
       "cityId": "saint_petersburg",
       "gender": "female",
       "birthday": "2002-07-18",
@@ -568,7 +568,7 @@
     {
       "id": "48",
       "name": "Вячеслав",
-      "avatarUrl": "/image/konstantin.png",
+      "avatarUrl": "/images/users/konstantin.png",
       "cityId": "novosibirsk",
       "gender": "male",
       "birthday": "1995-11-09",
@@ -580,7 +580,7 @@
     {
       "id": "49",
       "name": "Зоя",
-      "avatarUrl": "/image/alla.png",
+      "avatarUrl": "/images/users/alla.png",
       "cityId": "kazan",
       "gender": "female",
       "birthday": "1989-05-03",

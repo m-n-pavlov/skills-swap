@@ -6,6 +6,15 @@
   line-height: 16px;
   letter-spacing: 0.02em;
   user-select: none;
+  /*flex-shrink: 0;*/
+}
+
+.tagOverflow {
+  flex-shrink: 1; /* тег может сжиматься */
+  overflow: hidden; /* скрываем лишний текст */
+  text-overflow: ellipsis; /* многоточие */
+  white-space: nowrap; /* одна строка */
+  min-width: 0; /* важно для корректного text-overflow в flex */
 }
 
 .default {

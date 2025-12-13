@@ -19,7 +19,7 @@ describe('Проверяют редьюсер слайса для пользов
     {
       id: '1',
       name: 'Иван',
-      avatarUrl: '/image/ivan.png',
+      avatarUrl: '/images/users/ivan.png',
       cityId: 'saint_petersburg',
       gender: 'male',
       birthday: '1996-12-01',
@@ -31,7 +31,7 @@ describe('Проверяют редьюсер слайса для пользов
     {
       id: '2',
       name: 'Виктория',
-      avatarUrl: '/image/viktoria_1.png',
+      avatarUrl: '/images/users/viktoria_1.png',
       cityId: 'kemerovo',
       gender: 'female',
       birthday: '1994-08-14',
@@ -43,7 +43,7 @@ describe('Проверяют редьюсер слайса для пользов
     {
       id: '3',
       name: 'Виктория',
-      avatarUrl: '/image/viktoria_2.png',
+      avatarUrl: '/images/users/viktoria_2.png',
       cityId: 'sochi',
       gender: 'female',
       birthday: '1994-03-30',
