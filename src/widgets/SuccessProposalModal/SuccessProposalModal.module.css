@@ -1,0 +1,45 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 62px 60px;
+  text-align: center;
+}
+
+.icon {
+  margin-bottom: 52px;
+  width: 100px;
+  height: 100px;
+  color: var(--text);
+}
+
+.title {
+  font-size: var(--h2-font-size);
+  line-height: var(--h2-line-height);
+  font-family: var(--h2-font-family);
+  font-weight: var(--h2-font-weight);
+  margin-bottom: 12px;
+  color: var(--text);
+}
+
+.subtitle {
+  font-size: var(--body-font-size);
+  line-height: var(--body-line-height);
+  font-family: var(--body-font-family);
+  font-weight: var(--body-font-weight);
+  color: var(--text);
+  margin-bottom: 32px;
+  max-width: 80%;
+  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.button {
+  width: 100%;
+  max-width: 436px;
+  height: 48px;
+  font-size: var(--body-font-size);
+  line-height: var(--body-line-height);
+  font-family: var(--body-font-family);
+  font-weight: var(--body-font-weight);
+}
