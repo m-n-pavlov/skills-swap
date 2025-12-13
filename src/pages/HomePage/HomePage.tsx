@@ -4,6 +4,10 @@ import { Button } from '../../shared/ui';
 import { UserCardList } from '../../widgets/UserCardList';
 import { useSelector } from 'react-redux';
 
+import { useCallback, useRef } from 'react';
+import { useInfiniteItems } from '../../shared/hooks';
+import { useInfiniteScroll } from '../../shared/hooks/useInfiniteScroll';
+
 import { selectAllCategories } from '../../app/store/slices/categoriesSlice/categoriesSelector.ts';
 import { selectAllCities } from '../../app/store/slices/citiesSlice/citiesSelector.ts';
 import {
@@ -17,6 +21,28 @@ export const HomePage = () => {
   const cities = useSelector(selectAllCities); // передать в компонент Filters
 
   const usersWithDetails = useUsersWithDetails();
+
+  // Инициализация пагинации для секции "Рекомендуем"
+  const {
+    currentItems: recommendedUsers,
+    loadMore,
+    hasMore
+  } = useInfiniteItems(usersWithDetails, 20);
+
+  // Создаем ref, который будет внизу списка
+  const loadMoreRef = useRef<HTMLDivElement | null>(null);
+
+  const handleLoadMore = useCallback(() => {
+    console.log('✅ Сработала пагинация');
+    loadMore();
+  }, [loadMore]);
+
+  // Подключаем useInfiniteScroll
+  useInfiniteScroll({
+    targetRef: loadMoreRef,
+    onIntersect: handleLoadMore,
+    enabled: hasMore
+  });
 
   const popularUsers = usePopularUsers(usersWithDetails);
   const newestUsers = useNewestUsers(usersWithDetails);
@@ -81,10 +107,12 @@ export const HomePage = () => {
             <h2 className={styles.sectionName}>Рекомендуем</h2>
           </div>
           <UserCardList
-            users={usersWithDetails}
+            users={recommendedUsers}
             onLike={(id) => console.log('like', id)}
             onMore={(id) => console.log('more', id)}
           />
+          {/* Sentinel-элемент для IntersectionObserver */}
+          {hasMore && <div ref={loadMoreRef} />}
         </section>
 
         {/* --- Секция "Подходящие предложения" --- */}
