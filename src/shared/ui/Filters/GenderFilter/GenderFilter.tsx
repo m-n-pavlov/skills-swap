@@ -1,18 +1,19 @@
 import type { RadioButtonItem } from '../../RadioButton/type.ts';
 import { RadioButton } from '../../RadioButton';
 import styles from './GenderFilter.module.css';
+import type { GenderFilter as GenderFilterType } from '../../../../app/store/slices/filtersSlice/filtersSlice.ts';
 
 interface GenderFilterProps {
-  value: string;
-  onChange: (value: string) => void;
+  value: GenderFilterType;
+  onChange: (value: GenderFilterType) => void;
 }
 
 const GenderFilter = ({ value, onChange }: GenderFilterProps) => {
-  const genders: RadioButtonItem[] = [
+  const genders: RadioButtonItem<GenderFilterType>[] = [
     {
       label: 'Не имеет значения',
       value: 'any',
-      checked: value === 'any' || value === ''
+      checked: value === 'any'
     },
     {
       label: 'Мужской',
@@ -26,7 +27,7 @@ const GenderFilter = ({ value, onChange }: GenderFilterProps) => {
     }
   ];
 
-  const handleChange = (selectedValue: string) => {
+  const handleChange = (selectedValue: GenderFilterType) => {
     onChange(selectedValue);
   };
 
@@ -34,7 +35,7 @@ const GenderFilter = ({ value, onChange }: GenderFilterProps) => {
     <div>
       <h4 className={styles.title}>Пол Автора</h4>
       <RadioButton
-        name={'Фильтр по полу'}
+        name='Фильтр по полу'
         items={genders}
         onChange={handleChange}
       />

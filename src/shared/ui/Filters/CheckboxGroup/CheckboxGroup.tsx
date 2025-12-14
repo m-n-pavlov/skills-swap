@@ -3,57 +3,68 @@ import { Checkbox } from '../../Checkbox';
 
 interface CheckboxGroupProps {
   category: {
+    id: string;
     name: string;
-    subCategories: Array<{ name: string }>;
+    subCategories: Array<{
+      id: string;
+      name: string;
+    }>;
   };
-  selectedSkills: string[];
-  onSkillChange: (skill: string) => void;
-  onCategoryChange: (categorySkills: string[]) => void;
+  selectedSubCategoryIds: string[];
+  onSkillChange: (subCategoryId: string) => void;
+  onCategoryChange: (subCategoryIds: string[]) => void;
 }
 
 const CheckboxGroup = ({
   category,
-  selectedSkills,
+  selectedSubCategoryIds,
   onSkillChange,
   onCategoryChange
 }: CheckboxGroupProps) => {
   const [expanded, setExpanded] = useState<string[]>([]);
 
-  const subCategories = category.subCategories.map((item) => item.name);
+  // Получаем массив id подкатегорий
+  const subCategoryIds = category.subCategories.map((item) => item.id);
 
   // Проверяем, выбрана ли хотя бы одна подкатегория
-  const someSubSkillsSelected = subCategories.some((skill) =>
-    selectedSkills.includes(skill)
+  const someSubSkillsSelected = subCategoryIds.some((id) =>
+    selectedSubCategoryIds.includes(id)
   );
 
-  const handleExpand = (skill: string) => {
+  const handleExpand = (id: string) => {
     setExpanded((prev) =>
-      prev.includes(skill) ? prev.filter((s) => s !== skill) : [...prev, skill]
+      prev.includes(id) ? prev.filter((s) => s !== id) : [...prev, id]
     );
   };
 
   const handleCategoryIconClick = () => {
-    onCategoryChange(subCategories);
+    // Передаем массив id всех подкатегорий этой категории
+    onCategoryChange(subCategoryIds);
   };
 
   return (
     <div>
+      {/* Чекбокс категории - используем новый API */}
       <Checkbox
-        skills={[category.name]}
-        selectedSkills={someSubSkillsSelected ? [category.name] : []}
-        expandedSkills={expanded}
-        expandableSkills={[category.name]}
+        items={[{ id: category.id, label: category.name }]}
+        selectedIds={someSubSkillsSelected ? [category.id] : []}
+        expandedIds={expanded}
+        expandableIds={[category.id]}
         onChange={handleCategoryIconClick}
         onToggleExpand={handleExpand}
         isOpen={true}
       />
 
-      {expanded.includes(category.name) && (
+      {/* Подкатегории - используем новый API */}
+      {expanded.includes(category.id) && (
         <div style={{ marginLeft: '32px', marginTop: '8px' }}>
           <Checkbox
-            skills={subCategories}
-            selectedSkills={selectedSkills.filter((skill) =>
-              subCategories.includes(skill)
+            items={category.subCategories.map((sub) => ({
+              id: sub.id,
+              label: sub.name
+            }))}
+            selectedIds={selectedSubCategoryIds.filter((id) =>
+              subCategoryIds.includes(id)
             )}
             onChange={onSkillChange}
             isOpen={true}

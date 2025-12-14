@@ -1,9 +1,16 @@
-import type { TUserWithDetails } from '../type.ts';
+import type { TUserWithDetails } from '../useUsersWithDetails.ts';
 
-// Сортировка по количеству лайков (от большего к меньшему)
+/**
+ * Сортирует пользователей по количеству лайков (от большего к меньшему)
+ * @param users - массив пользователей
+ * @returns новый отсортированный массив пользователей
+ */
 export const sortPopularUsers = (
   users: TUserWithDetails[]
 ): TUserWithDetails[] => {
-  // Создаём новый массив, чтобы не мутировать исходный
-  return [...users].sort((a, b) => b.likes - a.likes);
+  // Создаем копию массива с помощью spread оператора
+  return [...users].sort((a, b) => {
+    // Сортируем по убыванию лайков (большее значение идет первым)
+    return b.likes - a.likes;
+  });
 };

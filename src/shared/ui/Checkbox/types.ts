@@ -1,10 +1,15 @@
-export type CheckboxProps = {
-  skills: string[]; // плоский список
-  selectedSkills: string[]; // какие отмечены
-  expandedSkills?: string[]; // какие раскрыты (опционально)
-  expandableSkills?: string[]; // какие могут раскрываться (речь о категории)
+export interface CheckboxItem {
+  id: string;
+  label: string;
+}
+
+export interface CheckboxProps {
+  items: CheckboxItem[];
+  selectedIds: string[];
+  expandedIds?: string[];
+  expandableIds?: string[];
   isOpen?: boolean;
-  onChange: (skill: string) => void;
-  onToggleExpand?: (skill: string) => void; // опционально
+  onChange: (id: string) => void;
+  onToggleExpand?: (id: string) => void;
   legend?: string;
-};
+}

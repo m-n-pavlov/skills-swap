@@ -6,43 +6,40 @@ import clsx from 'clsx';
 
 export const Checkbox = memo(
   ({
-    skills,
-    selectedSkills,
-    expandedSkills = [],
-    expandableSkills = [],
+    items,
+    selectedIds,
+    expandedIds = [],
+    expandableIds = [],
     isOpen = true,
     onChange,
     onToggleExpand,
     legend
   }: CheckboxProps) => {
-    if (!skills || skills.length === 0) {
+    if (!items || items.length === 0) {
       return null;
     }
 
     const isExpandable = useCallback(
-      (skill: string) => expandableSkills.includes(skill),
-      [expandableSkills]
+      (id: string) => expandableIds.includes(id),
+      [expandableIds]
     );
 
     const isExpanded = useCallback(
-      (skill: string) => expandedSkills.includes(skill),
-      [expandedSkills]
+      (id: string) => expandedIds.includes(id),
+      [expandedIds]
     );
 
     const isChecked = useCallback(
-      (skill: string) => selectedSkills.includes(skill),
-      [selectedSkills]
+      (id: string) => selectedIds.includes(id),
+      [selectedIds]
     );
 
-    const handleChange = useCallback(
-      (skill: string) => onChange(skill),
-      [onChange]
-    );
+    const handleChange = useCallback((id: string) => onChange(id), [onChange]);
 
     const handleToggleExpand = useCallback(
-      (skill: string) => {
+      (id: string) => {
         if (onToggleExpand) {
-          onToggleExpand(skill);
+          onToggleExpand(id);
         }
       },
       [onToggleExpand]
@@ -52,11 +49,13 @@ export const Checkbox = memo(
       <fieldset className={clsx(styles.fieldset, { [styles.hidden]: !isOpen })}>
         {legend && <legend className={styles.legend}>{legend}</legend>}
         <ul className={styles.list}>
-          {skills.map((skill, index) => {
-            const id = `checkbox-${index}`;
-            const checked = isChecked(skill);
-            const expandable = isExpandable(skill);
-            const expanded = isExpanded(skill);
+          {items.map((item, index) => {
+            const id = item.id;
+            const label = item.label;
+            const inputId = `checkbox-${index}`;
+            const checked = isChecked(id);
+            const expandable = isExpandable(id);
+            const expanded = isExpanded(id);
 
             let iconName: 'checkboxEmpty' | 'checkboxDone' | 'checkboxRemove' =
               'checkboxEmpty';
@@ -71,11 +70,11 @@ export const Checkbox = memo(
               <li key={id} className={styles.item}>
                 <input
                   type='checkbox'
-                  id={id}
-                  name={skill}
+                  id={inputId}
+                  name={id}
                   checked={checked}
                   className={styles.nativeCheckbox}
-                  onChange={() => handleChange(skill)}
+                  onChange={() => handleChange(id)}
                 />
 
                 <label className={styles.label}>
@@ -86,20 +85,20 @@ export const Checkbox = memo(
                     className={clsx(styles.icon, {
                       [styles.iconChecked]: checked
                     })}
-                    onClick={() => handleChange(skill)}
+                    onClick={() => handleChange(id)}
                   />
 
                   <span
                     className={styles.text}
                     onClick={() => {
                       if (expandable) {
-                        handleToggleExpand(skill);
+                        handleToggleExpand(id);
                       } else {
-                        handleChange(skill);
+                        handleChange(id);
                       }
                     }}
                   >
-                    {skill}
+                    {label}
                   </span>
 
                   {expandable && (
@@ -109,7 +108,7 @@ export const Checkbox = memo(
                       aria-hidden='true'
                       className={styles.arrow}
                       onClick={() => {
-                        handleToggleExpand(skill);
+                        handleToggleExpand(id);
                       }}
                     />
                   )}
