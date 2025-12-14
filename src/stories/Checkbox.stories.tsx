@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React, { useState } from 'react';
 import { Checkbox } from '../shared/ui/Checkbox';
+import type { CheckboxItem } from '../shared/ui/Checkbox/types';
 
 type CheckboxProps = React.ComponentProps<typeof Checkbox>;
 
@@ -10,11 +11,11 @@ const meta: Meta<CheckboxProps> = {
   argTypes: {
     isOpen: {
       control: 'boolean',
-      description: 'Отображать или скрывать список навыков'
+      description: 'Отображать или скрывать список'
     },
     legend: {
       control: 'text',
-      description: 'Необязательный заголовок фильтра'
+      description: 'Необязательный заголовок'
     }
   }
 };
@@ -24,32 +25,30 @@ export default meta;
 // 1. Интерактивный список
 export const Interactive: StoryObj = {
   render: () => {
-    const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
-    const skills = [
-      'Рисование и иллюстрация',
-      'Фотография',
-      'Видеомонтаж',
-      'Музыка и звук',
-      'Актёрское мастерство',
-      'Креативное письмо'
+    const [selectedIds, setSelectedIds] = useState<string[]>([]);
+    const items: CheckboxItem[] = [
+      { id: '1', label: 'Рисование и иллюстрация' },
+      { id: '2', label: 'Фотография' },
+      { id: '3', label: 'Видеомонтаж' },
+      { id: '4', label: 'Музыка и звук' },
+      { id: '5', label: 'Актёрское мастерство' },
+      { id: '6', label: 'Креативное письмо' }
     ];
 
-    const handleChange = (skill: string) => {
-      setSelectedSkills((prev) =>
-        prev.includes(skill)
-          ? prev.filter((s) => s !== skill)
-          : [...prev, skill]
+    const handleChange = (id: string) => {
+      setSelectedIds((prev) =>
+        prev.includes(id) ? prev.filter((s) => s !== id) : [...prev, id]
       );
     };
 
     return (
       <div>
         <Checkbox
-          skills={skills}
+          items={items}
           isOpen={true}
           legend='Навыки'
           onChange={handleChange}
-          selectedSkills={selectedSkills}
+          selectedIds={selectedIds}
         />
       </div>
     );
@@ -59,102 +58,134 @@ export const Interactive: StoryObj = {
 // 2. Без заголовка
 export const WithoutLegend: StoryObj = {
   render: () => {
-    const [selected, setSelected] = useState<string[]>(['Декор и DIY']);
+    const [selectedIds, setSelectedIds] = useState<string[]>(['2']);
 
-    const handleChange = (skill: string) => {
-      setSelected((prev) =>
-        prev.includes(skill)
-          ? prev.filter((s) => s !== skill)
-          : [...prev, skill]
+    const items: CheckboxItem[] = [
+      { id: '1', label: 'Декор и DIY' },
+      { id: '2', label: 'Креативное письмо' },
+      { id: '3', label: 'Фотография' }
+    ];
+
+    const handleChange = (id: string) => {
+      setSelectedIds((prev) =>
+        prev.includes(id) ? prev.filter((s) => s !== id) : [...prev, id]
       );
     };
 
     return (
       <Checkbox
-        skills={['Декор и DIY', 'Креативное письмо', 'Фотография']}
+        items={items}
         isOpen={true}
         onChange={handleChange}
-        selectedSkills={selected}
+        selectedIds={selectedIds}
       />
     );
   }
 };
 
-// 3. Скрытый список (что б было)
+// 3. Скрытый список
 export const Closed: StoryObj<CheckboxProps> = {
   args: {
-    skills: ['Тест'],
+    items: [{ id: '1', label: 'Тест' }],
     isOpen: false,
     legend: 'Скрытый фильтр',
-    selectedSkills: [],
+    selectedIds: [],
     onChange: () => {}
   }
 };
 
-// 4. Категории с подпунктами
+// 4. Категории с подпунктами (расширяемые)
 export const WithExpandableCategories: StoryObj = {
   render: () => {
-    const [selectedSubSkills, setSelectedSubSkills] = useState<string[]>([]);
-    const [expanded, setExpanded] = useState<string[]>([]);
+    const [selectedIds, setSelectedIds] = useState<string[]>([]);
+    const [expandedIds, setExpandedIds] = useState<string[]>([]);
 
-    const category = 'Творчество и искусство';
-    const subSkills = [
-      'Рисование и иллюстрация',
-      'Фотография',
-      'Видеомонтаж',
-      'Музыка и звук'
+    const items: CheckboxItem[] = [
+      { id: 'category-1', label: 'Творчество и искусство' },
+      { id: 'sub-1', label: 'Рисование и иллюстрация' },
+      { id: 'sub-2', label: 'Фотография' },
+      { id: 'sub-3', label: 'Видеомонтаж' },
+      { id: 'sub-4', label: 'Музыка и звук' }
     ];
 
-    const isCategorySelected = selectedSubSkills.length > 0;
+    // ID категорий, которые можно раскрывать
+    const expandableIds = ['category-1'];
 
-    const handleSubSkillChange = (skill: string) => {
-      setSelectedSubSkills((prev) =>
-        prev.includes(skill)
-          ? prev.filter((s) => s !== skill)
-          : [...prev, skill]
+    const handleChange = (id: string) => {
+      setSelectedIds((prev) =>
+        prev.includes(id) ? prev.filter((s) => s !== id) : [...prev, id]
       );
     };
 
-    const handleExpand = (skill: string) => {
-      setExpanded((prev) =>
-        prev.includes(skill)
-          ? prev.filter((s) => s !== skill)
-          : [...prev, skill]
+    const handleToggleExpand = (id: string) => {
+      setExpandedIds((prev) =>
+        prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
       );
-    };
-
-    const handleCategoryIconClick = () => {
-      // При клике по иконке — выбрать/снять все подпункты
-      if (selectedSubSkills.length === subSkills.length) {
-        setSelectedSubSkills([]);
-      } else {
-        setSelectedSubSkills(subSkills);
-      }
     };
 
     return (
       <div style={{ maxWidth: '300px' }}>
         <Checkbox
-          skills={[category]}
-          selectedSkills={isCategorySelected ? [category] : []}
-          expandedSkills={expanded}
-          expandableSkills={[category]}
-          onChange={handleCategoryIconClick}
-          onToggleExpand={handleExpand}
+          items={items}
+          selectedIds={selectedIds}
+          expandedIds={expandedIds}
+          expandableIds={expandableIds}
+          onChange={handleChange}
+          onToggleExpand={handleToggleExpand}
           legend='Навыки'
           isOpen={true}
         />
+      </div>
+    );
+  }
+};
 
-        {expanded.includes(category) && (
-          <div style={{ marginLeft: '32px', marginTop: '8px' }}>
-            <Checkbox
-              skills={subSkills}
-              selectedSkills={selectedSubSkills}
-              onChange={handleSubSkillChange}
-              isOpen={true}
-            />
-          </div>
-        )}
+// 5. Смешанный пример с несколькими категориями
+export const MultipleCategories: StoryObj = {
+  render: () => {
+    const [selectedIds, setSelectedIds] = useState<string[]>([
+      'sub-1-1',
+      'sub-2-2'
+    ]);
+    const [expandedIds, setExpandedIds] = useState<string[]>(['category-1']);
+
+    const items: CheckboxItem[] = [
+      { id: 'category-1', label: 'Творчество' },
+      { id: 'sub-1-1', label: 'Рисование' },
+      { id: 'sub-1-2', label: 'Скульптура' },
+      { id: 'category-2', label: 'Технологии' },
+      { id: 'sub-2-1', label: 'Программирование' },
+      { id: 'sub-2-2', label: 'Дизайн' },
+      { id: 'single-1', label: 'Менеджмент' },
+      { id: 'single-2', label: 'Маркетинг' }
+    ];
+
+    const expandableIds = ['category-1', 'category-2'];
+
+    const handleChange = (id: string) => {
+      setSelectedIds((prev) =>
+        prev.includes(id) ? prev.filter((s) => s !== id) : [...prev, id]
+      );
+    };
+
+    const handleToggleExpand = (id: string) => {
+      setExpandedIds((prev) =>
+        prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+      );
+    };
+
+    return (
+      <div style={{ maxWidth: '350px' }}>
+        <Checkbox
+          items={items}
+          selectedIds={selectedIds}
+          expandedIds={expandedIds}
+          expandableIds={expandableIds}
+          onChange={handleChange}
+          onToggleExpand={handleToggleExpand}
+          legend='Категории навыков'
+          isOpen={true}
+        />
       </div>
     );
   }

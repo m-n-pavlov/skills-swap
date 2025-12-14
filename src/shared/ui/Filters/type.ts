@@ -1,20 +1,22 @@
-import type { TCategory } from '../../../entities/categories.ts';
-import type { TCity } from '../../../entities/cities.ts';
+export type ModeFilter = 'any' | 'learn' | 'teach';
+export type GenderFilter = 'any' | 'male' | 'female';
 
-export type TFilters = {
-  categories: TCategory[];
-  cities: TCity[];
-  onFiltersChange?: (filters: {
-    type: string;
-    skills: string[];
-    gender: string;
-    cities: string[];
-  }) => void;
-};
+export interface FiltersState {
+  type: ModeFilter;
+  skillIds: string[];
+  gender: GenderFilter;
+  cityIds: string[];
+}
 
-export type FiltersState = {
-  type: string;
-  skills: string[];
-  gender: string;
-  cities: string[];
-};
+export interface TFilters {
+  categories: Array<{
+    id: string;
+    name: string;
+    subCategories: Array<{
+      id: string;
+      name: string;
+    }>;
+  }>;
+  cities: Array<{ location: string; id: string }>;
+  onFiltersChange?: (filters: FiltersState) => void;
+}

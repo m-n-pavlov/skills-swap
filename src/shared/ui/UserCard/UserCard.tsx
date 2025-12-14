@@ -43,7 +43,7 @@ export const UserCard = memo(function UserCard({
           <div className={styles.userDataWrapper}>
             <p className={styles.userName}>{user.name}</p>
             <p className={styles.userData}>
-              {user.city?.location ?? 'Город не найден'}, {user.age}{' '}
+              {user.location || 'Город не найден'}, {user.age}{' '}
               {getAgeEndingWord(user.age)}
             </p>
           </div>
@@ -51,7 +51,7 @@ export const UserCard = memo(function UserCard({
       </div>
 
       {/* Короткое БИО */}
-      {!showLinkButton && (
+      {!showLinkButton && user.skillsTeach.length > 0 && (
         <div className={styles.userCardBio}>
           <p>{user.skillsTeach[0]?.shortDescription}</p>
         </div>
@@ -62,8 +62,12 @@ export const UserCard = memo(function UserCard({
         <div className={styles.userSkillsWrapper}>
           <p className={styles.userSkillsHeader}>Может научить:</p>
           <div className={styles.userSkills}>
-            {user.skillsTeach.map((skill) => (
-              <Tag key={skill.id} category={skill.categoryId as TagCategory}>
+            {user.skillsTeach.map((skill, index) => (
+              // Используем subcategoryId как ключ, так как id был удален
+              <Tag
+                key={skill.subcategoryId || `teach-${index}`}
+                category={skill.categoryId as TagCategory}
+              >
                 {skill.name}
               </Tag>
             ))}
@@ -82,9 +86,9 @@ export const UserCard = memo(function UserCard({
               <p className={styles.userSkillsHeader}>Хочет научиться:</p>
 
               <div className={styles.userSkills}>
-                {visibleSkills.map((skill) => (
+                {visibleSkills.map((skill, index) => (
                   <Tag
-                    key={skill.id}
+                    key={skill.subcategoryId || `learn-${index}`}
                     category={skill.categoryId as TagCategory}
                     className={styles.tag}
                   >

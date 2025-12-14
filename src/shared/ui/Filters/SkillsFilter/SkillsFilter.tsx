@@ -1,43 +1,41 @@
 import CheckboxGroup from '../CheckboxGroup/CheckboxGroup.tsx';
 import styles from './SkillsFilter.module.css';
+import type { TCategory } from '../../../../entities/categories.ts';
 
 interface SkillsFilterProps {
-  categories: Array<{
-    name: string;
-    subCategories: Array<{ name: string }>;
-  }>;
-  selectedSkills: string[];
-  onChange: (skills: string[]) => void;
+  categories: TCategory[];
+  selectedSkillIds: string[];
+  onChange: (skillIds: string[]) => void;
 }
 
 const SkillsFilter = ({
   categories,
-  selectedSkills,
+  selectedSkillIds,
   onChange
 }: SkillsFilterProps) => {
-  const handleSkillChange = (skill: string) => {
-    const newSkills = selectedSkills.includes(skill)
-      ? selectedSkills.filter((s) => s !== skill)
-      : [...selectedSkills, skill];
-    onChange(newSkills);
+  const handleSkillChange = (skillId: string) => {
+    const newSkillIds = selectedSkillIds.includes(skillId)
+      ? selectedSkillIds.filter((id) => id !== skillId)
+      : [...selectedSkillIds, skillId];
+    onChange(newSkillIds);
   };
 
-  const handleCategoryChange = (categorySkills: string[]) => {
-    // Удаляем все навыки категории, которые есть в selectedSkills
-    const filteredSkills = selectedSkills.filter(
-      (skill) => !categorySkills.includes(skill)
+  const handleCategoryChange = (categorySkillIds: string[]) => {
+    // Удаляем все id навыков категории, которые есть в selectedSkillIds
+    const filteredSkillIds = selectedSkillIds.filter(
+      (id) => !categorySkillIds.includes(id)
     );
 
     // Если все навыки категории были выбраны - удаляем их, иначе добавляем
-    const allSelected = categorySkills.every((skill) =>
-      selectedSkills.includes(skill)
+    const allSelected = categorySkillIds.every((id) =>
+      selectedSkillIds.includes(id)
     );
 
-    const newSkills = allSelected
-      ? filteredSkills
-      : [...filteredSkills, ...categorySkills];
+    const newSkillIds = allSelected
+      ? filteredSkillIds
+      : [...filteredSkillIds, ...categorySkillIds];
 
-    onChange(newSkills);
+    onChange(newSkillIds);
   };
 
   return (
@@ -45,9 +43,9 @@ const SkillsFilter = ({
       <h4 className={styles.title}>Навыки</h4>
       {categories.map((category) => (
         <CheckboxGroup
-          key={category.name}
+          key={category.id}
           category={category}
-          selectedSkills={selectedSkills}
+          selectedSubCategoryIds={selectedSkillIds}
           onSkillChange={handleSkillChange}
           onCategoryChange={handleCategoryChange}
         />

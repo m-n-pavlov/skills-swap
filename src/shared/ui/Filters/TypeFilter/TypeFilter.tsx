@@ -1,17 +1,18 @@
-import { RadioButton } from '../../RadioButton';
 import type { RadioButtonItem } from '../../RadioButton/type.ts';
+import { RadioButton } from '../../RadioButton';
+import type { ModeFilter } from '../../../../app/store/slices/filtersSlice/filtersSlice.ts';
 
 interface TypeFilterProps {
-  value: string;
-  onChange: (value: string) => void;
+  value: ModeFilter;
+  onChange: (value: ModeFilter) => void;
 }
 
 const TypeFilter = ({ value, onChange }: TypeFilterProps) => {
-  const types: RadioButtonItem[] = [
+  const types: RadioButtonItem<ModeFilter>[] = [
     {
       label: 'Всё',
-      value: 'all',
-      checked: value === 'all' || value === ''
+      value: 'any',
+      checked: value === 'any'
     },
     {
       label: 'Хочу научиться',
@@ -25,16 +26,12 @@ const TypeFilter = ({ value, onChange }: TypeFilterProps) => {
     }
   ];
 
-  const handleChange = (selectedValue: string) => {
+  const handleChange = (selectedValue: ModeFilter) => {
     onChange(selectedValue);
   };
 
   return (
-    <RadioButton
-      name={'Фильтр по типам'}
-      items={types}
-      onChange={handleChange}
-    />
+    <RadioButton name='Фильтр по типам' items={types} onChange={handleChange} />
   );
 };
 

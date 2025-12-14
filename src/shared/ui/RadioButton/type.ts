@@ -1,13 +1,15 @@
-export type RadioButtonItem = {
+// Элемент радиокнопки с generic-типом
+export type RadioButtonItem<T extends string = string> = {
   label: string;
-  value: string;
+  value: T;
   checked?: boolean;
   disabled?: boolean;
 };
 
-export type RadioButtonProps = {
+// Пропсы радиокнопок с generic-типом
+export type RadioButtonProps<T extends string = string> = {
   legend?: string;
   name: string;
-  items: RadioButtonItem[];
-  onChange?: (value: string) => void;
+  items: RadioButtonItem<T>[];
+  onChange?: (value: T) => void;
 };

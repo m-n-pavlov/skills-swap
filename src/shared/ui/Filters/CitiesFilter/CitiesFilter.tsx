@@ -3,15 +3,19 @@ import styles from './CityFilter.module.css';
 import { useRef, useState } from 'react';
 import { clsx } from 'clsx';
 import { ArrowToggleButton } from '../../ArrowToggleButton';
+
 interface CityFilterProps {
   cities: Array<{ location: string; id: string }>;
-  selectedCities: string[];
-  onChange: (cities: string[]) => void;
+  selectedCityIds: string[];
+  onChange: (cityIds: string[]) => void;
 }
 
-const CityFilter = ({ cities, selectedCities, onChange }: CityFilterProps) => {
+const CitiesFilter = ({
+  cities,
+  selectedCityIds,
+  onChange
+}: CityFilterProps) => {
   const [showAllCities, setShowAllCities] = useState(false);
-  const allCities = cities.map((item) => item.location);
   const citiesRef = useRef<HTMLDivElement>(null);
 
   const handleToggle = () => {
@@ -25,12 +29,18 @@ const CityFilter = ({ cities, selectedCities, onChange }: CityFilterProps) => {
     setShowAllCities(!showAllCities);
   };
 
-  const handleCityChange = (city: string) => {
-    const newCities = selectedCities.includes(city)
-      ? selectedCities.filter((c) => c !== city)
-      : [...selectedCities, city];
-    onChange(newCities);
+  const handleCityChange = (cityId: string) => {
+    const newCityIds = selectedCityIds.includes(cityId)
+      ? selectedCityIds.filter((id) => id !== cityId)
+      : [...selectedCityIds, cityId];
+    onChange(newCityIds);
   };
+
+  // Преобразуем города в формат CheckboxItem
+  const cityItems = cities.map((city) => ({
+    id: city.id,
+    label: city.location
+  }));
 
   return (
     <div>
@@ -40,8 +50,8 @@ const CityFilter = ({ cities, selectedCities, onChange }: CityFilterProps) => {
         ref={citiesRef}
       >
         <Checkbox
-          skills={allCities}
-          selectedSkills={selectedCities}
+          items={cityItems}
+          selectedIds={selectedCityIds}
           onChange={handleCityChange}
         />
       </div>
@@ -55,4 +65,4 @@ const CityFilter = ({ cities, selectedCities, onChange }: CityFilterProps) => {
   );
 };
 
-export default CityFilter;
+export default CitiesFilter;

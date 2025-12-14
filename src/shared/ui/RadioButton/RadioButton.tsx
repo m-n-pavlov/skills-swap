@@ -2,12 +2,12 @@ import { Icon } from '../Icon';
 import styles from './RadioButton.module.css';
 import type { RadioButtonProps } from './type';
 
-export const RadioButton = ({
+export const RadioButton = <T extends string>({
   legend,
   name,
   items,
   onChange
-}: RadioButtonProps) => {
+}: RadioButtonProps<T>) => {
   return (
     <fieldset className={styles.fieldset}>
       {legend && <legend className={styles.legend}>{legend}</legend>}

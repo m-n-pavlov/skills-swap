@@ -1,43 +1,67 @@
 import SkillsFilter from './SkillsFilter/SkillsFilter.tsx';
-import FilterCities from './CitesFilter/CitiesFilter.tsx';
+import CitiesFilter from './CitiesFilter/CitiesFilter.tsx';
 import TypeFilter from './TypeFilter/TypeFilter.tsx';
 import GenderFilter from './GenderFilter/GenderFilter.tsx';
 import styles from './Filters.module.css';
 import { memo, useEffect, useState } from 'react';
 import { Icon } from '../Icon';
-import type { FiltersState, TFilters } from './type.ts';
 
-const Filters = ({ categories, cities, onFiltersChange }: TFilters) => {
+// Типы для фильтров (если их нет в отдельном файле, создаем здесь)
+export type ModeFilter = 'any' | 'learn' | 'teach';
+export type TGenderFilter = 'any' | 'male' | 'female';
+
+export interface FiltersState {
+  type: ModeFilter;
+  skillIds: string[]; // id выбранных подкатегорий
+  gender: TGenderFilter;
+  cityIds: string[]; // id выбранных городов
+}
+
+export interface TFiltersProps {
+  categories: Array<{
+    id: string;
+    name: string;
+    subCategories: Array<{
+      id: string;
+      name: string;
+    }>;
+  }>;
+  cities: Array<{ location: string; id: string }>;
+  onFiltersChange?: (filters: FiltersState) => void;
+}
+
+const Filters = ({ categories, cities, onFiltersChange }: TFiltersProps) => {
   const [filters, setFilters] = useState<FiltersState>({
-    type: 'all',
-    skills: [], // массив выбранных подкатегорий
+    type: 'any', // Изменено с 'all' на 'any' для согласованности с TypeFilter
+    skillIds: [], // переименовано с skills на skillIds
     gender: 'any',
-    cities: []
+    cityIds: [] // переименовано с cities на cityIds
   });
+
   // Обработчики для каждого типа фильтра
-  const handleTypeChange = (type: string): void => {
+  const handleTypeChange = (type: ModeFilter): void => {
     setFilters((prev) => ({ ...prev, type }));
   };
 
-  const handleSkillsChange = (skills: string[]): void => {
-    setFilters((prev) => ({ ...prev, skills }));
+  const handleSkillsChange = (skillIds: string[]): void => {
+    setFilters((prev) => ({ ...prev, skillIds }));
   };
 
-  const handleGenderChange = (gender: string) => {
+  const handleGenderChange = (gender: TGenderFilter) => {
     setFilters((prev) => ({ ...prev, gender }));
   };
 
-  const handleCitiesChange = (cities: string[]) => {
-    setFilters((prev) => ({ ...prev, cities }));
+  const handleCitiesChange = (cityIds: string[]) => {
+    setFilters((prev) => ({ ...prev, cityIds }));
   };
 
   // Функция для сброса всех фильтров
   const handleResetFilters = () => {
     setFilters({
-      type: 'all',
-      skills: [],
+      type: 'any',
+      skillIds: [],
       gender: 'any',
-      cities: []
+      cityIds: []
     });
   };
 
@@ -45,16 +69,18 @@ const Filters = ({ categories, cities, onFiltersChange }: TFilters) => {
   useEffect(() => {
     onFiltersChange?.(filters);
   }, [filters]);
+
   const getActiveFiltersCount = () => {
     let count = 0;
-    if (filters.type !== 'all') count++;
+    if (filters.type !== 'any') count++;
     if (filters.gender !== 'any') count++;
-    count += filters.skills.length;
-    count += filters.cities.length;
+    count += filters.skillIds.length;
+    count += filters.cityIds.length;
     return count;
   };
 
   const activeFiltersCount = getActiveFiltersCount();
+
   return (
     <aside className={styles.wrapper}>
       <div className={styles.header}>
@@ -73,13 +99,13 @@ const Filters = ({ categories, cities, onFiltersChange }: TFilters) => {
         <TypeFilter value={filters.type} onChange={handleTypeChange} />
         <SkillsFilter
           categories={categories}
-          selectedSkills={filters.skills}
+          selectedSkillIds={filters.skillIds}
           onChange={handleSkillsChange}
         />
         <GenderFilter value={filters.gender} onChange={handleGenderChange} />
-        <FilterCities
+        <CitiesFilter
           cities={cities}
-          selectedCities={filters.cities}
+          selectedCityIds={filters.cityIds}
           onChange={handleCitiesChange}
         />
       </div>

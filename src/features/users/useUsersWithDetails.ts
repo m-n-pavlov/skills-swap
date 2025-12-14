@@ -1,65 +1,90 @@
-import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
+import { useMemo } from 'react';
 
-// Селекторы соответствующих слайсов, возвращают исходные массивы объектов
+// Селекторы соответствующих слайсов
 import { selectAllUsers } from '../../app/store/slices/usersSlice/userSelector.ts';
 import { selectAllSkills } from '../../app/store/slices/skillsSlice/skillsSelector.ts';
 import { selectAllCities } from '../../app/store/slices/citiesSlice/citiesSelector.ts';
-import { selectAllCategories } from '../../app/store/slices/categoriesSlice/categoriesSelector.ts';
 
-// Утилита для рассчета возвраста пользователя
+// Утилита для расчета возраста
 import { calculateAge } from './lib/calculateAge.ts';
 
-// Тип возвращаемого хуком значения
-import type { TUserWithDetails } from './type.ts';
-
-// Импорт типа TSkill для приведения типов внутри mapSkills
+// Импорт вспомогательных типов
 import type { TSkill } from '../../entities/skills.ts';
+import type { TUser } from '../../entities/users.ts';
 
-// Сам кастомный хук для получения расширенного объекта пользователя
+// Вспомогательный тип (без id, но с categoryId и subcategoryId)
+type TSkillWithoutId = Omit<TSkill, 'id'>;
+
+// Тип пользователя, возвращаемого хуком
+export type TUserWithDetails = Omit<
+  TUser,
+  'birthday' | 'skillsTeach' | 'skillsLearn'
+> & {
+  age: number;
+  location: string;
+  skillsTeach: TSkillWithoutId[];
+  skillsLearn: TSkillWithoutId[];
+};
+
 export const useUsersWithDetails = (): TUserWithDetails[] => {
   const users = useSelector(selectAllUsers);
   const skills = useSelector(selectAllSkills);
   const cities = useSelector(selectAllCities);
-  const categories = useSelector(selectAllCategories);
 
-  return useMemo(() => {
-    // Создаём быстрый доступ к объектам по их id
-    const cityMap = new Map(cities.map((city) => [city.id, city]));
-    const skillMap = new Map(skills.map((skill) => [skill.id, skill]));
-    const categoryMap = new Map(categories.map((cat) => [cat.id, cat]));
+  // Мемоизируем маппинги отдельно
+  const skillsMap = useMemo(
+    () => new Map(skills.map((skill) => [skill.id, skill])),
+    [skills]
+  );
 
-    // Преобразуем массив ID навыков в массив объектов с дополнительными полями categoryName и subcategoryName
-    const mapSkills = (skillIds: string[]) =>
-      skillIds
+  const citiesMap = useMemo(
+    () => new Map(cities.map((city) => [city.id, city.location])),
+    [cities]
+  );
+
+  const usersWithDetails = useMemo(() => {
+    return users.map((user) => {
+      const location = citiesMap.get(user.cityId) || 'Неизвестный город';
+      const age = calculateAge(user.birthday);
+
+      const teachSkills: TSkillWithoutId[] = user.skillsTeach
         .map((skillId) => {
-          const skill = skillMap.get(skillId);
-          if (!skill) return null; // если навык не найден, пропускаем
+          const skill = skillsMap.get(skillId);
+          if (!skill) return null;
 
-          const category = categoryMap.get(skill.categoryId);
-          const subcategory =
-            category?.subCategories.find(
-              (sub) => sub.id === skill.subcategoryId
-            ) || null;
-
-          return {
-            ...skill,
-            categoryName: category?.name || '',
-            subcategoryName: subcategory?.name || ''
-          };
+          // Удаляем id, но сохраняем categoryId и subcategoryId
+          const { id, ...skillWithoutId } = skill;
+          return skillWithoutId;
         })
-        .filter(Boolean) as (TSkill & {
-        categoryName: string;
-        subcategoryName: string;
-      })[];
+        .filter((skill): skill is TSkillWithoutId => skill !== null);
 
-    // Возвращаем новый массив пользователей с вложенными объектами city, вычисленным age и полными объектами навыков
-    return users.map((user) => ({
-      ...user,
-      city: cityMap.get(user.cityId) || null,
-      age: calculateAge(user.birthday),
-      skillsTeach: mapSkills(user.skillsTeach),
-      skillsLearn: mapSkills(user.skillsLearn)
-    }));
-  }, [users, skills, cities, categories]);
+      const learnSkills: TSkillWithoutId[] = user.skillsLearn
+        .map((skillId) => {
+          const skill = skillsMap.get(skillId);
+          if (!skill) return null;
+
+          // Удаляем id, но сохраняем categoryId и subcategoryId
+          const { id, ...skillWithoutId } = skill;
+          return skillWithoutId;
+        })
+        .filter((skill): skill is TSkillWithoutId => skill !== null);
+
+      return {
+        id: user.id,
+        name: user.name,
+        avatarUrl: user.avatarUrl,
+        cityId: user.cityId,
+        location,
+        gender: user.gender,
+        age,
+        skillsTeach: teachSkills,
+        skillsLearn: learnSkills,
+        likes: user.likes,
+        createdAt: user.createdAt
+      };
+    });
+  }, [users, skillsMap, citiesMap]);
+
+  return usersWithDetails;
 };
