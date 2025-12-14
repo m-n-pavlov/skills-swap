@@ -6,7 +6,14 @@ import styles from '../shared/ui/InputFile/InputFile.module.css';
 const meta: Meta<typeof InputFile> = {
   title: 'Shared/InputFile',
   component: InputFile,
-  tags: ['autodocs']
+  tags: ['autodocs'],
+  argTypes: {
+    variant: {
+      control: 'select',
+      options: ['default', 'icon-only'],
+      description: 'Вариант отображения инпута'
+    }
+  }
 };
 
 export default meta;
@@ -18,6 +25,13 @@ export const Default: Story = {
   args: {
     onChange: (files) => console.log('Selected files:', files)
   }
+};
+
+export const IconOnly: Story = {
+  args: {
+    variant: 'icon-only'
+  },
+  name: 'Только иконка'
 };
 
 // Active — статическое "активное" состояние, подсветка рамки

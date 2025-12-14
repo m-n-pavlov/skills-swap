@@ -25,6 +25,8 @@
 
 .text {
   color: var(--button-pressed);
+  padding: 0;
+  width: max-content;
 }
 
 .text:hover {

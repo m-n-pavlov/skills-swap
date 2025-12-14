@@ -1,3 +1,5 @@
+import type { IconName } from '../Icon/icons';
+
 export type TextAreaProps = {
   value: string;
   onChange: (value: string) => void;
@@ -6,6 +8,7 @@ export type TextAreaProps = {
   errorText?: string;
   infoText?: string;
   className?: string;
+  iconName?: IconName;
   required?: boolean;
   name?: string;
   maxLength?: number;

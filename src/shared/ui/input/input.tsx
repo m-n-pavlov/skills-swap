@@ -18,6 +18,7 @@ export const Input = memo(
     onClick,
     infoText,
     icon,
+    iconName,
     autofocus,
     required
   }: InputProps) => {
@@ -76,10 +77,14 @@ export const Input = memo(
             maxLength={type === 'password' ? 20 : undefined}
           />
 
+          {iconName && (
+            <Icon name={iconName} alt='Иконка' className={styles.rightIcon} />
+          )}
+
           {type === 'password' && (
             <button
               type='button'
-              className={styles.passwordToggle}
+              className={styles.rightIcon}
               onClick={togglePasswordVisibility}
             >
               {showPassword ? (
@@ -91,12 +96,14 @@ export const Input = memo(
           )}
         </div>
 
-        <div className={styles.message}>
-          {errorText && <span className={styles.errorText}>{errorText}</span>}
-          {!errorText && infoText && (
-            <span className={styles.infoText}>{infoText}</span>
-          )}
-        </div>
+        {(errorText || infoText) && (
+          <div className={styles.message}>
+            {errorText && <span className={styles.errorText}>{errorText}</span>}
+            {!errorText && infoText && (
+              <span className={styles.infoText}>{infoText}</span>
+            )}
+          </div>
+        )}
       </div>
     );
   }

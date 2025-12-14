@@ -2,6 +2,7 @@ import { memo, useState } from 'react';
 import clsx from 'clsx';
 import styles from './Textarea.module.css';
 import type { TextAreaProps } from './type';
+import { Icon } from '../Icon';
 
 export const TextArea = memo(
   ({
@@ -13,6 +14,7 @@ export const TextArea = memo(
     className = '',
     required = false,
     name,
+    iconName,
     maxLength = 500,
     minLength = 10
   }: TextAreaProps) => {
@@ -24,17 +26,13 @@ export const TextArea = memo(
 
     const errorId = `${name}-error`;
 
-    const textareaClasses = clsx(
-      styles.textarea,
-      {
-        [styles.error]: Boolean(errorText),
-        [styles.focus]: isFocused && value && !errorText
-      },
-      className
-    );
+    const textareaClasses = clsx(styles.textarea, {
+      [styles.error]: Boolean(errorText),
+      [styles.focus]: isFocused && value && !errorText
+    });
 
     return (
-      <div className={styles.container}>
+      <div className={clsx(styles.container, className)}>
         {label && (
           <label htmlFor={name} className={styles.label}>
             {label}
@@ -57,6 +55,10 @@ export const TextArea = memo(
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
         />
+
+        {iconName && (
+          <Icon name={iconName} alt='Иконка' className={styles.rightIcon} />
+        )}
 
         <div className={styles.message}>
           {errorText && (

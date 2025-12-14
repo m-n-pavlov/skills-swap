@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
-  width: 436px;
-  height: 124px;
+  width: 100%;
+  position: relative;
 }
 
 .label {
@@ -15,7 +15,7 @@
 }
 
 .textarea {
-  width: 100%;
+  max-width: 436px;
   height: 96px;
   padding: 12px 20px;
   border: 1px solid var(--caption);
@@ -46,4 +46,15 @@
 
 .errorText {
   color: var(--error);
+}
+
+.rightIcon {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 0;
 }
