@@ -1,4 +1,4 @@
-import { type FormEvent } from 'react';
+import { useCallback } from 'react';
 import styles from './AuthPage.module.css';
 import { AuthForm } from '../../features/auth/ui/AuthForm/AuthForm';
 import { StepIllustration } from '../../shared/ui/StepIllustration';
@@ -18,19 +18,16 @@ export const AuthPage = () => {
     handleSubmit
   } = useAuthForm();
 
-  // адаптер под интерфейс AuthForm.onChange(field, value)
-  const handleChange = (field: 'email' | 'password', value: string) => {
-    if (field === 'email') {
-      handleEmailChange(value);
-    } else {
-      handlePasswordChange(value);
-    }
-  };
-
-  // адаптер под AuthForm.onSubmit
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
-    void handleSubmit(event); // handleSubmit уже вызывает preventDefault и делает всё остальное
-  };
+  const handleChange = useCallback(
+    (field: 'email' | 'password', value: string) => {
+      if (field === 'email') {
+        handleEmailChange(value);
+      } else {
+        handlePasswordChange(value);
+      }
+    },
+    [handleEmailChange, handlePasswordChange]
+  );
 
   return (
     <div className={styles.page}>
@@ -39,16 +36,14 @@ export const AuthPage = () => {
       <div className={styles.content}>
         <div className={styles.formSection}>
           <AuthForm
-            // значения полей теперь берём из useAuthForm
             values={{ email, password }}
             onChange={handleChange}
-            onSubmit={onSubmit}
+            onSubmit={handleSubmit}
             isLoading={isLoading}
             submitText='Войти'
-            showRegisterLink={true}
+            showRegisterLink
             passwordPlaceholder='Введите ваш пароль'
-            passwordHint='Пароль должен содержать не менее 8 знаков'
-            // глобальная ошибка — это ошибка авторизации из Redux
+            passwordHint={undefined}
             globalErrorText={serverError ?? undefined}
             emailErrorText={emailError ?? undefined}
             passwordErrorText={passwordError ?? undefined}

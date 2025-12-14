@@ -32,6 +32,8 @@ export const AuthForm = ({
   };
 
   const hasGlobalError = Boolean(globalErrorText);
+  const emailErr = hasGlobalError ? ' ' : emailErrorText;
+  const passErr = hasGlobalError ? ' ' : passwordErrorText;
 
   return (
     <form
@@ -66,52 +68,50 @@ export const AuthForm = ({
         <span className={styles.dividerLine} />
       </div>
 
-      {/* Email */}
-      <div className={styles.field}>
-        <label htmlFor='email' className={styles.label}>
-          Email
-        </label>
-        <Input
-          name='email'
-          type='email'
-          value={values.email}
-          onChange={(value) => onChange('email', value)}
-          placeholder='Введите email'
-          className={styles.input}
-          errorText={hasGlobalError ? ' ' : emailErrorText}
-        />
-      </div>
+      <div className={styles.fields}>
+        {/* Email */}
+        <div className={styles.field}>
+          <label htmlFor='email' className={styles.label}>
+            Email
+          </label>
+          <Input
+            name='email'
+            type='email'
+            value={values.email}
+            onChange={(value) => onChange('email', value)}
+            placeholder='Введите email'
+            className={styles.input}
+            errorText={emailErr}
+          />
+        </div>
 
-      {/* Пароль */}
-      <div className={styles.field}>
-        <label htmlFor='password' className={styles.label}>
-          Пароль
-        </label>
-        <Input
-          name='password'
-          type='password'
-          value={values.password}
-          onChange={(value) => onChange('password', value)}
-          placeholder={passwordPlaceholder}
-          className={styles.input}
-          errorText={hasGlobalError ? ' ' : passwordErrorText}
-          infoText={!hasGlobalError ? passwordHint : undefined}
-        />
+        {/* Пароль */}
+        <div className={styles.field}>
+          <label htmlFor='password' className={styles.label}>
+            Пароль
+          </label>
+          <Input
+            name='password'
+            type='password'
+            value={values.password}
+            onChange={(value) => onChange('password', value)}
+            placeholder={passwordPlaceholder}
+            className={styles.input}
+            errorText={passErr}
+            infoText={!hasGlobalError ? passwordHint : undefined}
+          />
 
-        {/* статус пароля (типа "Надёжный") — опционально */}
-        {passwordStatusText && !hasGlobalError && (
-          <p className={styles.passwordStatus}>{passwordStatusText}</p>
+          {passwordStatusText && !hasGlobalError && (
+            <p className={styles.passwordStatus}>{passwordStatusText}</p>
+          )}
+        </div>
+
+        {hasGlobalError && (
+          <p className={styles.globalError}>{globalErrorText}</p>
         )}
       </div>
 
-      {/* глобальная ошибка логина */}
-      {hasGlobalError && (
-        <p className={styles.globalError}>
-          {globalErrorText} Зарегистрируйтесь
-        </p>
-      )}
-
-      <div>
+      <div className={styles.actions}>
         <Button
           type='submit'
           style='primary'
