@@ -23,7 +23,8 @@ export const AuthForm = ({
   emailErrorText,
   passwordErrorText,
   passwordStatusText,
-  globalErrorText
+  globalErrorText,
+  isSubmitDisabled
 }: AuthFormProps) => {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -94,7 +95,6 @@ export const AuthForm = ({
           placeholder={passwordPlaceholder}
           className={styles.input}
           errorText={hasGlobalError ? ' ' : passwordErrorText}
-          // 👉 ВАЖНО: подсказка уходит в infoText, рендерится внутри Input в div.message
           infoText={!hasGlobalError ? passwordHint : undefined}
         />
 
@@ -106,14 +106,16 @@ export const AuthForm = ({
 
       {/* глобальная ошибка логина */}
       {hasGlobalError && (
-        <p className={styles.globalError}>{globalErrorText}</p>
+        <p className={styles.globalError}>
+          {globalErrorText} Зарегистрируйтесь
+        </p>
       )}
 
       <div>
         <Button
           type='submit'
           style='primary'
-          disabled={isLoading}
+          disabled={isLoading || isSubmitDisabled}
           className={styles.button}
         >
           {submitText}

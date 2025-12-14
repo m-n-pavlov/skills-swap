@@ -10,6 +10,7 @@ export type AuthFormProps = {
   onChange: (field: keyof AuthFormValues, value: string) => void;
   onSubmit: (event: FormEvent<HTMLFormElement>) => void;
   isLoading: boolean;
+  isSubmitDisabled?: boolean;
   className?: string;
 
   submitText?: string;
