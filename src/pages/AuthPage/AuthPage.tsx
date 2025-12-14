@@ -1,35 +1,33 @@
-import { useState, type FormEvent } from 'react';
+import { useCallback } from 'react';
 import styles from './AuthPage.module.css';
 import { AuthForm } from '../../features/auth/ui/AuthForm/AuthForm';
 import { StepIllustration } from '../../shared/ui/StepIllustration';
+import { useAuthForm } from '../../features/auth/lib/useAuthForm';
 
 export const AuthPage = () => {
-  const [values, setValues] = useState({ email: '', password: '' });
+  const {
+    email,
+    password,
+    emailError,
+    passwordError,
+    serverError,
+    isLoading,
+    isFormValid,
+    handleEmailChange,
+    handlePasswordChange,
+    handleSubmit
+  } = useAuthForm();
 
-  // локальная ошибка логина (одна на всю форму)
-  const [globalError, setGlobalError] = useState<string | undefined>();
-
-  const handleChange = (field: 'email' | 'password', value: string) => {
-    setValues((prev) => ({ ...prev, [field]: value }));
-    // При вводе — очищаем глобальную ошибку
-    setGlobalError(undefined);
-  };
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    // здесь потом будет реальный запрос
-    const success = false;
-
-    if (!success) {
-      setGlobalError(
-        'Email или пароль введён неверно. Пожалуйста, проверьте правильность введённых данных'
-      );
-      return;
-    }
-
-    console.log('submit', values);
-  };
+  const handleChange = useCallback(
+    (field: 'email' | 'password', value: string) => {
+      if (field === 'email') {
+        handleEmailChange(value);
+      } else {
+        handlePasswordChange(value);
+      }
+    },
+    [handleEmailChange, handlePasswordChange]
+  );
 
   return (
     <div className={styles.page}>
@@ -38,16 +36,19 @@ export const AuthPage = () => {
       <div className={styles.content}>
         <div className={styles.formSection}>
           <AuthForm
-            values={values}
+            values={{ email, password }}
             onChange={handleChange}
             onSubmit={handleSubmit}
-            isLoading={false}
+            isLoading={isLoading}
             submitText='Войти'
-            showRegisterLink={true}
+            showRegisterLink
             passwordPlaceholder='Введите ваш пароль'
-            // 👉 сюда передаём текст "Пароль должен содержать не менее 8 знаков"
-            passwordHint='Пароль должен содержать не менее 8 знаков'
-            globalErrorText={globalError}
+            passwordHint={undefined}
+            globalErrorText={serverError ?? undefined}
+            emailErrorText={emailError ?? undefined}
+            passwordErrorText={passwordError ?? undefined}
+            passwordStatusText={undefined}
+            isSubmitDisabled={!isFormValid}
           />
         </div>
 

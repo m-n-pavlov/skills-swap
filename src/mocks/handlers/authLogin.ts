@@ -21,7 +21,8 @@ export const authLoginHandlers = [
     return HttpResponse.json(
       {
         success: false,
-        message: 'Неверный email или пароль'
+        message:
+          'Email или пароль введён неверно. Пожалуйста проверьте правильность введённых данных'
       },
       { status: 401 }
     );

@@ -61,6 +61,7 @@
 .fields {
   display: flex;
   flex-direction: column;
+  gap: 12px;
   max-width: 436px;
   width: 100%;
   margin: 0 auto;
@@ -69,7 +70,6 @@
 .field {
   display: flex;
   flex-direction: column;
-  /* gap: 4px; */
 }
 
 [class*='infoText'] {
@@ -106,16 +106,28 @@
   color: var(--text);
 }
 
+.actions {
+  max-width: 436px;
+  width: 100%;
+  margin: 0 auto;
+}
+
 .button {
   border-radius: 12px;
   padding: 12px 24px;
-  max-width: 436px;
   width: 100% !important;
   height: 48px;
   margin-top: 16px;
 }
 
-.registerLink {
+.linkReset {
+  text-decoration: none;
+  font: inherit;
+  cursor: pointer;
+}
+
+.registerLink,
+.registerLink:visited {
   font-family: var(--body-font-family);
   font-weight: var(--body-font-weight);
   font-size: var(--body-font-size);
@@ -127,21 +139,19 @@
   margin-top: 8px;
 }
 
-.linkReset {
-  text-decoration: none;
-  font: inherit;
-  cursor: pointer;
-}
-
-.linkReset:visited {
-  color: inherit;
-}
-
-.linkReset:hover {
+.registerLink:hover {
   color: var(--button-hover);
-  text-decoration: none;
 }
 
 .linkReset:focus {
   outline: none;
+}
+
+.globalError {
+  margin: 0;
+  padding: 0;
+  font-family: var(--body-font-family);
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--error);
 }
