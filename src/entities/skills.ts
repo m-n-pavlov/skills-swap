@@ -5,5 +5,5 @@ export type TSkill = {
   description: string; // полное описание
   categoryId: string; // связь с категорией
   subcategoryId: string; // связь с подкатегорией
-  images: string[]; // пути до изображений
+  images?: string[]; // пути до изображений
 };

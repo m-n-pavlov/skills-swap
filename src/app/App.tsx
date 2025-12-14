@@ -8,6 +8,7 @@ import { fetchGetUsers } from './store/slices/usersSlice/userSlice.ts';
 
 function App() {
   const dispatch = useAppDispatch();
+
   useEffect(() => {
     dispatch(fetchGetCategories());
     dispatch(fetchGetCities());
