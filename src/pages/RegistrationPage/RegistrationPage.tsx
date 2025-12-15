@@ -152,7 +152,7 @@ export const RegistrationPage = () => {
           isLoading={step1.isCheckingEmail}
           emailErrorText={step1.emailError ?? undefined}
           passwordErrorText={step1.passwordError ?? undefined}
-          isSubmitDisabled={!step1.isFormValid}
+          isFormValid={step1.isFormValid}
         />
       )}
 
