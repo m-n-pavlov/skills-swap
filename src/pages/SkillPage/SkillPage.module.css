@@ -1,0 +1,13 @@
+.page {
+  padding: 44px 36px 60px 36px;
+  display: flex;
+  align-items: start;
+  gap: 24px;
+}
+
+.preview_skill {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 24px;
+  align-items: stretch;
+}
