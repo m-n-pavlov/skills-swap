@@ -1,48 +1,5 @@
-.form {
-  max-width: 1020px;
-  background-color: var(--card);
-  display: flex;
-  padding: 60px;
-  box-sizing: border-box;
-  justify-content: space-between;
-}
-
-.formSection {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  max-width: 436px;
-}
-
-.link {
-  color: var(--button-pressed);
-  cursor: pointer;
-}
-
-.avatarWrap {
-  position: relative;
-}
-
-.avatarWrap .inputFile {
-  position: absolute;
-  right: 0;
-  top: 185px;
-}
-
 .wrap {
-  display: flex;
-  gap: 24px;
-}
-
-.description textarea {
-  width: 100%;
-}
-
-.button {
-  width: 100%;
-  margin-top: 32px;
-}
-
-.togglePassword {
-  justify-content: flex-start;
+  max-width: 1020px;
+  padding: 60px;
+  background-color: var(--card);
 }
