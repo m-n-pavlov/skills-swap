@@ -12,10 +12,13 @@ export const UserCard = memo(function UserCard({
   className,
   showLinkButton,
   onLike,
-  onMore
+  onMore,
+  isLiked,
+  likesCount
 }: UserCardProps) {
-  // Проверяем значение avatarUrl
-  console.log('user.avatarUrl:', user.avatarUrl);
+  // Используем значение по умолчанию для likesCount
+  const displayLikesCount = likesCount ?? user.likes ?? 0;
+  const isLikedState = isLiked ?? false;
 
   return (
     <li className={clsx(styles.userCard, className)}>
@@ -34,11 +37,18 @@ export const UserCard = memo(function UserCard({
           )}
         >
           {showLinkButton && (
-            <ButtonIcon
-              name='likeEmpty'
-              iconName='likeEmpty'
-              onClick={() => onLike?.(user.id)}
-            />
+            <div className={styles.likesContainer}>
+              {/* Используем displayLikesCount вместо likesCount */}
+              {displayLikesCount > 0 && (
+                <span className={styles.likesCount}>{displayLikesCount}</span>
+              )}
+              <ButtonIcon
+                name={isLikedState ? 'like' : 'likeEmpty'}
+                iconName={isLikedState ? 'like' : 'likeEmpty'}
+                onClick={() => onLike?.(user.id)}
+                isLiked={isLikedState} // ← передаем состояние лайка
+              />
+            </div>
           )}
           <div className={styles.userDataWrapper}>
             <p className={styles.userName}>{user.name}</p>

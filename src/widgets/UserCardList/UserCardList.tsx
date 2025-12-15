@@ -6,21 +6,27 @@ import { UserCard } from '../../shared/ui/UserCard';
 export const UserCardList = memo(function UserCardList({
   users,
   onLike,
-  onMore
+  onMore,
+  getUserLikeData
 }: UserCardListProps) {
   return (
     <ul className={styles.userCardList}>
-      {users.map((user) => (
-        <UserCard
-          key={user.id}
-          user={user}
-          avatar={{ size: 'medium' }} // теперь только размер, URL берется из user.avatarUrl
-          showLinkButton={true}
-          className={styles.userCardItem}
-          onLike={onLike}
-          onMore={onMore}
-        />
-      ))}
+      {users.map((user) => {
+        const likeData = getUserLikeData(user.id, user.likes || 0);
+        return (
+          <UserCard
+            key={user.id}
+            user={user}
+            avatar={{ size: 'medium' }}
+            showLinkButton={true}
+            className={styles.userCardItem}
+            onLike={onLike}
+            onMore={onMore}
+            isLiked={likeData.isLiked}
+            likesCount={likeData.likesCount}
+          />
+        );
+      })}
     </ul>
   );
 });
