@@ -1,0 +1,1 @@
+export { SuccessTradeModal } from './SuccessTradeModal';
