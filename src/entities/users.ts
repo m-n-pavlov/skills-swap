@@ -9,4 +9,5 @@ export type TUser = {
   skillsLearn: string[];
   likes: number;
   createdAt: string;
+  description: string;
 };
