@@ -16,7 +16,10 @@ const mockImages: string[] = [
 export const OfferPreviewModal: FC<OfferPreviewModalProps> = ({
   isOpen,
   onClose,
-  data
+  data,
+  onEdit,
+  onConfirm,
+  isSubmitting
 }) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose} size='medium'>
@@ -39,11 +42,20 @@ export const OfferPreviewModal: FC<OfferPreviewModalProps> = ({
                 type='button'
                 style='secondary'
                 className={styles.buttonWithIcon}
+                onClick={onEdit}
+                disabled={isSubmitting}
               >
                 Редактировать
                 <ButtonIcon name='Редактировать' iconName='edit' />
               </Button>
-              <Button type='button' style='primary' className={styles.button}>
+
+              <Button
+                type='button'
+                style='primary'
+                className={styles.button}
+                onClick={onConfirm}
+                disabled={isSubmitting}
+              >
                 Готово
               </Button>
             </>

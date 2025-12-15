@@ -6,6 +6,7 @@ export type RegistrFormStepOneProps = {
   onChange: (field: keyof AuthFormValues, value: string) => void;
   onSubmit: (event: FormEvent<HTMLFormElement>) => void;
   isLoading: boolean;
+  isFormValid: boolean;
   className?: string;
 
   emailErrorText?: string;

@@ -22,4 +22,5 @@ export interface RegistrFormStepTwoProps {
   learningSubcategoryOptions: DropdownOption[];
   onBack: () => void;
   onNext: () => void;
+  onAvatarChange?: (file: File | null) => void;
 }

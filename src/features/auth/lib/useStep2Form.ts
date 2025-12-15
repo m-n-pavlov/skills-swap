@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useRef, useEffect } from 'react';
 import type { SyntheticEvent } from 'react';
 
 import {
@@ -21,11 +21,10 @@ type GenderOption = 'male' | 'female' | 'other' | '';
 export const useStep2Form = () => {
   const dispatch = useAppDispatch();
 
-  const { step2 } = useAppSelector(selectRegistration);
+  const { step2, currentStep } = useAppSelector(selectRegistration);
 
   const [name, setName] = useState(step2?.name ?? '');
   const [date, setDate] = useState(step2?.date ?? '');
-
   const [gender, setGender] = useState<GenderOption>(step2?.gender ?? '');
   const [city, setCity] = useState(step2?.city ?? '');
   const [categories, setCategories] = useState(step2?.categories ?? '');
@@ -33,6 +32,7 @@ export const useStep2Form = () => {
     step2?.subCategories ?? ''
   );
   const [avatar, setAvatar] = useState<File | null>(step2?.avatar ?? null);
+
   const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
   const [isAvatarConverting, setIsAvatarConverting] = useState(false);
 
@@ -45,6 +45,36 @@ export const useStep2Form = () => {
   const [avatarError, setAvatarError] = useState<string | null>(null);
 
   const submitting = useRef(false);
+
+  useEffect(() => {
+    if (currentStep !== 2) return;
+
+    setName(step2?.name ?? '');
+    setDate(step2?.date ?? '');
+    setGender(step2?.gender ?? '');
+    setCity(step2?.city ?? '');
+    setCategories(step2?.categories ?? '');
+    setSubCategories(step2?.subCategories ?? '');
+    setAvatar(step2?.avatar ?? null);
+
+    const restorePreview = async () => {
+      if (!step2?.avatar) {
+        setAvatarPreview(null);
+        return;
+      }
+      setIsAvatarConverting(true);
+      try {
+        const base64 = await fileToBase64(step2.avatar);
+        setAvatarPreview(base64);
+      } catch {
+        setAvatarPreview(null);
+      } finally {
+        setIsAvatarConverting(false);
+      }
+    };
+
+    void restorePreview();
+  }, [currentStep, step2]);
 
   const handleNameChange = useCallback((value: string) => {
     setName(value);
@@ -103,8 +133,9 @@ export const useStep2Form = () => {
       setAvatarPreview(base64);
     } catch {
       setAvatarPreview(null);
+    } finally {
+      setIsAvatarConverting(false);
     }
-    setIsAvatarConverting(false);
   }, []);
 
   const validateForm = (): boolean => {
@@ -148,24 +179,24 @@ export const useStep2Form = () => {
         return;
       }
 
-      const payload = {
-        name,
-        date,
-        gender: gender as 'male' | 'female' | 'other',
-        city,
-        categories,
-        subCategories,
-        avatar
-      };
-
-      dispatch(saveStep2(payload));
+      dispatch(
+        saveStep2({
+          name,
+          date,
+          gender: gender as 'male' | 'female' | 'other',
+          city,
+          categories,
+          subCategories,
+          avatar
+        })
+      );
 
       submitting.current = false;
     },
     [name, date, gender, city, categories, subCategories, avatar, dispatch]
   );
 
-  const isFormValid =
+  const isFormValid = Boolean(
     name &&
     date &&
     gender &&
@@ -179,7 +210,8 @@ export const useStep2Form = () => {
     !cityError &&
     !categoryError &&
     !subCategoryError &&
-    !avatarError;
+    !avatarError
+  );
 
   return {
     name,

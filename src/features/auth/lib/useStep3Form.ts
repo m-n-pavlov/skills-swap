@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useRef, useEffect } from 'react';
 import type { SyntheticEvent } from 'react';
 
 import {
@@ -16,7 +16,7 @@ import { fileToBase64, isImageFile } from '../../../shared/utils/fileUtils';
 
 export const useStep3Form = () => {
   const dispatch = useAppDispatch();
-  const { step3 } = useAppSelector(selectRegistration);
+  const { step3, currentStep } = useAppSelector(selectRegistration);
 
   const [skillName, setSkillName] = useState(step3?.skillName ?? '');
   const [skillCategory, setSkillCategory] = useState(
@@ -41,6 +41,36 @@ export const useStep3Form = () => {
   const [imagesError, setImagesError] = useState<string | null>(null);
 
   const submitting = useRef(false);
+
+  useEffect(() => {
+    if (currentStep !== 3) return;
+
+    setSkillName(step3?.skillName ?? '');
+    setSkillCategory(step3?.skillCategory ?? '');
+    setSkillSubCategory(step3?.skillSubCategory ?? '');
+    setDescription(step3?.description ?? '');
+    setImages(step3?.images ?? []);
+
+    const restorePreviews = async () => {
+      const files = step3?.images ?? [];
+      if (!files.length) {
+        setImagesPreview([]);
+        return;
+      }
+
+      setImagesConverting(true);
+      try {
+        const previews = await Promise.all(files.map((f) => fileToBase64(f)));
+        setImagesPreview(previews);
+      } catch {
+        setImagesPreview([]);
+      } finally {
+        setImagesConverting(false);
+      }
+    };
+
+    void restorePreviews();
+  }, [currentStep, step3]);
 
   const handleSkillNameChange = useCallback((value: string) => {
     setSkillName(value);
@@ -135,21 +165,21 @@ export const useStep3Form = () => {
         return;
       }
 
-      const payload = {
-        skillName,
-        skillCategory,
-        skillSubCategory,
-        description,
-        images
-      };
+      dispatch(
+        saveStep3({
+          skillName,
+          skillCategory,
+          skillSubCategory,
+          description,
+          images
+        })
+      );
 
-      dispatch(saveStep3(payload));
       submitting.current = false;
     },
     [skillName, skillCategory, skillSubCategory, description, images, dispatch]
   );
 
-  // ----- ФЛАГ ДЛЯ КНОПКИ -----
   const isFormValid = Boolean(
     skillName &&
     skillCategory &&

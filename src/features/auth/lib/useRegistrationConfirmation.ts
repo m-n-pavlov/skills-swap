@@ -1,41 +1,43 @@
-import { useState, useCallback, useRef } from 'react';
-import type { SyntheticEvent } from 'react';
-import { useNavigate, useLocation, type Location } from 'react-router-dom';
+import { useCallback, useMemo, useRef, useState } from 'react';
+import { useLocation, useNavigate, type Location } from 'react-router-dom';
 
-import { useAppSelector } from '../../../shared/hooks';
+import { useAppDispatch, useAppSelector } from '../../../shared/hooks';
+
 import {
   selectRegistration,
   selectRegistrationSummary
 } from '../../../app/store/slices/registration/registrationSelectors';
-// import { useAppDispatch } from '../../../shared/hooks';
-// import { registerUser } from '../../../app/store/slices/authSlice/authSlice';
-// import { selectAuthError, selectAuthIsLoading } from '../../../app/store/slices/authSlice/authSelector';
 
-import type { RegistrationSummary } from '../../../app/store/slices/registration/registrationSlice';
-import { AUTH_REDIRECT_AFTER_LOGIN } from '../../../features/auth/config/authConfig';
+import { register } from '../../../app/store/slices/authSlice/authSlice';
+import {
+  selectAuthLoading,
+  selectAuthError
+} from '../../../app/store/slices/authSlice/authSelector';
+
+import { AUTH_REDIRECT_AFTER_LOGIN } from '../config/authConfig';
+
+import type { TRegisterPayload } from '../../../api/auth/authRegistration';
+import type { TSkill } from '../../../entities/skills';
 
 type LocationState = { from?: Location };
 
 export const useRegistrationConfirmation = () => {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const location = useLocation();
+  const location = useLocation() as Location & { state?: LocationState };
 
-  // когда API будет готово
-  // const dispatch = useAppDispatch();
-  // const isAuthLoading = useAppSelector(selectAuthIsLoading);
-  // const authError = useAppSelector(selectAuthError);
+  const registration = useAppSelector(selectRegistration);
+  const summary = useAppSelector(selectRegistrationSummary);
 
-  const registrationState = useAppSelector(selectRegistration);
-  const summary: RegistrationSummary = useAppSelector(
-    selectRegistrationSummary
-  );
-
-  const { step1, step2, step3 } = registrationState;
+  const isSubmitting = useAppSelector(selectAuthLoading);
+  const serverError = useAppSelector(selectAuthError);
 
   const [isOpen, setIsOpen] = useState(false);
   const [localError, setLocalError] = useState<string | null>(null);
-
   const submitting = useRef(false);
+
+  const redirectTo =
+    location.state?.from?.pathname || AUTH_REDIRECT_AFTER_LOGIN;
 
   const openModal = useCallback(() => {
     setLocalError(null);
@@ -43,94 +45,100 @@ export const useRegistrationConfirmation = () => {
   }, []);
 
   const closeModal = useCallback(() => {
-    setIsOpen(false);
     setLocalError(null);
+    setIsOpen(false);
   }, []);
 
-  const getRedirectPath = (): string => {
-    const state = location.state as LocationState | null;
+  const areAllStepsFilled = useCallback(() => {
+    const { step1, step2, step3 } = registration;
+    return Boolean(
+      step1?.email &&
+      step1?.password &&
+      step2 &&
+      step3 &&
+      step3.images &&
+      step3.images.length > 0
+    );
+  }, [registration]);
 
-    if (state?.from?.pathname) {
-      return state.from.pathname;
-    }
+  const payload: TRegisterPayload | null = useMemo(() => {
+    const { step1, step2, step3 } = registration;
+    if (!step1?.email || !step1?.password || !step2 || !step3) return null;
 
-    return AUTH_REDIRECT_AFTER_LOGIN;
-  };
+    const skillsTeach: TSkill = {
+      id: 'temp-skill',
+      name: step3.skillName,
+      shortDescription: step3.skillName,
+      description: step3.description,
+      categoryId: step3.skillCategory,
+      subcategoryId: step3.skillSubCategory,
+      images: []
+    };
 
-  const areAllStepsFilled = (): boolean => {
-    if (!step1) return false;
-    if (!step1.email || !step1.password) return false;
-    if (!step2) return false;
-    if (!step3) return false;
+    return {
+      email: step1.email,
+      password: step1.password,
 
-    return true;
-  };
+      name: step2.name,
+      birthday: step2.date,
+      gender: step2.gender,
+      cityId: step2.city,
 
-  // Подтверждение регистрации (пока MOCK)
-  const handleConfirm = useCallback(
-    async (e?: SyntheticEvent) => {
-      e?.preventDefault();
+      description: '',
 
-      if (submitting.current) return;
-      submitting.current = true;
-      setLocalError(null);
+      learningCategoryId: step2.categories,
+      learningSubCategoryId: step2.subCategories,
 
+      skillsTeach,
+      avatarFile: step2.avatar,
+      skillsImageFile: step3.images?.[0] ?? null
+    };
+  }, [registration]);
+
+  const handleConfirm = useCallback(async () => {
+    if (submitting.current || isSubmitting) return;
+    submitting.current = true;
+    setLocalError(null);
+
+    try {
       if (!areAllStepsFilled()) {
         setLocalError('Похоже, заполнены не все шаги регистрации');
-        submitting.current = false;
         return;
       }
 
-      const payload = {
-        email: step1.email,
-        password: step1.password,
-        profile: {
-          name: step2!.name,
-          date: step2!.date,
-          gender: step2!.gender,
-          city: step2!.city,
-          categories: step2!.categories,
-          subCategories: step2!.subCategories,
-          avatar: step2!.avatar
-        },
-        skill: {
-          skillName: step3!.skillName,
-          skillCategory: step3!.skillCategory,
-          skillSubCategory: step3!.skillSubCategory,
-          description: step3!.description,
-          images: step3!.images
-        }
-      };
+      if (!payload) {
+        setLocalError('Не удалось собрать данные регистрации');
+        return;
+      }
 
-      // Пока API нет — просто лог и редирект
-      // заменить на реальный вызов:
-      // const resultAction = await dispatch(registerUser(payload));
-      // if (registerUser.fulfilled.match(resultAction)) { ... } else { ... }
+      await dispatch(register(payload)).unwrap();
 
-      // eslint-disable-next-line no-console
-      console.log('MOCK REGISTER PAYLOAD:', payload);
-
-      const redirectTo = getRedirectPath();
       setIsOpen(false);
       navigate(redirectTo, { replace: true });
-
+    } catch {
+    } finally {
       submitting.current = false;
-    },
-    [step1, step2, step3, navigate, location]
-  );
-
-  // 6. Пока API нет — считаем, что isLoading = false, serverError = null
-  const isSubmitting = false;
-  const serverError: string | null = null;
+    }
+  }, [
+    areAllStepsFilled,
+    payload,
+    dispatch,
+    isSubmitting,
+    navigate,
+    redirectTo
+  ]);
 
   return {
     isOpen,
     openModal,
     closeModal,
+
     summary,
+
     isSubmitting,
-    localError,
     serverError,
+    localError,
+
     handleConfirm
   };
 };

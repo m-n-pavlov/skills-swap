@@ -1,96 +1,115 @@
-import { useState, type FormEvent } from 'react';
+import type { FormEvent } from 'react';
 
 import { RegistrationLayout } from '../../features/auth/ui/Registration/RegistrationLayout';
 import { RegistrationFormStepOne } from '../../features/auth/ui/Registration/RegistrationFormStepOne';
 import { RegistrationFormStepTwo } from '../../features/auth/ui/Registration/RegistrationFormStepTwo';
 import { RegistrationFormStepThree } from '../../features/auth/ui/Registration/RegistrationFormStepThree';
-
-import type { StepIllustrationCode } from '../../shared/ui/StepIllustration/type';
-import type { StepOneValues, StepTwoValues, StepThreeValues } from './type';
-
-// ---------- Компонент страницы регистрации ----------
+import { useAppDispatch, useAppSelector } from '../../shared/hooks';
+import {
+  goToStep,
+  prevStep
+} from '../../app/store/slices/registration/registrationSlice';
+import { selectRegistration } from '../../app/store/slices/registration/registrationSelectors';
+import { useStep1Form } from '../../features/auth/lib/useStep1Form';
+import { useStep2Form } from '../../features/auth/lib/useStep2Form';
+import { useStep3Form } from '../../features/auth/lib/useStep3Form';
 
 export const RegistrationPage = () => {
-  const [step, setStep] = useState<StepIllustrationCode>(1);
+  const dispatch = useAppDispatch();
+  const { currentStep } = useAppSelector(selectRegistration);
 
-  // ----- Шаг 1: email + пароль -----
-  const [step1Values, setStep1Values] = useState<StepOneValues>({
-    email: '',
-    password: ''
-  });
+  // ---------------- STEP 1 ----------------
+  const step1 = useStep1Form();
 
-  const handleStep1Change = (field: keyof StepOneValues, value: string) => {
-    setStep1Values((prev) => ({ ...prev, [field]: value }));
+  const step1Values = { email: step1.email, password: step1.password };
+
+  const handleStep1Change = (field: 'email' | 'password', value: string) => {
+    if (field === 'email') step1.handleEmailChange(value);
+    if (field === 'password') step1.handlePasswordChange(value);
   };
 
-  const handleStep1Submit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    // позже добавишь валидацию — сейчас просто идём на шаг 2
-    setStep(2);
+  const handleStep1Submit = (e: FormEvent<HTMLFormElement>) => {
+    void step1.handleSubmit(e);
   };
 
-  // ----- Шаг 2: личные данные -----
-  const [step2Values, setStep2Values] = useState<StepTwoValues>({
-    name: '',
-    birthday: null,
-    gender: '',
-    city: '',
-    learningCategory: '',
-    learningSubcategory: '',
-    avatarUrl: null
-  });
+  // ---------------- STEP 2 ----------------
+  const step2 = useStep2Form();
+  const step2Values = {
+    name: step2.name,
+    birthday: step2.date ? new Date(step2.date) : null,
+    gender: step2.gender,
+    city: step2.city,
+    learningCategory: step2.categories,
+    learningSubcategory: step2.subCategories,
+    avatarUrl: step2.avatarPreview
+  };
 
   const handleStep2Change = (
-    field: keyof StepTwoValues,
+    field:
+      | 'name'
+      | 'birthday'
+      | 'gender'
+      | 'city'
+      | 'learningCategory'
+      | 'learningSubcategory'
+      | 'avatarUrl',
     value: string | Date | null
   ) => {
-    setStep2Values((prev) => ({ ...prev, [field]: value as never }));
+    if (field === 'name') step2.handleNameChange(String(value ?? ''));
+    if (field === 'birthday') step2.handleDateChange(String(value ?? ''));
+    if (field === 'gender') step2.handleGenderChange(String(value ?? ''));
+    if (field === 'city') step2.handleCityChange(String(value ?? ''));
+    if (field === 'learningCategory')
+      step2.handleCategoryChange(String(value ?? ''));
+    if (field === 'learningSubcategory')
+      step2.handleSubCategoryChange(String(value ?? ''));
+    if (field === 'birthday') {
+      const d = value as Date | null;
+      step2.handleDateChange(d ? d.toISOString().slice(0, 10) : '');
+    }
   };
 
   const handleStep2Back = () => {
-    setStep(1);
+    dispatch(prevStep());
   };
 
   const handleStep2Next = () => {
-    // позже добавишь валидацию — сейчас просто идём на шаг 3
-    setStep(3);
+    step2.handleSubmit();
   };
 
-  // ----- Шаг 3: навык -----
-  const [step3Values, setStep3Values] = useState<StepThreeValues>({
-    skillName: '',
-    skillCategory: '',
-    skillSubcategory: '',
-    description: ''
-  });
+  // ---------------- STEP 3 ----------------
+  const step3 = useStep3Form();
 
-  const handleStep3Change = (field: keyof StepThreeValues, value: string) => {
-    setStep3Values((prev) => ({ ...prev, [field]: value }));
+  const step3Values = {
+    skillName: step3.skillName,
+    skillCategory: step3.skillCategory,
+    skillSubcategory: step3.skillSubCategory,
+    description: step3.description
   };
 
-  const handleStep3Submit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const handleStep3Change = (
+    field: 'skillName' | 'skillCategory' | 'skillSubcategory' | 'description',
+    value: string
+  ) => {
+    if (field === 'skillName') step3.handleSkillNameChange(value);
+    if (field === 'skillCategory') step3.handleSkillCategoryChange(value);
+    if (field === 'skillSubcategory') step3.handleSkillSubCategoryChange(value);
+    if (field === 'description') step3.handleDescriptionChange(value);
+  };
 
-    // финальный сабмит (сюда потом прикрутишь запрос на бекенд)
-    console.log('FINAL REG DATA:', {
-      step1Values,
-      step2Values,
-      step3Values
-    });
-    window.alert(
-      'Здесь по ТЗ должно открываться модальное окно.\n' +
-        'Сейчас пока заглушка — модальное окно ещё в разработке.'
-    );
+  const handleStep3Submit = (e: FormEvent<HTMLFormElement>) => {
+    void step3.handleSubmit(e);
   };
 
   const handleStep3Back = () => {
-    setStep(2);
+    dispatch(goToStep(2));
   };
 
-  // ----- Моковые options для DropdownInput -----
+  // ----- options -----
   const genderOptions = [
     { label: 'Женский', value: 'female' },
-    { label: 'Мужской', value: 'male' }
+    { label: 'Мужской', value: 'male' },
+    { label: 'Не указан', value: 'other' }
   ];
 
   const cityOptions = [
@@ -123,23 +142,27 @@ export const RegistrationPage = () => {
     { label: 'Figma', value: 'figma' }
   ];
 
-  // ---------- Рендер ----------
-
   return (
-    <RegistrationLayout currentStep={step}>
-      {step === 1 && (
+    <RegistrationLayout currentStep={currentStep}>
+      {currentStep === 1 && (
         <RegistrationFormStepOne
           values={step1Values}
           onChange={handleStep1Change}
           onSubmit={handleStep1Submit}
-          isLoading={false}
+          isLoading={step1.isCheckingEmail}
+          emailErrorText={step1.emailError ?? undefined}
+          passwordErrorText={step1.passwordError ?? undefined}
+          isSubmitDisabled={!step1.isFormValid}
         />
       )}
 
-      {step === 2 && (
+      {currentStep === 2 && (
         <RegistrationFormStepTwo
           values={step2Values}
           onChange={handleStep2Change}
+          onAvatarChange={(file) => {
+            void step2.handleAvatarChange(file);
+          }}
           onBack={handleStep2Back}
           onNext={handleStep2Next}
           genderOptions={genderOptions}
@@ -149,15 +172,22 @@ export const RegistrationPage = () => {
         />
       )}
 
-      {step === 3 && (
+      {currentStep === 3 && (
         <RegistrationFormStepThree
-          values={step3Values}
-          onChange={handleStep3Change}
+          values={step3Values as any}
+          onChange={handleStep3Change as any}
           onSubmit={handleStep3Submit}
           onBack={handleStep3Back}
-          isLoading={false}
+          isLoading={step3.isImagesConverting}
           categoryOptions={skillCategoryOptions}
           subcategoryOptions={skillSubcategoryOptions}
+          skillNameErrorText={step3.skillNameError ?? undefined}
+          categoryErrorText={step3.skillCategoryError ?? undefined}
+          subcategoryErrorText={step3.skillSubCategoryError ?? undefined}
+          descriptionErrorText={step3.descriptionError ?? undefined}
+          onFilesChange={(files) => {
+            void step3.handleImagesChange(files as unknown as FileList);
+          }}
         />
       )}
     </RegistrationLayout>
