@@ -30,3 +30,9 @@
   font-family: var(--h2-font-family);
   font-weight: var(--h2-font-weight);
 }
+
+.chipsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
