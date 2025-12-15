@@ -1,4 +1,4 @@
-import type { IconName } from '../../shared/ui/Icon/icons';
+import type { IconName } from '../Icon/icons';
 
 export interface SuccessModalProps {
   isOpen: boolean;

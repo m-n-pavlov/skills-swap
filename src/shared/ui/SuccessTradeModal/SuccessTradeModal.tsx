@@ -1,11 +1,11 @@
-import { Modal } from '../../shared/ui/Modal';
-import { Button } from '../../shared/ui/Button/Button';
-import { Icon } from '../../shared/ui/Icon/Icon';
+import { Modal } from '../Modal';
+import { Button } from '../Button/Button';
+import { Icon } from '../Icon/Icon';
 import styles from './SuccessModal.module.css';
 import type { SuccessModalProps } from './type';
 import { memo } from 'react';
 
-export const SuccessModal = memo(
+export const SuccessTradeModal = memo(
   ({ isOpen, onClose, iconName }: SuccessModalProps) => {
     return (
       <Modal isOpen={isOpen} onClose={onClose}>
