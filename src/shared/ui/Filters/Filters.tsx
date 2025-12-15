@@ -3,18 +3,17 @@ import CitiesFilter from './CitiesFilter/CitiesFilter.tsx';
 import TypeFilter from './TypeFilter/TypeFilter.tsx';
 import GenderFilter from './GenderFilter/GenderFilter.tsx';
 import styles from './Filters.module.css';
-import { memo, useEffect, useState } from 'react';
+import { memo } from 'react';
 import { Icon } from '../Icon';
 
-// Типы для фильтров (если их нет в отдельном файле, создаем здесь)
 export type ModeFilter = 'any' | 'learn' | 'teach';
-export type TGenderFilter = 'any' | 'male' | 'female';
+export type GenderFilter = 'any' | 'male' | 'female';
 
 export interface FiltersState {
   type: ModeFilter;
-  skillIds: string[]; // id выбранных подкатегорий
-  gender: TGenderFilter;
-  cityIds: string[]; // id выбранных городов
+  skillIds: string[];
+  gender: GenderFilter;
+  cityIds: string[];
 }
 
 export interface TFiltersProps {
@@ -27,48 +26,39 @@ export interface TFiltersProps {
     }>;
   }>;
   cities: Array<{ location: string; id: string }>;
-  onFiltersChange?: (filters: FiltersState) => void;
+  filters: FiltersState;
+  onFiltersChange: (filters: FiltersState) => void;
+  onResetFilters: () => void;
 }
 
-const Filters = ({ categories, cities, onFiltersChange }: TFiltersProps) => {
-  const [filters, setFilters] = useState<FiltersState>({
-    type: 'any', // Изменено с 'all' на 'any' для согласованности с TypeFilter
-    skillIds: [], // переименовано с skills на skillIds
-    gender: 'any',
-    cityIds: [] // переименовано с cities на cityIds
-  });
-
+const Filters = memo(function Filters({
+  categories,
+  cities,
+  filters,
+  onFiltersChange,
+  onResetFilters
+}: TFiltersProps) {
   // Обработчики для каждого типа фильтра
   const handleTypeChange = (type: ModeFilter): void => {
-    setFilters((prev) => ({ ...prev, type }));
+    onFiltersChange({ ...filters, type });
   };
 
   const handleSkillsChange = (skillIds: string[]): void => {
-    setFilters((prev) => ({ ...prev, skillIds }));
+    onFiltersChange({ ...filters, skillIds });
   };
 
-  const handleGenderChange = (gender: TGenderFilter) => {
-    setFilters((prev) => ({ ...prev, gender }));
+  const handleGenderChange = (gender: GenderFilter) => {
+    onFiltersChange({ ...filters, gender });
   };
 
   const handleCitiesChange = (cityIds: string[]) => {
-    setFilters((prev) => ({ ...prev, cityIds }));
+    onFiltersChange({ ...filters, cityIds });
   };
 
   // Функция для сброса всех фильтров
   const handleResetFilters = () => {
-    setFilters({
-      type: 'any',
-      skillIds: [],
-      gender: 'any',
-      cityIds: []
-    });
+    onResetFilters();
   };
-
-  // Передаём фильтры наверх
-  useEffect(() => {
-    onFiltersChange?.(filters);
-  }, [filters]);
 
   const getActiveFiltersCount = () => {
     let count = 0;
@@ -111,6 +101,6 @@ const Filters = ({ categories, cities, onFiltersChange }: TFiltersProps) => {
       </div>
     </aside>
   );
-};
+});
 
-export default memo(Filters);
+export default Filters;

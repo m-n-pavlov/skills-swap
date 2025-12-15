@@ -1,42 +1,45 @@
-// Импорт хуков React
 import { useCallback, useRef, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
-
-// Импорт стилей
 import styles from './HomePage.module.css';
-
-// Импорт используемых компонентов:
-import Filters, {
-  type FiltersState
-} from '../../shared/ui/Filters/Filters.tsx'; // компонент блока с фильтрами
-
-import { Button } from '../../shared/ui'; // компонент кнопки "Смотреть все"
-import { UserCardList } from '../../widgets/UserCardList'; // импорт контейнера с карточками UserCardList
-
-// Импорт хуков для пагинации
+import Filters from '../../shared/ui/Filters/Filters.tsx';
+import { Button } from '../../shared/ui';
+import { UserCardList } from '../../widgets/UserCardList';
+import { FilterChip } from '../../shared/ui';
 import { useInfiniteItems } from '../../shared/hooks';
 import { useInfiniteScroll } from '../../shared/hooks/useInfiniteScroll';
-
-// Импорт селекторов для получения всех категорий и городов из Redux-слайса для компонента блока с фильтрами
 import { selectAllCategories } from '../../app/store/slices/categoriesSlice/categoriesSelector.ts';
 import { selectAllCities } from '../../app/store/slices/citiesSlice/citiesSelector.ts';
-
-// Импорт селектора для получения пользователей с дополнительными деталями
 import { useUsersWithDetails } from '../../features/users';
-
-// Функции для сортировки пользователей по новизне и популярности
 import { sortNewestUsers, sortPopularUsers } from '../../features/users';
 
-// Тип для порядка сортировки
-type SortOrder = 'newest' | 'oldest';
+export type ModeFilter = 'any' | 'learn' | 'teach';
+export type GenderFilter = 'any' | 'male' | 'female';
 
-// Компонент главной страницы
+export interface FiltersState {
+  type: ModeFilter;
+  skillIds: string[];
+  gender: GenderFilter;
+  cityIds: string[];
+}
+
+// Новые типы для управления активными фильтрами и чипсами
+export type SectionType = 'popular' | 'newest' | 'recommended';
+
+export interface ActiveFilter {
+  id: string;
+  type: 'section' | 'filter';
+  filterType?: 'type' | 'skill' | 'gender' | 'city' | 'section';
+  value: string;
+  label: string;
+  section?: SectionType;
+}
+
 export const HomePage = () => {
   const categories = useSelector(selectAllCategories);
   const cities = useSelector(selectAllCities);
   const usersWithDetails = useUsersWithDetails();
 
-  // Состояние для фильтров
+  // Состояние фильтров
   const [filters, setFilters] = useState<FiltersState>({
     type: 'any',
     skillIds: [],
@@ -44,16 +47,175 @@ export const HomePage = () => {
     cityIds: []
   });
 
-  // Состояние для порядка сортировки в секции "Подходящие предложения"
-  const [sortOrder, setSortOrder] = useState<SortOrder>('newest');
+  // Состояние активных фильтров (чипсов)
+  const [activeFilters, setActiveFilters] = useState<ActiveFilter[]>([]);
 
-  // Состояния для отображения всех карточек в секциях
-  const [showAllPopular, setShowAllPopular] = useState(false);
-  const [showAllNewest, setShowAllNewest] = useState(false);
+  // Состояние активной секции
+  const [activeSection, setActiveSection] = useState<SectionType | null>(null);
 
-  // Обработчик изменения фильтров
-  const handleFiltersChange = useCallback((newFilters: FiltersState) => {
-    setFilters(newFilters);
+  // Состояние для порядка сортировки
+  const [sortOrder, setSortOrder] = useState<'newest' | 'oldest'>('newest');
+
+  // Инициализация пагинации
+  const {
+    currentItems: recommendedUsers,
+    loadMore,
+    hasMore
+  } = useInfiniteItems(usersWithDetails, 20);
+
+  const loadMoreRef = useRef<HTMLDivElement | null>(null);
+
+  // Генерация ID для фильтров
+  const generateId = () => Math.random().toString(36).substring(2);
+
+  // Удаление фильтра по ID
+  const removeActiveFilter = useCallback((id: string) => {
+    setActiveFilters((prev) => prev.filter((filter) => filter.id !== id));
+  }, []);
+
+  // Обработчик изменения фильтров из компонента Filters
+  const handleFiltersChange = useCallback(
+    (newFilters: FiltersState) => {
+      setFilters(newFilters);
+
+      // Очищаем старые фильтры и добавляем новые
+      const newActiveFilters: ActiveFilter[] = [];
+
+      // Добавляем фильтр по типу
+      if (newFilters.type !== 'any') {
+        newActiveFilters.push({
+          id: generateId(),
+          type: 'filter',
+          filterType: 'type',
+          value: newFilters.type,
+          label: newFilters.type === 'learn' ? 'Хочу научиться' : 'Могу научить'
+        });
+      }
+
+      // Добавляем фильтры по навыкам
+      newFilters.skillIds.forEach((skillId) => {
+        const skill = categories
+          .flatMap((c) => c.subCategories)
+          .find((s) => s.id === skillId);
+        if (skill) {
+          newActiveFilters.push({
+            id: generateId(),
+            type: 'filter',
+            filterType: 'skill',
+            value: skillId,
+            label: skill.name
+          });
+        }
+      });
+
+      // Добавляем фильтр по полу
+      if (newFilters.gender !== 'any') {
+        newActiveFilters.push({
+          id: generateId(),
+          type: 'filter',
+          filterType: 'gender',
+          value: newFilters.gender,
+          label: newFilters.gender === 'male' ? 'Мужской' : 'Женский'
+        });
+      }
+
+      // Добавляем фильтры по городам
+      newFilters.cityIds.forEach((cityId) => {
+        const city = cities.find((c) => c.id === cityId);
+        if (city) {
+          newActiveFilters.push({
+            id: generateId(),
+            type: 'filter',
+            filterType: 'city',
+            value: cityId,
+            label: city.location
+          });
+        }
+      });
+
+      // Устанавливаем активные фильтры
+      setActiveFilters((prev) => {
+        // Сохраняем фильтры секций
+        const sectionFilters = prev.filter((f) => f.type === 'section');
+        return [...sectionFilters, ...newActiveFilters];
+      });
+
+      // Если есть фильтры, показываем секцию "Подходящие предложения"
+      if (newActiveFilters.length > 0) {
+        setActiveSection(null);
+      }
+    },
+    [categories, cities]
+  );
+
+  // Обработчик сброса всех фильтров
+  const handleResetFilters = useCallback(() => {
+    setFilters({
+      type: 'any',
+      skillIds: [],
+      gender: 'any',
+      cityIds: []
+    });
+    setActiveFilters((prev) => prev.filter((f) => f.type === 'section'));
+  }, []);
+
+  // Обработчик удаления чипса
+  const handleRemoveFilter = useCallback(
+    (filter: ActiveFilter) => {
+      removeActiveFilter(filter.id);
+
+      if (filter.type === 'section') {
+        // Если удаляем фильтр секции, скрываем секцию
+        setActiveSection(null);
+      } else if (filter.filterType === 'type') {
+        setFilters((prev) => ({ ...prev, type: 'any' }));
+      } else if (filter.filterType === 'skill') {
+        setFilters((prev) => ({
+          ...prev,
+          skillIds: prev.skillIds.filter((id) => id !== filter.value)
+        }));
+      } else if (filter.filterType === 'gender') {
+        setFilters((prev) => ({ ...prev, gender: 'any' }));
+      } else if (filter.filterType === 'city') {
+        setFilters((prev) => ({
+          ...prev,
+          cityIds: prev.cityIds.filter((id) => id !== filter.value)
+        }));
+      }
+    },
+    [removeActiveFilter]
+  );
+
+  // Обработчик "Смотреть все" для популярного
+  const handleShowAllPopular = useCallback(() => {
+    setActiveFilters((prev) => [
+      ...prev.filter((f) => !(f.type === 'section' && f.section === 'popular')),
+      {
+        id: generateId(),
+        type: 'section',
+        filterType: 'section',
+        value: 'popular',
+        label: 'Популярное',
+        section: 'popular'
+      }
+    ]);
+    setActiveSection('popular');
+  }, []);
+
+  // Обработчик "Смотреть все" для нового
+  const handleShowAllNewest = useCallback(() => {
+    setActiveFilters((prev) => [
+      ...prev.filter((f) => !(f.type === 'section' && f.section === 'newest')),
+      {
+        id: generateId(),
+        type: 'section',
+        filterType: 'section',
+        value: 'newest',
+        label: 'Новое',
+        section: 'newest'
+      }
+    ]);
+    setActiveSection('newest');
   }, []);
 
   // Обработчик переключения порядка сортировки
@@ -61,14 +223,12 @@ export const HomePage = () => {
     setSortOrder((prev) => (prev === 'newest' ? 'oldest' : 'newest'));
   }, []);
 
-  // Функция для фильтрации пользователей по выбранным фильтрам
+  // Функция для фильтрации пользователей
   const filterUsersByFilters = useCallback(
     (users: typeof usersWithDetails, filters: FiltersState) => {
       return users.filter((user) => {
-        // Фильтр по типу (learn/teach/any)
         if (filters.type !== 'any') {
           if (filters.type === 'learn') {
-            // Для типа 'learn' проверяем, что у пользователя есть выбранные навыки в skillsLearn
             if (filters.skillIds.length > 0) {
               const userLearnSkillIds = user.skillsLearn.map(
                 (skill) => skill.subcategoryId
@@ -78,11 +238,9 @@ export const HomePage = () => {
               );
               if (!hasMatchingLearnSkills) return false;
             } else {
-              // Если навыки не выбраны, проверяем, что вообще есть навыки в skillsLearn
               if (user.skillsLearn.length === 0) return false;
             }
           } else if (filters.type === 'teach') {
-            // Для типа 'teach' проверяем, что у пользователя есть выбранные навыки в skillsTeach
             if (filters.skillIds.length > 0) {
               const userTeachSkillIds = user.skillsTeach.map(
                 (skill) => skill.subcategoryId
@@ -92,18 +250,15 @@ export const HomePage = () => {
               );
               if (!hasMatchingTeachSkills) return false;
             } else {
-              // Если навыки не выбраны, проверяем, что вообще есть навыки в skillsTeach
               if (user.skillsTeach.length === 0) return false;
             }
           }
         }
 
-        // Фильтр по полу
         if (filters.gender !== 'any' && user.gender !== filters.gender) {
           return false;
         }
 
-        // Фильтр по городам
         if (
           filters.cityIds.length > 0 &&
           !filters.cityIds.includes(user.cityId)
@@ -111,10 +266,7 @@ export const HomePage = () => {
           return false;
         }
 
-        // Фильтр по навыкам (общий для всех случаев)
         if (filters.skillIds.length > 0) {
-          // Проверяем навыки в обеих категориях, если тип 'any'
-          // Или в конкретной категории, если тип уже учтен выше
           const userAllSkills = [
             ...user.skillsTeach.map((skill) => skill.subcategoryId),
             ...user.skillsLearn.map((skill) => skill.subcategoryId)
@@ -133,87 +285,87 @@ export const HomePage = () => {
     []
   );
 
-  // Отфильтрованные пользователи для секции "Подходящие предложения"
-  const filteredUsers = useMemo(() => {
-    return filterUsersByFilters(usersWithDetails, filters);
-  }, [usersWithDetails, filters, filterUsersByFilters]);
+  // Получаем пользователей для отображения - без сортировки
+  const getUsersToShow = useCallback(() => {
+    if (activeSection === 'popular') {
+      return usersWithDetails; // Возвращаем всех пользователей, сортировка будет в sortedFilteredUsers
+    } else if (activeSection === 'newest') {
+      return usersWithDetails; // Возвращаем всех пользователей, сортировка будет в sortedFilteredUsers
+    } else if (activeFilters.some((f) => f.type === 'filter')) {
+      return filterUsersByFilters(usersWithDetails, filters);
+    }
+    return [];
+  }, [
+    activeSection,
+    activeFilters,
+    usersWithDetails,
+    filters,
+    filterUsersByFilters
+  ]);
 
-  // Сортировка отфильтрованных пользователей в зависимости от порядка сортировки
+  // Отфильтрованные пользователи
+  const filteredUsers = useMemo(() => getUsersToShow(), [getUsersToShow]);
+
+  // Сортировка отфильтрованных пользователей - с учетом типа секции
   const sortedFilteredUsers = useMemo(() => {
-    const users = [...filteredUsers];
+    let users = [...filteredUsers];
 
+    // Если активна секция "Популярное" - сортируем по лайкам
+    if (activeSection === 'popular') {
+      return sortPopularUsers(users);
+    }
+
+    // Если активна секция "Новое" - сортируем по дате создания (новые к старым)
+    if (activeSection === 'newest') {
+      return sortNewestUsers(users);
+    }
+
+    // Для остальных случаев (фильтры) применяем сортировку по sortOrder
     if (sortOrder === 'newest') {
-      // От новых к старым
       return users.sort(
         (a, b) =>
           new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
       );
     } else {
-      // От старых к новым
       return users.sort(
         (a, b) =>
           new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
       );
     }
-  }, [filteredUsers, sortOrder]);
+  }, [filteredUsers, sortOrder, activeSection]);
 
   // Текст для кнопки сортировки
   const sortButtonText =
     sortOrder === 'newest' ? 'Сначала старые' : 'Сначала новые';
 
-  // Проверяем, есть ли активные фильтры
-  const hasActiveFilters = useMemo(() => {
-    return (
-      filters.type !== 'any' ||
-      filters.gender !== 'any' ||
-      filters.skillIds.length > 0 ||
-      filters.cityIds.length > 0
-    );
-  }, [filters]);
+  // Проверяем, нужно ли показывать обычные секции
+  const shouldShowRegularSections = useMemo(() => {
+    return activeFilters.length === 0 && !activeSection;
+  }, [activeFilters.length, activeSection]);
 
-  // Инициализация пагинации для секции "Рекомендуем"
-  const {
-    currentItems: recommendedUsers,
-    loadMore,
-    hasMore
-  } = useInfiniteItems(usersWithDetails, 20);
-
-  // Создаем ref (указатель на элемент, по которому срабатывает триггер)
-  const loadMoreRef = useRef<HTMLDivElement | null>(null);
-
-  // Функция-обработчик подгрузки данных, которая срабатывает при достижении триггера
+  // Обработчик подгрузки данных
   const handleLoadMore = useCallback(() => {
     console.log('✅ Сработала пагинация');
     loadMore();
   }, [loadMore]);
 
-  // Подключаем хук для реализации бесконечной прокрутки
+  // Подключаем бесконечную прокрутку
   useInfiniteScroll({
     targetRef: loadMoreRef,
     onIntersect: handleLoadMore,
     enabled: hasMore
   });
 
-  // Мемоизированный массив пользователей, отсортированных по популярности
+  // Мемоизированные массивы
   const popularUsers = useMemo(
     () => sortPopularUsers(usersWithDetails),
     [usersWithDetails]
   );
 
-  // Мемоизированный массив пользователей, отсортированных по новизне
   const newestUsers = useMemo(
     () => sortNewestUsers(usersWithDetails),
     [usersWithDetails]
   );
-
-  // Обработчики для кнопок "Смотреть все"
-  const handleShowAllPopular = useCallback(() => {
-    setShowAllPopular(true);
-  }, []);
-
-  const handleShowAllNewest = useCallback(() => {
-    setShowAllNewest(true);
-  }, []);
 
   return (
     <main className={styles.page}>
@@ -222,33 +374,47 @@ export const HomePage = () => {
         <Filters
           categories={categories}
           cities={cities}
+          filters={filters}
           onFiltersChange={handleFiltersChange}
+          onResetFilters={handleResetFilters}
         />
       </aside>
 
       <div className={styles.content}>
+        {/* Контейнер для чипсов */}
+        {activeFilters.length > 0 && (
+          <div className={styles.chipsContainer}>
+            {activeFilters.map((filter) => (
+              <FilterChip
+                key={filter.id}
+                label={filter.label}
+                onRemove={() => handleRemoveFilter(filter)}
+                className={styles.chip}
+              />
+            ))}
+          </div>
+        )}
+
         {/* Показываем обычные секции только если нет активных фильтров */}
-        {!hasActiveFilters ? (
+        {shouldShowRegularSections ? (
           <>
             {/* Секция "Популярное" */}
             <section className={styles.section}>
               <div className={styles.sectionHeader}>
                 <h2 className={styles.sectionName}>Популярное</h2>
-                {!showAllPopular && (
-                  <Button
-                    onClick={handleShowAllPopular}
-                    style='tertiary'
-                    type='button'
-                    iconName='chevronRight'
-                    iconPosition='right'
-                    iconAlt='Смотреть все'
-                  >
-                    Смотреть все
-                  </Button>
-                )}
+                <Button
+                  onClick={handleShowAllPopular}
+                  style='tertiary'
+                  type='button'
+                  iconName='chevronRight'
+                  iconPosition='right'
+                  iconAlt='Смотреть все'
+                >
+                  Смотреть все
+                </Button>
               </div>
               <UserCardList
-                users={showAllPopular ? popularUsers : popularUsers.slice(0, 3)} // показываем все или только 3
+                users={popularUsers.slice(0, 3)}
                 onLike={(id) => console.log('like', id)}
                 onMore={(id) => console.log('more', id)}
               />
@@ -258,21 +424,19 @@ export const HomePage = () => {
             <section className={styles.section}>
               <div className={styles.sectionHeader}>
                 <h2 className={styles.sectionName}>Новое</h2>
-                {!showAllNewest && (
-                  <Button
-                    onClick={handleShowAllNewest}
-                    style='tertiary'
-                    type='button'
-                    iconName='chevronRight'
-                    iconPosition='right'
-                    iconAlt='Смотреть все'
-                  >
-                    Смотреть все
-                  </Button>
-                )}
+                <Button
+                  onClick={handleShowAllNewest}
+                  style='tertiary'
+                  type='button'
+                  iconName='chevronRight'
+                  iconPosition='right'
+                  iconAlt='Смотреть все'
+                >
+                  Смотреть все
+                </Button>
               </div>
               <UserCardList
-                users={showAllNewest ? newestUsers : newestUsers.slice(0, 3)} // показываем все или только 3
+                users={newestUsers.slice(0, 3)}
                 onLike={(id) => console.log('like', id)}
                 onMore={(id) => console.log('more', id)}
               />
@@ -284,31 +448,36 @@ export const HomePage = () => {
                 <h2 className={styles.sectionName}>Рекомендуем</h2>
               </div>
               <UserCardList
-                users={recommendedUsers} // все карточки
+                users={recommendedUsers}
                 onLike={(id) => console.log('like', id)}
                 onMore={(id) => console.log('more', id)}
               />
-              {/* Триггер для загрузки следующей порции элементов при сколле для IntersectionObserver */}
               {hasMore && <div ref={loadMoreRef} />}
             </section>
           </>
         ) : (
-          // Секция "Подходящие предложения" - показываем только при активных фильтрах
+          // Секция "Подходящие предложения" - показываем при активных фильтрах
           <section className={styles.section}>
             <div className={styles.sectionHeader}>
               <h2 className={styles.sectionName}>
-                Подходящие предложения: {sortedFilteredUsers.length}
+                {activeSection
+                  ? activeSection === 'popular'
+                    ? 'Популярное'
+                    : 'Новое'
+                  : `Подходящие предложения: ${sortedFilteredUsers.length}`}
               </h2>
-              <Button
-                onClick={handleSortToggle}
-                style='tertiary'
-                type='button'
-                iconName='sort'
-                iconPosition='left'
-                iconAlt={sortButtonText}
-              >
-                {sortButtonText}
-              </Button>
+              {!activeSection && sortedFilteredUsers.length > 0 && (
+                <Button
+                  onClick={handleSortToggle}
+                  style='tertiary'
+                  type='button'
+                  iconName='sort'
+                  iconPosition='left'
+                  iconAlt={sortButtonText}
+                >
+                  {sortButtonText}
+                </Button>
+              )}
             </div>
             {sortedFilteredUsers.length > 0 ? (
               <UserCardList
