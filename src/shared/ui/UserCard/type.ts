@@ -1,4 +1,4 @@
-import type { TUserWithDetails } from '../../../features/users/useUsersWithDetails.ts';
+import type { TUserWithDetails } from '../../../features/users';
 
 export interface UserCardProps {
   user: TUserWithDetails;
@@ -10,4 +10,6 @@ export interface UserCardProps {
   showLinkButton?: boolean;
   onLike?: (id: string) => void;
   onMore?: (id: string) => void;
+  isLiked?: boolean; // ← добавить
+  likesCount?: number; // ← добавить
 }

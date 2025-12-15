@@ -65,6 +65,9 @@ export const HomePage = () => {
 
   const loadMoreRef = useRef<HTMLDivElement | null>(null);
 
+  // Состояние лайков
+  const [likedUsers, setLikedUsers] = useState<Record<string, boolean>>({});
+
   // Генерация ID для фильтров
   const generateId = () => Math.random().toString(36).substring(2);
 
@@ -222,6 +225,26 @@ export const HomePage = () => {
   const handleSortToggle = useCallback(() => {
     setSortOrder((prev) => (prev === 'newest' ? 'oldest' : 'newest'));
   }, []);
+
+  // Обработчик лайка
+  const handleLikeToggle = useCallback((userId: string) => {
+    setLikedUsers((prev) => ({
+      ...prev,
+      [userId]: !prev[userId]
+    }));
+  }, []);
+
+  // Функция для получения данных о лайках пользователя
+  const getUserLikeData = useCallback(
+    (userId: string, userLikes: number) => {
+      const isLiked = likedUsers[userId] || false;
+      return {
+        isLiked,
+        likesCount: isLiked ? userLikes + 1 : userLikes
+      };
+    },
+    [likedUsers]
+  );
 
   // Функция для фильтрации пользователей
   const filterUsersByFilters = useCallback(
@@ -415,8 +438,9 @@ export const HomePage = () => {
               </div>
               <UserCardList
                 users={popularUsers.slice(0, 3)}
-                onLike={(id) => console.log('like', id)}
+                onLike={handleLikeToggle}
                 onMore={(id) => console.log('more', id)}
+                getUserLikeData={getUserLikeData}
               />
             </section>
 
@@ -437,8 +461,9 @@ export const HomePage = () => {
               </div>
               <UserCardList
                 users={newestUsers.slice(0, 3)}
-                onLike={(id) => console.log('like', id)}
+                onLike={handleLikeToggle}
                 onMore={(id) => console.log('more', id)}
+                getUserLikeData={getUserLikeData}
               />
             </section>
 
@@ -449,8 +474,9 @@ export const HomePage = () => {
               </div>
               <UserCardList
                 users={recommendedUsers}
-                onLike={(id) => console.log('like', id)}
+                onLike={handleLikeToggle}
                 onMore={(id) => console.log('more', id)}
+                getUserLikeData={getUserLikeData}
               />
               {hasMore && <div ref={loadMoreRef} />}
             </section>
@@ -482,8 +508,9 @@ export const HomePage = () => {
             {sortedFilteredUsers.length > 0 ? (
               <UserCardList
                 users={sortedFilteredUsers}
-                onLike={(id) => console.log('like', id)}
+                onLike={handleLikeToggle}
                 onMore={(id) => console.log('more', id)}
+                getUserLikeData={getUserLikeData}
               />
             ) : (
               <div className={styles.noResults}>

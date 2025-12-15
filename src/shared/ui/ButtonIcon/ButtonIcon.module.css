@@ -20,3 +20,7 @@
 .icon {
   flex-shrink: 0;
 }
+
+.liked {
+  color: var(--accent);
+}
