@@ -10,14 +10,7 @@ export const MenuLink = ({
   className,
   ...rest
 }: MenuLinkProps) => (
-  <NavLink
-    to={href}
-    className={({ isActive }) =>
-      clsx(styles.link, isActive && styles.link_active, className)
-    }
-    end
-    {...rest}
-  >
+  <NavLink to={href} className={clsx(styles.link, className)} end {...rest}>
     {label}
   </NavLink>
 );

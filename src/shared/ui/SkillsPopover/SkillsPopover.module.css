@@ -1,6 +1,5 @@
 .container {
   max-width: 1140px;
-  position: relative;
 }
 
 .openButton:hover {
@@ -11,9 +10,10 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 40px;
-  max-width: 1140px;
+  max-width: 950px;
   width: 100%;
-  border: 1px solid var(--caption);
+  max-height: 800px;
+  outline: 1px solid var(--caption);
   border-radius: 12px;
   background-color: var(--input);
   padding-block: 60px;
@@ -21,8 +21,12 @@
   padding-inline-end: 10px;
   position: absolute;
   z-index: 10;
-  top: 46px;
-  left: -26%;
+  top: 72px;
+  left: 2.5%;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
 }
 
 .category {

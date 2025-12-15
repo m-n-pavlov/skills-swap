@@ -6,12 +6,5 @@
 
 .link:hover {
   cursor: pointer;
-  color: var(--button-hover);
-}
-
-.link_active {
   color: var(--accent);
-}
-.link:visited {
-  color: var(--text);
 }

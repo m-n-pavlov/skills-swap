@@ -1,0 +1,77 @@
+button {
+  text-decoration: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  background-color: transparent;
+}
+
+a {
+  color: inherit;
+}
+
+.container {
+  position: relative;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+}
+
+.button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.user_name {
+  font-family: var(--font-family-roboto-regular);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0.02em;
+  color: var(--text);
+}
+
+.user_name:hover {
+  color: var(--button-hover);
+}
+
+.user_name:active {
+  color: var(--button-pressed);
+}
+
+.user_avatar {
+  flex-shrink: 0;
+}
+
+.buttonLogout {
+  display: flex;
+  column-gap: 8px;
+}
+
+.popover {
+  background-color: var(--input);
+  width: 260px;
+  border-radius: 12px;
+  border: 1px solid var(--caption);
+  padding: 40px;
+  position: absolute;
+  top: 72px;
+  left: -160px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0.02em;
+  color: var(--text);
+}
+
+.linkProfile:hover,
+.buttonLogout:hover {
+  color: var(--accent);
+  transition: color 0.2s;
+}

@@ -4,7 +4,5 @@ import styles from './LogoTitle.module.css';
 
 export const LogoTitle: FC<LogoTitleProps> = ({ titleName, as = 'h1' }) => {
   const TagTitle = as;
-  return (
-    <TagTitle className={styles['Logo-title__text']}>{titleName}</TagTitle>
-  );
+  return <TagTitle className={styles.logoTitle}>{titleName}</TagTitle>;
 };

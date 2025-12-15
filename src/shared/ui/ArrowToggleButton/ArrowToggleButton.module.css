@@ -5,7 +5,9 @@
   border: none;
   cursor: pointer;
   font: inherit;
-  transition: opacity 0.2s ease;
+  transition: color 0.2s;
+  text-wrap: nowrap;
+  color: inherit;
 }
 
 .label {

@@ -44,7 +44,7 @@ const NotificationButton = ({ isHaveNotification }: TNotificationButton) => {
         name={'notification'}
         iconName={'notification'}
         className={clsx(styles.buttonIcon)}
-        onClick={() => setIsOpen(true)}
+        onClick={() => setIsOpen(!isOpen)}
       >
         <Icon name={'notification'} alt={'notification'} />
       </ButtonIcon>
