@@ -5,8 +5,11 @@ export interface HeaderProps {
   isAuth: boolean;
   user?: TUser;
   categories: TCategory[];
-  onChangeInput: () => void;
   hrefRegistration: string;
   hrefLogin: string;
   hrefFaivaritsLink: string;
+  hrefProfile: string;
+  hrefAbout: string;
+  onChangeInput: () => void;
+  handleLogOut: () => void;
 }

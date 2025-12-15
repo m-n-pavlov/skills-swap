@@ -10,7 +10,7 @@ import {
 import { LoginButton } from '../../shared/ui/LoginButton';
 import { NotificationButton } from '../../shared/ui/NotificationButton';
 import { FaivaritsLinkUI } from '../../shared/ui/FaivaritsLink';
-import { UserLinkUI } from '../../shared/ui/UserLink';
+import { UserButtonUI } from '../../shared/ui/UserButton';
 import { SkillsPopover } from '../../shared/ui/SkillsPopover';
 
 export const Header: React.FC<HeaderProps> = ({
@@ -18,15 +18,18 @@ export const Header: React.FC<HeaderProps> = ({
   user,
   categories,
   onChangeInput,
+  hrefAbout,
   hrefRegistration,
   hrefLogin,
-  hrefFaivaritsLink
+  hrefFaivaritsLink,
+  hrefProfile,
+  handleLogOut
 }) => {
   return (
     <div className={styles.header}>
       <Logo />
       <div className={styles.menu}>
-        <MenuLink label='О проекте' href='/about' className={styles.about} />
+        <MenuLink label='О проекте' href={hrefAbout} className={styles.about} />
         <SkillsPopover categories={categories} />
       </div>
       <SearchInput
@@ -51,11 +54,12 @@ export const Header: React.FC<HeaderProps> = ({
             <NotificationButton />
             <FaivaritsLinkUI href={hrefFaivaritsLink} iconName='likeEmpty' />
           </div>
-          <UserLinkUI
-            href='#'
+          <UserButtonUI
             size='small'
             avatarUrl={user?.avatarUrl}
             name={user?.name}
+            hrefProfile={hrefProfile}
+            handleLogOut={handleLogOut}
           />
         </div>
       )}

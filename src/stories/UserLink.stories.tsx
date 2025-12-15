@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { MemoryRouter } from 'react-router-dom';
-import { UserLinkUI } from '../shared/ui/UserLink';
+import { UserButtonUI } from '../shared/ui/UserButton';
 
-const meta: Meta<typeof UserLinkUI> = {
+const meta: Meta<typeof UserButtonUI> = {
   title: 'Shared/UserLinkUI',
-  component: UserLinkUI,
+  component: UserButtonUI,
   args: {
     href: '/profile',
     size: 'small'
@@ -22,7 +22,7 @@ const meta: Meta<typeof UserLinkUI> = {
 
 export default meta;
 
-type Story = StoryObj<typeof UserLinkUI>;
+type Story = StoryObj<typeof UserButtonUI>;
 
 export const Guest: Story = {
   args: {
