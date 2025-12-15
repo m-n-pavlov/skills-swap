@@ -3,7 +3,6 @@ import styles from './header.module.css';
 import {
   ButtonToggleTheme,
   Logo,
-  MenuButton,
   MenuLink,
   RegistrationButton,
   SearchInput
@@ -12,22 +11,27 @@ import { LoginButton } from '../../shared/ui/LoginButton';
 import { NotificationButton } from '../../shared/ui/NotificationButton';
 import { FaivaritsLinkUI } from '../../shared/ui/FaivaritsLink';
 import { UserLinkUI } from '../../shared/ui/UserLink';
+import { SkillsPopover } from '../../shared/ui/SkillsPopover';
 
-export const Header: React.FC<HeaderProps> = ({ isAuth = false, user }) => {
+export const Header: React.FC<HeaderProps> = ({
+  isAuth = false,
+  user,
+  categories,
+  onChangeInput,
+  hrefRegistration,
+  hrefLogin,
+  hrefFaivaritsLink
+}) => {
   return (
     <div className={styles.header}>
       <Logo />
       <div className={styles.menu}>
-        <MenuLink label='О проекте' href='#' className={styles.about} />
-        <MenuButton
-          label='Все навыки'
-          iconName='chevronDown'
-          className={styles.all}
-        />
+        <MenuLink label='О проекте' href='/about' className={styles.about} />
+        <SkillsPopover categories={categories} />
       </div>
       <SearchInput
         value=''
-        onChange={() => {}}
+        onChange={onChangeInput}
         placeholder='Искать навык'
         name='search'
       />
@@ -35,8 +39,8 @@ export const Header: React.FC<HeaderProps> = ({ isAuth = false, user }) => {
         <>
           <ButtonToggleTheme />
           <div className={styles.authButtons}>
-            <LoginButton />
-            <RegistrationButton />
+            <LoginButton to={hrefLogin} />
+            <RegistrationButton to={hrefRegistration} />
           </div>
         </>
       )}
@@ -45,7 +49,7 @@ export const Header: React.FC<HeaderProps> = ({ isAuth = false, user }) => {
           <div className={styles.icons}>
             <ButtonToggleTheme />
             <NotificationButton />
-            <FaivaritsLinkUI href='/_like_' iconName='likeEmpty' />
+            <FaivaritsLinkUI href={hrefFaivaritsLink} iconName='likeEmpty' />
           </div>
           <UserLinkUI
             href='#'
