@@ -26,8 +26,10 @@ export const useStep3Form = () => {
     step3?.skillSubCategory ?? ''
   );
   const [description, setDescription] = useState(step3?.description ?? '');
-  const [images, setImages] = useState<File[]>(step3?.images ?? []);
-  const [imagesPreview, setImagesPreview] = useState<string[]>([]);
+  const [images, setImages] = useState<File[]>([]);
+  const [imagesPreview, setImagesPreview] = useState<string[]>(
+    step3?.imagesBase64 ?? []
+  );
   const [isImagesConverting, setImagesConverting] = useState(false);
 
   const [skillNameError, setSkillNameError] = useState<string | null>(null);
@@ -49,27 +51,8 @@ export const useStep3Form = () => {
     setSkillCategory(step3?.skillCategory ?? '');
     setSkillSubCategory(step3?.skillSubCategory ?? '');
     setDescription(step3?.description ?? '');
-    setImages(step3?.images ?? []);
-
-    const restorePreviews = async () => {
-      const files = step3?.images ?? [];
-      if (!files.length) {
-        setImagesPreview([]);
-        return;
-      }
-
-      setImagesConverting(true);
-      try {
-        const previews = await Promise.all(files.map((f) => fileToBase64(f)));
-        setImagesPreview(previews);
-      } catch {
-        setImagesPreview([]);
-      } finally {
-        setImagesConverting(false);
-      }
-    };
-
-    void restorePreviews();
+    setImagesPreview(step3?.imagesBase64 ?? []);
+    setImages([]);
   }, [currentStep, step3]);
 
   const handleSkillNameChange = useCallback((value: string) => {
@@ -135,7 +118,7 @@ export const useStep3Form = () => {
     const skillCategoryErr = validateSkillCategory(skillCategory);
     const skillSubCategoryErr = validateSkillSubCategory(skillSubCategory);
     const descriptionErr = validateSkillDescription(description);
-    const imagesErr = validateSkillImages(images);
+    const imagesErr = validateSkillImages(imagesPreview);
 
     setSkillNameError(skillNameErr);
     setSkillCategoryError(skillCategoryErr);
@@ -171,13 +154,20 @@ export const useStep3Form = () => {
           skillCategory,
           skillSubCategory,
           description,
-          images
+          imagesBase64: imagesPreview
         })
       );
 
       submitting.current = false;
     },
-    [skillName, skillCategory, skillSubCategory, description, images, dispatch]
+    [
+      skillName,
+      skillCategory,
+      skillSubCategory,
+      description,
+      imagesPreview,
+      dispatch
+    ]
   );
 
   const isFormValid = Boolean(
@@ -185,7 +175,7 @@ export const useStep3Form = () => {
     skillCategory &&
     skillSubCategory &&
     description &&
-    images.length > 0 &&
+    imagesPreview.length > 0 &&
     !skillNameError &&
     !skillCategoryError &&
     !skillSubCategoryError &&
@@ -199,6 +189,7 @@ export const useStep3Form = () => {
     skillCategory,
     skillSubCategory,
     description,
+
     images,
     imagesPreview,
     isImagesConverting,

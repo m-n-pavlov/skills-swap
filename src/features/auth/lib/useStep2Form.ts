@@ -20,7 +20,6 @@ type GenderOption = 'male' | 'female' | 'other' | '';
 
 export const useStep2Form = () => {
   const dispatch = useAppDispatch();
-
   const { step2, currentStep } = useAppSelector(selectRegistration);
 
   const [name, setName] = useState(step2?.name ?? '');
@@ -31,9 +30,10 @@ export const useStep2Form = () => {
   const [subCategories, setSubCategories] = useState(
     step2?.subCategories ?? ''
   );
-  const [avatar, setAvatar] = useState<File | null>(step2?.avatar ?? null);
-
-  const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
+  const [avatarFile, setAvatarFile] = useState<File | null>(null);
+  const [avatarPreview, setAvatarPreview] = useState<string | null>(
+    step2?.avatarBase64 ?? null
+  );
   const [isAvatarConverting, setIsAvatarConverting] = useState(false);
 
   const [nameError, setNameError] = useState<string | null>(null);
@@ -55,25 +55,8 @@ export const useStep2Form = () => {
     setCity(step2?.city ?? '');
     setCategories(step2?.categories ?? '');
     setSubCategories(step2?.subCategories ?? '');
-    setAvatar(step2?.avatar ?? null);
-
-    const restorePreview = async () => {
-      if (!step2?.avatar) {
-        setAvatarPreview(null);
-        return;
-      }
-      setIsAvatarConverting(true);
-      try {
-        const base64 = await fileToBase64(step2.avatar);
-        setAvatarPreview(base64);
-      } catch {
-        setAvatarPreview(null);
-      } finally {
-        setIsAvatarConverting(false);
-      }
-    };
-
-    void restorePreview();
+    setAvatarPreview(step2?.avatarBase64 ?? null);
+    setAvatarFile(null);
   }, [currentStep, step2]);
 
   const handleNameChange = useCallback((value: string) => {
@@ -111,20 +94,20 @@ export const useStep2Form = () => {
 
   const handleAvatarChange = useCallback(async (file: File | null) => {
     if (!file) {
-      setAvatar(null);
+      setAvatarFile(null);
       setAvatarPreview(null);
       setAvatarError(validateAvatar(null));
       return;
     }
 
     if (!isImageFile(file)) {
-      setAvatar(null);
+      setAvatarFile(null);
       setAvatarPreview(null);
       setAvatarError('Загрузите файл изображения');
       return;
     }
 
-    setAvatar(file);
+    setAvatarFile(file);
     setAvatarError(null);
 
     setIsAvatarConverting(true);
@@ -145,7 +128,7 @@ export const useStep2Form = () => {
     const cityErr = validateCity(city);
     const categoryErr = validateCategory(categories);
     const subCatErr = validateSubCategory(subCategories);
-    const avatarErr = validateAvatar(avatar);
+    const avatarErr = validateAvatar(avatarPreview ? ({} as File) : null);
 
     setNameError(nameErr);
     setDateError(dateErr);
@@ -169,7 +152,6 @@ export const useStep2Form = () => {
   const handleSubmit = useCallback(
     (e?: SyntheticEvent) => {
       e?.preventDefault();
-
       if (submitting.current) return;
       submitting.current = true;
 
@@ -187,13 +169,22 @@ export const useStep2Form = () => {
           city,
           categories,
           subCategories,
-          avatar
+          avatarBase64: avatarPreview
         })
       );
 
       submitting.current = false;
     },
-    [name, date, gender, city, categories, subCategories, avatar, dispatch]
+    [
+      name,
+      date,
+      gender,
+      city,
+      categories,
+      subCategories,
+      avatarPreview,
+      dispatch
+    ]
   );
 
   const isFormValid = Boolean(
@@ -203,14 +194,15 @@ export const useStep2Form = () => {
     city &&
     categories &&
     subCategories &&
-    avatar &&
+    avatarPreview &&
     !nameError &&
     !dateError &&
     !genderError &&
     !cityError &&
     !categoryError &&
     !subCategoryError &&
-    !avatarError
+    !avatarError &&
+    !isAvatarConverting
   );
 
   return {
@@ -220,7 +212,8 @@ export const useStep2Form = () => {
     city,
     categories,
     subCategories,
-    avatar,
+
+    avatar: avatarFile,
     avatarPreview,
     isAvatarConverting,
 

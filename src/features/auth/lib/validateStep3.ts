@@ -31,10 +31,9 @@ export const validateSkillDescription = (value: string): string | null => {
   return null;
 };
 
-export const validateSkillImages = (images: File[]): string | null => {
-  if (!images || images.length === 0) {
-    return SKILL_IMAGES_ERROR_TEXT;
+export const validateSkillImages = (imagesBase64: string[]): string | null => {
+  if (!imagesBase64 || imagesBase64.length === 0) {
+    return 'Добавьте хотя бы одну фотографию';
   }
-
   return null;
 };

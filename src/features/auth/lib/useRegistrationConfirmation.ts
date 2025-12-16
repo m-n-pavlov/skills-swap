@@ -19,6 +19,8 @@ import { AUTH_REDIRECT_AFTER_LOGIN } from '../config/authConfig';
 import type { TRegisterPayload } from '../../../api/auth/authRegistration';
 import type { TSkill } from '../../../entities/skills';
 
+import { base64ToFile } from '../../../shared/utils/fileUtils';
+
 type LocationState = { from?: Location };
 
 export const useRegistrationConfirmation = () => {
@@ -51,19 +53,21 @@ export const useRegistrationConfirmation = () => {
 
   const areAllStepsFilled = useCallback(() => {
     const { step1, step2, step3 } = registration;
+
     return Boolean(
-      step1?.email &&
-      step1?.password &&
+      step1.email &&
+      step1.password &&
       step2 &&
       step3 &&
-      step3.images &&
-      step3.images.length > 0
+      step2.avatarBase64 &&
+      step3.imagesBase64 &&
+      step3.imagesBase64.length > 0
     );
   }, [registration]);
 
   const payload: TRegisterPayload | null = useMemo(() => {
     const { step1, step2, step3 } = registration;
-    if (!step1?.email || !step1?.password || !step2 || !step3) return null;
+    if (!step1.email || !step1.password || !step2 || !step3) return null;
 
     const skillsTeach: TSkill = {
       id: 'temp-skill',
@@ -74,6 +78,14 @@ export const useRegistrationConfirmation = () => {
       subcategoryId: step3.skillSubCategory,
       images: []
     };
+
+    const avatarFile = step2.avatarBase64
+      ? base64ToFile(step2.avatarBase64, 'avatar.png')
+      : null;
+
+    const skillsImageFile = step3.imagesBase64?.[0]
+      ? base64ToFile(step3.imagesBase64[0], 'skill.png')
+      : null;
 
     return {
       email: step1.email,
@@ -90,8 +102,8 @@ export const useRegistrationConfirmation = () => {
       learningSubCategoryId: step2.subCategories,
 
       skillsTeach,
-      avatarFile: step2.avatar,
-      skillsImageFile: step3.images?.[0] ?? null
+      avatarFile,
+      skillsImageFile
     };
   }, [registration]);
 
@@ -115,7 +127,6 @@ export const useRegistrationConfirmation = () => {
 
       setIsOpen(false);
       navigate(redirectTo, { replace: true });
-    } catch {
     } finally {
       submitting.current = false;
     }
