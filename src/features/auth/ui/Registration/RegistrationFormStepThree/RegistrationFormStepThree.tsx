@@ -16,6 +16,7 @@ export const RegistrationFormStepThree: FC<RegistrFormStepThreeProps> = ({
   onSubmit,
   onBack,
   isLoading,
+  isFormValid,
   className,
   categoryOptions,
   subcategoryOptions,
@@ -110,7 +111,7 @@ export const RegistrationFormStepThree: FC<RegistrFormStepThreeProps> = ({
           type='submit'
           style='primary'
           className={styles.buttonNext}
-          disabled={isLoading}
+          disabled={isLoading || !isFormValid}
         >
           Продолжить
         </Button>

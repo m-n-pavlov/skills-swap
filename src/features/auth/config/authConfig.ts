@@ -1,6 +1,6 @@
 // Куда перенаправлять пользователя после успешного логина,
 // если нет "from" из location.state
-export const AUTH_REDIRECT_AFTER_LOGIN = '/profile';
+export const AUTH_REDIRECT_AFTER_LOGIN = '/';
 
 // Куда отправлять после выхода
 export const AUTH_REDIRECT_AFTER_LOGOUT = '/login';

@@ -5,8 +5,6 @@ import type { ModalProps } from './type';
 
 export const Modal = React.memo(
   ({ isOpen, onClose, children, size = 'medium' }: ModalProps) => {
-    if (!isOpen) return null;
-
     const modalRef = useRef<HTMLDivElement>(null);
 
     const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -45,6 +43,8 @@ export const Modal = React.memo(
         document.body.style.overflow = '';
       };
     }, []);
+
+    if (!isOpen) return null;
 
     const modalSize = styles[`${size}-modal`]; // установка размера модалки
 

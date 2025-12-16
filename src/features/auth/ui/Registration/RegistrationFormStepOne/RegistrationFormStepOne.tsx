@@ -7,12 +7,12 @@ export const RegistrationFormStepOne: FC<RegistrFormStepOneProps> = ({
   onChange,
   onSubmit,
   isLoading,
+  isFormValid,
   className,
   emailErrorText,
   passwordErrorText,
   passwordStatusText
 }) => {
-  // просто пробрасываем onSubmit наверх – в RegistrationPage там уже валидация и переход на шаг 2
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     onSubmit(e);
   };
@@ -23,6 +23,7 @@ export const RegistrationFormStepOne: FC<RegistrFormStepOneProps> = ({
       onChange={onChange}
       onSubmit={handleSubmit}
       isLoading={isLoading}
+      isSubmitDisabled={!isFormValid}
       className={className}
       submitText='Далее'
       showRegisterLink={false}
@@ -31,7 +32,6 @@ export const RegistrationFormStepOne: FC<RegistrFormStepOneProps> = ({
       emailErrorText={emailErrorText}
       passwordErrorText={passwordErrorText}
       passwordStatusText={passwordStatusText}
-      // globalErrorText здесь не передаём — это только для логина
     />
   );
 };

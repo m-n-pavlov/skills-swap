@@ -5,6 +5,8 @@
   padding: 40px 0;
   width: 100%;
   background: var(--background, #f9faf5);
+  height: 100vh;
+  overflow-y: auto;
 }
 
 .title {

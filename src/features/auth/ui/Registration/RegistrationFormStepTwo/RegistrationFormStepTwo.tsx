@@ -12,16 +12,17 @@ import type { RegistrFormStepTwoProps } from './type';
 export const RegistrationFormStepTwo: FC<RegistrFormStepTwoProps> = ({
   values,
   onChange,
+  onAvatarChange,
   genderOptions,
   cityOptions,
   learningCategoryOptions,
   learningSubcategoryOptions,
+  isFormValid,
   onBack,
   onNext
 }) => {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // здесь потом добавишь валидацию, пока просто идём дальше
     onNext();
   };
 
@@ -32,9 +33,9 @@ export const RegistrationFormStepTwo: FC<RegistrFormStepTwoProps> = ({
         <AvatarWithAdd
           size='small'
           avatarUrl={values.avatarUrl}
-          onChange={(_file, previewUrl) =>
-            onChange('avatarUrl', previewUrl ?? '')
-          }
+          onChange={(file) => {
+            onAvatarChange?.(file);
+          }}
         />
       </div>
 
@@ -107,7 +108,12 @@ export const RegistrationFormStepTwo: FC<RegistrFormStepTwoProps> = ({
           Назад
         </Button>
 
-        <Button type='submit' style='primary' className={styles.buttonNext}>
+        <Button
+          type='submit'
+          style='primary'
+          className={styles.buttonNext}
+          disabled={!isFormValid}
+        >
           Продолжить
         </Button>
       </div>

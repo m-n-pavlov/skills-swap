@@ -1,5 +1,3 @@
-// src/features/auth/lib/validate.ts
-
 export const EMAIL_ERROR_TEXT = 'Введите корректный e-mail';
 export const PASSWORD_ERROR_TEXT =
   'Пароль должен содержать не менее 8 символов';
