@@ -7,7 +7,7 @@ import { genderOption } from '../../../utils/constans';
 import { TextArea } from '../../../shared/ui/TextArea';
 import { useState } from 'react';
 
-import style from './Person.module.css';
+import styles from './PersonForm.module.css';
 
 const mocksCity = [
   { label: 'Москва', value: 'Москва' },
@@ -29,8 +29,8 @@ export const PersonForm = ({
   };
 
   return (
-    <form className={style.form} onSubmit={handleSubmit}>
-      <section className={style.formSection}>
+    <form className={styles.form} onSubmit={handleSubmit}>
+      <section className={styles.formSection}>
         <Input
           label='Почта'
           name='email'
@@ -57,7 +57,7 @@ export const PersonForm = ({
           children={showPasswordInput ? 'Отменить' : 'Изменить пароль'}
           type='button'
           onClick={togglePasswordInput}
-          className={style.togglePassword}
+          className={styles.togglePassword}
         />
 
         <Input
@@ -70,7 +70,7 @@ export const PersonForm = ({
           type='text'
           value={formValue.name}
         />
-        <div className={style.wrap}>
+        <div className={styles.wrap}>
           <DateInput onChange={handleInputChange} value={formValue.birthday} />
           <DropdownInput
             label='Пол'
@@ -95,7 +95,7 @@ export const PersonForm = ({
           name='description'
           iconName='edit'
           placeholder='Коротко опишите, чему можете научить'
-          className={style.description}
+          className={styles.description}
           value={formValue.description}
           onChange={handleInputChange}
         />
@@ -103,16 +103,16 @@ export const PersonForm = ({
           type='submit'
           children='Сохранить'
           style='primary'
-          className={style.button}
+          className={styles.button}
           disabled={disabled}
         />
       </section>
-      <div className={style.avatarWrap}>
+      <div className={styles.avatarWrap}>
         <Avatar size='large' />
         <InputFile
           onChange={handleInputChange}
           variant='icon-only'
-          className={style.inputFile}
+          className={styles.inputFile}
         />
       </div>
     </form>
