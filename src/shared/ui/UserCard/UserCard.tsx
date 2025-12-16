@@ -14,7 +14,9 @@ export const UserCard = memo(function UserCard({
   onLike,
   onMore,
   isLiked,
-  likesCount
+  likesCount,
+  linkButtonActionType = 'navigate', // значение по умолчанию
+  linkButtonIconName
 }: UserCardProps) {
   // Используем значение по умолчанию для likesCount
   const displayLikesCount = likesCount ?? user.likes ?? 0;
@@ -116,16 +118,17 @@ export const UserCard = memo(function UserCard({
           );
         })()}
 
-      {/* Кнопка "Подробнее" */}
+      {/* Кнопка "Обмен предложен"/"Подробнее" */}
       {showLinkButton && (
         <LinkButton
           size='xl'
           style='primary'
           to='#'
           onClick={() => onMore?.(user.id)}
-        >
-          Подробнее
-        </LinkButton>
+          actionType={linkButtonActionType} // Прокидываем actionType
+          iconName={linkButtonIconName} // Прокидываем iconName
+        />
+        // children не передаем - LinkButton сам определит текст по actionType
       )}
     </li>
   );

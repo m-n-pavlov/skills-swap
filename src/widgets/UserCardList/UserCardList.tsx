@@ -7,7 +7,9 @@ export const UserCardList = memo(function UserCardList({
   users,
   onLike,
   onMore,
-  getUserLikeData
+  getUserLikeData,
+  linkButtonActionType = 'navigate', // значение по умолчанию
+  linkButtonIconName
 }: UserCardListProps) {
   return (
     <ul className={styles.userCardList}>
@@ -24,6 +26,8 @@ export const UserCardList = memo(function UserCardList({
             onMore={onMore}
             isLiked={likeData.isLiked}
             likesCount={likeData.likesCount}
+            linkButtonActionType={linkButtonActionType}
+            linkButtonIconName={linkButtonIconName}
           />
         );
       })}
