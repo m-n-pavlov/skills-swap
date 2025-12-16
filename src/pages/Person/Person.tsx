@@ -21,11 +21,6 @@ export const Person: FC = () => {
     <section className={styles.wrap}>
       <UserMenu />
       <PersonForm
-        /* formValue={}
-        handleInputChange={}
-        handleInputClick={}
-        handleSubmit={}
-        disabled={}*/
         formValue={mock.formValue}
         handleInputChange={() => console.log('cvbnm,')}
         handleInputClick={() => console.log('cvbnm,')}
