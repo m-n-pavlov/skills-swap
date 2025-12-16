@@ -1,4 +1,4 @@
-import { useCallback, useRef, useMemo, useState } from 'react';
+import { useCallback, useRef, useMemo, useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import styles from './HomePage.module.css';
 import Filters from '../../shared/ui/Filters/Filters.tsx';
@@ -11,6 +11,9 @@ import { selectAllCategories } from '../../app/store/slices/categoriesSlice/cate
 import { selectAllCities } from '../../app/store/slices/citiesSlice/citiesSelector.ts';
 import { useUsersWithDetails } from '../../features/users';
 import { sortNewestUsers, sortPopularUsers } from '../../features/users';
+import { selectCurrentUser } from '../../app/store/slices/authSlice/authSelector.ts'; // Импортируем селектор
+import { toggleLike } from '../../app/store/slices/authSlice/authSlice'; // Импортируем action
+import { useAppDispatch } from '../../shared/hooks';
 
 export type ModeFilter = 'any' | 'learn' | 'teach';
 export type GenderFilter = 'any' | 'male' | 'female';
@@ -35,8 +38,10 @@ export interface ActiveFilter {
 }
 
 export const HomePage = () => {
+  const dispatch = useAppDispatch();
   const categories = useSelector(selectAllCategories);
   const cities = useSelector(selectAllCities);
+  const currentUser = useSelector(selectCurrentUser); // Получаем авторизованного пользователя
   const usersWithDetails = useUsersWithDetails();
 
   // Состояние фильтров
@@ -56,7 +61,20 @@ export const HomePage = () => {
   // Состояние для порядка сортировки
   const [sortOrder, setSortOrder] = useState<'newest' | 'oldest'>('newest');
 
-  // Инициализация пагинации
+  // Состояние для синхронизации лайков с currentUser
+  const [likedUsers, setLikedUsers] = useState<Record<string, boolean>>({});
+
+  // Инициализируем likedUsers из currentUser при загрузке
+  useEffect(() => {
+    if (currentUser?.likes) {
+      const initialLikedUsers: Record<string, boolean> = {};
+      currentUser.likes.forEach((cardId: string) => {
+        initialLikedUsers[cardId] = true;
+      });
+      setLikedUsers(initialLikedUsers);
+    }
+  }, [currentUser]);
+
   const {
     currentItems: recommendedUsers,
     loadMore,
@@ -64,9 +82,6 @@ export const HomePage = () => {
   } = useInfiniteItems(usersWithDetails, 20);
 
   const loadMoreRef = useRef<HTMLDivElement | null>(null);
-
-  // Состояние лайков
-  const [likedUsers, setLikedUsers] = useState<Record<string, boolean>>({});
 
   // Генерация ID для фильтров
   const generateId = () => Math.random().toString(36).substring(2);
@@ -226,21 +241,52 @@ export const HomePage = () => {
     setSortOrder((prev) => (prev === 'newest' ? 'oldest' : 'newest'));
   }, []);
 
-  // Обработчик лайка
-  const handleLikeToggle = useCallback((userId: string) => {
-    setLikedUsers((prev) => ({
-      ...prev,
-      [userId]: !prev[userId]
-    }));
-  }, []);
+  // Обновленный обработчик лайка
+  const handleLikeToggle = useCallback(
+    async (cardId: string) => {
+      if (!currentUser) {
+        console.warn('Пользователь не авторизован');
+        return;
+      }
+
+      // Оптимистичное обновление UI
+      const isCurrentlyLiked = likedUsers[cardId] || false;
+      setLikedUsers((prev) => ({
+        ...prev,
+        [cardId]: !isCurrentlyLiked
+      }));
+
+      try {
+        // Отправляем действие в Redux
+        await dispatch(
+          toggleLike({
+            user: currentUser,
+            cardId
+          })
+        ).unwrap();
+
+        // После успешного обновления на сервере, синхронизируем с currentUser
+        // (это произойдет автоматически через Redux)
+      } catch (error) {
+        // В случае ошибки откатываем оптимистичное обновление
+        setLikedUsers((prev) => ({
+          ...prev,
+          [cardId]: isCurrentlyLiked
+        }));
+        console.error('Ошибка при обновлении лайка:', error);
+      }
+    },
+    [currentUser, likedUsers, dispatch]
+  );
 
   // Функция для получения данных о лайках пользователя
   const getUserLikeData = useCallback(
     (userId: string, userLikes: number) => {
       const isLiked = likedUsers[userId] || false;
+      const likesCount = isLiked ? userLikes + 1 : userLikes;
       return {
         isLiked,
-        likesCount: isLiked ? userLikes + 1 : userLikes
+        likesCount
       };
     },
     [likedUsers]
