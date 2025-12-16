@@ -1,14 +1,45 @@
 import styles from './SkillPage.module.css';
 import { UserCard } from '../../shared/ui/UserCard';
 import { OfferPreviewForSkillPage } from '../../widgets/OfferPreviewForSkillPage';
-import { UserCardList } from '../../widgets/UserCardList';
 import { useSkillPage } from '../../features/skills/useSkillPageResult.ts';
+import { useCallback, useState } from 'react';
+import { CardsGallery } from '../../widgets/CardsGallery';
+import { useExchangeSystem } from '../../features/exchange';
+import { SuccessProposalModal } from '../../widgets/SuccessProposalModal';
 
 const userId = '2';
 
 export const SkillPage = () => {
-  const { user, offerPreviewData, recommendedUsers, isNotFound } =
+  const [likedUsers, setLikedUsers] = useState<Record<string, boolean>>({});
+
+  const handleLikeToggle = useCallback((userId: string) => {
+    setLikedUsers((prev) => ({
+      ...prev,
+      [userId]: !prev[userId]
+    }));
+  }, []);
+
+  const getUserLikeData = useCallback(
+    (userId: string, userLikes: number) => {
+      const isLiked = likedUsers[userId] || false;
+      return {
+        isLiked,
+        likesCount: isLiked ? userLikes + 1 : userLikes
+      };
+    },
+    [likedUsers]
+  );
+
+  const { user, skillId, offerPreviewData, recommendedUsers, isNotFound } =
     useSkillPage(userId);
+
+  const {
+    handleOfferExchange,
+    isModalOpen,
+    closeModal,
+    hasOffered,
+    isLoading
+  } = useExchangeSystem(skillId ?? '');
 
   if (isNotFound) {
     return (
@@ -35,25 +66,22 @@ export const SkillPage = () => {
           ) : null}
 
           {offerPreviewData && (
-            <OfferPreviewForSkillPage data={offerPreviewData} />
+            <OfferPreviewForSkillPage
+              data={offerPreviewData}
+              onExchangeClick={handleOfferExchange}
+              isExchangeDisabled={!skillId || hasOffered}
+              isLoading={isLoading}
+            />
           )}
         </section>
-        <section className={styles.section}>
-          <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionName}>Похожие предложения</h2>
-          </div>
-
-          <UserCardList
-            users={recommendedUsers}
-            onLike={(id) => {
-              console.log('like', id);
-            }}
-            onMore={(id) => {
-              console.log('more', id);
-            }}
-          />
-        </section>
+        <CardsGallery
+          users={recommendedUsers}
+          onLike={handleLikeToggle}
+          onMore={(id) => console.log('more', id)}
+          getUserLikeData={getUserLikeData}
+        />
       </div>
+      <SuccessProposalModal isOpen={isModalOpen} onClose={closeModal} />
     </main>
   );
 };

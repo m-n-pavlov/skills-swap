@@ -7,4 +7,7 @@ export type OfferPreviewData = {
 
 export type OfferPreviewForSkillPageProps = {
   data: OfferPreviewData;
+  onExchangeClick: () => void;
+  isExchangeDisabled?: boolean;
+  isLoading?: boolean;
 };

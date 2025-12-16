@@ -3,6 +3,7 @@ import { type TUserWithDetails, useUsersWithDetails } from '../users';
 
 interface UseSkillPageResult {
   user?: TUserWithDetails;
+  skillId?: string;
   offerPreviewData?: OfferPreviewData;
   recommendedUsers: TUserWithDetails[];
   isNotFound: boolean;
@@ -16,6 +17,7 @@ export const useSkillPage = (userId: string): UseSkillPageResult => {
   if (!user) {
     return {
       user: undefined,
+      skillId: undefined,
       offerPreviewData: undefined,
       recommendedUsers: [],
       isNotFound: true
@@ -23,6 +25,7 @@ export const useSkillPage = (userId: string): UseSkillPageResult => {
   }
 
   const previewSkill = user.skillsTeach[0];
+  const skillId = previewSkill?.subcategoryId;
 
   const offerPreviewData: OfferPreviewData = {
     title: previewSkill?.name || `${user.name} предлагает научить`,
@@ -44,6 +47,7 @@ export const useSkillPage = (userId: string): UseSkillPageResult => {
 
   return {
     user,
+    skillId,
     offerPreviewData,
     recommendedUsers,
     isNotFound: false

@@ -6,7 +6,10 @@ import styles from './OfferPreviewForSkillPage.module.css';
 import type { OfferPreviewForSkillPageProps } from './type';
 
 export const OfferPreviewForSkillPage: FC<OfferPreviewForSkillPageProps> = ({
-  data
+  data,
+  onExchangeClick,
+  isExchangeDisabled,
+  isLoading
 }) => {
   return (
     <section className={styles.wrapper}>
@@ -24,7 +27,13 @@ export const OfferPreviewForSkillPage: FC<OfferPreviewForSkillPageProps> = ({
         description={data.description}
         images={data.images}
         actions={
-          <Button type='button' style='primary' className={styles.button}>
+          <Button
+            type='button'
+            style='primary'
+            className={styles.button}
+            onClick={onExchangeClick}
+            disabled={isExchangeDisabled || isLoading}
+          >
             Предложить обмен
           </Button>
         }

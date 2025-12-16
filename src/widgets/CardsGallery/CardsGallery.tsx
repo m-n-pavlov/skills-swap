@@ -8,7 +8,12 @@ import { useEffect, useState } from 'react';
 
 import styles from './CardsGallery.module.css';
 
-export const CardsGallery = ({ users }: CardsGalleryProps) => {
+export const CardsGallery = ({
+  users,
+  onLike,
+  onMore,
+  getUserLikeData
+}: CardsGalleryProps) => {
   const [swiper, setSwiper] = useState<SwiperType | null>(null);
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
@@ -49,15 +54,24 @@ export const CardsGallery = ({ users }: CardsGalleryProps) => {
             setIsEnd(swiper.isEnd);
           }}
         >
-          {users.map((user) => (
-            <SwiperSlide>
-              <UserCard
-                key={user.id}
-                user={user}
-                avatar={{ size: 'medium', alt: 'Аватар' }}
-              />
-            </SwiperSlide>
-          ))}
+          {users.map((user) => {
+            const { isLiked, likesCount } = getUserLikeData(
+              user.id,
+              user.likes
+            );
+            return (
+              <SwiperSlide key={user.id}>
+                <UserCard
+                  user={user}
+                  avatar={{ size: 'medium' }}
+                  isLiked={isLiked}
+                  likesCount={likesCount}
+                  onLike={() => onLike(user.id)}
+                  onMore={() => onMore(user.id)}
+                />
+              </SwiperSlide>
+            );
+          })}
         </Swiper>
         {!isBeginning && (
           <ChevronButton
