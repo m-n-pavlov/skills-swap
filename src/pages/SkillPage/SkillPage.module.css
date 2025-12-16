@@ -7,7 +7,7 @@
 
 .preview_skill {
   display: grid;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: auto 1fr;
   gap: 24px;
   align-items: stretch;
 }
