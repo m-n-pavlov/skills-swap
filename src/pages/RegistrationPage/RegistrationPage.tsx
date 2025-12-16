@@ -210,13 +210,14 @@ export const RegistrationPage = () => {
             cityOptions={cityOptions}
             learningCategoryOptions={categoryOptions}
             learningSubcategoryOptions={learningSubcategoryOptions}
+            isFormValid={step2.isFormValid}
           />
         )}
 
         {currentStep === 3 && (
           <RegistrationFormStepThree
-            values={step3Values as any}
-            onChange={handleStep3Change as any}
+            values={step3Values}
+            onChange={handleStep3Change}
             onSubmit={handleStep3Submit}
             onBack={handleStep3Back}
             isLoading={step3.isImagesConverting}
@@ -226,9 +227,8 @@ export const RegistrationPage = () => {
             categoryErrorText={step3.skillCategoryError ?? undefined}
             subcategoryErrorText={step3.skillSubCategoryError ?? undefined}
             descriptionErrorText={step3.descriptionError ?? undefined}
-            onFilesChange={(files) =>
-              void step3.handleImagesChange(files as any)
-            }
+            onFilesChange={(files) => void step3.handleImagesChange(files)}
+            isFormValid={step3.isFormValid}
           />
         )}
       </RegistrationLayout>

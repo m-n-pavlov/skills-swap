@@ -23,4 +23,5 @@ export interface RegistrFormStepTwoProps {
   onBack: () => void;
   onNext: () => void;
   onAvatarChange?: (file: File | null) => void;
+  isFormValid: boolean;
 }

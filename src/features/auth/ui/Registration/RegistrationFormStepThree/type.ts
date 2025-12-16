@@ -14,17 +14,13 @@ export type RegistrFormStepThreeProps = {
   onSubmit: (event: FormEvent<HTMLFormElement>) => void;
   onBack: () => void;
   isLoading: boolean;
+  isFormValid: boolean;
   className?: string;
-
   categoryOptions: DropdownOption[];
   subcategoryOptions: DropdownOption[];
-
-  // ошибки на будущее (можешь пока не использовать)
   skillNameErrorText?: string;
   categoryErrorText?: string;
   subcategoryErrorText?: string;
   descriptionErrorText?: string;
-
-  // для InputFile, если понадобится логика
   onFilesChange?: (files: FileList) => void;
 };

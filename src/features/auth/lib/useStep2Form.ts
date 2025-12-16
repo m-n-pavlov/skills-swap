@@ -128,7 +128,7 @@ export const useStep2Form = () => {
     const cityErr = validateCity(city);
     const categoryErr = validateCategory(categories);
     const subCatErr = validateSubCategory(subCategories);
-    const avatarErr = validateAvatar(avatarPreview ? ({} as File) : null);
+    const avatarErr = validateAvatar(avatarFile);
 
     setNameError(nameErr);
     setDateError(dateErr);

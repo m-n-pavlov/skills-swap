@@ -17,6 +17,7 @@ export const RegistrationFormStepTwo: FC<RegistrFormStepTwoProps> = ({
   cityOptions,
   learningCategoryOptions,
   learningSubcategoryOptions,
+  isFormValid,
   onBack,
   onNext
 }) => {
@@ -107,7 +108,12 @@ export const RegistrationFormStepTwo: FC<RegistrFormStepTwoProps> = ({
           Назад
         </Button>
 
-        <Button type='submit' style='primary' className={styles.buttonNext}>
+        <Button
+          type='submit'
+          style='primary'
+          className={styles.buttonNext}
+          disabled={!isFormValid}
+        >
           Продолжить
         </Button>
       </div>
