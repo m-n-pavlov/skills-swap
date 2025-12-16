@@ -6,7 +6,12 @@ import type { ChangeEvent } from 'react';
 import type { InputFileProps } from './type';
 import styles from './InputFile.module.css';
 
-export const InputFile = ({ onChange, accept = 'image/*' }: InputFileProps) => {
+export const InputFile = ({
+  onChange,
+  accept = 'image/*',
+  variant = 'default',
+  className
+}: InputFileProps) => {
   const [isDragActive, setIsDragActive] = useState(false);
 
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -36,21 +41,41 @@ export const InputFile = ({ onChange, accept = 'image/*' }: InputFileProps) => {
     }
   };
 
+  const dragProps =
+    variant === 'default'
+      ? {
+          onDragOver: handleDragOver,
+          onDragLeave: handleDragLeave,
+          onDrop: handleDrop
+        }
+      : {};
+
   return (
     <div
-      className={clsx(styles.wrapper, { [styles.active]: isDragActive })}
-      onDragOver={handleDragOver}
-      onDragLeave={handleDragLeave}
-      onDrop={handleDrop}
+      className={clsx(styles.wrapper, className, {
+        [styles.active]: isDragActive && variant === 'default',
+        [styles.defaultVariant]: variant === 'default',
+        [styles.iconOnlyVariant]: variant === 'icon-only'
+      })}
+      {...dragProps}
       onClick={handleClick}
     >
-      <span className={styles.label}>
-        Перетащите или выберите изображения навыка
-      </span>
-      <div className={styles.button}>
-        <Icon name='galleryAdd' alt='Перетащите файл сюда' />
-        Выбрать изображения
-      </div>
+      {variant === 'default' ? (
+        <>
+          <span className={styles.label}>
+            Перетащите или выберите изображения навыка
+          </span>
+          <div className={styles.button}>
+            <Icon name='galleryAdd' alt='Перетащите файл сюда' />
+            Выбрать изображения
+          </div>
+        </>
+      ) : (
+        <div className={styles.iconWrapper}>
+          <Icon name='galleryAdd' alt='Добавить изображение' />
+        </div>
+      )}
+
       <input
         ref={inputRef}
         type='file'

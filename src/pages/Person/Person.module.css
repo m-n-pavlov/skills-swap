@@ -1,0 +1,5 @@
+.wrap {
+  max-width: 1020px;
+  padding: 60px;
+  background-color: var(--card);
+}

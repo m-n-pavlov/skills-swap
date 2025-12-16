@@ -1,4 +1,11 @@
 .wrapper {
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+/* Вариант по умолчанию (с текстом) */
+.wrapper.defaultVariant {
   width: 436px;
   height: 88px;
   padding: 20px;
@@ -7,8 +14,6 @@
   opacity: 0.8;
   line-height: 24px;
   letter-spacing: 0.02em;
-  cursor: pointer;
-  transition: color 0.2s;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -16,8 +21,44 @@
   align-items: center;
 }
 
-.wrapper.active {
+.wrapper.defaultVariant:hover {
+  opacity: 1;
   border-color: var(--accent);
+}
+
+.wrapper.defaultVariant.active {
+  border-color: var(--accent);
+  opacity: 1;
+}
+
+/* Вариант только с иконкой */
+.wrapper.iconOnlyVariant {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: var(--button-hover);
+  color: var(--text-link);
+}
+
+.wrapper.iconOnlyVariant:hover {
+  background-color: var(--accent);
+  transform: scale(1.05);
+}
+
+.wrapper.iconOnlyVariant:active {
+  transform: scale(0.95);
+}
+
+/* Иконка в icon-only варианте */
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 }
 
 .label {

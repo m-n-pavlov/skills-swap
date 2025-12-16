@@ -38,7 +38,7 @@
   border-color: var(--error);
 }
 
-.passwordToggle {
+.rightIcon {
   position: absolute;
   right: 1rem;
   background: none;
@@ -48,7 +48,7 @@
   padding: 0;
 }
 
-.rightIcon {
+.leftIcon {
   position: absolute;
   right: 1rem;
   display: flex;

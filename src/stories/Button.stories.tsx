@@ -36,6 +36,13 @@ export const Tertiary: Story = {
   }
 };
 
+export const Text: Story = {
+  args: {
+    children: 'Text',
+    style: 'text'
+  }
+};
+
 export const DisabledPrimary: Story = {
   args: {
     children: 'Disabled Button',

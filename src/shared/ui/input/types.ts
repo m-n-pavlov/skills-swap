@@ -1,3 +1,5 @@
+import type { IconName } from '../Icon/icons';
+
 export interface InputProps {
   value: string;
   type: 'text' | 'email' | 'password';
@@ -10,6 +12,7 @@ export interface InputProps {
   onClick?: () => void;
   infoText?: string;
   icon?: React.ReactNode;
+  iconName?: IconName;
   required?: boolean;
   autofocus?: boolean;
 }
