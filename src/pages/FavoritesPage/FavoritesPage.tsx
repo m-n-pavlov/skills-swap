@@ -1,73 +1,133 @@
-import { memo, useState, useCallback } from 'react'; // импорт необходимых функций из React
-import styles from './FavoritesPage.module.css'; // импорт CSS-модуля
-import type { TUserWithDetails } from '../../features/users'; // импорт типа данных пользователя
-import { UserCardList } from '../../widgets/UserCardList'; // импорт компонента списка карточек пользователей
-import { UserMenu } from '../../widgets/UserMenu'; // импорт компонента бокового меню пользователя
-import { mockUsers } from './mockUsers.ts';
-import type { IconName } from '../../shared/ui/Icon/icons.ts'; // импорт моковых данных пользователей из локального файла
+import { memo, useCallback, useMemo } from 'react';
+import { useSelector } from 'react-redux';
+import styles from './FavoritesPage.module.css';
+import { UserCardList } from '../../widgets/UserCardList';
+import { UserMenu } from '../../widgets/UserMenu';
+import { useUsersWithDetails } from '../../features/users';
+import { selectCurrentUser } from '../../app/store/slices/authSlice/authSelector.ts';
+import { useAppDispatch } from '../../shared/hooks';
+import { toggleLike } from '../../app/store/slices/authSlice/authSlice';
+import type { IconName } from '../../shared/ui/Icon/icons.ts';
 
-// Мемоизированный компонент страницы "Избранное"
 export const FavoritesPage = memo(function FavoritesPage() {
-  const [users] = useState<TUserWithDetails[]>(mockUsers); // состояние для хранения списка пользователей
-  const [userLikes, setUserLikes] = useState<Record<string, boolean>>({}); // состояние для хранения лайков пользователей = { [key: string]: boolean; }
+  const dispatch = useAppDispatch();
+  const currentUser = useSelector(selectCurrentUser);
+  const allUsers = useUsersWithDetails();
 
-  // Мемоизированная функция обработки лайков
-  const handleLike = useCallback((userId: string) => {
-    setUserLikes((prev) => ({
-      ...prev,
-      [userId]: !prev[userId]
-    }));
-  }, []);
+  // Фильтруем пользователей: только те, кого лайкнул текущий пользователь
+  const favoriteUsers = useMemo(() => {
+    if (!currentUser || !currentUser.likes || currentUser.likes.length === 0) {
+      return [];
+    }
 
-  // Мемоизированная функция обработки клика на кнопку "Подробнее"
-  const handleMore = useCallback((userId: string) => {
-    console.log(
-      '✅ Клик на кнопку "Обмен предложен"/"Подробнее" для пользователя с ID:',
-      userId
-    ); // навигация или открытие модального окна
-  }, []);
+    return allUsers.filter((user) => currentUser.likes?.includes(user.id));
+  }, [currentUser, allUsers]);
 
-  // Мемоизированная функция для получения данных о лайках пользователя
-  const getUserLikeData = useCallback(
-    (
-      userId: string, // ID пользователя
-      userLikesCount: number // текущее количество лайков пользователя
-    ) => {
-      const isLiked = userLikes[userId] || false;
-      return {
-        isLiked,
-        likesCount: isLiked ? userLikesCount + 1 : userLikesCount
-      };
+  // Обработчик лайка - такой же как в HomePage
+  const handleLike = useCallback(
+    async (userId: string) => {
+      if (!currentUser) {
+        console.warn('Пользователь не авторизован');
+        return;
+      }
+
+      try {
+        await dispatch(
+          toggleLike({
+            user: currentUser,
+            cardId: userId
+          })
+        ).unwrap();
+      } catch (error) {
+        console.error('Ошибка при обновлении лайка:', error);
+      }
     },
-    [userLikes]
+    [currentUser, dispatch]
   );
 
-  const favoriteCount = Object.values(userLikes).filter(Boolean).length;
+  // Обработчик клика на кнопку "Подробнее"
+  const handleMore = useCallback((userId: string) => {
+    console.log('✅ Клик на кнопку "Подробнее" для пользователя с ID:', userId);
+    // Здесь может быть навигация или открытие модального окна
+  }, []);
 
-  // для теста второго варианта кнопки
-  // const testActionType: 'navigate' = 'navigate';
-  const testActionType: 'tradeStatus' = 'tradeStatus';
-  const testIconName: IconName = 'clock';
+  // Функция для получения данных о лайках пользователя
+  const getUserLikeData = useCallback(
+    (userId: string, userLikesCount: number) => {
+      // Проверяем, лайкнул ли текущий пользователь эту карточку
+      const isLiked = currentUser?.likes?.includes(userId) || false;
 
-  // Возвращаемая JSX разметка компонента
+      // Увеличиваем счетчик, если карточка лайкнута
+      // В реальном приложении этот счетчик должен обновляться на сервере
+      const likesCount = isLiked ? userLikesCount + 1 : userLikesCount;
+
+      return {
+        isLiked,
+        likesCount
+      };
+    },
+    [currentUser]
+  );
+
+  // Количество избранных пользователей
+  const favoriteCount = currentUser?.likes?.length || 0;
+
+  // Вы можете выбрать тип действия для кнопки
+  const linkButtonActionType: 'navigate' | 'tradeStatus' = 'tradeStatus';
+  const linkButtonIconName: IconName = 'clock';
+
+  // Если пользователь не авторизован
+  if (!currentUser) {
+    return (
+      <div className={styles.container}>
+        <aside className={styles.menuColumn}>
+          <UserMenu defaultActiveId='favorites' />
+        </aside>
+        <main className={styles.contentColumn}>
+          <div className={styles.emptyState}>
+            <p>Войдите в систему, чтобы видеть избранное</p>
+          </div>
+        </main>
+      </div>
+    );
+  }
+
+  // Если нет избранных пользователей
+  if (favoriteCount === 0) {
+    return (
+      <div className={styles.container}>
+        <aside className={styles.menuColumn}>
+          <UserMenu defaultActiveId='favorites' />
+        </aside>
+        <main className={styles.contentColumn}>
+          <p className={styles.contentHeader}>Избранное: 0</p>
+          <div className={styles.emptyState}>
+            <p>У вас пока нет избранных пользователей</p>
+            <p>
+              Нажмите на сердечко на карточке пользователя, чтобы добавить его в
+              избранное
+            </p>
+          </div>
+        </main>
+      </div>
+    );
+  }
+
   return (
     <div className={styles.container}>
-      {/* Боковое меню пользователя */}
       <aside className={styles.menuColumn}>
         <UserMenu defaultActiveId='favorites' />
       </aside>
 
-      {/* Обертка и список карточек пользователей */}
       <main className={styles.contentColumn}>
         <p className={styles.contentHeader}>Избранное: {favoriteCount}</p>
         <UserCardList
-          users={users}
+          users={favoriteUsers}
           onLike={handleLike}
           onMore={handleMore}
           getUserLikeData={getUserLikeData}
-          // для теста второго варианта кнопки 👇
-          linkButtonActionType={testActionType}
-          linkButtonIconName={testIconName}
+          linkButtonActionType={linkButtonActionType}
+          linkButtonIconName={linkButtonIconName}
         />
       </main>
     </div>
