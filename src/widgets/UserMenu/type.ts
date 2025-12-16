@@ -1,10 +1,14 @@
 import type { MenuItem } from '../../shared/ui/ProfileMenuLink/type';
 
+export type UserMenuProps = {
+  defaultActiveId?: string;
+};
+
 export const menuItems: MenuItem[] = [
   {
     id: 'applications',
     label: 'Заявки',
-    iconName: 'notification',
+    iconName: 'request',
     path: '#',
     disabled: false
   },
@@ -18,7 +22,7 @@ export const menuItems: MenuItem[] = [
   {
     id: 'favorites',
     label: 'Избранное',
-    iconName: 'like',
+    iconName: 'likeEmpty',
     path: '#',
     disabled: false
   },
@@ -34,7 +38,6 @@ export const menuItems: MenuItem[] = [
     label: 'Личные данные',
     iconName: 'user',
     path: '#',
-    disabled: false,
-    isActive: true
+    disabled: false
   }
 ];

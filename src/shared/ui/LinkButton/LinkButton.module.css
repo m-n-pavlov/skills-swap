@@ -52,6 +52,27 @@
   background-color: #fff;
 }
 
+/* Стили для actionType */
+.actionType-navigate {
+  /* Стили для варианта "Продолжить" */
+  justify-content: center;
+}
+
+.actionType-tradeStatus {
+  /* Стили для варианта с иконкой */
+  justify-content: center;
+  gap: 12px; /* отступ между иконкой и текстом */
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: var(--card);
+  border: 1px solid var(--accent);
+}
+
+/* Стиль для иконки внутри кнопки */
+.icon {
+  flex-shrink: 0;
+}
+
 a {
   text-decoration: none;
   color: inherit;

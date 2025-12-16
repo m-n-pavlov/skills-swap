@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  gap: 24px;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.menuColumn {
+  min-width: 324px;
+  flex-shrink: 0;
+  min-height: 500px;
+  padding: 40px 40px 0 40px;
+  background-color: var(--card);
+  border-radius: 12px;
+}
+
+.contentColumn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 1020px;
+  width: 100%;
+  background-color: var(--card);
+  border-radius: 12px;
+  padding-top: 40px;
+}
+
+.contentHeader {
+  font-size: var(--h2-font-size);
+  line-height: var(--h2-line-height);
+  font-family: var(--h2-font-family);
+  font-weight: var(--h2-font-weight);
+  padding-left: 40px;
+}

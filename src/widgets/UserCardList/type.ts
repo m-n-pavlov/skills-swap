@@ -1,4 +1,5 @@
 import type { TUserWithDetails } from '../../features/users';
+import type { IconName } from '../../shared/ui/Icon/icons.ts';
 
 export type UserCardListProps = {
   users: TUserWithDetails[];
@@ -11,4 +12,6 @@ export type UserCardListProps = {
     isLiked: boolean;
     likesCount: number;
   };
+  linkButtonActionType?: 'navigate' | 'tradeStatus';
+  linkButtonIconName?: IconName;
 };

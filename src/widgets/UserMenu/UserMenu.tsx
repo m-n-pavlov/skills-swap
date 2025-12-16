@@ -1,24 +1,21 @@
-import { memo, useState, useMemo } from 'react';
-import { ProfileMenuLink } from '../../shared/ui/ProfileMenuLink/ProfileMenuLink';
+import { memo, useState, useEffect } from 'react';
+import { ProfileMenuLink } from '../../shared/ui/ProfileMenuLink';
 import styles from './UserMenu.module.css';
-import { menuItems } from './type';
+import { menuItems, type UserMenuProps } from './type';
+import type { MouseEvent } from 'react';
 
-export const UserMenu = memo(() => {
-  const initialActiveId = useMemo(() => {
-    return (
-      menuItems.find((item) => item.isActive === true)?.id ||
-      menuItems[0]?.id ||
-      ''
-    );
-  }, []);
+export const UserMenu = memo(({ defaultActiveId }: UserMenuProps) => {
+  const initialActiveId = defaultActiveId || menuItems[0]?.id || '';
 
   const [activeItemId, setActiveItemId] = useState<string>(initialActiveId);
 
-  const handleItemClick = (
-    id: string,
-    disabled: boolean,
-    e: React.MouseEvent
-  ) => {
+  useEffect(() => {
+    if (defaultActiveId) {
+      setActiveItemId(defaultActiveId);
+    }
+  }, [defaultActiveId]);
+
+  const handleItemClick = (id: string, disabled: boolean, e: MouseEvent) => {
     e.preventDefault();
     if (!disabled) {
       setActiveItemId(id);
