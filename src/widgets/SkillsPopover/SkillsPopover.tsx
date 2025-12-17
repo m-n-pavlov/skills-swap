@@ -1,14 +1,11 @@
-import { ArrowToggleButton } from '../ArrowToggleButton';
+import { ArrowToggleButton } from '../../shared/ui/ArrowToggleButton';
 import { memo, useEffect, useRef, useState } from 'react';
 import styles from './SkillsPopover.module.css';
 import { clsx } from 'clsx';
 import type { TSkillsPopoverProps } from './type.ts';
-import type {
-  TCategory,
-  TSubCategories
-} from '../../../entities/categories.ts';
-import { Icon } from '../Icon';
-import type { IconName } from '../Icon/icons.ts';
+import type { TCategory, TSubCategories } from '../../entities/categories.ts';
+import { Icon } from '../../shared/ui/Icon';
+import type { IconName } from '../../shared/ui/Icon/icons.ts';
 
 const SkillsPopover = memo(
   ({ className, onClick, categories }: TSkillsPopoverProps) => {

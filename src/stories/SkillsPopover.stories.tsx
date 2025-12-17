@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { SkillsPopover } from '../shared/ui/SkillsPopover';
+import { SkillsPopover } from '../widgets/SkillsPopover';
 import type { TCategory } from '../entities/categories.ts';
 
 const meta: Meta<typeof SkillsPopover> = {

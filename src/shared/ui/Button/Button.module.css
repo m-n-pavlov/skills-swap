@@ -71,5 +71,5 @@
 }
 
 .tertiary {
-  background-color: #fff;
+  background-color: var(--tertiary);
 }

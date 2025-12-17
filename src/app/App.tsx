@@ -17,6 +17,7 @@ import { ProtectedRoute } from './router/ProtectedRoute.tsx';
 import { FavoritesPage } from '../pages/FavoritesPage/FavoritesPage.tsx';
 import { Person } from '../pages/Person/Person.tsx';
 import NotFoundPage from '../pages/NotFoundPage/NotFoundPage.tsx';
+import { SkillPage } from '../pages/SkillPage/SkillPage.tsx';
 
 function App() {
   const dispatch = useAppDispatch();

@@ -37,7 +37,7 @@
 }
 
 .icon {
-  color: black;
+  color: var(--icon-radio);
 }
 
 .iconChecked {

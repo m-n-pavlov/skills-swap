@@ -1,29 +1,20 @@
 import { ButtonIcon } from '../ButtonIcon';
-import { type FC, useEffect, useState } from 'react';
+import { type FC } from 'react';
 import styles from './ButtonToggleTheme.module.css';
-import type { ButtonToggleThemeProps } from './type.ts';
 import { clsx } from 'clsx';
+import { useTheme } from '../../../app/providers/ThemeProvider.tsx';
 
-export const ButtonToggleTheme: FC<ButtonToggleThemeProps> = ({
+export const ButtonToggleTheme: FC<{ className?: string }> = ({
   className
 }) => {
-  const [isDarkMode, setIsDarkMode] = useState(() => {
-    const savedTheme = localStorage.getItem('theme');
-    return savedTheme === 'dark';
-  });
-  useEffect(() => {
-    localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
-  }, [isDarkMode]);
+  const { theme, toggleTheme } = useTheme();
 
-  const changeTheme = () => {
-    setIsDarkMode(!isDarkMode);
-  };
   return (
     <ButtonIcon
-      onClick={changeTheme}
+      onClick={toggleTheme}
       name={'ButtonToggleTheme'}
-      iconName={isDarkMode ? 'moon' : 'sun'}
+      iconName={theme === 'dark' ? 'moon' : 'sun'}
       className={clsx(styles.theme, className)}
-    ></ButtonIcon>
+    />
   );
 };

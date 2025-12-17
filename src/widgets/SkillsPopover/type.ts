@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import type { TCategory } from '../../../entities/categories.ts';
+import type { TCategory } from '../../entities/categories.ts';
 
 export type TSkillsPopoverProps = {
   categories: TCategory[];

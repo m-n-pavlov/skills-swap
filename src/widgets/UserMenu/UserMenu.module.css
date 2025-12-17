@@ -7,7 +7,7 @@
   min-width: 280px;
   max-width: 324px;
   min-height: 400px;
-  background: #ffffff;
+  background: var(--card);
   border-radius: 12px;
   box-sizing: border-box;
 }

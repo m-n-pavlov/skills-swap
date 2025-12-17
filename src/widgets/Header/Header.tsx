@@ -11,7 +11,7 @@ import { LoginButton } from '../../shared/ui/LoginButton';
 import { NotificationButton } from '../../shared/ui/NotificationButton';
 import { FaivaritsLinkUI } from '../../shared/ui/FaivaritsLink';
 import { UserButtonUI } from '../../shared/ui/UserButton';
-import { SkillsPopover } from '../../shared/ui/SkillsPopover';
+import { SkillsPopover } from '../SkillsPopover';
 
 export const Header: React.FC<HeaderProps> = ({
   isAuth = false,
