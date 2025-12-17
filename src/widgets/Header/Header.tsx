@@ -17,6 +17,7 @@ export const Header: React.FC<HeaderProps> = ({
   isAuth = false,
   user,
   categories,
+  searchQuery,
   onChangeInput,
   hrefAbout,
   hrefRegistration,
@@ -33,7 +34,7 @@ export const Header: React.FC<HeaderProps> = ({
         <SkillsPopover categories={categories} />
       </div>
       <SearchInput
-        value=''
+        value={searchQuery}
         onChange={onChangeInput}
         placeholder='Искать навык'
         name='search'

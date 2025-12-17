@@ -7,6 +7,8 @@ import { fetchGetSkills } from './store/slices/skillsSlice/skillsSlice.ts';
 import { fetchGetUsers } from './store/slices/usersSlice/userSlice.ts';
 // import HomePage from '../pages/HomePage/HomePage.tsx';
 import { SkillPage } from '../pages/SkillPage/SkillPage.tsx';
+import { MainLayout } from './layout/MainLayout.tsx';
+import HomePage from '../pages/HomePage/HomePage.tsx';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -21,7 +23,9 @@ function App() {
   return (
     <>
       <div className={styles.app}>
-        <SkillPage />
+        <MainLayout>
+          <HomePage />
+        </MainLayout>
       </div>
     </>
   );
