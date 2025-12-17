@@ -55,15 +55,18 @@ export const CardsGallery = ({
           }}
         >
           {users.map((user) => {
+            // Получаем данные о лайках для каждого пользователя
             const { isLiked, likesCount } = getUserLikeData(
               user.id,
-              user.likes
+              user.likes || 0
             );
+
             return (
               <SwiperSlide key={user.id}>
                 <UserCard
                   user={user}
                   avatar={{ size: 'medium' }}
+                  showLinkButton={true} // Важно: включаем отображение кнопки и лайков
                   isLiked={isLiked}
                   likesCount={likesCount}
                   onLike={() => onLike(user.id)}

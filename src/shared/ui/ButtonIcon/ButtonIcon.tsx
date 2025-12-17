@@ -12,6 +12,7 @@ export const ButtonIcon = memo(
     isActive = false,
     isLiked,
     className,
+    onClick, // Добавляем обработчик onClick
     ...buttonProps
   }: ButtonIconProps) => {
     return (
@@ -22,6 +23,7 @@ export const ButtonIcon = memo(
           [styles.active]: isActive,
           [styles.liked]: isLiked
         })}
+        onClick={onClick} // Прокидываем onClick
         {...buttonProps}
       >
         <Icon name={iconName} alt={iconAlt ?? name} className={styles.icon} />
