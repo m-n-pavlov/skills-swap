@@ -1,2 +1,8 @@
 export { PersonForm } from './PersonForm';
-export type { PersonFormProps } from './type';
+export type {
+  PersonFormProps,
+  PersonFormValue,
+  PersonFormErrors,
+  Gender,
+  Option
+} from './type';
