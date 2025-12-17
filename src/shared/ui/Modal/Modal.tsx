@@ -37,12 +37,13 @@ export const Modal = React.memo(
     }, []);
 
     useEffect(() => {
-      // Блокировка скролла при открытой модалке
+      if (!isOpen) return;
+      const prevOverflow = document.body.style.overflow;
       document.body.style.overflow = 'hidden';
       return () => {
-        document.body.style.overflow = '';
+        document.body.style.overflow = prevOverflow || 'auto';
       };
-    }, []);
+    }, [isOpen]);
 
     if (!isOpen) return null;
 

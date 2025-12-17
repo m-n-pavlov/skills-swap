@@ -68,7 +68,7 @@
       "cityId": "lipetsk",
       "gender": "female",
       "birthday": "2001-04-12",
-      "skillsTeach": ["4"],
+      "skillsTeach": ["2"],
       "skillsLearn": ["12", "14", "16"],
       "likes": 18,
       "createdAt": "2025-10-30"
@@ -116,7 +116,7 @@
       "cityId": "moscow",
       "gender": "male",
       "birthday": "1990-11-22",
-      "skillsTeach": ["7"],
+      "skillsTeach": ["2"],
       "skillsLearn": ["9", "21"],
       "likes": 0,
       "createdAt": "2024-03-15"
@@ -152,7 +152,7 @@
       "cityId": "volgograd",
       "gender": "female",
       "birthday": "2000-09-03",
-      "skillsTeach": ["5"],
+      "skillsTeach": ["2"],
       "skillsLearn": ["7"],
       "likes": 0,
       "createdAt": "2025-01-22"
@@ -212,7 +212,7 @@
       "cityId": "omsk",
       "gender": "male",
       "birthday": "1999-10-18",
-      "skillsTeach": ["17"],
+      "skillsTeach": ["2"],
       "skillsLearn": ["14", "23"],
       "likes": 31,
       "createdAt": "2024-12-25"
@@ -272,7 +272,7 @@
       "cityId": "barnaul",
       "gender": "female",
       "birthday": "1996-02-25",
-      "skillsTeach": ["14"],
+      "skillsTeach": ["2"],
       "skillsLearn": ["27", "34"],
       "likes": 13,
       "createdAt": "2025-11-14"
@@ -368,7 +368,7 @@
       "cityId": "kazan",
       "gender": "female",
       "birthday": "1997-06-08",
-      "skillsTeach": ["9"],
+      "skillsTeach": ["2"],
       "skillsLearn": ["14"],
       "likes": 20,
       "createdAt": "2025-05-30"

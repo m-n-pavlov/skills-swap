@@ -3,10 +3,11 @@ export type TUser = {
   name: string;
   avatarUrl: string;
   cityId: string;
-  gender: 'male' | 'female' | 'other';
+  gender: string;
   birthday: string;
   skillsTeach: string[];
   skillsLearn: string[];
   likes: number;
   createdAt: string;
+  description?: string;
 };
