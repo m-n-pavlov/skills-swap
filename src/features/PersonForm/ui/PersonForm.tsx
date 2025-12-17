@@ -3,7 +3,7 @@ import { Input } from '../../../shared/ui/Input';
 import { DateInput } from '../../../shared/ui/DateInput';
 import { DropdownInput } from '../../../shared/ui/DropdownInput';
 import type { PersonFormProps } from './type';
-import { genderOption } from '../../../utils/constans';
+import { genderOption } from '../../../entities/constans';
 import { TextArea } from '../../../shared/ui/TextArea';
 import { useState } from 'react';
 
