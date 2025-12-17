@@ -6,6 +6,7 @@ import { useCallback, useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useExchangeSystem } from '../../features/exchange';
 import { useSkillPage } from '../../features/skills/useSkillPageResult.ts';
+// import { useParams } from 'react-router-dom'; // 🔴 раскомментировать для получения id из URL через роутер
 
 // 🧩 Импорт компонентов
 import { UserCard } from '../../shared/ui/UserCard';
@@ -13,13 +14,14 @@ import { OfferPreviewForSkillPage } from '../../widgets/OfferPreviewForSkillPage
 import { CardsGallery } from '../../widgets/CardsGallery';
 import { SuccessProposalModal } from '../../widgets/SuccessProposalModal';
 
-// 🧠 Redux imports
+// 🧠 Redux
 import { selectCurrentUser } from '../../app/store/slices/authSlice/authSelector.ts';
 import { toggleLike } from '../../app/store/slices/authSlice/authSlice.ts';
 import { useAppDispatch } from '../../shared/hooks';
 
-// 🧪 Константа с ID пользователя (владельца навыка)
-const userId = '2';
+// 🧪 ID пользователя открытой карточки (владельца навыка)
+const userId = '2'; // 🔴 моки
+// const { userId } = useParams<{ userId: string }>(); // 🔴 id из URL через роутер
 
 // ⛳️ Основной компонент страницы навыка
 export const SkillPage = () => {
@@ -91,9 +93,18 @@ export const SkillPage = () => {
     [likedUsers]
   );
 
+  // 🟢 Ранний return при отсутствии userId
+  if (!userId) {
+    console.warn('SkillPage: userId is missing in route params');
+    return null;
+  }
+
   // использование кастомного хука для получения данных страницы навыка
   const { user, skillId, offerPreviewData, recommendedUsers, isNotFound } =
     useSkillPage(userId);
+
+  // 🟢 Получаем именно id пользователя
+  const exchangeOffersID = user?.id;
 
   // использование кастомного хука для работы с системой обмена
   const {
@@ -102,7 +113,7 @@ export const SkillPage = () => {
     closeModal,
     hasOffered,
     isLoading
-  } = useExchangeSystem(skillId ?? '');
+  } = useExchangeSystem(exchangeOffersID ?? ''); // 🟢 используем exchangeOffersID вместо skillId
 
   // если данные не найдены, показываем сообщение
   if (isNotFound) {
