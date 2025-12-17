@@ -1,15 +1,17 @@
-import type { TUser } from '../../entities/users';
 import type { TCategory } from '../../entities/categories.ts';
+import type { TAuthUser } from '../../entities/authUser.ts';
+import type { ChangeEvent } from 'react';
 
 export interface HeaderProps {
   isAuth: boolean;
-  user?: TUser;
+  user?: TAuthUser;
   categories: TCategory[];
+  searchQuery: string;
   hrefRegistration: string;
   hrefLogin: string;
   hrefFaivaritsLink: string;
   hrefProfile: string;
   hrefAbout: string;
-  onChangeInput: () => void;
+  onChangeInput: (value: string) => void;
   handleLogOut: () => void;
 }
