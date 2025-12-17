@@ -25,7 +25,7 @@ ul {
 .popover {
   width: 558px;
   height: 616px;
-  background-color: #fff;
+  background-color: var(--card);
   border: 1px solid var(--caption);
   border-radius: 12px;
   padding: 60px;
