@@ -8,7 +8,7 @@ import { TextArea } from '../../../shared/ui/TextArea';
 import { Icon } from '../../../shared/ui/Icon';
 
 import type { Gender, PersonFormProps } from './type';
-import { genderOption } from '../../../utils/constans';
+import { genderOption } from '../../../entities/constans';
 
 import styles from './PersonForm.module.css';
 
