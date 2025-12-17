@@ -7,9 +7,6 @@ export const selectCurrentUser = (state: RootState): TAuthUser | null =>
 export const selectIsAuth = (state: RootState): boolean =>
   Boolean(state.auth.currentUser);
 
-export const selectRegistrationUser = (state: RootState): TAuthUser | null =>
-  state.auth.user;
-
 export const selectIsAuthenticated = (state: RootState): boolean =>
   Boolean(state.auth.currentUser);
 

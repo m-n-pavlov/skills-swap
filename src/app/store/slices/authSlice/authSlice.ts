@@ -16,7 +16,6 @@ import {
 } from '../../../../api/auth/authRegistration.ts';
 
 export type AuthState = {
-  user: TAuthUser;
   currentUser: TAuthUser | null;
   exitsEmail: boolean;
   isLoading: boolean;
@@ -24,7 +23,6 @@ export type AuthState = {
 };
 
 const initialState: AuthState = {
-  user: JSON.parse(localStorage.getItem('user') ?? 'null'),
   currentUser: JSON.parse(localStorage.getItem('current_user') ?? 'null'),
   exitsEmail: false,
   isLoading: false,
@@ -208,8 +206,8 @@ const authSlice = createSlice({
       .addCase(register.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
+        localStorage.setItem('current_user', JSON.stringify(action.payload));
         state.currentUser = action.payload;
-        localStorage.setItem('user', JSON.stringify(action.payload));
       })
 
       .addCase(register.rejected, (state, action) => {
