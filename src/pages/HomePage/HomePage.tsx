@@ -11,9 +11,11 @@ import { selectAllCategories } from '../../app/store/slices/categoriesSlice/cate
 import { selectAllCities } from '../../app/store/slices/citiesSlice/citiesSelector.ts';
 import { useUsersWithDetails } from '../../features/users';
 import { sortNewestUsers, sortPopularUsers } from '../../features/users';
-import { selectCurrentUser } from '../../app/store/slices/authSlice/authSelector.ts'; // Импортируем селектор
-import { toggleLike } from '../../app/store/slices/authSlice/authSlice'; // Импортируем action
+import { selectCurrentUser } from '../../app/store/slices/authSlice/authSelector.ts';
+import { toggleLike } from '../../app/store/slices/authSlice/authSlice';
 import { useAppDispatch } from '../../shared/hooks';
+import { selectSearchQuery } from '../../app/store/slices/filtersSlice/selectors'; // Добавляем селектор поиска
+import { setSearchQuery } from '../../app/store/slices/filtersSlice/filtersSlice'; // Добавляем action для поиска
 
 export type ModeFilter = 'any' | 'learn' | 'teach';
 export type GenderFilter = 'any' | 'male' | 'female';
@@ -41,8 +43,11 @@ export const HomePage = () => {
   const dispatch = useAppDispatch();
   const categories = useSelector(selectAllCategories);
   const cities = useSelector(selectAllCities);
-  const currentUser = useSelector(selectCurrentUser); // Получаем авторизованного пользователя
+  const currentUser = useSelector(selectCurrentUser);
   const usersWithDetails = useUsersWithDetails();
+
+  // Получаем поисковый запрос из Redux
+  const searchQuery = useSelector(selectSearchQuery);
 
   // Состояние фильтров
   const [filters, setFilters] = useState<FiltersState>({
@@ -74,6 +79,54 @@ export const HomePage = () => {
       setLikedUsers(initialLikedUsers);
     }
   }, [currentUser]);
+
+  // Эффект для обработки поискового запроса
+  useEffect(() => {
+    if (!searchQuery.trim()) {
+      // Если поисковый запрос пустой, сбрасываем фильтры навыков
+      if (filters.skillIds.length > 0) {
+        setFilters((prev) => ({ ...prev, skillIds: [] }));
+      }
+      return;
+    }
+
+    // Находим все навыки, которые содержат поисковый запрос
+    const allSkills = categories.flatMap((c) => c.subCategories);
+    const matchingSkills = allSkills.filter((skill) =>
+      skill.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    if (matchingSkills.length > 0) {
+      // Берем первый подходящий навык
+      const firstMatchingSkill = matchingSkills[0];
+
+      // Устанавливаем фильтр
+      setFilters((prev) => ({
+        ...prev,
+        skillIds: [firstMatchingSkill.id]
+      }));
+
+      // Добавляем фильтр в активные чипсы
+      setActiveFilters((prev) => {
+        // Удаляем старые фильтры навыков
+        const filtered = prev.filter((f) => f.filterType !== 'skill');
+        // Добавляем новый
+        return [
+          ...filtered,
+          {
+            id: generateId(),
+            type: 'filter',
+            filterType: 'skill',
+            value: firstMatchingSkill.id,
+            label: firstMatchingSkill.name
+          }
+        ];
+      });
+
+      // Показываем секцию "Подходящие предложения"
+      setActiveSection(null);
+    }
+  }, [searchQuery, categories]);
 
   const {
     currentItems: recommendedUsers,
@@ -177,7 +230,7 @@ export const HomePage = () => {
     setActiveFilters((prev) => prev.filter((f) => f.type === 'section'));
   }, []);
 
-  // Обработчик удаления чипса
+  // Обновлённый handleRemoveFilter с очисткой поиска
   const handleRemoveFilter = useCallback(
     (filter: ActiveFilter) => {
       removeActiveFilter(filter.id);
@@ -192,6 +245,8 @@ export const HomePage = () => {
           ...prev,
           skillIds: prev.skillIds.filter((id) => id !== filter.value)
         }));
+        // Очищаем поисковый запрос при удалении фильтра навыка
+        dispatch(setSearchQuery(''));
       } else if (filter.filterType === 'gender') {
         setFilters((prev) => ({ ...prev, gender: 'any' }));
       } else if (filter.filterType === 'city') {
@@ -201,7 +256,7 @@ export const HomePage = () => {
         }));
       }
     },
-    [removeActiveFilter]
+    [removeActiveFilter, dispatch]
   );
 
   // Обработчик "Смотреть все" для популярного
@@ -357,9 +412,9 @@ export const HomePage = () => {
   // Получаем пользователей для отображения - без сортировки
   const getUsersToShow = useCallback(() => {
     if (activeSection === 'popular') {
-      return usersWithDetails; // Возвращаем всех пользователей, сортировка будет в sortedFilteredUsers
+      return usersWithDetails;
     } else if (activeSection === 'newest') {
-      return usersWithDetails; // Возвращаем всех пользователей, сортировка будет в sortedFilteredUsers
+      return usersWithDetails;
     } else if (activeFilters.some((f) => f.type === 'filter')) {
       return filterUsersByFilters(usersWithDetails, filters);
     }

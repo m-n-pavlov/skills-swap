@@ -5,8 +5,6 @@ import { fetchGetCategories } from './store/slices/categoriesSlice/categoriesSli
 import { fetchGetCities } from './store/slices/citiesSlice/citiesSlice.ts';
 import { fetchGetSkills } from './store/slices/skillsSlice/skillsSlice.ts';
 import { fetchGetUsers } from './store/slices/usersSlice/userSlice.ts';
-// import HomePage from '../pages/HomePage/HomePage.tsx';
-import { SkillPage } from '../pages/SkillPage/SkillPage.tsx';
 import { MainLayout } from './layout/MainLayout.tsx';
 import HomePage from '../pages/HomePage/HomePage.tsx';
 
