@@ -5,17 +5,38 @@ import { Button } from '../../shared/ui/Button';
 import styles from './OfferPreviewForSkillPage.module.css';
 import type { OfferPreviewForSkillPageProps } from './type';
 
-export const OfferPreviewForSkillPage: FC<OfferPreviewForSkillPageProps> = ({
+// Обновляем типы для компонента
+interface ExtendedProps extends OfferPreviewForSkillPageProps {
+  userLikes?: number;
+  isUserLiked?: boolean;
+  onUserLikeToggle?: () => void;
+}
+
+export const OfferPreviewForSkillPage: FC<ExtendedProps> = ({
   data,
   onExchangeClick,
   isExchangeDisabled,
-  isLoading
+  isLoading,
+  userLikes = 0, // Количество лайков пользователя
+  isUserLiked = false, // Лайкнул ли текущий пользователь
+  onUserLikeToggle // Обработчик лайка пользователя
 }) => {
   return (
     <section className={styles.wrapper}>
       {/* ряд иконок сверху справа */}
       <div className={styles.iconsRow}>
-        <ButtonIcon name='Добавить в избранное' iconName='likeEmpty' />
+        {/* Блок с лайками пользователя */}
+        <div className={styles.userLikesContainer}>
+          {userLikes > 0 && (
+            <span className={styles.userLikesCount}>{userLikes}</span>
+          )}
+          <ButtonIcon
+            name={isUserLiked ? 'Убрать лайк' : 'Поставить лайк'}
+            iconName={isUserLiked ? 'like' : 'likeEmpty'}
+            onClick={onUserLikeToggle}
+            isLiked={isUserLiked}
+          />
+        </div>
         <ButtonIcon name='Поделиться' iconName='share' />
         <ButtonIcon name='Дополнительные действия' iconName='moreSquare' />
       </div>

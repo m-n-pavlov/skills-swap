@@ -21,3 +21,15 @@
   gap: 12px;
   margin-bottom: 16px;
 }
+
+.userLikesContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.userLikesCount {
+  font-size: 16px;
+  font-weight: 500;
+  color: currentColor;
+}

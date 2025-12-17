@@ -1,119 +1,262 @@
-import { Avatar, Button, InputFile } from '../../../shared/ui';
+import { useEffect, useRef, useState } from 'react';
+
+import { Avatar, Button } from '../../../shared/ui';
 import { Input } from '../../../shared/ui/Input';
 import { DateInput } from '../../../shared/ui/DateInput';
 import { DropdownInput } from '../../../shared/ui/DropdownInput';
-import type { PersonFormProps } from './type';
-import { genderOption } from '../../../entities/constans';
 import { TextArea } from '../../../shared/ui/TextArea';
-import { useState } from 'react';
+import { Icon } from '../../../shared/ui/Icon';
+
+import type { Gender, PersonFormProps } from './type';
+import { genderOption } from '../../../utils/constans';
 
 import styles from './PersonForm.module.css';
 
-const mocksCity = [
-  { label: 'Москва', value: 'Москва' },
-  { label: 'Питер', value: 'Питер' },
-  { label: 'Рязань', value: 'Рязань' }
-];
-
 export const PersonForm = ({
   formValue,
-  handleInputChange,
-  handleInputClick,
-  handleSubmit,
-  disabled
-}: PersonFormProps) => {
-  const [showPasswordInput, setShowPasswordInput] = useState(false);
+  errors,
+  cityOptions,
 
-  const togglePasswordInput = () => {
-    setShowPasswordInput(!showPasswordInput);
+  showPasswordInput,
+  onTogglePassword,
+
+  onFieldChange,
+  onDescriptionChange,
+  onBirthdayChange,
+  onGenderChange,
+  onCityChange,
+
+  avatarBase64,
+  avatarError,
+  avatarToRemove,
+  onAvatarChange,
+  onRemoveAvatar,
+
+  onInputClick,
+  onSubmit,
+
+  disabled,
+  serverError
+}: PersonFormProps) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const wrapRef = useRef<HTMLDivElement | null>(null);
+  const fileRef = useRef<HTMLInputElement | null>(null);
+
+  useEffect(() => {
+    const onDocClick = (e: MouseEvent) => {
+      if (!wrapRef.current) return;
+      if (!wrapRef.current.contains(e.target as Node)) setIsMenuOpen(false);
+    };
+    if (isMenuOpen) document.addEventListener('mousedown', onDocClick);
+    return () => document.removeEventListener('mousedown', onDocClick);
+  }, [isMenuOpen]);
+
+  const pickFile = () => {
+    if (fileRef.current) fileRef.current.value = '';
+    fileRef.current?.click();
   };
 
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onAvatarChange(e.target.files);
+    setIsMenuOpen(false);
+  };
+
+  const showAvatar = avatarBase64 && !avatarToRemove;
+
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
+    <form className={styles.form} onSubmit={onSubmit}>
       <section className={styles.formSection}>
-        <Input
-          label='Почта'
-          name='email'
-          iconName='edit'
-          onChange={handleInputChange}
-          placeholder='Введите email'
-          required
-          type='email'
-          value={formValue.email}
-        />
-        {showPasswordInput && (
+        {!!serverError && <p className={styles.serverError}>{serverError}</p>}
+
+        <div
+          className={`${styles.field} ${errors.email ? styles.fieldError : ''}`}
+        >
           <Input
-            infoText='Пароль должен содержать не менее 8 знаков'
-            name='password'
-            label='Пароль'
-            onChange={handleInputChange}
-            placeholder='Введите пароль'
-            type='password'
-            value={formValue.password}
+            label='Почта'
+            name='email'
+            iconName='edit'
+            placeholder='Введите email'
+            required
+            type='email'
+            value={formValue.email}
+            onChange={(value) => onFieldChange('email', value)}
           />
+          {errors.email && <p className={styles.errorText}>{errors.email}</p>}
+        </div>
+
+        {showPasswordInput && (
+          <div
+            className={`${styles.field} ${errors.password ? styles.fieldError : ''}`}
+          >
+            <Input
+              infoText='Пароль должен содержать не менее 8 знаков'
+              name='password'
+              label='Пароль'
+              placeholder='Введите пароль'
+              type='password'
+              value={formValue.password}
+              onChange={(value) => onFieldChange('password', value)}
+            />
+            {errors.password && (
+              <p className={styles.errorText}>{errors.password}</p>
+            )}
+          </div>
         )}
+
         <Button
           style='text'
-          children={showPasswordInput ? 'Отменить' : 'Изменить пароль'}
           type='button'
-          onClick={togglePasswordInput}
+          onClick={onTogglePassword}
           className={styles.togglePassword}
-        />
+        >
+          {showPasswordInput ? 'Отменить' : 'Изменить пароль'}
+        </Button>
 
-        <Input
-          label='Имя'
-          name='name'
-          iconName='edit'
-          onChange={handleInputChange}
-          placeholder='Введите ваше имя'
-          required
-          type='text'
-          value={formValue.name}
-        />
-        <div className={styles.wrap}>
-          <DateInput onChange={handleInputChange} value={formValue.birthday} />
-          <DropdownInput
-            label='Пол'
-            placeholder='Не указан'
-            value={formValue.gender}
-            options={genderOption}
-            onChange={handleInputChange}
-            onClick={handleInputClick}
+        <div
+          className={`${styles.field} ${errors.name ? styles.fieldError : ''}`}
+        >
+          <Input
+            label='Имя'
+            name='name'
+            iconName='edit'
+            placeholder='Введите ваше имя'
+            required
+            type='text'
+            value={formValue.name}
+            onChange={(value) => onFieldChange('name', value)}
           />
+          {errors.name && <p className={styles.errorText}>{errors.name}</p>}
         </div>
-        <DropdownInput
-          label='Город'
-          placeholder='Не указан'
-          value={formValue.city}
-          size='large'
-          options={mocksCity}
-          onChange={handleInputChange}
-          onClick={handleInputClick}
-        />
-        <TextArea
-          label='Описание'
-          name='description'
-          iconName='edit'
-          placeholder='Коротко опишите, чему можете научить'
-          className={styles.description}
-          value={formValue.description}
-          onChange={handleInputChange}
-        />
+
+        <div className={styles.wrap}>
+          <div
+            className={`${styles.field} ${errors.birthday ? styles.fieldError : ''}`}
+          >
+            <DateInput onChange={onBirthdayChange} value={formValue.birthday} />
+            {errors.birthday && (
+              <p className={styles.errorText}>{errors.birthday}</p>
+            )}
+          </div>
+
+          <div
+            className={`${styles.field} ${errors.gender ? styles.fieldError : ''}`}
+          >
+            <DropdownInput
+              label='Пол'
+              placeholder='Не указан'
+              value={formValue.gender}
+              size='large'
+              options={genderOption}
+              onChange={(value) => {
+                if (typeof value === 'string') onGenderChange(value as Gender);
+              }}
+              onClick={onInputClick}
+            />
+            {errors.gender && (
+              <p className={styles.errorText}>{errors.gender}</p>
+            )}
+          </div>
+        </div>
+
+        <div
+          className={`${styles.field} ${errors.cityId ? styles.fieldError : ''}`}
+        >
+          <DropdownInput
+            label='Город'
+            placeholder='Не указан'
+            value={formValue.cityId}
+            size='large'
+            options={cityOptions}
+            onChange={(value) => {
+              if (typeof value === 'string') onCityChange(value);
+            }}
+            onClick={onInputClick}
+          />
+          {errors.cityId && <p className={styles.errorText}>{errors.cityId}</p>}
+        </div>
+
+        <div
+          className={`${styles.field} ${errors.description ? styles.fieldError : ''}`}
+        >
+          <TextArea
+            label='О себе'
+            name='description'
+            iconName='edit'
+            placeholder='Коротко опишите, чему можете научить'
+            className={styles.description}
+            value={formValue.description}
+            onChange={onDescriptionChange}
+          />
+          {errors.description && (
+            <p className={styles.errorText}>{errors.description}</p>
+          )}
+        </div>
+
         <Button
           type='submit'
-          children='Сохранить'
           style='primary'
           className={styles.button}
           disabled={disabled}
-        />
+        >
+          Сохранить
+        </Button>
       </section>
       <div className={styles.avatarWrap}>
-        <Avatar size='large' />
-        <InputFile
-          onChange={handleInputChange}
-          variant='icon-only'
-          className={styles.inputFile}
-        />
+        <div className={styles.avatarBox} ref={wrapRef}>
+          <Avatar size='large' />
+
+          {showAvatar && (
+            <img
+              className={styles.avatarImg}
+              src={avatarBase64!}
+              alt='avatar'
+            />
+          )}
+
+          <button
+            type='button'
+            className={styles.avatarBtn}
+            onClick={() => setIsMenuOpen((p) => !p)}
+            aria-label='Фото профиля'
+          >
+            <Icon name='galleryAdd' alt='Фото профиля' />
+          </button>
+
+          {isMenuOpen && (
+            <div className={styles.menu}>
+              <button
+                type='button'
+                className={styles.menuItem}
+                onClick={pickFile}
+              >
+                Upload a photo…
+              </button>
+
+              {avatarBase64 && (
+                <button
+                  type='button'
+                  className={styles.menuItem}
+                  onClick={() => {
+                    onRemoveAvatar();
+                    setIsMenuOpen(false);
+                  }}
+                >
+                  Remove photo
+                </button>
+              )}
+            </div>
+          )}
+
+          <input
+            ref={fileRef}
+            type='file'
+            accept='image/*'
+            className={styles.hiddenInput}
+            onChange={handleFileChange}
+          />
+        </div>
+
+        {avatarError && <p className={styles.errorText}>{avatarError}</p>}
       </div>
     </form>
   );
