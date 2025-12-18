@@ -11,15 +11,36 @@ export const LinkButton: React.FC<LinkButtonProps> = ({
   style,
   className,
   size,
-  actionType = 'navigate',
+  actionType,
   iconName,
-  onClick
+  onClick,
+  disabled
 }) => {
   // Текст по умолчанию в зависимости от actionType
   const defaultText =
     actionType === 'navigate' ? 'Подробнее' : 'Обмен предложен';
   const content = children || defaultText;
   const showIcon = actionType === 'tradeStatus' && iconName;
+
+  if (disabled || actionType === 'tradeStatus') {
+    return (
+      <button
+        type='button'
+        disabled
+        className={clsx(
+          styles.button,
+          styles[size],
+          styles['tertiary'],
+          styles.disabled,
+          styles[`actionType-${actionType}`],
+          className
+        )}
+      >
+        {showIcon && <Icon name={iconName} alt='' className={styles.icon} />}
+        {content}
+      </button>
+    );
+  }
 
   return (
     <NavLink
@@ -30,11 +51,6 @@ export const LinkButton: React.FC<LinkButtonProps> = ({
           onClick?.(); // старый navigate(...)
           return;
         }
-
-        if (actionType === 'tradeStatus') {
-          e.preventDefault();
-          onClick?.();
-        }
       }}
       className={clsx(
         styles.button,
@@ -44,7 +60,6 @@ export const LinkButton: React.FC<LinkButtonProps> = ({
         className
       )}
     >
-      {showIcon && <Icon name={iconName} alt='' className={styles.icon} />}
       {content}
     </NavLink>
   );

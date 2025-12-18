@@ -10,4 +10,5 @@ export type LinkButtonProps = {
   iconName?: IconName; // новый проп для имени иконки (для tradeStatus)
   className?: string;
   onClick?: () => void; // обработчик клика по кнопке "Подробнее"
+  disabled?: boolean;
 };

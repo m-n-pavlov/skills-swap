@@ -15,12 +15,13 @@ export const UserCard = memo(function UserCard({
   onMore,
   isLiked,
   likesCount,
-  linkButtonActionType = 'navigate', // значение по умолчанию
+  linkButtonActionType, // значение по умолчанию
   linkButtonIconName
 }: UserCardProps) {
   // Используем значение по умолчанию для likesCount
   const displayLikesCount = likesCount ?? user.likes ?? 0;
   const isLikedState = isLiked ?? false;
+  const isButtonStatus = linkButtonActionType === 'tradeStatus';
 
   return (
     <li className={clsx(styles.userCard, className)}>
@@ -127,6 +128,7 @@ export const UserCard = memo(function UserCard({
           onClick={() => onMore?.(user.id)}
           actionType={linkButtonActionType} // Прокидываем actionType
           iconName={linkButtonIconName} // Прокидываем iconName
+          disabled={isButtonStatus}
         />
         // children не передаем - LinkButton сам определит текст по actionType
       )}
