@@ -30,7 +30,6 @@ export type PersonFormProps = {
   onGenderChange: (value: Gender) => void;
   onCityChange: (value: string) => void;
 
-  // ✅ avatar
   avatarBase64: string | null;
   avatarToRemove: boolean;
   avatarError: string | null;

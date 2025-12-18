@@ -17,7 +17,6 @@ export const useExchangeSystem = (skillId: string): TUseExchangeSystem => {
 
     setIsLoading(true);
     try {
-      // Передаём то, что ожидает toggleOffersApi: { user, skillId }
       await dispatch(toggleOffer({ user: currentUser, skillId })).unwrap();
 
       setIsModalOpen(true);

@@ -11,7 +11,6 @@ const SkillsPopover = memo(
   ({ className, onClick, categories }: TSkillsPopoverProps) => {
     const [isOpen, setIsOpen] = useState(false);
     const popoverRef = useRef<HTMLDivElement>(null);
-    // закрытие по нажатию на Escape
     useEffect(() => {
       const handleEscape = (e: KeyboardEvent) => {
         if (e.key === 'Escape' && isOpen) {
@@ -22,7 +21,6 @@ const SkillsPopover = memo(
       document.addEventListener('keydown', handleEscape);
       return () => document.removeEventListener('keydown', handleEscape);
     }, [isOpen]);
-    // закрытие по нажатию на оверлей
     useEffect(() => {
       const handleClickOutside = (e: MouseEvent) => {
         if (
@@ -40,9 +38,7 @@ const SkillsPopover = memo(
       return () =>
         document.removeEventListener('mousedown', handleClickOutside);
     }, [isOpen]);
-    // можно объединить, но кажется читаться будет хуже
 
-    // при нажатии на навык срабатывает функция, которая будет передана, с передачей id для работы с фильтрацией
     const handleClickSkill = (skill: TSubCategories) => {
       onClick?.(skill.id, skill.name);
       setIsOpen(false);

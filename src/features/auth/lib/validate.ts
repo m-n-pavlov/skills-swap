@@ -20,12 +20,10 @@ export const validateEmail = (value: string): string | null => {
 export const validatePassword = (value: string): string | null => {
   const trimmed = value.trim();
 
-  // 1. Проверяем пустой пароль
   if (!trimmed) {
     return PASSWORD_ERROR_TEXT;
   }
 
-  // 2. Минимальная длина — 8 символов
   if (trimmed.length < 8) {
     return PASSWORD_ERROR_TEXT;
   }

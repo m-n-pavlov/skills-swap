@@ -22,7 +22,6 @@ const meta: Meta<CheckboxProps> = {
 
 export default meta;
 
-// 1. Интерактивный список
 export const Interactive: StoryObj = {
   render: () => {
     const [selectedIds, setSelectedIds] = useState<string[]>([]);
@@ -55,7 +54,6 @@ export const Interactive: StoryObj = {
   }
 };
 
-// 2. Без заголовка
 export const WithoutLegend: StoryObj = {
   render: () => {
     const [selectedIds, setSelectedIds] = useState<string[]>(['2']);
@@ -83,7 +81,6 @@ export const WithoutLegend: StoryObj = {
   }
 };
 
-// 3. Скрытый список
 export const Closed: StoryObj<CheckboxProps> = {
   args: {
     items: [{ id: '1', label: 'Тест' }],
@@ -94,7 +91,6 @@ export const Closed: StoryObj<CheckboxProps> = {
   }
 };
 
-// 4. Категории с подпунктами (расширяемые)
 export const WithExpandableCategories: StoryObj = {
   render: () => {
     const [selectedIds, setSelectedIds] = useState<string[]>([]);
@@ -108,7 +104,6 @@ export const WithExpandableCategories: StoryObj = {
       { id: 'sub-4', label: 'Музыка и звук' }
     ];
 
-    // ID категорий, которые можно раскрывать
     const expandableIds = ['category-1'];
 
     const handleChange = (id: string) => {
@@ -140,7 +135,6 @@ export const WithExpandableCategories: StoryObj = {
   }
 };
 
-// 5. Смешанный пример с несколькими категориями
 export const MultipleCategories: StoryObj = {
   render: () => {
     const [selectedIds, setSelectedIds] = useState<string[]>([

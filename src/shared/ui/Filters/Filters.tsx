@@ -38,7 +38,6 @@ const Filters = memo(function Filters({
   onFiltersChange,
   onResetFilters
 }: TFiltersProps) {
-  // Обработчики для каждого типа фильтра
   const handleTypeChange = (type: ModeFilter): void => {
     onFiltersChange({ ...filters, type });
   };
@@ -55,7 +54,6 @@ const Filters = memo(function Filters({
     onFiltersChange({ ...filters, cityIds });
   };
 
-  // Функция для сброса всех фильтров
   const handleResetFilters = () => {
     onResetFilters();
   };

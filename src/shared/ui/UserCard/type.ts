@@ -13,6 +13,6 @@ export interface UserCardProps {
   onMore?: (id: string) => void;
   isLiked?: boolean;
   likesCount?: number;
-  linkButtonActionType?: 'navigate' | 'tradeStatus'; // для двух разных вариантов LinkButton
-  linkButtonIconName?: IconName; // для вставки иконки в LinkButton в случае tradeStatus
+  linkButtonActionType?: 'navigate' | 'tradeStatus';
+  linkButtonIconName?: IconName;
 }

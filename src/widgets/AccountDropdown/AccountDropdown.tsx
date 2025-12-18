@@ -7,7 +7,6 @@ export const AccountDropdown = memo(
   ({ isOpen, onClose, onLogout }: AccountDropdownProps) => {
     const dropdownRef = useRef<HTMLDivElement>(null);
 
-    // Закрытие при клике вне
     useEffect(() => {
       const handleClickOutside = (event: MouseEvent) => {
         if (
@@ -27,7 +26,6 @@ export const AccountDropdown = memo(
       };
     }, [isOpen, onClose]);
 
-    // Закрытие по ESC
     useEffect(() => {
       const handleKeyDown = (e: KeyboardEvent) => {
         if (e.key === 'Escape') {

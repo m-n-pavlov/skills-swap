@@ -15,7 +15,6 @@ export const LinkButton: React.FC<LinkButtonProps> = ({
   iconName,
   onClick
 }) => {
-  // Текст по умолчанию в зависимости от actionType
   const defaultText =
     actionType === 'navigate' ? 'Подробнее' : 'Обмен предложен';
   const content = children || defaultText;
@@ -27,7 +26,7 @@ export const LinkButton: React.FC<LinkButtonProps> = ({
       onClick={(e) => {
         if (actionType === 'navigate' && to === '#') {
           e.preventDefault();
-          onClick?.(); // старый navigate(...)
+          onClick?.();
           return;
         }
 

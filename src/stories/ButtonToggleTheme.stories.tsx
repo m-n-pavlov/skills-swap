@@ -25,7 +25,6 @@ export const DarkMode: Story = {
   }
 };
 
-// История со светлой темой по умолчанию
 export const LightMode: Story = {
   render: () => <ButtonToggleTheme />,
   beforeEach: () => {

@@ -3,26 +3,6 @@ import { http, HttpResponse } from 'msw';
 import type { TAuthUser } from '../../entities/authUser.ts';
 import { addUserToStore, authUsers } from '../utils/authStore.ts';
 
-// const getUserFromLocalStorage = (): TAuthUser[] => {
-//   try {
-//     const raw = localStorage.getItem('user');
-//     if (!raw) return [];
-//     const parsed = JSON.parse(raw);
-//     if (!parsed) return [];
-//     return Array.isArray(parsed) ? parsed : [parsed];
-//   } catch {
-//     return [];
-//   }
-// };
-
-// const usersFromLS = getUserFromLocalStorage();
-// export const mockAuthUsers: TAuthUser[] = [
-//   ...usersFromJson
-//   // ...usersFromLS.filter(
-//   //     (lsUser) => !usersFromJson.some((u) => u.email === lsUser.email)
-//   // )
-// ];
-
 export const authRegisterHandler = [
   http.post('/api/auth/register', async ({ request }) => {
     const formData = await request.formData();
@@ -99,7 +79,6 @@ export const authRegisterHandler = [
 
     addUserToStore(newUser);
     console.log('✅ Пользователь сохранен в хранилище и localStorage');
-    // localStorage.setItem('user', JSON.stringify(newUser));
 
     const { password: _, ...userWithoutPassword } = newUser;
 

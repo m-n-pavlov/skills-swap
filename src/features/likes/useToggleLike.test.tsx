@@ -39,7 +39,6 @@ const mockUserWithoutLikes: TAuthUser = {
   likes: []
 };
 
-// Создаём стор с редьюсером и полным состоянием
 const createTestStore = (authState: Partial<AuthState>) => {
   const fullState: AuthState = {
     currentUser: mockUserWithLikes,
@@ -147,7 +146,6 @@ describe('useToggleLike', () => {
 
     const store = createTestStore(authState);
 
-    // 👇 Создаём spy до рендера
     const dispatchSpy = jest.spyOn(store, 'dispatch');
 
     const { result } = renderHook(() => useToggleLike(), {
@@ -156,7 +154,6 @@ describe('useToggleLike', () => {
 
     await result.current.toggleLikeHandler('card-999');
 
-    // Проверяем, что dispatch был вызван хотя бы раз
     expect(dispatchSpy).toHaveBeenCalled();
   });
 });

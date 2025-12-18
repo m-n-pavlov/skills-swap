@@ -32,7 +32,6 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
 
   const footerVisible = useAutoHideFooter(isHomePage);
 
-  // Базовый класс + модификатор
   const footerWrapperClass = clsx(
     styles.footerWrapper,
     isHomePage

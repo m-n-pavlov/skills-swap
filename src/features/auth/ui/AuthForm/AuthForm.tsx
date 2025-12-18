@@ -40,7 +40,6 @@ export const AuthForm = ({
       className={clsx(styles.form_content, className)}
       onSubmit={handleSubmit}
     >
-      {/* Соц-кнопки */}
       <Button
         type='button'
         style='secondary'
@@ -61,7 +60,6 @@ export const AuthForm = ({
         <span className={styles.text}>Продолжить с Apple</span>
       </Button>
 
-      {/* Разделитель "или" */}
       <div className={styles.divider}>
         <span className={styles.dividerLine} />
         <span className={clsx(styles.text, styles.dividerText)}>или</span>
@@ -69,7 +67,6 @@ export const AuthForm = ({
       </div>
 
       <div className={styles.fields}>
-        {/* Email */}
         <div className={styles.field}>
           <label htmlFor='email' className={styles.label}>
             Email
@@ -85,7 +82,6 @@ export const AuthForm = ({
           />
         </div>
 
-        {/* Пароль */}
         <div className={styles.field}>
           <label htmlFor='password' className={styles.label}>
             Пароль

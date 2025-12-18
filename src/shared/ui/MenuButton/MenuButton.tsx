@@ -19,7 +19,6 @@ export const MenuButton = memo(
   }: MenuButtonProps) => {
     const computedAlt = iconAlt ?? `Icon for ${label}`;
 
-    // если лейбл скрыт — даём текст скринридеру
     const ariaLabel = hideLabel ? label : buttonProps['aria-label'];
 
     const content = children ?? (

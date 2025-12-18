@@ -10,17 +10,14 @@ import { Button } from '../Button/Button';
 import styles from './DateInput.module.css';
 import type { DateInputProps } from './type';
 
-registerLocale('ru', ru); // Локализация
+registerLocale('ru', ru);
 
-// Формат отображения
 const DISPLAY_FORMAT = 'dd.MM.yyyy';
 
-// Парсинг даты из строки
 const parseDateInput = (value: string): Date | null => {
   const trimmed = value.trim();
   if (!trimmed) return null;
 
-  // Разделяем по точкам или слэшам
   const parts = trimmed.split(/[./]/).map((part) => part.trim());
   if (parts.length !== 3) return null;
 
@@ -29,7 +26,6 @@ const parseDateInput = (value: string): Date | null => {
   const month = Number.parseInt(monthStr, 10);
   const year = Number.parseInt(yearStr, 10);
 
-  // Валидация чисел
   if (
     Number.isNaN(day) ||
     Number.isNaN(month) ||
@@ -44,7 +40,6 @@ const parseDateInput = (value: string): Date | null => {
     return null;
   }
 
-  // Проверка корректности даты
   const date = new Date(year, month - 1, day);
   if (
     date.getDate() !== day ||
@@ -73,13 +68,11 @@ export const DateInput = memo(
         return value ? format(value, DISPLAY_FORMAT) : '';
       });
 
-      // Синхронизация с внешним значением
       useEffect(() => {
         setTempDate(value);
         setInputValue(value ? format(value, DISPLAY_FORMAT) : '');
       }, [value]);
 
-      // Закрытие попапа при клике на оверлей
       useEffect(() => {
         if (!isOpen) {
           setIsMonthOpen(false);
@@ -101,11 +94,10 @@ export const DateInput = memo(
           document.removeEventListener('click', handleClickOutside, true);
       }, [isOpen]);
 
-      // Обработка ввода в инпут
       const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const val = e.target.value;
         setInputValue(val);
-        setError(null); // сбрасываем ошибку при вводе(!)
+        setError(null);
       };
 
       const handleInputBlur = () => {
@@ -114,10 +106,8 @@ export const DateInput = memo(
           onChange(parsed);
           setError(null);
         } else if (inputValue.trim()) {
-          // Если есть ввод, но он невалиден
           setError('Введите корректную дату');
         } else {
-          // Поле пустое — ошибки нет
           setError(null);
         }
       };
@@ -130,7 +120,7 @@ export const DateInput = memo(
             setError(null);
             setIsOpen(false);
           } else if (inputValue.trim()) {
-            setError('Введите корректную дату'); // Если есть ввод, но он невалиден и для клавиши Enter
+            setError('Введите корректную дату');
           }
         }
       };
@@ -180,7 +170,6 @@ export const DateInput = memo(
 
       useEffect(() => {
         if (isOpen) {
-          // Время рендера
           setTimeout(() => {
             const popover = containerRef.current?.querySelector(
               `.${styles.popover}`
@@ -212,7 +201,6 @@ export const DateInput = memo(
 
         return (
           <div className={styles.header}>
-            {/* Месяц */}
             <div className={styles.selectWrapper}>
               <button
                 type='button'
@@ -244,7 +232,6 @@ export const DateInput = memo(
               )}
             </div>
 
-            {/* Год */}
             <div className={styles.selectWrapper}>
               <button
                 type='button'

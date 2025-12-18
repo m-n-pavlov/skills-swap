@@ -31,7 +31,6 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-// Декоратор, чтобы меню отображалось внутри контейнера
 const DropdownDecorator = (Story: any) => (
   <div style={{ position: 'relative', padding: '100px', minHeight: '200px' }}>
     <Story />

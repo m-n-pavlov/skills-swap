@@ -1,22 +1,17 @@
 import { useSelector } from 'react-redux';
 import { useMemo } from 'react';
 
-// Селекторы соответствующих слайсов
 import { selectAllUsers } from '../../app/store/slices/usersSlice/userSelector.ts';
 import { selectAllSkills } from '../../app/store/slices/skillsSlice/skillsSelector.ts';
 import { selectAllCities } from '../../app/store/slices/citiesSlice/citiesSelector.ts';
 
-// Утилита для расчета возраста
 import { calculateAge } from './lib/calculateAge.ts';
 
-// Импорт вспомогательных типов
 import type { TSkill } from '../../entities/skills.ts';
 import type { TUser } from '../../entities/users.ts';
 
-// Вспомогательный тип (без id, но с categoryId и subcategoryId)
 type TSkillWithoutId = Omit<TSkill, 'id'>;
 
-// Тип пользователя, возвращаемого хуком
 export type TUserWithDetails = Omit<
   TUser,
   'birthday' | 'skillsTeach' | 'skillsLearn'
@@ -32,7 +27,6 @@ export const useUsersWithDetails = (): TUserWithDetails[] => {
   const skills = useSelector(selectAllSkills);
   const cities = useSelector(selectAllCities);
 
-  // Мемоизируем маппинги отдельно
   const skillsMap = useMemo(
     () => new Map(skills.map((skill) => [skill.id, skill])),
     [skills]
@@ -53,7 +47,6 @@ export const useUsersWithDetails = (): TUserWithDetails[] => {
           const skill = skillsMap.get(skillId);
           if (!skill) return null;
 
-          // Удаляем id, но сохраняем categoryId и subcategoryId
           const { id, ...skillWithoutId } = skill;
           return skillWithoutId;
         })
@@ -64,7 +57,6 @@ export const useUsersWithDetails = (): TUserWithDetails[] => {
           const skill = skillsMap.get(skillId);
           if (!skill) return null;
 
-          // Удаляем id, но сохраняем categoryId и subcategoryId
           const { id, ...skillWithoutId } = skill;
           return skillWithoutId;
         })

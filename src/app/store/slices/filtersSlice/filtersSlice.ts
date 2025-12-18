@@ -1,14 +1,9 @@
-// src/app/store/slices/filtersSlice/filtersSlice.ts
-// Слайс хранит состояние фильтров
-
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
-// Вспомогательные типы
 export type ModeFilter = 'any' | 'teach' | 'learn';
 export type GenderFilter = 'any' | 'male' | 'female';
 export type SortFilter = 'popular' | 'new' | null;
 
-// Интерфейс состояния слайса
 export interface FiltersState {
   skills: string[];
   cities: string[];
@@ -18,7 +13,6 @@ export interface FiltersState {
   searchQuery: string;
 }
 
-// Начальное состояние
 const initialState: FiltersState = {
   skills: [],
   cities: [],

@@ -7,7 +7,6 @@ const skill = skills.skills[3];
 const mockData = {
   title: skill.shortDescription,
   category: skill.name,
-  // 'Творчество и искусство / Музыка и звук',
   description: skill.description,
   images: skill.images
 };

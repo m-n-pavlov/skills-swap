@@ -11,7 +11,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
   placeholder,
   onClick,
   onClear,
-  showClearButton = true // Значение по умолчанию
+  showClearButton = true
 }) => {
   const handleClear = () => {
     onClear?.();
@@ -41,7 +41,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
         className={`${styles.search_input} ${value ? styles['has-value'] : ''}`}
       />
       {showClearButton &&
-        value && ( //кнопка очистки
+        value && (
           <button
             type='button'
             className={styles.clear_button}

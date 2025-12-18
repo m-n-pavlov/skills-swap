@@ -34,7 +34,6 @@ function App() {
   return (
     <div className={styles.app}>
       <Routes>
-        {/* Главная */}
         <Route
           path='/'
           element={
@@ -44,7 +43,6 @@ function App() {
           }
         />
 
-        {/* Авторизация */}
         <Route
           path='/login'
           element={
@@ -66,7 +64,6 @@ function App() {
           }
         />
 
-        {/* Избранное */}
         <Route
           path='/favorites'
           element={
@@ -78,7 +75,6 @@ function App() {
           }
         />
 
-        {/* Профиль */}
         <Route
           path='/profile'
           element={
@@ -90,7 +86,6 @@ function App() {
           }
         />
 
-        {/* Навык */}
         <Route
           path='/skill/:userId'
           element={
@@ -100,7 +95,6 @@ function App() {
           }
         />
 
-        {/* 404 */}
         <Route
           path='*'
           element={

@@ -3,7 +3,7 @@ import { LinkButton } from '../LinkButton';
 import type { RegistrationButtonProps } from './type';
 
 export const RegistrationButton: React.FC<RegistrationButtonProps> = ({
-  to = '#', // заглушка
+  to = '#',
   className,
   ...rest
 }) => {

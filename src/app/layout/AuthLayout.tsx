@@ -8,7 +8,6 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
   const location = useLocation();
   const { currentUser } = useAppSelector((state) => state.auth);
 
-  // Извлекаем "from" из состояния навигации
   const fromPath = (location.state as { from?: string })?.from || '/';
 
   const isProtectedRoute = (path: string): boolean => {
