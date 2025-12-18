@@ -14,7 +14,7 @@ import type { TSkill } from '../../entities/skills.ts';
 import type { TUser } from '../../entities/users.ts';
 
 // Вспомогательный тип (без id, но с categoryId и subcategoryId)
-type TSkillWithoutId = Omit<TSkill, 'id'>;
+export type TSkillWithoutId = Omit<TSkill, 'id'>;
 
 // Тип пользователя, возвращаемого хуком
 export type TUserWithDetails = Omit<

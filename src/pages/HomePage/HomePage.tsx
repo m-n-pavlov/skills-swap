@@ -14,9 +14,20 @@ import { sortNewestUsers, sortPopularUsers } from '../../features/users';
 import { selectCurrentUser } from '../../app/store/slices/authSlice/authSelector.ts';
 import { toggleLike } from '../../app/store/slices/authSlice/authSlice';
 import { useAppDispatch } from '../../shared/hooks';
-import { selectSearchQuery } from '../../app/store/slices/filtersSlice/selectors'; // Добавляем селектор поиска
-import { setSearchQuery } from '../../app/store/slices/filtersSlice/filtersSlice';
-import { useNavigate } from 'react-router-dom'; // Добавляем action для поиска
+import { selectSearchQuery } from '../../app/store/slices/filtersSlice/selectors';
+import {
+  setSkills,
+  setCities,
+  setGender,
+  setMode,
+  setSort,
+  setSearchQuery,
+  clearFilters
+} from '../../app/store/slices/filtersSlice/filtersSlice';
+import { useNavigate } from 'react-router-dom';
+
+// Хук фильтрации (тот, который ты прислал)
+import { useFilteredUsers } from '../../app/store/slices/filtersSlice/useFilteredUsers';
 
 export type ModeFilter = 'any' | 'learn' | 'teach';
 export type GenderFilter = 'any' | 'male' | 'female';
@@ -28,7 +39,6 @@ export interface FiltersState {
   cityIds: string[];
 }
 
-// Новые типы для управления активными фильтрами и чипсами
 export type SectionType = 'popular' | 'newest' | 'recommended';
 
 export interface ActiveFilter {
@@ -47,32 +57,25 @@ export const HomePage = () => {
   const currentUser = useSelector(selectCurrentUser);
   const usersWithDetails = useUsersWithDetails();
   const navigate = useNavigate();
-  const getLinkButtonIconName = 'clock';
 
-  // Получаем поисковый запрос из Redux
+  // Redux filters (используем штатную ветку state.filters)
+  const reduxFilters = useSelector((state: any) => state.filters);
   const searchQuery = useSelector(selectSearchQuery);
 
-  // Состояние фильтров
-  const [filters, setFilters] = useState<FiltersState>({
-    type: 'any',
-    skillIds: [],
-    gender: 'any',
-    cityIds: []
+  // Локальное состояние фильтров для компонента Filters (синхронизируется с Redux)
+  const [filters, setFiltersLocal] = useState<FiltersState>({
+    type: (reduxFilters?.mode as ModeFilter) ?? 'any',
+    skillIds: (reduxFilters?.skills as string[]) ?? [],
+    gender: (reduxFilters?.gender as GenderFilter) ?? 'any',
+    cityIds: (reduxFilters?.cities as string[]) ?? []
   });
 
-  // Состояние активных фильтров (чипсов)
   const [activeFilters, setActiveFilters] = useState<ActiveFilter[]>([]);
-
-  // Состояние активной секции
   const [activeSection, setActiveSection] = useState<SectionType | null>(null);
 
-  // Состояние для порядка сортировки
-  const [sortOrder, setSortOrder] = useState<'newest' | 'oldest'>('newest');
-
-  // Состояние для синхронизации лайков с currentUser
+  // likedUsers — оптимистичный UI для лайков
   const [likedUsers, setLikedUsers] = useState<Record<string, boolean>>({});
 
-  // Инициализируем likedUsers из currentUser при загрузке
   useEffect(() => {
     if (currentUser?.likes) {
       const initialLikedUsers: Record<string, boolean> = {};
@@ -83,37 +86,44 @@ export const HomePage = () => {
     }
   }, [currentUser]);
 
-  // Эффект для обработки поискового запроса
+  // Синхронизация локальных фильтров с Redux (если кто-то изменил фильтры извне)
   useEffect(() => {
-    if (!searchQuery.trim()) {
-      // Если поисковый запрос пустой, сбрасываем фильтры навыков
+    setFiltersLocal({
+      type: (reduxFilters?.mode as ModeFilter) ?? 'any',
+      skillIds: (reduxFilters?.skills as string[]) ?? [],
+      gender: (reduxFilters?.gender as GenderFilter) ?? 'any',
+      cityIds: (reduxFilters?.cities as string[]) ?? []
+    });
+  }, [reduxFilters]);
+
+  // Эффект: обработка поискового запроса - ищем навык и ставим его в Redux
+  useEffect(() => {
+    if (!searchQuery || !searchQuery.trim()) {
+      // если поиск пустой, очищаем навыки в локале и в Redux (если нужно)
+      // не форсируем очистку Redux.skills — оставляем это на логику удаления чипса
       if (filters.skillIds.length > 0) {
-        setFilters((prev) => ({ ...prev, skillIds: [] }));
+        setFiltersLocal((prev) => ({ ...prev, skillIds: [] }));
       }
       return;
     }
 
-    // Находим все навыки, которые содержат поисковый запрос
     const allSkills = categories.flatMap((c) => c.subCategories);
     const matchingSkills = allSkills.filter((skill) =>
       skill.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
     if (matchingSkills.length > 0) {
-      // Берем первый подходящий навык
       const firstMatchingSkill = matchingSkills[0];
 
-      // Устанавливаем фильтр
-      setFilters((prev) => ({
+      // Обновляем локально
+      setFiltersLocal((prev) => ({
         ...prev,
         skillIds: [firstMatchingSkill.id]
       }));
 
-      // Добавляем фильтр в активные чипсы
+      // Добавляем чип
       setActiveFilters((prev) => {
-        // Удаляем старые фильтры навыков
         const filtered = prev.filter((f) => f.filterType !== 'skill');
-        // Добавляем новый
         return [
           ...filtered,
           {
@@ -126,10 +136,15 @@ export const HomePage = () => {
         ];
       });
 
-      // Показываем секцию "Подходящие предложения"
+      // Ставим навык в Redux, чтобы useFilteredUsers увидел изменение
+      dispatch(setSkills([firstMatchingSkill.id]));
+
+      // Так же сохраняем сам поисковый запрос в Redux (если требуется)
+      dispatch(setSearchQuery(searchQuery));
+
       setActiveSection(null);
     }
-  }, [searchQuery, categories]);
+  }, [searchQuery, categories]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const {
     currentItems: recommendedUsers,
@@ -145,33 +160,20 @@ export const HomePage = () => {
   );
 
   const loadMoreRef = useRef<HTMLDivElement | null>(null);
-
-  // Генерация ID для фильтров
   const generateId = () => Math.random().toString(36).substring(2);
 
-  // Удаление фильтра по ID
   const removeActiveFilter = useCallback((id: string) => {
-    setActiveFilters((prev) => prev.filter((filter) => filter.id !== id));
+    setActiveFilters((prev) => prev.filter((f) => f.id !== id));
   }, []);
 
-  const getLinkButtonActionType = useCallback(
-    (userId: string): 'navigate' | 'tradeStatus' => {
-      if (!currentUser) return 'navigate';
-      const hasExchangeOffer = currentUser.exchangeOffers?.includes(userId);
-      return hasExchangeOffer ? 'tradeStatus' : 'navigate';
-    },
-    [currentUser]
-  );
-
-  // Обработчик изменения фильтров из компонента Filters
+  // Обработчик изменения фильтров из компонента Filters:
+  // обновляем локально UI (Filters) + диспатчим соответствующие actions в Redux
   const handleFiltersChange = useCallback(
     (newFilters: FiltersState) => {
-      setFilters(newFilters);
+      setFiltersLocal(newFilters);
 
-      // Очищаем старые фильтры и добавляем новые
       const newActiveFilters: ActiveFilter[] = [];
 
-      // Добавляем фильтр по типу
       if (newFilters.type !== 'any') {
         newActiveFilters.push({
           id: generateId(),
@@ -182,7 +184,6 @@ export const HomePage = () => {
         });
       }
 
-      // Добавляем фильтры по навыкам
       newFilters.skillIds.forEach((skillId) => {
         const skill = categories
           .flatMap((c) => c.subCategories)
@@ -198,7 +199,6 @@ export const HomePage = () => {
         }
       });
 
-      // Добавляем фильтр по полу
       if (newFilters.gender !== 'any') {
         newActiveFilters.push({
           id: generateId(),
@@ -209,7 +209,6 @@ export const HomePage = () => {
         });
       }
 
-      // Добавляем фильтры по городам
       newFilters.cityIds.forEach((cityId) => {
         const city = cities.find((c) => c.id === cityId);
         if (city) {
@@ -223,62 +222,99 @@ export const HomePage = () => {
         }
       });
 
-      // Устанавливаем активные фильтры
       setActiveFilters((prev) => {
-        // Сохраняем фильтры секций
         const sectionFilters = prev.filter((f) => f.type === 'section');
         return [...sectionFilters, ...newActiveFilters];
       });
 
-      // Если есть фильтры, показываем секцию "Подходящие предложения"
       if (newActiveFilters.length > 0) {
         setActiveSection(null);
       }
+
+      // Диспатчим в Redux — отдельными экшенами (slice предоставляет их)
+      dispatch(setMode(newFilters.type as any));
+      dispatch(setSkills(newFilters.skillIds));
+      dispatch(setGender(newFilters.gender as any));
+      dispatch(setCities(newFilters.cityIds));
+      // Сортировка не трогаем здесь (оставляем как есть в Redux)
     },
-    [categories, cities]
+    [categories, cities, dispatch]
   );
 
-  // Обработчик сброса всех фильтров
   const handleResetFilters = useCallback(() => {
-    setFilters({
+    const defaultLocal: FiltersState = {
       type: 'any',
       skillIds: [],
       gender: 'any',
       cityIds: []
-    });
-    setActiveFilters((prev) => prev.filter((f) => f.type === 'section'));
-  }, []);
+    };
 
-  // Обновлённый handleRemoveFilter с очисткой поиска
+    setFiltersLocal(defaultLocal);
+    setActiveFilters((prev) => prev.filter((f) => f.type === 'section'));
+
+    // Сбрасываем Redux-фильтры
+    dispatch(clearFilters());
+    // Сбрасываем глобальный поисковый селектор
+    dispatch(setSearchQuery(''));
+  }, [dispatch]);
+
   const handleRemoveFilter = useCallback(
     (filter: ActiveFilter) => {
       removeActiveFilter(filter.id);
 
       if (filter.type === 'section') {
-        // Если удаляем фильтр секции, скрываем секцию
         setActiveSection(null);
-      } else if (filter.filterType === 'type') {
-        setFilters((prev) => ({ ...prev, type: 'any' }));
-      } else if (filter.filterType === 'skill') {
-        setFilters((prev) => ({
+        return;
+      }
+
+      if (filter.filterType === 'type') {
+        setFiltersLocal((prev) => ({ ...prev, type: 'any' }));
+        dispatch(setMode('any'));
+        return;
+      }
+
+      if (filter.filterType === 'skill') {
+        setFiltersLocal((prev) => ({
           ...prev,
           skillIds: prev.skillIds.filter((id) => id !== filter.value)
         }));
-        // Очищаем поисковый запрос при удалении фильтра навыка
+        // Очищаем глобальный поиск при удалении фильтра навыка
         dispatch(setSearchQuery(''));
-      } else if (filter.filterType === 'gender') {
-        setFilters((prev) => ({ ...prev, gender: 'any' }));
-      } else if (filter.filterType === 'city') {
-        setFilters((prev) => ({
+        // Обновляем Redux.skills
+        dispatch(
+          setSkills(
+            (reduxFilters?.skills as string[] | undefined)?.filter(
+              (id) => id !== filter.value
+            ) ?? []
+          )
+        );
+        return;
+      }
+
+      if (filter.filterType === 'gender') {
+        setFiltersLocal((prev) => ({ ...prev, gender: 'any' }));
+        dispatch(setGender('any'));
+        return;
+      }
+
+      if (filter.filterType === 'city') {
+        setFiltersLocal((prev) => ({
           ...prev,
           cityIds: prev.cityIds.filter((id) => id !== filter.value)
         }));
+        dispatch(
+          setCities(
+            (reduxFilters?.cities as string[] | undefined)?.filter(
+              (id) => id !== filter.value
+            ) ?? []
+          )
+        );
+        return;
       }
     },
-    [removeActiveFilter, dispatch]
+    [removeActiveFilter, dispatch, reduxFilters]
   );
 
-  // Обработчик "Смотреть все" для популярного
   const handleShowAllPopular = useCallback(() => {
     setActiveFilters((prev) => [
       ...prev.filter((f) => !(f.type === 'section' && f.section === 'popular')),
@@ -292,9 +328,11 @@ export const HomePage = () => {
       }
     ]);
     setActiveSection('popular');
-  }, []);
 
-  // Обработчик "Смотреть все" для нового
+    // выставляем сортировку в Redux
+    dispatch(setSort('popular'));
+  }, [dispatch]);
+
   const handleShowAllNewest = useCallback(() => {
     setActiveFilters((prev) => [
       ...prev.filter((f) => !(f.type === 'section' && f.section === 'newest')),
@@ -308,14 +346,16 @@ export const HomePage = () => {
       }
     ]);
     setActiveSection('newest');
-  }, []);
 
-  // Обработчик переключения порядка сортировки
+    // выставляем сортировку в Redux
+    dispatch(setSort('new'));
+  }, [dispatch]);
+
   const handleSortToggle = useCallback(() => {
-    setSortOrder((prev) => (prev === 'newest' ? 'oldest' : 'newest'));
-  }, []);
+    const newSort = reduxFilters?.sort === 'new' ? null : 'new';
+    dispatch(setSort(newSort));
+  }, [dispatch, reduxFilters]);
 
-  // Обновленный обработчик лайка
   const handleLikeToggle = useCallback(
     async (cardId: string) => {
       if (!currentUser) {
@@ -323,7 +363,6 @@ export const HomePage = () => {
         return;
       }
 
-      // Оптимистичное обновление UI
       const isCurrentlyLiked = likedUsers[cardId] || false;
       setLikedUsers((prev) => ({
         ...prev,
@@ -331,18 +370,13 @@ export const HomePage = () => {
       }));
 
       try {
-        // Отправляем действие в Redux
         await dispatch(
           toggleLike({
             user: currentUser,
             cardId
           })
         ).unwrap();
-
-        // После успешного обновления на сервере, синхронизируем с currentUser
-        // (это произойдет автоматически через Redux)
       } catch (error) {
-        // В случае ошибки откатываем оптимистичное обновление
         setLikedUsers((prev) => ({
           ...prev,
           [cardId]: isCurrentlyLiked
@@ -353,7 +387,6 @@ export const HomePage = () => {
     [currentUser, likedUsers, dispatch]
   );
 
-  // Функция для получения данных о лайках пользователя
   const getUserLikeData = useCallback(
     (userId: string, userLikes: number) => {
       const isLiked = likedUsers[userId] || false;
@@ -366,140 +399,16 @@ export const HomePage = () => {
     [likedUsers]
   );
 
-  // Функция для фильтрации пользователей
-  const filterUsersByFilters = useCallback(
-    (users: typeof usersWithDetails, filters: FiltersState) => {
-      return users.filter((user) => {
-        if (filters.type !== 'any') {
-          if (filters.type === 'learn') {
-            if (filters.skillIds.length > 0) {
-              const userLearnSkillIds = user.skillsLearn.map(
-                (skill) => skill.subcategoryId
-              );
-              const hasMatchingLearnSkills = filters.skillIds.some((skillId) =>
-                userLearnSkillIds.includes(skillId)
-              );
-              if (!hasMatchingLearnSkills) return false;
-            } else {
-              if (user.skillsLearn.length === 0) return false;
-            }
-          } else if (filters.type === 'teach') {
-            if (filters.skillIds.length > 0) {
-              const userTeachSkillIds = user.skillsTeach.map(
-                (skill) => skill.subcategoryId
-              );
-              const hasMatchingTeachSkills = filters.skillIds.some((skillId) =>
-                userTeachSkillIds.includes(skillId)
-              );
-              if (!hasMatchingTeachSkills) return false;
-            } else {
-              if (user.skillsTeach.length === 0) return false;
-            }
-          }
-        }
-
-        if (filters.gender !== 'any' && user.gender !== filters.gender) {
-          return false;
-        }
-
-        if (
-          filters.cityIds.length > 0 &&
-          !filters.cityIds.includes(user.cityId)
-        ) {
-          return false;
-        }
-
-        if (filters.skillIds.length > 0) {
-          const userAllSkills = [
-            ...user.skillsTeach.map((skill) => skill.subcategoryId),
-            ...user.skillsLearn.map((skill) => skill.subcategoryId)
-          ];
-
-          const hasMatchingSkill = filters.skillIds.some((skillId) =>
-            userAllSkills.includes(skillId)
-          );
-
-          if (!hasMatchingSkill) return false;
-        }
-
-        return true;
-      });
-    },
-    []
-  );
-
-  // Получаем пользователей для отображения - без сортировки
-  const getUsersToShow = useCallback(() => {
-    if (activeSection === 'popular') {
-      return usersWithDetails;
-    } else if (activeSection === 'newest') {
-      return usersWithDetails;
-    } else if (activeFilters.some((f) => f.type === 'filter')) {
-      return filterUsersByFilters(usersWithDetails, filters);
-    }
-    return [];
-  }, [
-    activeSection,
-    activeFilters,
-    usersWithDetails,
-    filters,
-    filterUsersByFilters
-  ]);
-
-  // Отфильтрованные пользователи
-  const filteredUsers = useMemo(() => getUsersToShow(), [getUsersToShow]);
-
-  // Сортировка отфильтрованных пользователей - с учетом типа секции
-  const sortedFilteredUsers = useMemo(() => {
-    let users = [...filteredUsers];
-
-    // Если активна секция "Популярное" - сортируем по лайкам
-    if (activeSection === 'popular') {
-      return sortPopularUsers(users);
-    }
-
-    // Если активна секция "Новое" - сортируем по дате создания (новые к старым)
-    if (activeSection === 'newest') {
-      return sortNewestUsers(users);
-    }
-
-    // Для остальных случаев (фильтры) применяем сортировку по sortOrder
-    if (sortOrder === 'newest') {
-      return users.sort(
-        (a, b) =>
-          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-      );
-    } else {
-      return users.sort(
-        (a, b) =>
-          new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
-      );
-    }
-  }, [filteredUsers, sortOrder, activeSection]);
-
-  // Текст для кнопки сортировки
-  const sortButtonText =
-    sortOrder === 'newest' ? 'Сначала старые' : 'Сначала новые';
-
-  // Проверяем, нужно ли показывать обычные секции
-  const shouldShowRegularSections = useMemo(() => {
-    return activeFilters.length === 0 && !activeSection;
-  }, [activeFilters.length, activeSection]);
-
-  // Обработчик подгрузки данных
   const handleLoadMore = useCallback(() => {
-    console.log('✅ Сработала пагинация');
     loadMore();
   }, [loadMore]);
 
-  // Подключаем бесконечную прокрутку
   useInfiniteScroll({
     targetRef: loadMoreRef,
     onIntersect: handleLoadMore,
     enabled: hasMore
   });
 
-  // Мемоизированные массивы
   const popularUsers = useMemo(
     () => sortPopularUsers(usersWithDetails),
     [usersWithDetails]
@@ -510,9 +419,40 @@ export const HomePage = () => {
     [usersWithDetails]
   );
 
+  // Используем централизованный хук фильтрации (читает фильтры из Redux)
+  const {
+    filteredUsers: reduxFilteredUsers,
+    usersFound,
+    isEmpty
+  } = useFilteredUsers(usersWithDetails);
+
+  // Применяем сортировку к результатам фильтрации (если требуется)
+  const displayedFilteredUsers = useMemo(() => {
+    const users = [...reduxFilteredUsers];
+    if (reduxFilters?.sort === 'new') {
+      return users.sort(
+        (a, b) =>
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+      );
+    } else {
+      return users.sort(
+        (a, b) =>
+          new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+      );
+    }
+  }, [reduxFilteredUsers, reduxFilters?.sort]);
+
+  const sortButtonText =
+    reduxFilters?.sort === 'new' ? 'Сначала старые' : 'Сначала новые';
+
+  const shouldShowRegularSections = useMemo(() => {
+    return activeFilters.length === 0 && !activeSection;
+  }, [activeFilters.length, activeSection]);
+
+  const shouldShowSortButton = !activeSection && !isEmpty;
+
   return (
     <main className={styles.page}>
-      {/* Компонент блока с фильтрами */}
       <aside>
         <Filters
           categories={categories}
@@ -524,7 +464,6 @@ export const HomePage = () => {
       </aside>
 
       <div className={styles.content}>
-        {/* Контейнер для чипсов */}
         {activeFilters.length > 0 && (
           <div className={styles.chipsContainer}>
             {activeFilters.map((filter) => (
@@ -538,10 +477,8 @@ export const HomePage = () => {
           </div>
         )}
 
-        {/* Показываем обычные секции только если нет активных фильтров */}
         {shouldShowRegularSections ? (
           <>
-            {/* Секция "Популярное" */}
             <section className={styles.section}>
               <div className={styles.sectionHeader}>
                 <h2 className={styles.sectionName}>Популярное</h2>
@@ -561,12 +498,9 @@ export const HomePage = () => {
                 onLike={handleLikeToggle}
                 onMore={handleNavigationSkill}
                 getUserLikeData={getUserLikeData}
-                linkButtonActionType={getLinkButtonActionType}
-                linkButtonIconName={getLinkButtonIconName}
               />
             </section>
 
-            {/* Секция "Новое" */}
             <section className={styles.section}>
               <div className={styles.sectionHeader}>
                 <h2 className={styles.sectionName}>Новое</h2>
@@ -586,11 +520,9 @@ export const HomePage = () => {
                 onLike={handleLikeToggle}
                 onMore={handleNavigationSkill}
                 getUserLikeData={getUserLikeData}
-                linkButtonActionType={getLinkButtonActionType}
               />
             </section>
 
-            {/* Секция "Рекомендуем" */}
             <section className={styles.section}>
               <div className={styles.sectionHeader}>
                 <h2 className={styles.sectionName}>Рекомендуем</h2>
@@ -600,14 +532,11 @@ export const HomePage = () => {
                 onLike={handleLikeToggle}
                 onMore={handleNavigationSkill}
                 getUserLikeData={getUserLikeData}
-                linkButtonActionType={getLinkButtonActionType}
-                linkButtonIconName={getLinkButtonIconName}
               />
               {hasMore && <div ref={loadMoreRef} />}
             </section>
           </>
         ) : (
-          // Секция "Подходящие предложения" - показываем при активных фильтрах
           <section className={styles.section}>
             <div className={styles.sectionHeader}>
               <h2 className={styles.sectionName}>
@@ -615,9 +544,10 @@ export const HomePage = () => {
                   ? activeSection === 'popular'
                     ? 'Популярное'
                     : 'Новое'
-                  : `Подходящие предложения: ${sortedFilteredUsers.length}`}
+                  : `Подходящие предложения: ${usersFound}`}
               </h2>
-              {!activeSection && sortedFilteredUsers.length > 0 && (
+
+              {shouldShowSortButton && (
                 <Button
                   onClick={handleSortToggle}
                   style='tertiary'
@@ -630,14 +560,13 @@ export const HomePage = () => {
                 </Button>
               )}
             </div>
-            {sortedFilteredUsers.length > 0 ? (
+
+            {displayedFilteredUsers.length > 0 ? (
               <UserCardList
-                users={sortedFilteredUsers}
+                users={displayedFilteredUsers}
                 onLike={handleLikeToggle}
                 onMore={handleNavigationSkill}
                 getUserLikeData={getUserLikeData}
-                linkButtonActionType={getLinkButtonActionType}
-                linkButtonIconName={getLinkButtonIconName}
               />
             ) : (
               <div className={styles.noResults}>
