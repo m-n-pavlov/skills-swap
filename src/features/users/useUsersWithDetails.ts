@@ -10,7 +10,8 @@ import { calculateAge } from './lib/calculateAge.ts';
 import type { TSkill } from '../../entities/skills.ts';
 import type { TUser } from '../../entities/users.ts';
 
-type TSkillWithoutId = Omit<TSkill, 'id'>;
+// Вспомогательный тип (без id, но с categoryId и subcategoryId)
+export type TSkillWithoutId = Omit<TSkill, 'id'>;
 
 export type TUserWithDetails = Omit<
   TUser,

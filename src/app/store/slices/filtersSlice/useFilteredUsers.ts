@@ -2,7 +2,8 @@ import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { selectFilters } from './selectors';
 import type { TUserWithDetails } from '../../../../features/users';
-import type { TSkill } from '../../../../entities/skills.ts';
+import type { TSkillWithoutId } from '../../../../features/users';
+
 import { sortNewestUsers, sortPopularUsers } from '../../../../features/users';
 
 interface UseFilteredUsersResult {
@@ -22,7 +23,7 @@ export const useFilteredUsers = (
     if (filters.searchQuery) {
       const query = filters.searchQuery.toLowerCase();
       result = result.filter((user) =>
-        user.skillsLearn.some((skill) =>
+        user.skillsLearn.some((skill: TSkillWithoutId) =>
           skill.name.toLowerCase().includes(query)
         )
       );
@@ -33,22 +34,19 @@ export const useFilteredUsers = (
     }
 
     if (filters.cities.length > 0) {
-      result = result.filter((user) => filters.cities.includes(user.city.id));
+      result = result.filter((user) => filters.cities.includes(user.cityId));
     }
 
     if (filters.skills.length > 0) {
       result = result.filter((user) => {
-        let skillsToCheck: (TSkill & {
-          categoryName: string;
-          subcategoryName: string;
-        })[] = [];
+        let skillsToCheck: TSkillWithoutId[] = [];
 
         if (filters.mode === 'teach') skillsToCheck = user.skillsTeach;
         else if (filters.mode === 'learn') skillsToCheck = user.skillsLearn;
         else skillsToCheck = [...user.skillsTeach, ...user.skillsLearn];
 
         return filters.skills.some((skillId) =>
-          skillsToCheck.some((skill) => skill.id === skillId)
+          skillsToCheck.some((skill) => skill.subcategoryId === skillId)
         );
       });
     }

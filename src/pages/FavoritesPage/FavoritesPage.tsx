@@ -63,7 +63,19 @@ export const FavoritesPage = memo(function FavoritesPage() {
 
   const favoriteCount = currentUser?.likes?.length || 0;
 
-  const linkButtonActionType: 'navigate' | 'tradeStatus' = 'tradeStatus';
+  // Вы можете выбрать тип действия для кнопки
+  const getLinkButtonActionType = useCallback(
+    (userId: string): 'navigate' | 'tradeStatus' => {
+      if (!currentUser) return 'navigate';
+
+      // Проверяем, есть ли предложение обмена у текущего пользователя
+      const hasExchangeOffer = currentUser.exchangeOffers?.includes(userId);
+
+      return hasExchangeOffer ? 'tradeStatus' : 'navigate';
+    },
+    [currentUser]
+  );
+
   const linkButtonIconName: IconName = 'clock';
 
   if (!currentUser) {
@@ -114,7 +126,7 @@ export const FavoritesPage = memo(function FavoritesPage() {
           onLike={handleLike}
           onMore={handleMore}
           getUserLikeData={getUserLikeData}
-          linkButtonActionType={linkButtonActionType}
+          linkButtonActionType={getLinkButtonActionType}
           linkButtonIconName={linkButtonIconName}
         />
       </main>
