@@ -47,7 +47,7 @@ export const Person: FC = () => {
   if (!currentUser) {
     return (
       <section className={styles.wrap}>
-        <UserMenu />
+        <UserMenu defaultActiveId='personalities' />
         <p>Нужно войти в аккаунт, чтобы редактировать профиль.</p>
       </section>
     );
@@ -55,7 +55,7 @@ export const Person: FC = () => {
 
   return (
     <section className={styles.wrap}>
-      <UserMenu />
+      <UserMenu defaultActiveId='personalities' />
       <PersonForm
         formValue={formValue}
         errors={errors}

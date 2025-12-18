@@ -11,3 +11,7 @@ export interface PublicRouteProps extends RouteProps {
   isAuthenticated: boolean;
   restricted?: boolean;
 }
+
+export type AppRouterProps = {
+  isAuth: boolean;
+};

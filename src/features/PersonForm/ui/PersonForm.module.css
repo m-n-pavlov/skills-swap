@@ -98,6 +98,10 @@
   background: #dfeac2;
 }
 
+.avatarBtn svg {
+  color: #253017;
+}
+
 .menu {
   position: absolute;
   right: 0;
