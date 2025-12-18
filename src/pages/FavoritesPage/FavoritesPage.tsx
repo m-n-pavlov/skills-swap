@@ -73,7 +73,18 @@ export const FavoritesPage = memo(function FavoritesPage() {
   const favoriteCount = currentUser?.likes?.length || 0;
 
   // Вы можете выбрать тип действия для кнопки
-  const linkButtonActionType: 'navigate' | 'tradeStatus' = 'tradeStatus';
+  const getLinkButtonActionType = useCallback(
+    (userId: string): 'navigate' | 'tradeStatus' => {
+      if (!currentUser) return 'navigate';
+
+      // Проверяем, есть ли предложение обмена у текущего пользователя
+      const hasExchangeOffer = currentUser.exchangeOffers?.includes(userId);
+
+      return hasExchangeOffer ? 'tradeStatus' : 'navigate';
+    },
+    [currentUser]
+  );
+
   const linkButtonIconName: IconName = 'clock';
 
   // Если пользователь не авторизован
@@ -126,7 +137,7 @@ export const FavoritesPage = memo(function FavoritesPage() {
           onLike={handleLike}
           onMore={handleMore}
           getUserLikeData={getUserLikeData}
-          linkButtonActionType={linkButtonActionType}
+          linkButtonActionType={getLinkButtonActionType}
           linkButtonIconName={linkButtonIconName}
         />
       </main>
