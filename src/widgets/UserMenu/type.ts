@@ -23,7 +23,7 @@ export const menuItems: MenuItem[] = [
     id: 'favorites',
     label: 'Избранное',
     iconName: 'likeEmpty',
-    path: '#',
+    path: '/favorites',
     disabled: false
   },
   {
@@ -37,7 +37,7 @@ export const menuItems: MenuItem[] = [
     id: 'personalities',
     label: 'Личные данные',
     iconName: 'user',
-    path: '#',
+    path: '/profile',
     disabled: false
   }
 ];

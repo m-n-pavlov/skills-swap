@@ -11,7 +11,7 @@ export const ProfileMenuLink = memo(
         <NavLink
           to={item.path}
           className={`${styles.link} ${isActive ? styles.linkActive : ''} ${item.disabled ? styles.linkDisabled : ''}`}
-          onClick={(e) => onClick(item.id, item.disabled || false, e)}
+          onClick={(e) => item.disabled && e.preventDefault()}
           style={{ textDecoration: 'none' }}
         >
           <span className={styles.icon}>
