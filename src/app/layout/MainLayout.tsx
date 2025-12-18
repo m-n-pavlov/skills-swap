@@ -68,13 +68,30 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
         handleLogOut={handleLogOut}
       />
 
-      <main id='main-content' className={styles.content}>
+      <main
+        id='main-content'
+        className={clsx(
+          styles.content,
+          !isHomePage && styles.contentWithFooterPadding
+        )}
+      >
         {children}
       </main>
 
-      <div className={footerWrapperClass}>
-        <Footer />
-      </div>
+      {isHomePage ? (
+        <div
+          className={clsx(
+            styles.footerWrapperFixed,
+            footerVisible ? styles.visible : styles.hidden
+          )}
+        >
+          <Footer />
+        </div>
+      ) : (
+        <div className={styles.footerWrapperStatic}>
+          <Footer />
+        </div>
+      )}
     </div>
   );
 };
