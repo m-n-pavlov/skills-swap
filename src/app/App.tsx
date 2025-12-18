@@ -18,6 +18,7 @@ import { FavoritesPage } from '../pages/FavoritesPage/FavoritesPage.tsx';
 import { Person } from '../pages/Person/Person.tsx';
 import NotFoundPage from '../pages/NotFoundPage/NotFoundPage.tsx';
 import { SkillPage } from '../pages/SkillPage/SkillPage.tsx';
+import { PersonNotFoundPage } from '../pages/PersonNotFoundPage';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -81,6 +82,39 @@ function App() {
             <ProtectedRoute isAuthenticated={isAuth}>
               <MainLayout>
                 <Person />
+              </MainLayout>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path='/applications'
+          element={
+            <ProtectedRoute isAuthenticated={isAuth}>
+              <MainLayout>
+                <PersonNotFoundPage />
+              </MainLayout>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path='/trades'
+          element={
+            <ProtectedRoute isAuthenticated={isAuth}>
+              <MainLayout>
+                <PersonNotFoundPage />
+              </MainLayout>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path='/skills'
+          element={
+            <ProtectedRoute isAuthenticated={isAuth}>
+              <MainLayout>
+                <PersonNotFoundPage />
               </MainLayout>
             </ProtectedRoute>
           }

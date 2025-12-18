@@ -9,14 +9,14 @@ export const menuItems: MenuItem[] = [
     id: 'applications',
     label: 'Заявки',
     iconName: 'request',
-    path: '#',
+    path: '/applications',
     disabled: false
   },
   {
     id: 'trades',
     label: 'Мои обмены',
     iconName: 'messageText',
-    path: '#',
+    path: '/trades',
     disabled: false
   },
   {
@@ -30,7 +30,7 @@ export const menuItems: MenuItem[] = [
     id: 'skills',
     label: 'Мои навыки',
     iconName: 'idea',
-    path: '#',
+    path: '/skills',
     disabled: false
   },
   {
