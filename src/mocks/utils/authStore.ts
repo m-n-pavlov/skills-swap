@@ -34,7 +34,6 @@ const loadRegisteredUsersFromLocalStorage = (): TAuthUser[] => {
       created_at: u.created_at || new Date().toISOString()
     }));
   } catch (error) {
-    console.error(' Ошибка загрузки пользователей из localStorage:', error);
     return [];
   }
 };
@@ -59,13 +58,45 @@ const initialUsers = rawData.users.map((u: any) => ({
 
 const registeredUsers = loadRegisteredUsersFromLocalStorage();
 
-export const authUsers: TAuthUser[] = [
-  ...initialUsers,
-  ...registeredUsers.filter(
-    (regUser) =>
-      !initialUsers.some((initUser) => initUser.email === regUser.email)
-  )
-];
+export const authUsers: TAuthUser[] = [];
+
+registeredUsers.forEach((regUser) => {
+  authUsers.push(regUser);
+});
+
+initialUsers.forEach((initUser) => {
+  const exists = authUsers.some((user) => user.email === initUser.email);
+  if (!exists) {
+    authUsers.push(initUser);
+  } else {
+    const existingIndex = authUsers.findIndex(
+      (u) => u.email === initUser.email
+    );
+    if (existingIndex !== -1) {
+      authUsers[existingIndex] = {
+        ...authUsers[existingIndex],
+        ...initUser,
+        likes: authUsers[existingIndex].likes,
+        exchangeOffers: authUsers[existingIndex].exchangeOffers
+      };
+    }
+  }
+});
+
+const mergeUserData = (
+  existingUser: TAuthUser,
+  newData: Partial<TAuthUser>
+): TAuthUser => {
+  return {
+    ...existingUser,
+    ...newData,
+    likes: newData.likes !== undefined ? newData.likes : existingUser.likes,
+    exchangeOffers:
+      newData.exchangeOffers !== undefined
+        ? newData.exchangeOffers
+        : existingUser.exchangeOffers
+  };
+};
 
 export const addUserToStore = (user: TAuthUser) => {
   const existingIndex = authUsers.findIndex(
@@ -73,15 +104,15 @@ export const addUserToStore = (user: TAuthUser) => {
   );
 
   if (existingIndex !== -1) {
-    authUsers[existingIndex] = user;
+    authUsers[existingIndex] = mergeUserData(authUsers[existingIndex], user);
   } else {
     authUsers.push(user);
   }
 
-  saveUserToLocalStorage(user);
+  saveUserToLocalStorage(authUsers[existingIndex] || user);
 };
 
-export const saveUserToLocalStorage = (user: TAuthUser) => {
+export const saveUserToLocalStorage = (updatedUser: TAuthUser) => {
   try {
     let registeredUsers: TAuthUser[] = [];
     const registeredUsersStr = localStorage.getItem('registered_users');
@@ -90,16 +121,34 @@ export const saveUserToLocalStorage = (user: TAuthUser) => {
       registeredUsers = JSON.parse(registeredUsersStr);
     }
 
-    const existingIndex = registeredUsers.findIndex((u) => u.id === user.id);
+    const existingIndex = registeredUsers.findIndex(
+      (u) => u.id === updatedUser.id
+    );
 
     if (existingIndex !== -1) {
-      registeredUsers[existingIndex] = user;
+      registeredUsers[existingIndex] = mergeUserData(
+        registeredUsers[existingIndex],
+        updatedUser
+      );
     } else {
-      registeredUsers.push(user);
+      registeredUsers.push(updatedUser);
     }
 
     localStorage.setItem('registered_users', JSON.stringify(registeredUsers));
-  } catch (error) {
-    console.error('Ошибка сохранения в localStorage:', error);
-  }
+
+    const currentUserStr = localStorage.getItem('current_user');
+    if (currentUserStr) {
+      const currentUser = JSON.parse(currentUserStr);
+      if (currentUser.id === updatedUser.id) {
+        localStorage.setItem(
+          'current_user',
+          JSON.stringify({
+            ...currentUser,
+            likes: updatedUser.likes,
+            exchangeOffers: updatedUser.exchangeOffers
+          })
+        );
+      }
+    }
+  } catch (error) {}
 };

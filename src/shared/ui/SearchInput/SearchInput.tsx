@@ -40,17 +40,16 @@ export const SearchInput: React.FC<SearchInputProps> = ({
         onClick={handleInputClick}
         className={`${styles.search_input} ${value ? styles['has-value'] : ''}`}
       />
-      {showClearButton &&
-        value && (
-          <button
-            type='button'
-            className={styles.clear_button}
-            onClick={handleClear}
-            aria-label='Очистить поле'
-          >
-            <Icon name='cross' alt='Очистить' className={styles.icon} />
-          </button>
-        )}
+      {showClearButton && value && (
+        <button
+          type='button'
+          className={styles.clear_button}
+          onClick={handleClear}
+          aria-label='Очистить поле'
+        >
+          <Icon name='cross' alt='Очистить' className={styles.icon} />
+        </button>
+      )}
     </div>
   );
 };

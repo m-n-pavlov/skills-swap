@@ -38,6 +38,7 @@
   font-family: var(--body-font-family);
   font-weight: var(--body-font-weight);
   width: 100px;
+  color: var(--text);
 }
 
 .input::placeholder {
@@ -86,6 +87,11 @@
   border: none !important;
   padding: 0 !important;
   margin: 0 !important;
+  color: var(--text);
+}
+
+:global(.react-datepicker__month-container) {
+  background: var(--card) !important;
 }
 
 :global(.react-datepicker__day-names) {

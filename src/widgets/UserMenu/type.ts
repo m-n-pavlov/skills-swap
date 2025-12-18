@@ -9,35 +9,35 @@ export const menuItems: MenuItem[] = [
     id: 'applications',
     label: 'Заявки',
     iconName: 'request',
-    path: '#',
+    path: '/applications',
     disabled: false
   },
   {
     id: 'trades',
     label: 'Мои обмены',
     iconName: 'messageText',
-    path: '#',
+    path: '/trades',
     disabled: false
   },
   {
     id: 'favorites',
     label: 'Избранное',
     iconName: 'likeEmpty',
-    path: '#',
+    path: '/favorites',
     disabled: false
   },
   {
     id: 'skills',
     label: 'Мои навыки',
     iconName: 'idea',
-    path: '#',
+    path: '/skills',
     disabled: false
   },
   {
     id: 'personalities',
     label: 'Личные данные',
     iconName: 'user',
-    path: '#',
+    path: '/profile',
     disabled: false
   }
 ];

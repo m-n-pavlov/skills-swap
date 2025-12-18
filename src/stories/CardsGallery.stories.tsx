@@ -83,6 +83,8 @@ const meta: Meta<typeof CardsGallery> = {
       description: 'Массив пользователей для отображения в галерее'
     }
   }
+  },
+  args: {}
 };
 
 export default meta;
@@ -111,4 +113,5 @@ export const Empty: Story = {
     onMore: () => {},
     getUserLikeData: () => ({ isLiked: false, likesCount: 0 })
   }
+  args: {}
 };

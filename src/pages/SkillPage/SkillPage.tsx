@@ -60,7 +60,6 @@ export const SkillPage = () => {
             cardId
           })
         ).unwrap();
-
       } catch (error) {
         setLikedUsers((prev) => ({
           ...prev,
