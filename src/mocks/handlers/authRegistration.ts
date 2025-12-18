@@ -2,6 +2,7 @@ import type { TSkill } from '../../entities/skills.ts';
 import { http, HttpResponse } from 'msw';
 import type { TAuthUser } from '../../entities/authUser.ts';
 import { addUserToStore, authUsers } from '../utils/authStore.ts';
+import { fileToBase64 } from '../../shared/utils/fileUtils.ts';
 
 export const authRegisterHandler = [
   http.post('/api/auth/register', async ({ request }) => {
@@ -47,7 +48,7 @@ export const authRegisterHandler = [
     }
 
     const avatarUrl = avatarFile
-      ? URL.createObjectURL(avatarFile)
+      ? await fileToBase64(avatarFile)
       : generateFakeFileUrl('avatar');
 
     const skillImageUrls = skillsImageFiles?.length
