@@ -9,11 +9,11 @@
       "categoryId": "business",
       "subcategoryId": "team_management",
       "images": [
-        "images/skills/1.jpg",
-        "images/skills/no_images_4.jpg",
-        "images/skills/no_images_1.jpg",
-        "images/skills/no_images_3.jpg",
-        "images/skills/no_images_4.jpg"
+        "/images/skills/1.jpg",
+        "/images/skills/no_images_4.jpg",
+        "/images/skills/no_images_1.jpg",
+        "/images/skills/no_images_3.jpg",
+        "/images/skills/no_images_4.jpg"
       ]
     },
     {
@@ -24,11 +24,11 @@
       "categoryId": "business",
       "subcategoryId": "marketing",
       "images": [
-        "images/skills/2.jpg",
-        "images/skills/no_images_1.jpg",
-        "images/skills/no_images_3.jpg",
-        "images/skills/no_images_2.jpg",
-        "images/skills/no_images_4.jpg"
+        "/images/skills/2.jpg",
+        "/images/skills/no_images_1.jpg",
+        "/images/skills/no_images_3.jpg",
+        "/images/skills/no_images_2.jpg",
+        "/images/skills/no_images_4.jpg"
       ]
     },
     {
@@ -39,11 +39,11 @@
       "categoryId": "business",
       "subcategoryId": "sales_and_negotiations",
       "images": [
-        "images/skills/3.jpg",
-        "images/skills/no_images_1.jpg",
-        "images/skills/no_images_2.jpg",
-        "images/skills/no_images_3.jpg",
-        "images/skills/no_images_4.jpg"
+        "/images/skills/3.jpg",
+        "/images/skills/no_images_1.jpg",
+        "/images/skills/no_images_2.jpg",
+        "/images/skills/no_images_3.jpg",
+        "/images/skills/no_images_4.jpg"
       ]
     },
     {
@@ -54,11 +54,11 @@
       "categoryId": "business",
       "subcategoryId": "personal_brand",
       "images": [
-        "images/skills/4.jpg",
-        "images/skills/no_images_1.jpg",
-        "images/skills/no_images_4.jpg",
-        "images/skills/no_images_3.jpg",
-        "images/skills/no_images_4.jpg"
+        "/images/skills/4.jpg",
+        "/images/skills/no_images_1.jpg",
+        "/images/skills/no_images_4.jpg",
+        "/images/skills/no_images_3.jpg",
+        "/images/skills/no_images_4.jpg"
       ]
     },
     {
@@ -69,11 +69,11 @@
       "categoryId": "business",
       "subcategoryId": "resume",
       "images": [
-        "images/skills/5.jpg",
-        "images/skills/no_images_1.jpg",
-        "images/skills/no_images_2.jpg",
-        "images/skills/no_images_1.jpg",
-        "images/skills/no_images_4.jpg"
+        "/images/skills/5.jpg",
+        "/images/skills/no_images_1.jpg",
+        "/images/skills/no_images_2.jpg",
+        "/images/skills/no_images_1.jpg",
+        "/images/skills/no_images_4.jpg"
       ]
     },
     {
@@ -84,11 +84,11 @@
       "categoryId": "business",
       "subcategoryId": "time_management",
       "images": [
-        "images/skills/6.jpg",
-        "images/skills/no_images_1.jpg",
-        "images/skills/no_images_2.jpg",
-        "images/skills/no_images_3.jpg",
-        "images/skills/no_images_4.jpg"
+        "/images/skills/6.jpg",
+        "/images/skills/no_images_1.jpg",
+        "/images/skills/no_images_2.jpg",
+        "/images/skills/no_images_3.jpg",
+        "/images/skills/no_images_4.jpg"
       ]
     },
     {
@@ -99,11 +99,11 @@
       "categoryId": "business",
       "subcategoryId": "project_management",
       "images": [
-        "images/skills/7.jpg",
-        "images/skills/no_images_2.jpg",
-        "images/skills/no_images_2.jpg",
-        "images/skills/no_images_3.jpg",
-        "images/skills/no_images_4.jpg"
+        "/images/skills/7.jpg",
+        "/images/skills/no_images_2.jpg",
+        "/images/skills/no_images_2.jpg",
+        "/images/skills/no_images_3.jpg",
+        "/images/skills/no_images_4.jpg"
       ]
     },
     {
@@ -114,11 +114,11 @@
       "categoryId": "business",
       "subcategoryId": "entrepreneurship",
       "images": [
-        "images/skills/8.jpg",
-        "images/skills/no_images_1.jpg",
-        "images/skills/no_images_2.jpg",
-        "images/skills/no_images_3.jpg",
-        "images/skills/no_images_4.jpg"
+        "/images/skills/8.jpg",
+        "/images/skills/no_images_1.jpg",
+        "/images/skills/no_images_2.jpg",
+        "/images/skills/no_images_3.jpg",
+        "/images/skills/no_images_4.jpg"
       ]
     },
     {
@@ -129,11 +129,11 @@
       "categoryId": "language",
       "subcategoryId": "english",
       "images": [
-        "images/skills/9.jpg",
-        "images/skills/no_images_1.jpg",
-        "images/skills/no_images_2.jpg",
-        "images/skills/no_images_3.jpg",
-        "images/skills/no_images_4.jpg"
+        "/images/skills/9.jpg",
+        "/images/skills/no_images_1.jpg",
+        "/images/skills/no_images_2.jpg",
+        "/images/skills/no_images_3.jpg",
+        "/images/skills/no_images_4.jpg"
       ]
     },
     {
@@ -144,11 +144,11 @@
       "categoryId": "language",
       "subcategoryId": "french",
       "images": [
-        "images/skills/10.jpg",
-        "images/skills/no_images_4.jpg",
-        "images/skills/no_images_1.jpg",
-        "images/skills/no_images_2.jpg",
-        "images/skills/no_images_3.jpg"
+        "/images/skills/10.jpg",
+        "/images/skills/no_images_4.jpg",
+        "/images/skills/no_images_1.jpg",
+        "/images/skills/no_images_2.jpg",
+        "/images/skills/no_images_3.jpg"
       ]
     },
     {
@@ -159,11 +159,11 @@
       "categoryId": "language",
       "subcategoryId": "spanish",
       "images": [
-        "images/skills/11.jpg",
-        "images/skills/no_images_2.jpg",
-        "images/skills/no_images_3.jpg",
-        "images/skills/no_images_4.jpg",
-        "images/skills/no_images_1.jpg"
+        "/images/skills/11.jpg",
+        "/images/skills/no_images_2.jpg",
+        "/images/skills/no_images_3.jpg",
+        "/images/skills/no_images_4.jpg",
+        "/images/skills/no_images_1.jpg"
       ]
     },
     {
@@ -174,11 +174,11 @@
       "categoryId": "language",
       "subcategoryId": "german",
       "images": [
-        "images/skills/12.jpg",
-        "images/skills/no_images_3.jpg",
-        "images/skills/no_images_4.jpg",
-        "images/skills/no_images_1.jpg",
-        "images/skills/no_images_2.jpg"
+        "/images/skills/12.jpg",
+        "/images/skills/no_images_3.jpg",
+        "/images/skills/no_images_4.jpg",
+        "/images/skills/no_images_1.jpg",
+        "/images/skills/no_images_2.jpg"
       ]
     },
     {
@@ -189,11 +189,11 @@
       "categoryId": "language",
       "subcategoryId": "chinese",
       "images": [
-        "images/skills/13.jpg",
-        "images/skills/no_images_1.jpg",
-        "images/skills/no_images_3.jpg",
-        "images/skills/no_images_2.jpg",
-        "images/skills/no_images_4.jpg"
+        "/images/skills/13.jpg",
+        "/images/skills/no_images_1.jpg",
+        "/images/skills/no_images_3.jpg",
+        "/images/skills/no_images_2.jpg",
+        "/images/skills/no_images_4.jpg"
       ]
     },
     {
@@ -204,11 +204,11 @@
       "categoryId": "language",
       "subcategoryId": "japanese",
       "images": [
-        "images/skills/14.jpg",
-        "images/skills/no_images_4.jpg",
-        "images/skills/no_images_2.jpg",
-        "images/skills/no_images_1.jpg",
-        "images/skills/no_images_3.jpg"
+        "/images/skills/14.jpg",
+        "/images/skills/no_images_4.jpg",
+        "/images/skills/no_images_2.jpg",
+        "/images/skills/no_images_1.jpg",
+        "/images/skills/no_images_3.jpg"
       ]
     },
     {
@@ -219,11 +219,11 @@
       "categoryId": "language",
       "subcategoryId": "preparing_for_exams",
       "images": [
-        "images/skills/15.jpg",
-        "images/skills/no_images_2.jpg",
-        "images/skills/no_images_1.jpg",
-        "images/skills/no_images_4.jpg",
-        "images/skills/no_images_3.jpg"
+        "/images/skills/15.jpg",
+        "/images/skills/no_images_2.jpg",
+        "/images/skills/no_images_1.jpg",
+        "/images/skills/no_images_4.jpg",
+        "/images/skills/no_images_3.jpg"
       ]
     },
     {
@@ -234,11 +234,11 @@
       "categoryId": "home",
       "subcategoryId": "cleaning",
       "images": [
-        "images/skills/16.jpg",
-        "images/skills/no_images_2.jpg",
-        "images/skills/no_images_1.jpg",
-        "images/skills/no_images_4.jpg",
-        "images/skills/no_images_3.jpg"
+        "/images/skills/16.jpg",
+        "/images/skills/no_images_2.jpg",
+        "/images/skills/no_images_1.jpg",
+        "/images/skills/no_images_4.jpg",
+        "/images/skills/no_images_3.jpg"
       ]
     },
     {
@@ -249,11 +249,11 @@
       "categoryId": "home",
       "subcategoryId": "home_finances",
       "images": [
-        "images/skills/17.jpg",
-        "images/skills/no_images_3.jpg",
-        "images/skills/no_images_2.jpg",
-        "images/skills/no_images_1.jpg",
-        "images/skills/no_images_4.jpg"
+        "/images/skills/17.jpg",
+        "/images/skills/no_images_3.jpg",
+        "/images/skills/no_images_2.jpg",
+        "/images/skills/no_images_1.jpg",
+        "/images/skills/no_images_4.jpg"
       ]
     },
     {
@@ -264,11 +264,11 @@
       "categoryId": "home",
       "subcategoryId": "cooking",
       "images": [
-        "images/skills/18.jpg",
-        "images/skills/no_images_4.jpg",
-        "images/skills/no_images_3.jpg",
-        "images/skills/no_images_2.jpg",
-        "images/skills/no_images_1.jpg"
+        "/images/skills/18.jpg",
+        "/images/skills/no_images_4.jpg",
+        "/images/skills/no_images_3.jpg",
+        "/images/skills/no_images_2.jpg",
+        "/images/skills/no_images_1.jpg"
       ]
     },
     {
@@ -279,11 +279,11 @@
       "categoryId": "home",
       "subcategoryId": "house_plants",
       "images": [
-        "images/skills/19.jpg",
-        "images/skills/no_images_1.jpg",
-        "images/skills/no_images_4.jpg",
-        "images/skills/no_images_3.jpg",
-        "images/skills/no_images_2.jpg"
+        "/images/skills/19.jpg",
+        "/images/skills/no_images_1.jpg",
+        "/images/skills/no_images_4.jpg",
+        "/images/skills/no_images_3.jpg",
+        "/images/skills/no_images_2.jpg"
       ]
     },
     {
@@ -294,11 +294,11 @@
       "categoryId": "home",
       "subcategoryId": "repair",
       "images": [
-        "images/skills/20.jpg",
-        "images/skills/no_images_2.jpg",
-        "images/skills/no_images_1.jpg",
-        "images/skills/no_images_3.jpg",
-        "images/skills/no_images_4.jpg"
+        "/images/skills/20.jpg",
+        "/images/skills/no_images_2.jpg",
+        "/images/skills/no_images_1.jpg",
+        "/images/skills/no_images_3.jpg",
+        "/images/skills/no_images_4.jpg"
       ]
     },
     {
@@ -309,11 +309,11 @@
       "categoryId": "home",
       "subcategoryId": "storing_things",
       "images": [
-        "images/skills/21.jpg",
-        "images/skills/no_images_3.jpg",
-        "images/skills/no_images_4.jpg",
-        "images/skills/no_images_2.jpg",
-        "images/skills/no_images_1.jpg"
+        "/images/skills/21.jpg",
+        "/images/skills/no_images_3.jpg",
+        "/images/skills/no_images_4.jpg",
+        "/images/skills/no_images_2.jpg",
+        "/images/skills/no_images_1.jpg"
       ]
     },
     {
@@ -324,11 +324,11 @@
       "categoryId": "art",
       "subcategoryId": "drawing",
       "images": [
-        "images/skills/22.jpg",
-        "images/skills/no_images_2.jpg",
-        "images/skills/no_images_1.jpg",
-        "images/skills/no_images_4.jpg",
-        "images/skills/no_images_3.jpg"
+        "/images/skills/22.jpg",
+        "/images/skills/no_images_2.jpg",
+        "/images/skills/no_images_1.jpg",
+        "/images/skills/no_images_4.jpg",
+        "/images/skills/no_images_3.jpg"
       ]
     },
     {
@@ -339,11 +339,11 @@
       "categoryId": "art",
       "subcategoryId": "photo",
       "images": [
-        "images/skills/23.jpg",
-        "images/skills/no_images_4.jpg",
-        "images/skills/no_images_3.jpg",
-        "images/skills/no_images_2.jpg",
-        "images/skills/no_images_1.jpg"
+        "/images/skills/23.jpg",
+        "/images/skills/no_images_4.jpg",
+        "/images/skills/no_images_3.jpg",
+        "/images/skills/no_images_2.jpg",
+        "/images/skills/no_images_1.jpg"
       ]
     },
     {
@@ -354,11 +354,11 @@
       "categoryId": "art",
       "subcategoryId": "video_editing",
       "images": [
-        "images/skills/24.jpg",
-        "images/skills/no_images_1.jpg",
-        "images/skills/no_images_3.jpg",
-        "images/skills/no_images_2.jpg",
-        "images/skills/no_images_4.jpg"
+        "/images/skills/24.jpg",
+        "/images/skills/no_images_1.jpg",
+        "/images/skills/no_images_3.jpg",
+        "/images/skills/no_images_2.jpg",
+        "/images/skills/no_images_4.jpg"
       ]
     },
     {
@@ -369,11 +369,11 @@
       "categoryId": "art",
       "subcategoryId": "music",
       "images": [
-        "images/skills/25.jpg",
-        "images/skills/no_images_1.jpg",
-        "images/skills/no_images_4.jpg",
-        "images/skills/no_images_2.jpg",
-        "images/skills/no_images_3.jpg"
+        "/images/skills/25.jpg",
+        "/images/skills/no_images_1.jpg",
+        "/images/skills/no_images_4.jpg",
+        "/images/skills/no_images_2.jpg",
+        "/images/skills/no_images_3.jpg"
       ]
     },
     {
@@ -384,11 +384,11 @@
       "categoryId": "art",
       "subcategoryId": "acting",
       "images": [
-        "images/skills/26.jpg",
-        "images/skills/no_images_3.jpg",
-        "images/skills/no_images_2.jpg",
-        "images/skills/no_images_1.jpg",
-        "images/skills/no_images_4.jpg"
+        "/images/skills/26.jpg",
+        "/images/skills/no_images_3.jpg",
+        "/images/skills/no_images_2.jpg",
+        "/images/skills/no_images_1.jpg",
+        "/images/skills/no_images_4.jpg"
       ]
     },
     {
@@ -399,11 +399,11 @@
       "categoryId": "art",
       "subcategoryId": "creative_writing",
       "images": [
-        "images/skills/27.jpg",
-        "images/skills/no_images_2.jpg",
-        "images/skills/no_images_4.jpg",
-        "images/skills/no_images_1.jpg",
-        "images/skills/no_images_3.jpg"
+        "/images/skills/27.jpg",
+        "/images/skills/no_images_2.jpg",
+        "/images/skills/no_images_4.jpg",
+        "/images/skills/no_images_1.jpg",
+        "/images/skills/no_images_3.jpg"
       ]
     },
     {
@@ -414,11 +414,11 @@
       "categoryId": "art",
       "subcategoryId": "art_therapy",
       "images": [
-        "images/skills/28.jpg",
-        "images/skills/no_images_4.jpg",
-        "images/skills/no_images_3.jpg",
-        "images/skills/no_images_1.jpg",
-        "images/skills/no_images_2.jpg"
+        "/images/skills/28.jpg",
+        "/images/skills/no_images_4.jpg",
+        "/images/skills/no_images_3.jpg",
+        "/images/skills/no_images_1.jpg",
+        "/images/skills/no_images_2.jpg"
       ]
     },
     {
@@ -429,11 +429,11 @@
       "categoryId": "art",
       "subcategoryId": "diy",
       "images": [
-        "images/skills/29.jpg",
-        "images/skills/no_images_1.jpg",
-        "images/skills/no_images_3.jpg",
-        "images/skills/no_images_2.jpg",
-        "images/skills/no_images_4.jpg"
+        "/images/skills/29.jpg",
+        "/images/skills/no_images_1.jpg",
+        "/images/skills/no_images_3.jpg",
+        "/images/skills/no_images_2.jpg",
+        "/images/skills/no_images_4.jpg"
       ]
     },
     {
@@ -444,11 +444,11 @@
       "categoryId": "education",
       "subcategoryId": "personal_development",
       "images": [
-        "images/skills/30.jpg",
-        "images/skills/no_images_2.jpg",
-        "images/skills/no_images_1.jpg",
-        "images/skills/no_images_4.jpg",
-        "images/skills/no_images_3.jpg"
+        "/images/skills/30.jpg",
+        "/images/skills/no_images_2.jpg",
+        "/images/skills/no_images_1.jpg",
+        "/images/skills/no_images_4.jpg",
+        "/images/skills/no_images_3.jpg"
       ]
     },
     {
@@ -459,11 +459,11 @@
       "categoryId": "education",
       "subcategoryId": "skills",
       "images": [
-        "images/skills/31.jpg",
-        "images/skills/no_images_3.jpg",
-        "images/skills/no_images_2.jpg",
-        "images/skills/no_images_1.jpg",
-        "images/skills/no_images_4.jpg"
+        "/images/skills/31.jpg",
+        "/images/skills/no_images_3.jpg",
+        "/images/skills/no_images_2.jpg",
+        "/images/skills/no_images_1.jpg",
+        "/images/skills/no_images_4.jpg"
       ]
     },
     {
@@ -474,11 +474,11 @@
       "categoryId": "education",
       "subcategoryId": "cognitive_techniques",
       "images": [
-        "images/skills/32.jpg",
-        "images/skills/no_images_4.jpg",
-        "images/skills/no_images_3.jpg",
-        "images/skills/no_images_2.jpg",
-        "images/skills/no_images_1.jpg"
+        "/images/skills/32.jpg",
+        "/images/skills/no_images_4.jpg",
+        "/images/skills/no_images_3.jpg",
+        "/images/skills/no_images_2.jpg",
+        "/images/skills/no_images_1.jpg"
       ]
     },
     {
@@ -489,11 +489,11 @@
       "categoryId": "education",
       "subcategoryId": "speed_reading",
       "images": [
-        "images/skills/33.jpg",
-        "images/skills/no_images_1.jpg",
-        "images/skills/no_images_4.jpg",
-        "images/skills/no_images_3.jpg",
-        "images/skills/no_images_2.jpg"
+        "/images/skills/33.jpg",
+        "/images/skills/no_images_1.jpg",
+        "/images/skills/no_images_4.jpg",
+        "/images/skills/no_images_3.jpg",
+        "/images/skills/no_images_2.jpg"
       ]
     },
     {
@@ -504,11 +504,11 @@
       "categoryId": "education",
       "subcategoryId": "teaching",
       "images": [
-        "images/skills/34.jpg",
-        "images/skills/no_images_2.jpg",
-        "images/skills/no_images_1.jpg",
-        "images/skills/no_images_3.jpg",
-        "images/skills/no_images_4.jpg"
+        "/images/skills/34.jpg",
+        "/images/skills/no_images_2.jpg",
+        "/images/skills/no_images_1.jpg",
+        "/images/skills/no_images_3.jpg",
+        "/images/skills/no_images_4.jpg"
       ]
     },
     {
@@ -519,11 +519,11 @@
       "categoryId": "education",
       "subcategoryId": "coaching",
       "images": [
-        "images/skills/35.jpg",
-        "images/skills/no_images_3.jpg",
-        "images/skills/no_images_4.jpg",
-        "images/skills/no_images_1.jpg",
-        "images/skills/no_images_2.jpg"
+        "/images/skills/35.jpg",
+        "/images/skills/no_images_3.jpg",
+        "/images/skills/no_images_4.jpg",
+        "/images/skills/no_images_1.jpg",
+        "/images/skills/no_images_2.jpg"
       ]
     },
     {
@@ -534,11 +534,11 @@
       "categoryId": "health",
       "subcategoryId": "yoga",
       "images": [
-        "images/skills/36.jpg",
-        "images/skills/no_images_4.jpg",
-        "images/skills/no_images_2.jpg",
-        "images/skills/no_images_1.jpg",
-        "images/skills/no_images_3.jpg"
+        "/images/skills/36.jpg",
+        "/images/skills/no_images_4.jpg",
+        "/images/skills/no_images_2.jpg",
+        "/images/skills/no_images_1.jpg",
+        "/images/skills/no_images_3.jpg"
       ]
     },
     {
@@ -549,11 +549,11 @@
       "categoryId": "health",
       "subcategoryId": "nutrition",
       "images": [
-        "images/skills/37.jpg",
-        "images/skills/no_images_1.jpg",
-        "images/skills/no_images_3.jpg",
-        "images/skills/no_images_4.jpg",
-        "images/skills/no_images_2.jpg"
+        "/images/skills/37.jpg",
+        "/images/skills/no_images_1.jpg",
+        "/images/skills/no_images_3.jpg",
+        "/images/skills/no_images_4.jpg",
+        "/images/skills/no_images_2.jpg"
       ]
     },
     {
@@ -564,11 +564,11 @@
       "categoryId": "health",
       "subcategoryId": "mental_health",
       "images": [
-        "images/skills/38.jpg",
-        "images/skills/no_images_2.jpg",
-        "images/skills/no_images_4.jpg",
-        "images/skills/no_images_3.jpg",
-        "images/skills/no_images_1.jpg"
+        "/images/skills/38.jpg",
+        "/images/skills/no_images_2.jpg",
+        "/images/skills/no_images_4.jpg",
+        "/images/skills/no_images_3.jpg",
+        "/images/skills/no_images_1.jpg"
       ]
     },
     {
@@ -579,11 +579,11 @@
       "categoryId": "health",
       "subcategoryId": "mindfulness",
       "images": [
-        "images/skills/39.jpg",
-        "images/skills/no_images_3.jpg",
-        "images/skills/no_images_1.jpg",
-        "images/skills/no_images_2.jpg",
-        "images/skills/no_images_4.jpg"
+        "/images/skills/39.jpg",
+        "/images/skills/no_images_3.jpg",
+        "/images/skills/no_images_1.jpg",
+        "/images/skills/no_images_2.jpg",
+        "/images/skills/no_images_4.jpg"
       ]
     },
     {
@@ -594,11 +594,11 @@
       "categoryId": "health",
       "subcategoryId": "workout",
       "images": [
-        "images/skills/40.jpg",
-        "images/skills/no_images_4.jpg",
-        "images/skills/no_images_2.jpg",
-        "images/skills/no_images_3.jpg",
-        "images/skills/no_images_1.jpg"
+        "/images/skills/40.jpg",
+        "/images/skills/no_images_4.jpg",
+        "/images/skills/no_images_2.jpg",
+        "/images/skills/no_images_3.jpg",
+        "/images/skills/no_images_1.jpg"
       ]
     },
     {
@@ -609,11 +609,11 @@
       "categoryId": "health",
       "subcategoryId": "dream",
       "images": [
-        "images/skills/41.jpg",
-        "images/skills/no_images_1.jpg",
-        "images/skills/no_images_3.jpg",
-        "images/skills/no_images_4.jpg",
-        "images/skills/no_images_2.jpg"
+        "/images/skills/41.jpg",
+        "/images/skills/no_images_1.jpg",
+        "/images/skills/no_images_3.jpg",
+        "/images/skills/no_images_4.jpg",
+        "/images/skills/no_images_2.jpg"
       ]
     },
     {
@@ -624,11 +624,11 @@
       "categoryId": "health",
       "subcategoryId": "balance",
       "images": [
-        "images/skills/42.jpg",
-        "images/skills/no_images_2.jpg",
-        "images/skills/no_images_1.jpg",
-        "images/skills/no_images_3.jpg",
-        "images/skills/no_images_4.jpg"
+        "/images/skills/42.jpg",
+        "/images/skills/no_images_2.jpg",
+        "/images/skills/no_images_1.jpg",
+        "/images/skills/no_images_3.jpg",
+        "/images/skills/no_images_4.jpg"
       ]
     }
   ]

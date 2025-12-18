@@ -23,8 +23,19 @@ export const LinkButton: React.FC<LinkButtonProps> = ({
 
   return (
     <NavLink
-      to={to}
-      onClick={onClick}
+      to={to === '#' && actionType === 'navigate' ? undefined! : to}
+      onClick={(e) => {
+        if (actionType === 'navigate' && to === '#') {
+          e.preventDefault();
+          onClick?.(); // старый navigate(...)
+          return;
+        }
+
+        if (actionType === 'tradeStatus') {
+          e.preventDefault();
+          onClick?.();
+        }
+      }}
       className={clsx(
         styles.button,
         styles[size],

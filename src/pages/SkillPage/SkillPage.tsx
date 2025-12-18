@@ -1,4 +1,4 @@
-// 🎨 CSS-модуль для стилей компонента
+// CSS-модуль для стилей компонента
 import styles from './SkillPage.module.css';
 
 // 🪝 Хуки
@@ -6,27 +6,27 @@ import { useCallback, useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useExchangeSystem } from '../../features/exchange';
 import { useSkillPage } from '../../features/skills/useSkillPageResult.ts';
-// import { useParams } from 'react-router-dom'; // 🔴 раскомментировать для получения id из URL через роутер
 
-// 🧩 Импорт компонентов
+// Импорт компонентов
 import { UserCard } from '../../shared/ui/UserCard';
 import { OfferPreviewForSkillPage } from '../../widgets/OfferPreviewForSkillPage';
 import { CardsGallery } from '../../widgets/CardsGallery';
 import { SuccessProposalModal } from '../../widgets/SuccessProposalModal';
 
-// 🧠 Redux
+// Redux
 import { selectCurrentUser } from '../../app/store/slices/authSlice/authSelector.ts';
 import { toggleLike } from '../../app/store/slices/authSlice/authSlice.ts';
 import { useAppDispatch } from '../../shared/hooks';
+import { useNavigate, useParams } from 'react-router-dom';
 
-// 🧪 ID пользователя открытой карточки (владельца навыка)
-const userId = '2'; // 🔴 моки
-// const { userId } = useParams<{ userId: string }>(); // 🔴 id из URL через роутер
+// ID пользователя открытой карточки (владельца навыка)
 
-// ⛳️ Основной компонент страницы навыка
+// Основной компонент страницы навыка
 export const SkillPage = () => {
   const dispatch = useAppDispatch();
   const currentUser = useSelector(selectCurrentUser); // Получаем авторизованного пользователя
+  const { userId } = useParams<{ userId: string }>();
+  const navigate = useNavigate();
 
   // стейт для хранения лайков пользователей в виде объекта { userId: boolean }
   const [likedUsers, setLikedUsers] = useState<Record<string, boolean>>({});
@@ -41,6 +41,13 @@ export const SkillPage = () => {
       setLikedUsers(initialLikedUsers);
     }
   }, [currentUser]);
+
+  const handleNavigationSkill = useCallback(
+    (userId: string) => {
+      navigate(`/skill/${userId}`);
+    },
+    [navigate]
+  );
 
   // обработчик для переключения лайка пользователя (синхронизированный с Redux)
   const handleLikeToggle = useCallback(
@@ -93,7 +100,7 @@ export const SkillPage = () => {
     [likedUsers]
   );
 
-  // 🟢 Ранний return при отсутствии userId
+  // Ранний return при отсутствии userId
   if (!userId) {
     console.warn('SkillPage: userId is missing in route params');
     return null;
@@ -103,7 +110,7 @@ export const SkillPage = () => {
   const { user, skillId, offerPreviewData, recommendedUsers, isNotFound } =
     useSkillPage(userId);
 
-  // 🟢 Получаем именно id пользователя
+  // Получаем именно id пользователя
   const exchangeOffersID = user?.id;
 
   // использование кастомного хука для работы с системой обмена
@@ -113,7 +120,7 @@ export const SkillPage = () => {
     closeModal,
     hasOffered,
     isLoading
-  } = useExchangeSystem(exchangeOffersID ?? ''); // 🟢 используем exchangeOffersID вместо skillId
+  } = useExchangeSystem(exchangeOffersID ?? ''); // используем exchangeOffersID вместо skillId
 
   // если данные не найдены, показываем сообщение
   if (isNotFound) {
@@ -133,7 +140,7 @@ export const SkillPage = () => {
   return (
     <main className={styles.page}>
       <div className={styles.content}>
-        {/* 1️⃣ Секция превью навыка */}
+        {/* Секция превью навыка */}
         <section className={styles.preview_skill}>
           {/* Условный рендеринг карточки пользователя, если данные есть */}
           {user ? (
@@ -161,11 +168,11 @@ export const SkillPage = () => {
           )}
         </section>
 
-        {/* 2️⃣ Галерея карточек рекомендуемых пользователей */}
+        {/* Галерея карточек рекомендуемых пользователей */}
         <CardsGallery
           users={recommendedUsers}
           onLike={handleLikeToggle}
-          onMore={(id) => console.log('more', id)}
+          onMore={handleNavigationSkill}
           getUserLikeData={getUserLikeData}
         />
       </div>

@@ -15,7 +15,8 @@ import { selectCurrentUser } from '../../app/store/slices/authSlice/authSelector
 import { toggleLike } from '../../app/store/slices/authSlice/authSlice';
 import { useAppDispatch } from '../../shared/hooks';
 import { selectSearchQuery } from '../../app/store/slices/filtersSlice/selectors'; // Добавляем селектор поиска
-import { setSearchQuery } from '../../app/store/slices/filtersSlice/filtersSlice'; // Добавляем action для поиска
+import { setSearchQuery } from '../../app/store/slices/filtersSlice/filtersSlice';
+import { useNavigate } from 'react-router-dom'; // Добавляем action для поиска
 
 export type ModeFilter = 'any' | 'learn' | 'teach';
 export type GenderFilter = 'any' | 'male' | 'female';
@@ -45,6 +46,7 @@ export const HomePage = () => {
   const cities = useSelector(selectAllCities);
   const currentUser = useSelector(selectCurrentUser);
   const usersWithDetails = useUsersWithDetails();
+  const navigate = useNavigate();
 
   // Получаем поисковый запрос из Redux
   const searchQuery = useSelector(selectSearchQuery);
@@ -133,6 +135,13 @@ export const HomePage = () => {
     loadMore,
     hasMore
   } = useInfiniteItems(usersWithDetails, 20);
+
+  const handleNavigationSkill = useCallback(
+    (userId: string) => {
+      navigate(`/skill/${userId}`);
+    },
+    [navigate]
+  );
 
   const loadMoreRef = useRef<HTMLDivElement | null>(null);
 
@@ -540,7 +549,7 @@ export const HomePage = () => {
               <UserCardList
                 users={popularUsers.slice(0, 3)}
                 onLike={handleLikeToggle}
-                onMore={(id) => console.log('more', id)}
+                onMore={handleNavigationSkill}
                 getUserLikeData={getUserLikeData}
               />
             </section>
@@ -563,7 +572,7 @@ export const HomePage = () => {
               <UserCardList
                 users={newestUsers.slice(0, 3)}
                 onLike={handleLikeToggle}
-                onMore={(id) => console.log('more', id)}
+                onMore={handleNavigationSkill}
                 getUserLikeData={getUserLikeData}
               />
             </section>
@@ -576,7 +585,7 @@ export const HomePage = () => {
               <UserCardList
                 users={recommendedUsers}
                 onLike={handleLikeToggle}
-                onMore={(id) => console.log('more', id)}
+                onMore={handleNavigationSkill}
                 getUserLikeData={getUserLikeData}
               />
               {hasMore && <div ref={loadMoreRef} />}
@@ -610,7 +619,7 @@ export const HomePage = () => {
               <UserCardList
                 users={sortedFilteredUsers}
                 onLike={handleLikeToggle}
-                onMore={(id) => console.log('more', id)}
+                onMore={handleNavigationSkill}
                 getUserLikeData={getUserLikeData}
               />
             ) : (

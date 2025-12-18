@@ -92,7 +92,7 @@ function App() {
 
         {/* Навык */}
         <Route
-          path='/skill'
+          path='/skill/:userId'
           element={
             <MainLayout>
               <SkillPage />
