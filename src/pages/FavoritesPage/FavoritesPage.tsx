@@ -114,10 +114,8 @@ export const FavoritesPage = memo(function FavoritesPage() {
   }
 
   return (
-    <div className={styles.container}>
-      <aside className={styles.menuColumn}>
-        <UserMenu defaultActiveId='favorites' />
-      </aside>
+    <section className={styles.wrap}>
+      <UserMenu defaultActiveId='favorites' />
 
       <main className={styles.contentColumn}>
         <p className={styles.contentHeader}>Избранное: {favoriteCount}</p>
@@ -130,6 +128,6 @@ export const FavoritesPage = memo(function FavoritesPage() {
           linkButtonIconName={linkButtonIconName}
         />
       </main>
-    </div>
+    </section>
   );
 });
