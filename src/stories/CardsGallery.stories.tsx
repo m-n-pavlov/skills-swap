@@ -82,7 +82,8 @@ const meta: Meta<typeof CardsGallery> = {
       control: false,
       description: 'Массив пользователей для отображения в галерее'
     }
-  }
+  },
+  args: {}
 };
 
 export default meta;
