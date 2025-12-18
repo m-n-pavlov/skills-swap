@@ -78,7 +78,7 @@ export const authRegisterHandler = [
     };
 
     addUserToStore(newUser);
-    console.log('✅ Пользователь сохранен в хранилище и localStorage');
+    console.log(' Пользователь сохранен в хранилище и localStorage');
 
     const { password: _, ...userWithoutPassword } = newUser;
 
