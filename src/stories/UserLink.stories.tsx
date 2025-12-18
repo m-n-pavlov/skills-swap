@@ -3,7 +3,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { UserButtonUI } from '../shared/ui/UserButton';
 
 const meta: Meta<typeof UserButtonUI> = {
-  title: 'Shared/UserLinkUI',
+  title: 'UI/UserLinkUI',
   component: UserButtonUI,
   args: {
     size: 'small'

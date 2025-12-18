@@ -3,7 +3,7 @@ import { MenuButton } from '../shared/ui/MenuButton';
 import type { MenuButtonProps } from '../shared/ui/MenuButton/type';
 
 const meta: Meta<typeof MenuButton> = {
-  title: 'Shared/MenuButton',
+  title: 'UI/MenuButton',
   component: MenuButton,
   args: {
     label: 'Все навыки',

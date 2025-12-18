@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import styles from '../shared/ui/InputFile/InputFile.module.css';
 
 const meta: Meta<typeof InputFile> = {
-  title: 'Shared/InputFile',
+  title: 'UI/InputFile',
   component: InputFile,
   tags: ['autodocs'],
   argTypes: {

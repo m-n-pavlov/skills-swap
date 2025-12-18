@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { FilterChip } from '../shared/ui';
 
 const meta: Meta<typeof FilterChip> = {
-  title: 'Components/FilterChip',
+  title: 'UI/FilterChip',
   component: FilterChip,
   tags: ['autodocs'],
   argTypes: {

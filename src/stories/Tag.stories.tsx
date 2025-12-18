@@ -3,7 +3,7 @@ import { Tag } from '../shared/ui';
 import type { TagProps } from '../shared/ui/Tag/type.ts';
 
 const meta: Meta<TagProps> = {
-  title: 'Components/Tag',
+  title: 'UI/Tag',
   component: Tag,
   tags: ['autodocs'],
   args: {

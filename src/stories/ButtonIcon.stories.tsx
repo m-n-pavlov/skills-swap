@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { ButtonIcon } from '../shared/ui/ButtonIcon';
 
 const meta: Meta<typeof ButtonIcon> = {
-  title: 'Shared/ButtonIcon',
+  title: 'UI/ButtonIcon',
   component: ButtonIcon,
   args: {
     onClick: () => alert('Clicked!')

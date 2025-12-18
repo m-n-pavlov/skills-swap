@@ -5,7 +5,7 @@ import { DropdownInput } from '../shared/ui/DropdownInput/DropdownInput';
 import type { DropdownOption } from '../shared/ui/DropdownInput/types';
 
 const meta: Meta<typeof DropdownInput> = {
-  title: 'Shared/DropdownInput',
+  title: 'UI/DropdownInput',
   component: DropdownInput
 };
 

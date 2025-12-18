@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import Filters from '../shared/ui/Filters/Filters.tsx';
+import type { FiltersState } from '../shared/ui/Filters/Filters.tsx';
 
 const meta: Meta<typeof Filters> = {
-  title: 'Components/Filters',
+  title: 'UI/Filters',
   component: Filters,
   parameters: {
     layout: 'padded'
@@ -11,6 +12,13 @@ const meta: Meta<typeof Filters> = {
 
 export default meta;
 type Story = StoryObj<typeof Filters>;
+
+const defaultFilters: FiltersState = {
+  type: 'any',
+  skillIds: [],
+  gender: 'any',
+  cityIds: []
+};
 
 export const Default: Story = {
   args: {
@@ -76,6 +84,7 @@ export const Default: Story = {
         location: 'Казань'
       }
     ],
+    filters: defaultFilters,
     onFiltersChange: (filters) => {
       console.log('Filters changed:', filters);
     }
@@ -86,6 +95,7 @@ export const EmptyData: Story = {
   args: {
     categories: [],
     cities: [],
+    filters: defaultFilters,
     onFiltersChange: (filters) => {
       console.log('Filters changed:', filters);
     }

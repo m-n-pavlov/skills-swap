@@ -3,7 +3,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { LinkButton } from '../shared/ui/LinkButton';
 
 const meta = {
-  title: 'Components/LinkButton',
+  title: 'UI/LinkButton',
   component: LinkButton,
   decorators: [
     (Story) => (

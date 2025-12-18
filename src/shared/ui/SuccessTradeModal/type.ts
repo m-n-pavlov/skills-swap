@@ -1,7 +1,7 @@
 import type { IconName } from '../Icon/icons';
 
-export interface SuccessModalProps {
+export type SuccessModalProps = {
   isOpen: boolean;
   onClose: () => void;
   iconName: IconName;
-}
+};

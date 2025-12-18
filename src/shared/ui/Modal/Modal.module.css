@@ -18,6 +18,11 @@
   max-height: 420px;
 }
 
+.smallx2-modal {
+  max-width: 556px;
+  max-height: 480px;
+}
+
 .medium-modal {
   max-width: 1024px;
   max-height: 532px;
