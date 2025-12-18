@@ -1,4 +1,3 @@
-// OfferPreviewCard/OfferPreviewCard.tsx
 import type { FC } from 'react';
 import { PhotoGallery } from '../../shared/ui/PhotoGallery';
 import styles from './OfferPreviewCard.module.css';
@@ -13,7 +12,6 @@ export const OfferPreviewCard: FC<OfferPreviewCardProps> = ({
 }) => {
   return (
     <section className={styles.card}>
-      {/* левая колонка */}
       <div className={styles.text}>
         <div className={styles.textTop}>
           <h2 className={styles.title}>{title}</h2>
@@ -23,7 +21,6 @@ export const OfferPreviewCard: FC<OfferPreviewCardProps> = ({
         <div className={styles.actions}>{actions}</div>
       </div>
 
-      {/* правая колонка — фотогалерея */}
       <div className={styles.gallery}>
         <PhotoGallery images={images} />
       </div>

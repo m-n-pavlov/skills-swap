@@ -1,4 +1,3 @@
-// src/app/store/slices/filtersSlice/selectors.ts
 import type { RootState } from '../../index.ts';
 import type { FiltersState } from './filtersSlice';
 
@@ -24,7 +23,6 @@ export const selectHasActiveFilters = (state: RootState) => {
   );
 };
 
-// Для панели активных фильтров можно возвращать массив с текстовыми лейблами
 export const selectActiveFiltersForDisplay = (state: RootState) => {
   const { skills, cities, gender, mode, sort } = state.filters;
   const active: string[] = [];

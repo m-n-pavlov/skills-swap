@@ -1,5 +1,3 @@
-// ---------- Типы значений шагов ----------
-
 export type StepOneValues = {
   email: string;
   password: string;

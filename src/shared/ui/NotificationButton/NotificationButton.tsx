@@ -9,7 +9,6 @@ import type { TNotificationButton } from './type.ts';
 const NotificationButton = ({ isHaveNotification }: TNotificationButton) => {
   const [isOpen, setIsOpen] = useState(false);
   const popoverRef = useRef<HTMLDivElement>(null);
-  // закрытие по нажатию на Escape
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && isOpen) {
@@ -20,7 +19,6 @@ const NotificationButton = ({ isHaveNotification }: TNotificationButton) => {
     document.addEventListener('keydown', handleEscape);
     return () => document.removeEventListener('keydown', handleEscape);
   }, [isOpen]);
-  // закрытие по нажатию на оверлей
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (
@@ -37,7 +35,6 @@ const NotificationButton = ({ isHaveNotification }: TNotificationButton) => {
 
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [isOpen]);
-  // можно объединить, но кажется читаться будет хуже
   return (
     <div className={styles.container}>
       <ButtonIcon

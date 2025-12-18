@@ -21,7 +21,6 @@ export const UserButtonUI: FC<UserButtonUIProps> = ({
   const toggleMenu = useCallback(() => setIsOpen((prev) => !prev), []);
   const closeMenu = useCallback(() => setIsOpen(false), []);
 
-  // Закрытие при клике вне области
   useEffect(() => {
     if (!isOpen) return;
 

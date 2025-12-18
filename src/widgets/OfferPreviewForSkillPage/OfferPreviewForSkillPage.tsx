@@ -5,7 +5,6 @@ import { Button } from '../../shared/ui/Button';
 import styles from './OfferPreviewForSkillPage.module.css';
 import type { OfferPreviewForSkillPageProps } from './type';
 
-// Обновляем типы для компонента
 interface ExtendedProps extends OfferPreviewForSkillPageProps {
   userLikes?: number;
   isUserLiked?: boolean;
@@ -17,15 +16,13 @@ export const OfferPreviewForSkillPage: FC<ExtendedProps> = ({
   onExchangeClick,
   isExchangeDisabled,
   isLoading,
-  userLikes = 0, // Количество лайков пользователя
-  isUserLiked = false, // Лайкнул ли текущий пользователь
-  onUserLikeToggle // Обработчик лайка пользователя
+  userLikes = 0,
+  isUserLiked = false,
+  onUserLikeToggle
 }) => {
   return (
     <section className={styles.wrapper}>
-      {/* ряд иконок сверху справа */}
       <div className={styles.iconsRow}>
-        {/* Блок с лайками пользователя */}
         <div className={styles.userLikesContainer}>
           {userLikes > 0 && (
             <span className={styles.userLikesCount}>{userLikes}</span>
@@ -41,7 +38,6 @@ export const OfferPreviewForSkillPage: FC<ExtendedProps> = ({
         <ButtonIcon name='Дополнительные действия' iconName='moreSquare' />
       </div>
 
-      {/* сама карточка */}
       <OfferPreviewCard
         title={data.title}
         categoryPath={data.category}

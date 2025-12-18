@@ -28,7 +28,6 @@ export const RegistrationFormStepTwo: FC<RegistrFormStepTwoProps> = ({
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      {/* Аватар сверху с плюсиком */}
       <div className={styles.avatarWrapper}>
         <AvatarWithAdd
           size='small'
@@ -39,7 +38,6 @@ export const RegistrationFormStepTwo: FC<RegistrFormStepTwoProps> = ({
         />
       </div>
 
-      {/* Имя */}
       <Input
         label='Имя'
         name='name'
@@ -50,7 +48,6 @@ export const RegistrationFormStepTwo: FC<RegistrFormStepTwoProps> = ({
         className={styles.field}
       />
 
-      {/* Дата рождения + Пол в одну строку */}
       <div className={styles.row}>
         <DateInput
           value={values.birthday}
@@ -67,7 +64,6 @@ export const RegistrationFormStepTwo: FC<RegistrFormStepTwoProps> = ({
         />
       </div>
 
-      {/* Город */}
       <DropdownInput
         label='Город'
         placeholder='Не указан'
@@ -77,7 +73,6 @@ export const RegistrationFormStepTwo: FC<RegistrFormStepTwoProps> = ({
         className={styles.field}
       />
 
-      {/* Категория навыка */}
       <DropdownInput
         label='Категория навыка, которому хотите научиться'
         placeholder='Выберите категорию'
@@ -87,7 +82,6 @@ export const RegistrationFormStepTwo: FC<RegistrFormStepTwoProps> = ({
         className={styles.field}
       />
 
-      {/* Подкатегория навыка */}
       <DropdownInput
         label='Подкатегория навыка, которому хотите научиться'
         placeholder='Выберите подкатегорию'
@@ -97,7 +91,6 @@ export const RegistrationFormStepTwo: FC<RegistrFormStepTwoProps> = ({
         className={styles.field}
       />
 
-      {/* Кнопки */}
       <div className={styles.buttons}>
         <Button
           type='button'

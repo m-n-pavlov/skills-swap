@@ -19,7 +19,6 @@ const meta: Meta<typeof InputFile> = {
 export default meta;
 type Story = StoryObj<typeof InputFile>;
 
-// Default — обычное состояние, можно взаимодействовать с drag&drop
 export const Default: Story = {
   render: (args) => <InputFile {...args} />,
   args: {
@@ -34,7 +33,6 @@ export const IconOnly: Story = {
   name: 'Только иконка'
 };
 
-// Active — статическое "активное" состояние, подсветка рамки
 export const Active: Story = {
   render: () => (
     <div className={clsx(styles.wrapper, styles.active)}>

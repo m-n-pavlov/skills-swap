@@ -8,6 +8,7 @@ export const UserCardList = memo(function UserCardList({
   onLike,
   onMore,
   getUserLikeData,
+  linkButtonActionType = 'navigate',
   linkButtonActionType,
   linkButtonIconName
 }: UserCardListProps) {

@@ -20,7 +20,6 @@ export const useFilteredUsers = (
   const filteredUsers = useMemo(() => {
     let result = [...users];
 
-    // 1. Поиск по навыку (searchQuery) — ищем в skillsLearn
     if (filters.searchQuery) {
       const query = filters.searchQuery.toLowerCase();
       result = result.filter((user) =>
@@ -30,17 +29,14 @@ export const useFilteredUsers = (
       );
     }
 
-    // 2. Фильтр по полу
     if (filters.gender !== 'any') {
       result = result.filter((user) => user.gender === filters.gender);
     }
 
-    // 3. Фильтр по городам
     if (filters.cities.length > 0) {
       result = result.filter((user) => filters.cities.includes(user.cityId));
     }
 
-    // 4. Фильтр по навыкам с учетом mode
     if (filters.skills.length > 0) {
       result = result.filter((user) => {
         let skillsToCheck: TSkillWithoutId[] = [];
@@ -55,7 +51,6 @@ export const useFilteredUsers = (
       });
     }
 
-    // 5. Сортировка
     if (filters.sort === 'new') {
       result = sortNewestUsers(result);
     } else if (filters.sort === 'popular') {

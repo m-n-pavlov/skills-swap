@@ -21,12 +21,10 @@ const SkillsFilter = ({
   };
 
   const handleCategoryChange = (categorySkillIds: string[]) => {
-    // Удаляем все id навыков категории, которые есть в selectedSkillIds
     const filteredSkillIds = selectedSkillIds.filter(
       (id) => !categorySkillIds.includes(id)
     );
 
-    // Если все навыки категории были выбраны - удаляем их, иначе добавляем
     const allSelected = categorySkillIds.every((id) =>
       selectedSkillIds.includes(id)
     );

@@ -55,7 +55,6 @@ export const CardsGallery = ({
           }}
         >
           {users.map((user) => {
-            // Получаем данные о лайках для каждого пользователя
             const { isLiked, likesCount } = getUserLikeData(
               user.id,
               user.likes || 0
@@ -66,7 +65,7 @@ export const CardsGallery = ({
                 <UserCard
                   user={user}
                   avatar={{ size: 'medium' }}
-                  showLinkButton={true} // Важно: включаем отображение кнопки и лайков
+                  showLinkButton={true}
                   isLiked={isLiked}
                   likesCount={likesCount}
                   onLike={() => onLike(user.id)}

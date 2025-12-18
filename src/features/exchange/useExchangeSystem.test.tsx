@@ -5,7 +5,6 @@ import { useExchangeSystem } from './useExchangeSystem';
 import type { TAuthUser } from '../../entities/authUser';
 import { rootReducer } from '../../app/store/rootReducer';
 
-// Мокаем API
 jest.mock('../../api/auth/authChangeApi', () => ({
   ...jest.requireActual('../../api/auth/authChangeApi'),
   toggleOffersApi: jest.fn()
@@ -13,7 +12,6 @@ jest.mock('../../api/auth/authChangeApi', () => ({
 
 import { toggleOffersApi } from '../../api/auth/authChangeApi';
 
-// Типобезопасный мок
 const mockToggleOffersApi = toggleOffersApi as jest.MockedFunction<
   typeof toggleOffersApi
 >;

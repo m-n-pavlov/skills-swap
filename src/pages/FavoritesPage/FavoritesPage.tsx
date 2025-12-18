@@ -14,7 +14,6 @@ export const FavoritesPage = memo(function FavoritesPage() {
   const currentUser = useSelector(selectCurrentUser);
   const allUsers = useUsersWithDetails();
 
-  // Фильтруем пользователей: только те, кого лайкнул текущий пользователь
   const favoriteUsers = useMemo(() => {
     if (!currentUser || !currentUser.likes || currentUser.likes.length === 0) {
       return [];
@@ -23,7 +22,6 @@ export const FavoritesPage = memo(function FavoritesPage() {
     return allUsers.filter((user) => currentUser.likes?.includes(user.id));
   }, [currentUser, allUsers]);
 
-  // Обработчик лайка - такой же как в HomePage
   const handleLike = useCallback(
     async (userId: string) => {
       if (!currentUser) {
@@ -45,20 +43,14 @@ export const FavoritesPage = memo(function FavoritesPage() {
     [currentUser, dispatch]
   );
 
-  // Обработчик клика на кнопку "Подробнее"
   const handleMore = useCallback((userId: string) => {
     console.log('✅ Клик на кнопку "Подробнее" для пользователя с ID:', userId);
-    // Здесь может быть навигация или открытие модального окна
   }, []);
 
-  // Функция для получения данных о лайках пользователя
   const getUserLikeData = useCallback(
     (userId: string, userLikesCount: number) => {
-      // Проверяем, лайкнул ли текущий пользователь эту карточку
       const isLiked = currentUser?.likes?.includes(userId) || false;
 
-      // Увеличиваем счетчик, если карточка лайкнута
-      // В реальном приложении этот счетчик должен обновляться на сервере
       const likesCount = isLiked ? userLikesCount + 1 : userLikesCount;
 
       return {
@@ -69,7 +61,6 @@ export const FavoritesPage = memo(function FavoritesPage() {
     [currentUser]
   );
 
-  // Количество избранных пользователей
   const favoriteCount = currentUser?.likes?.length || 0;
 
   // Вы можете выбрать тип действия для кнопки
@@ -87,7 +78,6 @@ export const FavoritesPage = memo(function FavoritesPage() {
 
   const linkButtonIconName: IconName = 'clock';
 
-  // Если пользователь не авторизован
   if (!currentUser) {
     return (
       <div className={styles.container}>
@@ -103,7 +93,6 @@ export const FavoritesPage = memo(function FavoritesPage() {
     );
   }
 
-  // Если нет избранных пользователей
   if (favoriteCount === 0) {
     return (
       <div className={styles.container}>

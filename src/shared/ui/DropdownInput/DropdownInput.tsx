@@ -17,8 +17,8 @@ export const DropdownInput: FC<DropdownInputProps> = ({
   label,
   placeholder,
   options,
-  type = 'default', // 'default' | 'checkbox'
-  size = 'medium', // 'small' | 'medium' | 'large'
+  type = 'default',
+  size = 'medium',
   value,
   onChange,
   onClick,
@@ -163,7 +163,6 @@ export const DropdownInput: FC<DropdownInputProps> = ({
             disabled={disabled}
           />
 
-          {/* Крестик очистки */}
           {(inputValue.length > 0 || hasValue) && !disabled && (
             <button
               type='button'
@@ -175,7 +174,6 @@ export const DropdownInput: FC<DropdownInputProps> = ({
             </button>
           )}
 
-          {/* Стрелка */}
           <button
             type='button'
             className={styles.arrowButton}
@@ -192,7 +190,6 @@ export const DropdownInput: FC<DropdownInputProps> = ({
         </div>
       </label>
 
-      {/* Выпадающий список */}
       {isOpen && (
         <ul className={styles.dropdown}>
           {filteredOptions.length === 0 ? (

@@ -24,7 +24,7 @@ export function useInfiniteScroll({
           onIntersect();
         }
       },
-      { rootMargin: '200px' } // подгружаем заранее
+      { rootMargin: '200px' }
     );
 
     observer.observe(target);

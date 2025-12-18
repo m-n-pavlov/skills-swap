@@ -33,7 +33,6 @@ export const RegistrationFormStepThree: FC<RegistrFormStepThreeProps> = ({
 
   return (
     <form className={clsx(styles.form, className)} onSubmit={handleSubmit}>
-      {/* Название навыка */}
       <div className={styles.field}>
         <label className={styles.label} htmlFor='skillName'>
           Название навыка
@@ -49,7 +48,6 @@ export const RegistrationFormStepThree: FC<RegistrFormStepThreeProps> = ({
         />
       </div>
 
-      {/* Категория навыка */}
       <div className={styles.field}>
         <DropdownInput
           label='Категория навыка'
@@ -62,7 +60,6 @@ export const RegistrationFormStepThree: FC<RegistrFormStepThreeProps> = ({
         />
       </div>
 
-      {/* Подкатегория навыка */}
       <div className={styles.field}>
         <DropdownInput
           label='Подкатегория навыка'
@@ -75,7 +72,6 @@ export const RegistrationFormStepThree: FC<RegistrFormStepThreeProps> = ({
         />
       </div>
 
-      {/* Описание */}
       <div className={styles.field}>
         <TextArea
           name='description'
@@ -87,7 +83,6 @@ export const RegistrationFormStepThree: FC<RegistrFormStepThreeProps> = ({
         />
       </div>
 
-      {/* Загрузка изображений */}
       <div className={styles.field}>
         <InputFile
           onChange={(files) => {
@@ -96,7 +91,6 @@ export const RegistrationFormStepThree: FC<RegistrFormStepThreeProps> = ({
         />
       </div>
 
-      {/* Кнопки */}
       <div className={styles.buttons}>
         <Button
           type='button'

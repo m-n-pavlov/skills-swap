@@ -1,5 +1,5 @@
 export type FilterChipProps = {
-  label: string; // сюда будет принимать текст фильтра
+  label: string;
   onRemove: () => void;
   className?: string;
 };

@@ -1,4 +1,3 @@
-// eslint.config.js или eslint.config.mjs
 import storybook from "eslint-plugin-storybook";
 
 export default {

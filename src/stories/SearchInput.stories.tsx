@@ -14,7 +14,7 @@ const meta: Meta<typeof SearchInput> = {
     type: { control: 'radio', options: ['text', 'search'] },
     showClearButton: { control: 'boolean' },
     name: { control: 'text' },
-    onChange: { action: 'changed' }, // покажет событие в панели Actions
+    onChange: { action: 'changed' },
     onClear: { action: 'cleared' },
     onClick: { action: 'clicked' }
   }
@@ -24,7 +24,6 @@ export default meta;
 
 type Story = StoryObj<typeof SearchInput>;
 
-// База. По умолчанию
 export const Default: Story = {
   render: (args) => {
     const [value, setValue] = useState(args.value || '');
@@ -50,7 +49,6 @@ export const Default: Story = {
   }
 };
 
-// Состояние: поле заполнено → видна кнопка "очистить"
 export const WithValue: Story = {
   render: (args) => {
     const [value, setValue] = useState(args.value || 'Текст');
@@ -76,7 +74,6 @@ export const WithValue: Story = {
   }
 };
 
-// Без кнопки очистки (даже если есть значение) (на всякий случай пусть будет)
 export const WithoutClearButton: Story = {
   render: (args) => {
     const [value, setValue] = useState(args.value || 'Нельзя очистить');
@@ -98,11 +95,10 @@ export const WithoutClearButton: Story = {
     name: 'search',
     placeholder: 'Поиск без очистки',
     value: 'Нельзя очистить',
-    showClearButton: false // ← ключевое
+    showClearButton: false
   }
 };
 
-// Тип 'text' вместо 'search'
 export const TextInputType: Story = {
   render: (args) => {
     const [value, setValue] = useState(args.value || '');

@@ -23,10 +23,8 @@ const CheckboxGroup = ({
 }: CheckboxGroupProps) => {
   const [expanded, setExpanded] = useState<string[]>([]);
 
-  // Получаем массив id подкатегорий
   const subCategoryIds = category.subCategories.map((item) => item.id);
 
-  // Проверяем, выбрана ли хотя бы одна подкатегория
   const someSubSkillsSelected = subCategoryIds.some((id) =>
     selectedSubCategoryIds.includes(id)
   );
@@ -38,13 +36,11 @@ const CheckboxGroup = ({
   };
 
   const handleCategoryIconClick = () => {
-    // Передаем массив id всех подкатегорий этой категории
     onCategoryChange(subCategoryIds);
   };
 
   return (
     <div>
-      {/* Чекбокс категории - используем новый API */}
       <Checkbox
         items={[{ id: category.id, label: category.name }]}
         selectedIds={someSubSkillsSelected ? [category.id] : []}
@@ -55,7 +51,6 @@ const CheckboxGroup = ({
         isOpen={true}
       />
 
-      {/* Подкатегории - используем новый API */}
       {expanded.includes(category.id) && (
         <div style={{ marginLeft: '32px', marginTop: '8px' }}>
           <Checkbox

@@ -18,7 +18,6 @@ export default meta;
 type Story = StoryObj<typeof DateInput>;
 
 export const Default: Story = {
-  // Основной тест
   args: {
     placeholder: 'дд.мм.гггг'
   },
@@ -29,15 +28,13 @@ export const Default: Story = {
 };
 
 export const WithValue: Story = {
-  // Со значнием
   render: () => {
-    const [date, setDate] = useState<Date | null>(new Date(1995, 9, 28)); // Октябрь = 9
+    const [date, setDate] = useState<Date | null>(new Date(1995, 9, 28));
     return <DateInput value={date} onChange={setDate} />;
   }
 };
 
 export const Disabled: Story = {
-  // На всякий случай
   args: {
     placeholder: 'Недоступно',
     disabled: true

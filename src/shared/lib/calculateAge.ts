@@ -1,4 +1,3 @@
-// Функция для вычисления возраста по дате рождения
 export const calculateAge = (birthday: string) => {
   const birthDate = new Date(birthday);
   const today = new Date();

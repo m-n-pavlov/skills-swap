@@ -20,7 +20,6 @@ const CitiesFilter = ({
 
   const handleToggle = () => {
     if (showAllCities) {
-      // Скроллим контейнер городов вверх
       citiesRef.current?.scrollTo({
         top: 0,
         behavior: 'smooth'
@@ -36,7 +35,6 @@ const CitiesFilter = ({
     onChange(newCityIds);
   };
 
-  // Преобразуем города в формат CheckboxItem
   const cityItems = cities.map((city) => ({
     id: city.id,
     label: city.location

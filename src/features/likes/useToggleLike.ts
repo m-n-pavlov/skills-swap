@@ -14,12 +14,11 @@ export const useToggleLike = (): UseToggleLikeResult => {
   const isLoading = useAppSelector((state) => state.auth.isLoading);
   const error = useAppSelector((state) => state.auth.error);
 
-  // функция проверяет, лайкал ли пользователь cardId
   const isLiked = useCallback(
     (cardId: string): boolean => {
       return currentUser?.likes?.includes(cardId) ?? false;
     },
-    [currentUser?.likes] // зависимость только от массива лайков
+    [currentUser?.likes]
   );
 
   const toggleLikeHandler = useCallback(
@@ -31,8 +30,6 @@ export const useToggleLike = (): UseToggleLikeResult => {
 
       try {
         await dispatch(toggleLike({ user: currentUser, cardId })).unwrap();
-        // После успешного тоггла — Redux обновит currentUser.likes,
-        // и isLiked(cardId) автоматически станет актуальным (реактивность!)
       } catch (err) {
         console.error('Ошибка при переключении лайка:', err);
       }

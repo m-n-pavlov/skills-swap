@@ -8,7 +8,6 @@ export const Modal = React.memo(
     const modalRef = useRef<HTMLDivElement>(null);
 
     const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
-      // закрытие модалки по клику на оверлей
       if (e.target === e.currentTarget) {
         onClose();
       }
@@ -16,7 +15,6 @@ export const Modal = React.memo(
 
     useEffect(() => {
       const handleKeyDown = (e: KeyboardEvent) => {
-        // закрытие модалки по ESC
         if (e.key === 'Escape') {
           onClose();
         }
@@ -29,7 +27,6 @@ export const Modal = React.memo(
     }, [onClose]);
 
     useEffect(() => {
-      // установка фокуса на модалку
       const modal = modalRef.current;
       if (modal) {
         modal.focus();
@@ -47,14 +44,14 @@ export const Modal = React.memo(
 
     if (!isOpen) return null;
 
-    const modalSize = styles[`${size}-modal`]; // установка размера модалки
+    const modalSize = styles[`${size}-modal`];
 
     return (
       <div className={styles.overlay} onClick={handleOverlayClick}>
         <div
           className={`${styles.modal} ${modalSize}`}
           ref={modalRef}
-          tabIndex={-1} // фокус по умолчанию
+          tabIndex={-1}
         >
           {children}
         </div>

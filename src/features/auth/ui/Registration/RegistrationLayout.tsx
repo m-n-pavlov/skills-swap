@@ -16,12 +16,10 @@ export const RegistrationLayout = ({
       />
 
       <div className={styles.content}>
-        {/* Левая колонка */}
         <section className={styles.column}>
           <div className={styles.card}>{children}</div>
         </section>
 
-        {/* Правая колонка с иллюстрацией */}
         <section className={styles.column}>
           <div className={styles.card}>
             <StepIllustration code={currentStep} />

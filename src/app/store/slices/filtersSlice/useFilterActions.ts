@@ -1,4 +1,3 @@
-// src/app/store/slices/filtersSlice/useFilterActions.ts
 import { useDispatch } from 'react-redux';
 import {
   addSkill,

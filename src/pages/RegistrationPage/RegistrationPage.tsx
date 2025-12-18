@@ -34,7 +34,6 @@ export const RegistrationPage = () => {
   const cities = useAppSelector(selectAllCities) as TCity[];
   const categories = useAppSelector(selectAllCategories) as TCategory[];
 
-  // ---------------- STEP 1 ----------------
   const step1 = useStep1Form();
 
   const step1Values = { email: step1.email, password: step1.password };
@@ -52,7 +51,6 @@ export const RegistrationPage = () => {
     }
   };
 
-  // ---------------- STEP 2 ----------------
   const step2 = useStep2Form();
 
   const step2Values = {
@@ -101,7 +99,6 @@ export const RegistrationPage = () => {
     }
   };
 
-  // ---------------- STEP 3 ----------------
   const step3 = useStep3Form();
 
   const step3Values = {
@@ -123,7 +120,6 @@ export const RegistrationPage = () => {
 
   const handleStep3Back = () => dispatch(goToStep(2));
 
-  // -------- confirmation modal hook --------
   const confirm = useRegistrationConfirmation();
 
   const handleStep3Submit = (event: FormEvent<HTMLFormElement>) => {
@@ -233,7 +229,6 @@ export const RegistrationPage = () => {
         )}
       </RegistrationLayout>
 
-      {/* ✅ МОДАЛКА ПОСЛЕ 3 ШАГА */}
       <OfferPreviewModal
         isOpen={confirm.isOpen}
         onClose={confirm.closeModal}
