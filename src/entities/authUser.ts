@@ -17,8 +17,8 @@ export type TAuthUser = {
 
   skillsTeach: TSkill;
 
-  likes?: string[];
-  exchangeOffers?: string[];
+  likes: string[];
+  exchangeOffers: string[];
 
   created_at: string;
 };

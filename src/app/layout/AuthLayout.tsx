@@ -6,7 +6,7 @@ import { AuthHeader } from '../../widgets/AuthHeader';
 export default function AuthLayout({ children }: { children: ReactNode }) {
   const navigate = useNavigate();
   const location = useLocation();
-  const { user } = useAppSelector((state) => state.auth);
+  const { currentUser } = useAppSelector((state) => state.auth);
 
   // Извлекаем "from" из состояния навигации
   const fromPath = (location.state as { from?: string })?.from || '/';
@@ -16,7 +16,7 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
   };
 
   const handleClose = () => {
-    if (isProtectedRoute(fromPath) && !user) {
+    if (isProtectedRoute(fromPath) && !currentUser) {
       navigate('/', { replace: true });
     } else {
       navigate(fromPath, { replace: true });

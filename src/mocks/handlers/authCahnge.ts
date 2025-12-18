@@ -1,10 +1,8 @@
-import data from '../../../public/db/auth.json';
 import { http, HttpResponse } from 'msw';
 import type { TAuthUser } from '../../entities/authUser.ts';
 import { findUser } from '../utils/findUser.ts';
 import { findUserByEmail } from '../utils/findUserByEmail.ts';
-
-export const mockAuthUsers = data.users as TAuthUser[];
+import { authUsers } from '../utils/authStore.ts';
 
 export const authUpdateHandlers = [
   http.patch('/api/auth/update-profile', async ({ request }) => {
@@ -15,7 +13,7 @@ export const authUpdateHandlers = [
     const { user, response } = findUser(userId);
     if (response) return response;
     if (updates.email) {
-      const check = findUserByEmail(mockAuthUsers, updates.email, userId);
+      const check = findUserByEmail(authUsers, updates.email, userId);
       if (check.busy) return check.response;
     }
     Object.assign(user, updates);

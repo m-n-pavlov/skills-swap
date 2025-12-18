@@ -1,12 +1,10 @@
 import { http, HttpResponse } from 'msw';
-import data from '../../../public/db/auth.json';
-
-export const mockAuthUsers = data.users;
+import { authUsers } from '../utils/authStore.ts';
 
 export const authLoginHandlers = [
   http.post('/api/auth/login', async ({ request }) => {
     const { email, password } = (await request.json()) as any;
-    const user = mockAuthUsers.find(
+    const user = authUsers.find(
       (u) => u.email === email && u.password === password
     );
     if (user) {

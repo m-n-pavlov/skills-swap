@@ -1,7 +1,7 @@
 import type { TSkill } from '../../entities/skills.ts';
 import { http, HttpResponse } from 'msw';
 import type { TAuthUser } from '../../entities/authUser.ts';
-import data from '../../../public/db/auth.json';
+import { addUserToStore, authUsers } from '../utils/authStore.ts';
 
 // const getUserFromLocalStorage = (): TAuthUser[] => {
 //   try {
@@ -15,14 +15,13 @@ import data from '../../../public/db/auth.json';
 //   }
 // };
 
-const usersFromJson = data.users as TAuthUser[];
 // const usersFromLS = getUserFromLocalStorage();
-export const mockAuthUsers: TAuthUser[] = [
-  ...usersFromJson
-  // ...usersFromLS.filter(
-  //     (lsUser) => !usersFromJson.some((u) => u.email === lsUser.email)
-  // )
-];
+// export const mockAuthUsers: TAuthUser[] = [
+//   ...usersFromJson
+//   // ...usersFromLS.filter(
+//   //     (lsUser) => !usersFromJson.some((u) => u.email === lsUser.email)
+//   // )
+// ];
 
 export const authRegisterHandler = [
   http.post('/api/auth/register', async ({ request }) => {
@@ -56,7 +55,7 @@ export const authRegisterHandler = [
       skillsImageFiles: File[];
     }>(formData, ['skillsTeach']);
 
-    const emailExists = mockAuthUsers.some((u) => u.email === email);
+    const emailExists = authUsers.some((u) => u.email === email);
     if (emailExists) {
       return new Response(
         JSON.stringify({
@@ -98,7 +97,8 @@ export const authRegisterHandler = [
       created_at: new Date().toISOString()
     };
 
-    mockAuthUsers.push(newUser);
+    addUserToStore(newUser);
+    console.log('✅ Пользователь сохранен в хранилище и localStorage');
     // localStorage.setItem('user', JSON.stringify(newUser));
 
     const { password: _, ...userWithoutPassword } = newUser;
@@ -115,7 +115,7 @@ export const authRegisterHandler = [
 
   http.post('/api/auth/check-email', async ({ request }) => {
     const { email } = (await request.json()) as { email: string };
-    const exists = mockAuthUsers.some((u) => u.email === email);
+    const exists = authUsers.some((u) => u.email === email);
     return HttpResponse.json({
       success: true,
       exists
@@ -153,7 +153,7 @@ const parseFormData = <T>(formData: FormData, jsonFields: string[] = []) => {
 };
 
 const getNextId = () => {
-  if (mockAuthUsers.length === 0) return '1';
-  const lastId = Number(mockAuthUsers[mockAuthUsers.length - 1].id);
+  if (authUsers.length === 0) return '1';
+  const lastId = Number(authUsers[authUsers.length - 1].id);
   return String(lastId + 1);
 };

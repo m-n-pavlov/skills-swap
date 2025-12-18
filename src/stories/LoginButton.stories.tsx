@@ -22,7 +22,7 @@ type Story = StoryObj<typeof LoginButton>;
 
 export const Default: Story = {
   args: {
-    to: '/login',
-    children: 'Войти в систему'
+    to: '/login'
+    // children: 'Войти в систему'
   }
 };

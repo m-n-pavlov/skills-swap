@@ -36,14 +36,13 @@ const mockUserWithLikes: TAuthUser = {
 
 const mockUserWithoutLikes: TAuthUser = {
   ...mockUserWithLikes,
-  likes: undefined
+  likes: []
 };
 
 // Создаём стор с редьюсером и полным состоянием
 const createTestStore = (authState: Partial<AuthState>) => {
   const fullState: AuthState = {
-    user: mockUserWithLikes,
-    currentUser: null,
+    currentUser: mockUserWithLikes,
     exitsEmail: false,
     isLoading: false,
     error: null,

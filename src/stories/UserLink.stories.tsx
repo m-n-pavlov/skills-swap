@@ -6,7 +6,7 @@ const meta: Meta<typeof UserButtonUI> = {
   title: 'Shared/UserLinkUI',
   component: UserButtonUI,
   args: {
-    href: '/profile',
+    // href: '/profile',
     size: 'small'
   },
   decorators: [
