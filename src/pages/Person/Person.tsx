@@ -55,7 +55,7 @@ export const Person: FC = () => {
 
   return (
     <section className={styles.wrap}>
-      <UserMenu />
+      <UserMenu defaultActiveId='personalities' />
       <PersonForm
         formValue={formValue}
         errors={errors}
