@@ -13,14 +13,12 @@ const meta: Meta<typeof CardsGallery> = {
       }
     }
   },
-  args: {
-  }
+  args: {}
 };
 
 export default meta;
 type Story = StoryObj<typeof CardsGallery>;
 
 export const Default: Story = {
-  args: {
-  }
+  args: {}
 };

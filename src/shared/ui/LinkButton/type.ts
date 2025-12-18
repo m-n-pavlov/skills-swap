@@ -6,9 +6,9 @@ export type LinkButtonProps = {
   size: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'xxxl';
   style: 'primary' | 'secondary' | 'tertiary';
   to: string;
-  actionType?: 'navigate' | 'tradeStatus';
-  iconName?: IconName;
+  actionType?: 'navigate' | 'tradeStatus'; // новый проп для двух вариантов кнопки
+  iconName?: IconName; // новый проп для имени иконки (для tradeStatus)
   className?: string;
-  onClick?: () => void;
+  onClick?: () => void; // обработчик клика по кнопке "Подробнее"
   disabled?: boolean;
 };
