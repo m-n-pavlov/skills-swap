@@ -46,6 +46,7 @@ export const HomePage = () => {
   const currentUser = useSelector(selectCurrentUser);
   const usersWithDetails = useUsersWithDetails();
   const navigate = useNavigate();
+  const getLinkButtonIconName = 'clock';
 
   const searchQuery = useSelector(selectSearchQuery);
 
@@ -133,6 +134,15 @@ export const HomePage = () => {
   const removeActiveFilter = useCallback((id: string) => {
     setActiveFilters((prev) => prev.filter((filter) => filter.id !== id));
   }, []);
+
+  const getLinkButtonActionType = useCallback(
+    (userId: string): 'navigate' | 'tradeStatus' => {
+      if (!currentUser) return 'navigate';
+      const hasExchangeOffer = currentUser.exchangeOffers?.includes(userId);
+      return hasExchangeOffer ? 'tradeStatus' : 'navigate';
+    },
+    [currentUser]
+  );
 
   const handleFiltersChange = useCallback(
     (newFilters: FiltersState) => {
@@ -493,6 +503,8 @@ export const HomePage = () => {
                 onLike={handleLikeToggle}
                 onMore={handleNavigationSkill}
                 getUserLikeData={getUserLikeData}
+                linkButtonActionType={getLinkButtonActionType}
+                linkButtonIconName={getLinkButtonIconName}
               />
             </section>
 
@@ -515,6 +527,7 @@ export const HomePage = () => {
                 onLike={handleLikeToggle}
                 onMore={handleNavigationSkill}
                 getUserLikeData={getUserLikeData}
+                linkButtonActionType={getLinkButtonActionType}
               />
             </section>
 
@@ -527,6 +540,8 @@ export const HomePage = () => {
                 onLike={handleLikeToggle}
                 onMore={handleNavigationSkill}
                 getUserLikeData={getUserLikeData}
+                linkButtonActionType={getLinkButtonActionType}
+                linkButtonIconName={getLinkButtonIconName}
               />
               {hasMore && <div ref={loadMoreRef} />}
             </section>
@@ -560,6 +575,8 @@ export const HomePage = () => {
                 onLike={handleLikeToggle}
                 onMore={handleNavigationSkill}
                 getUserLikeData={getUserLikeData}
+                linkButtonActionType={getLinkButtonActionType}
+                linkButtonIconName={getLinkButtonIconName}
               />
             ) : (
               <div className={styles.noResults}>

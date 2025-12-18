@@ -20,6 +20,7 @@ export const UserCard = memo(function UserCard({
 }: UserCardProps) {
   const displayLikesCount = likesCount ?? user.likes ?? 0;
   const isLikedState = isLiked ?? false;
+  const isButtonStatus = linkButtonActionType === 'tradeStatus';
 
   return (
     <li className={clsx(styles.userCard, className)}>

@@ -10,4 +10,5 @@ export type LinkButtonProps = {
   iconName?: IconName;
   className?: string;
   onClick?: () => void;
+  disabled?: boolean;
 };

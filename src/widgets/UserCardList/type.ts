@@ -12,6 +12,6 @@ export type UserCardListProps = {
     isLiked: boolean;
     likesCount: number;
   };
-  linkButtonActionType?: 'navigate' | 'tradeStatus';
+  linkButtonActionType?: (userId: string) => 'navigate' | 'tradeStatus';
   linkButtonIconName?: IconName;
 };
