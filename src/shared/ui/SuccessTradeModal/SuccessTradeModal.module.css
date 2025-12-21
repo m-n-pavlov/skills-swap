@@ -2,30 +2,53 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 32px 24px;
+  justify-content: center;
+  padding: 62px 60px;
   text-align: center;
 }
 
 .iconContainer {
-  margin-bottom: 24px;
+  margin-bottom: 52px;
+  width: 100px;
+  height: 100px;
+  color: var(--text);
+}
+
+.icon {
+  width: 100%;
+  height: 100%;
 }
 
 .title {
-  font-size: 24px;
-  font-weight: 600;
-  margin-bottom: 16px;
-  color: #333;
+  font-size: var(--h2-font-size);
+  line-height: var(--h2-line-height);
+  font-family: var(--h2-font-family);
+  font-weight: var(--h2-font-weight);
+  margin-bottom: 12px;
+  color: var(--text);
 }
 
 .message {
-  font-size: 16px;
-  line-height: 1.5;
-  color: #666;
+  font-size: var(--body-font-size);
+  line-height: var(--body-line-height);
+  font-family: var(--body-font-family);
+  font-weight: var(--body-font-weight);
+  color: var(--text);
   margin-bottom: 32px;
-  max-width: 400px;
+  max-width: 80%;
 }
 
 .buttonContainer {
   width: 100%;
-  max-width: 200px;
+  max-width: 436px;
+  height: 48px;
+}
+
+.buttonContainer button {
+  width: 100%;
+  height: 100%;
+  font-size: var(--body-font-size);
+  line-height: var(--body-line-height);
+  font-family: var(--body-font-family);
+  font-weight: var(--body-font-weight);
 }

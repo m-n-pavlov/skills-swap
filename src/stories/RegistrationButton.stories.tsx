@@ -9,7 +9,7 @@ const withRouter = (Story: any) => (
 );
 
 const meta: Meta<typeof RegistrationButton> = {
-  title: 'UI/Buttons/RegisterButton',
+  title: 'UI/RegisterButton',
   component: RegistrationButton,
   decorators: [withRouter],
   parameters: {

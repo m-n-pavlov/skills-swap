@@ -4,7 +4,7 @@ import { TextArea } from '../shared/ui/TextArea';
 import type { TextAreaProps } from '../shared/ui/TextArea/type';
 
 const meta: Meta<typeof TextArea> = {
-  title: 'Components/Textarea',
+  title: 'UI/Textarea',
   component: TextArea,
   argTypes: {
     onChange: { action: 'changed' },

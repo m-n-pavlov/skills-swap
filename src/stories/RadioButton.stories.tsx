@@ -4,7 +4,7 @@ import { RadioButton } from '../shared/ui/RadioButton/RadioButton.tsx';
 import type { RadioButtonItem } from '../shared/ui/RadioButton/type.ts';
 
 const meta: Meta<typeof RadioButton> = {
-  title: 'Shared/RadioButton',
+  title: 'UI/RadioButton',
   component: RadioButton
 };
 

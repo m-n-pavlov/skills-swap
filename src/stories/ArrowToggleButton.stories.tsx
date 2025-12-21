@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { ArrowToggleButton } from '../shared/ui/ArrowToggleButton';
 
 const meta: Meta<typeof ArrowToggleButton> = {
-  title: 'Shared/ArrowToggleButton',
+  title: 'UI/ArrowToggleButton',
   component: ArrowToggleButton,
   tags: ['autodocs'],
   argTypes: {

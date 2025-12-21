@@ -4,7 +4,7 @@ import { FaivaritsLinkUI } from '../shared/ui/FaivaritsLink';
 import type { FaivaritsLinkUIProps } from '../shared/ui/FaivaritsLink/type';
 
 const meta: Meta<typeof FaivaritsLinkUI> = {
-  title: 'Shared/FaivaritsLink',
+  title: 'UI/FaivaritsLink',
   component: FaivaritsLinkUI,
   args: {
     href: '/',

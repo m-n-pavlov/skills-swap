@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { SuccessTradeModal } from '../shared/ui/SuccessTradeModal';
+import { SuccessTradeModal } from '../shared/ui/SuccessTradeModal/SuccessTradeModal';
 import { BrowserRouter } from 'react-router-dom';
 
 const meta: Meta<typeof SuccessTradeModal> = {
-  title: 'shared/SuccessTradeModal',
+  title: 'widgets/SuccessTradeModal',
   component: SuccessTradeModal,
   decorators: [
     (Story) => (

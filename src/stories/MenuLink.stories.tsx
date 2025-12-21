@@ -3,7 +3,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { MenuLink } from '../shared/ui';
 
 const meta: Meta<typeof MenuLink> = {
-  title: 'Shared/MenuLink',
+  title: 'UI/MenuLink',
   component: MenuLink,
   args: {
     label: 'О проекте',

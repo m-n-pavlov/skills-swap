@@ -3,7 +3,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { UserMenu } from '../widgets/UserMenu/UserMenu';
 
 const meta: Meta<typeof UserMenu> = {
-  title: 'Components/UserMenu',
+  title: 'UI/UserMenu',
   component: UserMenu,
   decorators: [
     (Story) => (
