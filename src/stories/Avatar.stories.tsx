@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Avatar } from '../shared/ui/Avatar';
 
 const meta: Meta<typeof Avatar> = {
-  title: 'Shared/Avatar',
+  title: 'UI/Avatar',
   component: Avatar,
   args: {
     alt: 'User Avatar'

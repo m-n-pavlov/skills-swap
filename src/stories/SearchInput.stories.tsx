@@ -5,7 +5,7 @@ import { SearchInput } from '../shared/ui/SearchInput';
 import { useState } from 'react';
 
 const meta: Meta<typeof SearchInput> = {
-  title: 'Components/SearchInput',
+  title: 'UI/SearchInput',
   component: SearchInput,
   tags: ['autodocs'],
   argTypes: {

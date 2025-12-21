@@ -3,7 +3,7 @@ import { SkillsPopover } from '../widgets/SkillsPopover';
 import type { TCategory } from '../entities/categories.ts';
 
 const meta: Meta<typeof SkillsPopover> = {
-  title: 'SkillsPopover',
+  title: 'widgets/SkillsPopover',
   component: SkillsPopover,
   decorators: [
     (Story) => (

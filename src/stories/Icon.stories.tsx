@@ -3,7 +3,7 @@ import { Icon } from '../shared/ui';
 import { icons } from '../shared/ui/Icon/icons.ts';
 
 const meta: Meta<typeof Icon> = {
-  title: 'Shared/Icon',
+  title: 'UI/Icon',
   component: Icon
 };
 
