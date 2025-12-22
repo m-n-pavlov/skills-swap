@@ -19,9 +19,13 @@
   height: 100%;
   width: 100%;
   font-size: var(--body-font-size);
-  font-family: var(--body-font-family);
+  font-family: var(--body-font-family), serif;
   line-height: var(--body-line-height);
   color: var(--caption);
+}
+
+.search_input_wrapper:focus-within {
+  outline: 1px solid var(--accent);
 }
 
 /* Иконка */
