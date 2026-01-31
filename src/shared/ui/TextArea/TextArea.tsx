@@ -1,6 +1,6 @@
 import { memo, useState } from 'react';
 import clsx from 'clsx';
-import styles from './Textarea.module.css';
+import styles from './TextArea.module.css';
 import type { TextAreaProps } from './type';
 import { Icon } from '../Icon';
 
