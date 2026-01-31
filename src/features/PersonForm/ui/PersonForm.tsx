@@ -79,7 +79,7 @@ export const PersonForm = ({
             required
             type='email'
             value={formValue.email}
-            onChange={(value) => onFieldChange('email', value)}
+            onChange={(value: string) => onFieldChange('email', value)}
           />
           {errors.email && <p className={styles.errorText}>{errors.email}</p>}
         </div>
@@ -95,7 +95,7 @@ export const PersonForm = ({
               placeholder='Введите пароль'
               type='password'
               value={formValue.password}
-              onChange={(value) => onFieldChange('password', value)}
+              onChange={(value: string) => onFieldChange('password', value)}
             />
             {errors.password && (
               <p className={styles.errorText}>{errors.password}</p>
@@ -123,7 +123,7 @@ export const PersonForm = ({
             required
             type='text'
             value={formValue.name}
-            onChange={(value) => onFieldChange('name', value)}
+            onChange={(value: string) => onFieldChange('name', value)}
           />
           {errors.name && <p className={styles.errorText}>{errors.name}</p>}
         </div>
