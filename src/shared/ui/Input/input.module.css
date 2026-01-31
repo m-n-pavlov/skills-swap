@@ -1,0 +1,69 @@
+.container {
+  width: 100%;
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.infoText {
+  color: var(--text);
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+  border: 1px solid var(--caption);
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: var(--input);
+  color: var(--text);
+}
+
+.input:focus {
+  outline: none;
+  border-color: #69735d;
+}
+
+.input.error {
+  border-color: var(--error);
+}
+
+.rightIcon {
+  position: absolute;
+  right: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 0;
+}
+
+.leftIcon {
+  position: absolute;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  color: #666;
+  z-index: 1;
+}
+
+.message {
+  margin-top: 0.25rem;
+  min-height: 1.25rem;
+}
+
+.errorText {
+  color: var(--error);
+  font-size: 0.875rem;
+}
