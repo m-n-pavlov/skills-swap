@@ -3,7 +3,7 @@ import type { AuthFormProps } from './type';
 import styles from './AuthForm.module.css';
 
 import { Input } from '../../../../shared/ui/Input';
-import { Button } from '../../../../shared/ui/Button/Button';
+import { Button } from '../../../../shared/ui';
 import { NavLink } from 'react-router-dom';
 import clsx from 'clsx';
 

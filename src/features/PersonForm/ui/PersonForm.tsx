@@ -1,11 +1,11 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { Avatar, Button } from '../../../shared/ui';
 import { Input } from '../../../shared/ui/Input';
 import { DateInput } from '../../../shared/ui/DateInput';
 import { DropdownInput } from '../../../shared/ui/DropdownInput';
 import { TextArea } from '../../../shared/ui/TextArea';
-import { Icon } from '../../../shared/ui/Icon';
+import { Icon } from '../../../shared/ui';
 
 import type { Gender, PersonFormProps } from './type';
 import { genderOption } from '../../../entities/constans';
